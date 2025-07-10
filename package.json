@@ -1,20 +1,32 @@
 {
-  "name": "stephen-v2",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
-  },
-  "devDependencies": {
-    "prettier": "^3.6.2",
-    "turbo": "^2.5.4",
-    "typescript": "5.8.3"
-  },
-  "packageManager": "pnpm@9.0.0",
-  "engines": {
-    "node": ">=18"
-  }
+	"name": "stephen-v2",
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"build:me": "turbo run build --filter=me",
+		"dev": "turbo run dev",
+		"dev:me": "turbo run dev --filter=me",
+		"lint": "turbo run lint -- --max-warnings 9999",
+		"format": "prettier --write \"**/*.{ts,tsx,js,jsx,md}\"",
+		"check-format": "prettier '**/*.{ts,tsx,js,jsx}' --check",
+		"check-types": "turbo run check-types",
+		"prepare": "husky"
+	},
+	"devDependencies": {
+		"@tanstack/eslint-plugin-query": "^5.81.2",
+		"@typescript-eslint/eslint-plugin": "^8.35.1",
+		"@typescript-eslint/parser": "^8.35.1",
+		"eslint": "^9.30.1",
+		"eslint-plugin-prettier": "^5.5.1",
+		"eslint-plugin-react": "^7.37.5",
+		"eslint-plugin-simple-import-sort": "^12.1.1",
+		"husky": "^9.1.7",
+		"prettier": "^3.6.2",
+		"turbo": "^2.5.4",
+		"typescript": "5.8.3"
+	},
+	"packageManager": "pnpm@9.0.0",
+	"engines": {
+		"node": ">=18"
+	}
 }
