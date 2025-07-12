@@ -1,11 +1,11 @@
 'use client'
 
-import * as React from 'react'
+import { cn } from '@repo/stephen-v2-utils'
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import * as React from 'react'
 
-import { cn } from '@repo/stephen-v2-utils'
-import { Button } from '@/src/shadcn/button'
+import { Button } from '../shadcn/button'
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>

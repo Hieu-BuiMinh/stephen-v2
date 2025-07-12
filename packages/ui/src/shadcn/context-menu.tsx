@@ -1,10 +1,9 @@
 'use client'
 
-import * as React from 'react'
 import * as ContextMenuPrimitive from '@radix-ui/react-context-menu'
-import { CheckIcon, ChevronRightIcon, CircleIcon } from 'lucide-react'
-
 import { cn } from '@repo/stephen-v2-utils'
+import { CheckIcon, ChevronRightIcon, CircleIcon } from 'lucide-react'
+import * as React from 'react'
 
 function ContextMenu({ ...props }: React.ComponentProps<typeof ContextMenuPrimitive.Root>) {
 	return <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />
@@ -194,18 +193,18 @@ function ContextMenuShortcut({ className, ...props }: React.ComponentProps<'span
 
 export {
 	ContextMenu,
-	ContextMenuTrigger,
-	ContextMenuContent,
-	ContextMenuItem,
 	ContextMenuCheckboxItem,
-	ContextMenuRadioItem,
+	ContextMenuContent,
+	ContextMenuGroup,
+	ContextMenuItem,
 	ContextMenuLabel,
+	ContextMenuPortal,
+	ContextMenuRadioGroup,
+	ContextMenuRadioItem,
 	ContextMenuSeparator,
 	ContextMenuShortcut,
-	ContextMenuGroup,
-	ContextMenuPortal,
 	ContextMenuSub,
 	ContextMenuSubContent,
 	ContextMenuSubTrigger,
-	ContextMenuRadioGroup,
+	ContextMenuTrigger,
 }

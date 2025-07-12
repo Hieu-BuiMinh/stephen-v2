@@ -1,0 +1,27 @@
+import React from 'react'
+
+import { ThemeProvider } from '@/components/providers/shadcn-provider'
+
+function AppProvider({ children }: { children: React.ReactNode }) {
+	return (
+		<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+			{/* <ConvexClientProvider>
+				<Hello />
+				<NuqsAdapter>
+					<BProgressProvider>{children}</BProgressProvider>
+				</NuqsAdapter>
+				<ConfirmModal />
+				<LoginModal />
+			</ConvexClientProvider> */}
+			{children}
+
+			{/* <Script
+				defer
+				src="https://cloud.umami.is/script.js"
+				data-website-id="e33a48b3-c890-4ba6-9430-947be1127fc0"
+			/> */}
+		</ThemeProvider>
+	)
+}
+
+export default AppProvider

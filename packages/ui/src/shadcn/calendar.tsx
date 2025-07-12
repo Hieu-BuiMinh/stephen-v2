@@ -4,7 +4,7 @@ import * as React from 'react'
 import type { DayButton } from 'react-day-picker'
 import { DayPicker, getDefaultClassNames } from 'react-day-picker'
 
-import { Button, buttonVariants } from '@/src/shadcn/button'
+import { Button, buttonVariants } from '../shadcn/button'
 
 function Calendar({
 	className,

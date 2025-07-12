@@ -1,15 +1,12 @@
 import './globals.css'
 
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 
-const geistSans = Geist({
-	variable: '--font-geist-sans',
-	subsets: ['latin'],
-})
+import AppProvider from '@/components/providers/app-provider'
 
-const geistMono = Geist_Mono({
-	variable: '--font-geist-mono',
+const roboto = Roboto({
+	variable: '--font-roboto',
 	subsets: ['latin'],
 })
 
@@ -24,8 +21,14 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+		<html lang="en" suppressHydrationWarning>
+			<body className={`${roboto.variable} antialiased`} suppressHydrationWarning>
+				<AppProvider>
+					{/* <SiteHeader /> */}
+					<main role="main">{children}</main>
+					{/* <SiteFooter /> */}
+				</AppProvider>
+			</body>
 		</html>
 	)
 }

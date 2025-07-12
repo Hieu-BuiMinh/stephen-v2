@@ -4,9 +4,8 @@ import { cn } from '@repo/stephen-v2-utils'
 import type Image from 'next/image'
 import React, { forwardRef } from 'react'
 
-import { BlurImage } from '@/src/shadcn/common/image/blur-image'
-
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../../dialog'
+import { BlurImage } from './blur-image'
 
 type IImageZoomProps = {
 	description?: string

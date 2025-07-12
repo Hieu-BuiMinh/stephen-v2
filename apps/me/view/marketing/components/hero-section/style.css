@@ -1,0 +1,9 @@
+/* @import 'tailwindcss'; */
+
+.bg-hero-section {
+	/* @apply absolute inset-0 top-0 -z-10 mx-auto max-h-[600px] w-full opacity-10;
+	@apply bg-[url('/assets/images/bg/bg-hero-section-light.svg')] dark:bg-[url('/assets/images/bg/bg-hero-section-dark.svg')] bg-repeat; */
+
+	mask-image: radial-gradient(ellipse 80% 100% at 50% 30%, #000 40%, transparent 75%);
+	-webkit-mask-image: radial-gradient(ellipse 80% 100% at 50% 30%, #000 40%, transparent 75%);
+}

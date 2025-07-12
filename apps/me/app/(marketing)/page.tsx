@@ -1,7 +1,7 @@
-import React from 'react'
+import HomePageView from '@/view/marketing/pages/home/home.page'
 
 function HomePage() {
-	return <div>HomePage</div>
+	return <HomePageView />
 }
 
 export default HomePage
