@@ -9,7 +9,7 @@
     },
     "./shadcn": "./src/shadcn/index.ts",
     "./motion": "./src/motion/index.ts",
-    "./styles/*": "./styles/*"
+    "./styles/shadcn-preset": "./styles/shadcn-preset.css"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

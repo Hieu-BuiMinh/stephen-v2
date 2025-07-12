@@ -37,7 +37,7 @@ function Navbar() {
 								</DropdownMenuTrigger>
 
 								<DropdownMenuContent
-									className="p-2 rounded-xl bg-neutral-900/10 shadow-200 outline-none backdrop-blur-sm border border-neutral-900"
+									className="p-2 rounded-xl bg-foreground/10 shadow-xl/30 outline-none backdrop-blur-sm border dark:border-none border-background"
 									align="center"
 								>
 									<div className="grid grid-cols-2 gap-2">
@@ -67,12 +67,12 @@ const ItemLink = ({ className, item }: IItemLink) => {
 	return (
 		<Link
 			className={cn(
-				'flex gap-2 items-center rounded-lg p-2 bg-neutral-900/40 hover:bg-neutral-900 transition-colors group text-muted-foreground hover:text-foreground',
+				'flex gap-2 items-center rounded-lg p-2 border border-transparent bg-background/40 hover:bg-background/60 transition-colors group dark:text-muted-foreground dark:hover:text-foreground hover:bg-background/70 dark:hover:border-transparent',
 				className
 			)}
 			href={item.href}
 		>
-			<div className="size-10 flex items-center justify-center shrink-0 p-2 rounded-lg border group-hover:border-foreground/60">
+			<div className="size-10 flex items-center justify-center shrink-0 p-2 rounded-lg border group-hover:border-transparent dark:group-hover:border-foreground/60 transition-colors">
 				{<Icon size={16} />}
 			</div>
 			<div className="flex flex-col gap-2">
