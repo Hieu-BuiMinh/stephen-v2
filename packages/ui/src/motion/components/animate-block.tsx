@@ -174,7 +174,7 @@ function AnimatedBlock({
 			break
 		case 'BLUR_IN':
 			animateProps.initial = { filter: 'blur(20px)', opacity: 0 }
-			animateProps.whileInView = { filter: 'blur(0px)', opacity: 1, y: 0 }
+			animateProps.animate = { filter: 'blur(0px)', opacity: 1, y: 0 }
 			animateProps.transition = {
 				duration,
 				delay,
@@ -191,6 +191,7 @@ function AnimatedBlock({
 			animateProps.animate = { scale: 1, opacity: 1 }
 			animateProps.transition = {
 				duration: 0.4,
+				delay,
 				scale: { type: 'spring', visualDuration: 0.4, bounce: 0.75 },
 			}
 			break

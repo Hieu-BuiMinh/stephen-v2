@@ -8,16 +8,29 @@ body {
 	font-family: var(--font-roboto), sans-serif;
 }
 
-:root {
-	/* https://www.reddit.com/r/reactjs/comments/1fjcwkh/shadcnradix_ui_scrollbar_removal_bug/ */
-	/* Add the following to fix the margin issue that shifts the page to the left. */
-	body[data-scroll-locked][data-scroll-locked] {
-		overflow: auto !important;
-	}
-	body[data-scroll-locked] {
-		margin-right: 0 !important;
-	}
+/* https://www.reddit.com/r/reactjs/comments/1fjcwkh/shadcnradix_ui_scrollbar_removal_bug/ */
+/* Add the following to fix the margin issue that shifts the page to the left. */
+body[data-scroll-locked][data-scroll-locked] {
+	overflow: auto !important;
+}
+body[data-scroll-locked] {
+	margin-right: 0 !important;
+}
 
+:root {
+	--bg-striped: linear-gradient(
+		45deg,
+		var(--muted-foreground) 12.5%,
+		transparent 0,
+		transparent 50%,
+		var(--muted-foreground) 0,
+		var(--muted-foreground) 62.5%,
+		transparent 0,
+		transparent
+	);
+}
+
+.dark {
 	--bg-striped: linear-gradient(
 		45deg,
 		var(--muted-foreground) 12.5%,
