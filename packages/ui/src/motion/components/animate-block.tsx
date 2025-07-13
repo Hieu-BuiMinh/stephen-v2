@@ -1,7 +1,8 @@
 'use client'
 
+import { cn } from '@repo/stephen-v2-utils'
 import { motion } from 'motion/react'
-import type { ReactNode } from 'react'
+import { type ReactNode, useState } from 'react'
 
 interface HTMLElements {
 	a: HTMLAnchorElement
@@ -132,6 +133,7 @@ type AnimatedBlockProps = {
 	className?: string
 	as?: keyof HTMLElements
 	type?: 'FADE_IN' | 'FADE_IN_FROM_BOTTOM' | 'BLUR_IN' | 'BOUNCE_IN'
+	restartOnClick?: boolean
 }
 
 function AnimatedBlock({
@@ -141,7 +143,16 @@ function AnimatedBlock({
 	className = '',
 	as = 'div',
 	type = 'FADE_IN',
+	restartOnClick = false,
 }: AnimatedBlockProps) {
+	const [triggerAnimation, setTriggerAnimation] = useState(false)
+
+	const handleClick = () => {
+		if (restartOnClick) {
+			setTriggerAnimation(!triggerAnimation)
+		}
+	}
+
 	const Component = motion[as]
 
 	const animateProps = {
@@ -189,18 +200,15 @@ function AnimatedBlock({
 
 	return (
 		<Component
-			// initial={{ opacity: 0, y: 20 }}
-			// animate={{ opacity: 1, y: 0 }}
-			// transition={{
-			// 	duration,
-			// 	ease: 'easeOut',
-			// 	delay,
-			// }}
+			key={triggerAnimation ? 'triggered' : 'reset'}
 			{...animateProps}
-			className={className}
+			className={cn(restartOnClick && 'cursor-pointer', className)}
+			onClick={handleClick}
+			whileTap={restartOnClick ? { scale: 0.9 } : {}}
 		>
 			{children}
 		</Component>
 	)
 }
+
 export { AnimatedBlock }

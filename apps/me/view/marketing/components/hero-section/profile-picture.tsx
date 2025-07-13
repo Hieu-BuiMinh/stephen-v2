@@ -29,7 +29,7 @@ export function ProfilePicture({}: ProfilePictureProps) {
 		<div className="relative size-[190px] lg:size-[380px]">
 			<motion.div
 				key={imageSrc}
-				className="size-full rounded-full border shadow-[0_35px_35px_rgba(var(--foreground))]"
+				className="profile-ring size-full rounded-full"
 				initial={{ scale: 0 }}
 				animate={isChanging ? { scale: 0.95 } : { scale: 1 }}
 				transition={{
@@ -39,8 +39,8 @@ export function ProfilePicture({}: ProfilePictureProps) {
 				}}
 				onAnimationComplete={() => setIsChanging(false)}
 			/>
-			<motion.div
-				className="absolute mx-auto rounded-full border top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 size-[180px] lg:size-[320px]"
+			{/* <motion.div
+				className="profile-ring rotate-180 absolute mx-auto rounded-full top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 size-[180px] lg:size-[320px]"
 				initial={{ scale: 0 }}
 				animate={isChanging ? { scale: 0.95 } : { scale: 1 }}
 				transition={{
@@ -49,7 +49,7 @@ export function ProfilePicture({}: ProfilePictureProps) {
 					damping: 25,
 				}}
 				onAnimationComplete={() => setIsChanging(false)}
-			/>
+			/> */}
 			<AnimatePresence mode="wait">
 				<motion.div
 					key={imageSrc}
