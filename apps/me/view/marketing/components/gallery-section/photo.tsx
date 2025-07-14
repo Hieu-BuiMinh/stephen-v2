@@ -1,5 +1,6 @@
 'use client'
 
+import { BlurImage } from '@repo/stephen-v2-ui/shadcn'
 import { cn, getRandomNumberInRange } from '@repo/stephen-v2-utils'
 import type { Direction } from 'motion/react'
 import { motion, useMotionValue } from 'motion/react'
@@ -10,7 +11,7 @@ import { forwardRef, useEffect, useState } from 'react'
 
 const MotionImage = motion(
 	forwardRef(function MotionImage(props: ImageProps, ref: Ref<HTMLImageElement>) {
-		return <Image ref={ref} {...props} unoptimized={false} />
+		return <BlurImage ref={ref} {...props} unoptimized={false} />
 	})
 )
 
@@ -85,7 +86,7 @@ export const Photo = ({
 		>
 			<div className="relative h-full w-full overflow-hidden rounded-lg shadow-sm shadow-slate-900/30">
 				<MotionImage
-					className={cn('rounded-lg object-cover')}
+					className={cn('rounded-lg object-cover size-full')}
 					fill
 					src={src}
 					alt={alt}
