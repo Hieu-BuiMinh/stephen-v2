@@ -74,7 +74,7 @@ function ConnectionsBento({ linkTo }: IConnectionsBento) {
 	const controls = useAnimation()
 
 	return (
-		<BentoCard className="group h-[300px] overflow-hidden" linkTo={linkTo}>
+		<BentoCard className="group overflow-hidden size-full" linkTo={linkTo}>
 			<div
 				className="flex h-full flex-col"
 				onMouseEnter={() => controls.start('active')}
@@ -92,7 +92,7 @@ function ConnectionsBento({ linkTo }: IConnectionsBento) {
 					height={100}
 				/>
 
-				<span className="hidden md:block">
+				<span className="hidden lg:block">
 					{desktopConnections.map((conn, index) => (
 						<AnimatedConnectionCircle
 							key={conn.name || index}
@@ -106,7 +106,7 @@ function ConnectionsBento({ linkTo }: IConnectionsBento) {
 					))}
 				</span>
 
-				<span className="lg:hidden">
+				<span className="block lg:hidden">
 					{mobileConnections.map((conn, index) => (
 						<ConnectionCircle key={conn.src + index} className={conn.className}>
 							<Image className="rounded-full" src={conn.src} alt="Connection" width={70} height={70} />

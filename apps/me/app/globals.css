@@ -17,8 +17,8 @@ body[data-scroll-locked] {
 	margin-right: 0 !important;
 }
 
-:root {
-	--bg-striped: linear-gradient(
+/* :root {
+	--bg-dashed: linear-gradient(
 		45deg,
 		var(--muted-foreground) 12.5%,
 		transparent 0,
@@ -31,7 +31,7 @@ body[data-scroll-locked] {
 }
 
 .dark {
-	--bg-striped: linear-gradient(
+	--bg-dashed: linear-gradient(
 		45deg,
 		var(--muted-foreground) 12.5%,
 		transparent 0,
@@ -43,7 +43,23 @@ body[data-scroll-locked] {
 	);
 }
 
-.bg-striped {
-	background-image: var(--bg-striped);
+.bg-dashed {
+	background-image: var(--bg-dashed);
 	background-size: 5px 5px;
+} */
+
+@layer utilities {
+	.bg-dashed {
+		background-image: linear-gradient(
+			45deg,
+			var(--border) 12.5%,
+			transparent 0,
+			transparent 50%,
+			var(--border) 50%,
+			var(--border) 62.5%,
+			transparent 62.5%,
+			transparent
+		);
+		background-size: 5px 5px;
+	}
 }
