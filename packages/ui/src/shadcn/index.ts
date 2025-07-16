@@ -47,5 +47,6 @@ export * from './tooltip'
 // common components
 export * from './common/image/blur-image'
 export * from './common/image/image-zoom'
+export * from './common/marquee'
 export * from './common/spinner'
 export { toast } from 'sonner'

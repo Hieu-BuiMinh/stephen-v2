@@ -7,7 +7,7 @@ import Image from 'next/image'
 import BentoCard from '@/view/marketing/components/bento-card'
 
 interface IConnectionsBento {
-	linkTo: string
+	linkTo?: string
 }
 const desktopConnections = [
 	{
@@ -74,7 +74,7 @@ function ConnectionsBento({ linkTo }: IConnectionsBento) {
 	const controls = useAnimation()
 
 	return (
-		<BentoCard className="group h-[300px] overflow-hidden" linkTo={linkTo}>
+		<BentoCard className="group overflow-hidden size-full min-h-[210px]" linkTo={linkTo}>
 			<div
 				className="flex h-full flex-col"
 				onMouseEnter={() => controls.start('active')}
@@ -92,7 +92,7 @@ function ConnectionsBento({ linkTo }: IConnectionsBento) {
 					height={100}
 				/>
 
-				<span className="hidden md:block">
+				<span className="hidden lg:block">
 					{desktopConnections.map((conn, index) => (
 						<AnimatedConnectionCircle
 							key={conn.name || index}
@@ -106,7 +106,7 @@ function ConnectionsBento({ linkTo }: IConnectionsBento) {
 					))}
 				</span>
 
-				<span className="lg:hidden">
+				<span className="block lg:hidden">
 					{mobileConnections.map((conn, index) => (
 						<ConnectionCircle key={conn.src + index} className={conn.className}>
 							<Image className="rounded-full" src={conn.src} alt="Connection" width={70} height={70} />
@@ -115,7 +115,7 @@ function ConnectionsBento({ linkTo }: IConnectionsBento) {
 				</span>
 			</div>
 
-			<div className="z-20 mt-auto w-full text-balance text-center">
+			<div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 w-full text-center text-muted-foreground group-hover:text-foreground transition-colors hidden md:block">
 				<h2 className="text-base font-medium">Connections</h2>
 				<p className="mt-1 text-text-secondary">
 					A journey through the amazing people I&apos;ve met — and dream of meeting
