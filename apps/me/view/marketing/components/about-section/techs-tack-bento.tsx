@@ -1,8 +1,8 @@
-import React from 'react'
+import { Marquee, MarqueeContent, MarqueeFade, MarqueeItem } from '@repo/stephen-v2-ui/shadcn'
+import { memo } from 'react'
 
 import { softwareData } from '@/constants/bento/techs-stack'
 import BentoCard from '@/view/marketing/components/bento-card'
-import { Marquee, MarqueeContent, MarqueeFade, MarqueeItem } from '@repo/stephen-v2-ui/shadcn'
 
 interface ITechStackBento {
 	linkTo?: string
@@ -37,51 +37,41 @@ const items = softwareData
 
 function TechStackBento({ linkTo }: ITechStackBento) {
 	return (
-		// <BentoCard linkTo={linkTo} className="overflow-hidden md:h-[304px] lg:h-[300px]">
-		<BentoCard linkTo={linkTo} className="overflow-hidden">
-			<div className="z-20 text-center">
-				<h2 className="text-base font-medium">Techs Stack</h2>
-				<p className="mt-1 text-text-secondary">Check out my favorite techs and spots around the web.</p>
-			</div>
-
-			<div className="mt-10 flex items-center justify-center gap-3 transition-all duration-500 ease-in-out md:mt-12">
-				{/* {items} */}
-
-				<div className="flex flex-col gap-3 size-full items-center justify-center bg-background">
-					<Marquee>
-						<MarqueeFade side="left" />
-						<MarqueeFade side="right" />
-						<MarqueeContent direction="right">
-							{new Array(10).fill(null).map((_, index) => (
-								<MarqueeItem className="size-16" key={index}>
-									<img
-										alt={`Placeholder ${index}`}
-										className="overflow-hidden rounded-full"
-										src={`https://placehold.co/64x64?random=${index}`}
-									/>
-								</MarqueeItem>
-							))}
-						</MarqueeContent>
-					</Marquee>
-					<Marquee>
-						<MarqueeFade side="left" />
-						<MarqueeFade side="right" />
-						<MarqueeContent direction="left">
-							{new Array(10).fill(null).map((_, index) => (
-								<MarqueeItem className="size-16" key={index}>
-									<img
-										alt={`Placeholder ${index}`}
-										className="overflow-hidden rounded-full"
-										src={`https://placehold.co/64x64?random=${index}`}
-									/>
-								</MarqueeItem>
-							))}
-						</MarqueeContent>
-					</Marquee>
-				</div>
+		<BentoCard linkTo={linkTo} className="size-full overflow-hidden">
+			<div className="flex flex-col gap-3 size-full items-center justify-center bg-background">
+				<Marquee>
+					<MarqueeFade side="left" />
+					<MarqueeFade side="right" />
+					<MarqueeContent direction="right">
+						{new Array(1).fill(null).map((_, index) => (
+							<MarqueeItem className="size-16" key={index}>
+								<img
+									alt={`Placeholder ${index}`}
+									className="overflow-hidden rounded-full"
+									src={`https://placehold.co/64x64?random=${index}`}
+								/>
+							</MarqueeItem>
+						))}
+					</MarqueeContent>
+				</Marquee>
+				<Marquee>
+					<MarqueeFade side="left" />
+					<MarqueeFade side="right" />
+					<MarqueeContent direction="left">
+						{new Array(10).fill(null).map((_, index) => (
+							<MarqueeItem className="size-16" key={index}>
+								<img
+									alt={`Placeholder ${index}`}
+									className="overflow-hidden rounded-full"
+									src={`https://placehold.co/64x64?random=${index}`}
+								/>
+							</MarqueeItem>
+						))}
+					</MarqueeContent>
+				</Marquee>
 			</div>
 		</BentoCard>
 	)
 }
 
-export default TechStackBento
+export default memo(TechStackBento)

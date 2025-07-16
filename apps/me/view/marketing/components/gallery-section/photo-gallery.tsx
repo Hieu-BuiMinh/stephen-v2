@@ -145,7 +145,7 @@ function PhotoGallery({ animationDelay = 0.5 }: { animationDelay?: number }) {
 									y: photo.y,
 									order: photo.order,
 								}}
-								whileHover={{ zIndex: 999 }}
+								whileHover={{ zIndex: 50 }}
 							>
 								<Photo
 									width={220}

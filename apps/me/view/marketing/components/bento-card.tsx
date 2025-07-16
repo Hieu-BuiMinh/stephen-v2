@@ -12,13 +12,13 @@ function BentoCard({ children, className, linkTo }: IBentoCard) {
 	const isInternalLink = linkTo?.startsWith('/')
 
 	return (
-		<div className={cn('relative rounded-2xl border bg-background p-6', className)}>
+		<div className={cn('relative rounded-2xl border bg-background p-6 flex', className)}>
 			{linkTo ? (
 				<Link
 					href={linkTo}
 					target={isInternalLink ? undefined : '_blank'}
 					rel={isInternalLink ? undefined : 'noopener noreferrer'}
-					className="size-full border border-red-400"
+					className="size-full"
 				>
 					{children}
 				</Link>
