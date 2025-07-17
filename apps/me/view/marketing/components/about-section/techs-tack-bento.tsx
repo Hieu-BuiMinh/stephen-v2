@@ -38,13 +38,13 @@ const items = softwareData
 function TechStackBento({ linkTo }: ITechStackBento) {
 	return (
 		<BentoCard linkTo={linkTo} className="size-full overflow-hidden">
-			<div className="flex flex-col gap-3 size-full items-center justify-center bg-background">
+			<div className="flex flex-col gap-5 size-full items-center justify-center bg-background">
 				<Marquee>
 					<MarqueeFade side="left" />
 					<MarqueeFade side="right" />
 					<MarqueeContent direction="right">
 						{new Array(1).fill(null).map((_, index) => (
-							<MarqueeItem className="size-16" key={index}>
+							<MarqueeItem className="size-12" key={index}>
 								<img
 									alt={`Placeholder ${index}`}
 									className="overflow-hidden rounded-full"
@@ -59,7 +59,7 @@ function TechStackBento({ linkTo }: ITechStackBento) {
 					<MarqueeFade side="right" />
 					<MarqueeContent direction="left">
 						{new Array(10).fill(null).map((_, index) => (
-							<MarqueeItem className="size-16" key={index}>
+							<MarqueeItem className="size-12" key={index}>
 								<img
 									alt={`Placeholder ${index}`}
 									className="overflow-hidden rounded-full"

@@ -1,5 +1,6 @@
 'use client'
 
+import { GlowEffect } from '@repo/stephen-v2-ui/motion'
 import { Button, toast } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
 import confetti from 'canvas-confetti'
@@ -50,13 +51,19 @@ function DownLoadResumeButton({ innerText, className }: Readonly<IDownLoadResume
 	}
 
 	return (
-		<a href="/assets/files/pdf/[Junior-Frontend]_[BuiMinhHieu]_[2025].pdf" className={className} download>
+		<a
+			href="/assets/files/pdf/[Junior-Frontend]_[BuiMinhHieu]_[2025].pdf"
+			className={cn('relative', className)}
+			download
+		>
 			<Button
-				className={cn('w-full bg-muted text-foreground', {
-					'dark:bg-gradient-to-r dark:from-yellow-500 dark:to-red-500 bg-foreground text-white': !loading,
-				})}
+				// className={cn('w-full bg-muted text-foreground', {
+				// 	'dark:bg-gradient-to-r dark:from-yellow-500 dark:to-red-500 bg-foreground text-white': !loading,
+				// })}
 				onClick={handleloading}
 				disabled={loading}
+				className="z-10 bg-background"
+				variant="secondary"
 			>
 				{innerText ?? 'know more about me!'}
 				{loading ? (
@@ -65,6 +72,14 @@ function DownLoadResumeButton({ innerText, className }: Readonly<IDownLoadResume
 					<ArrowDownToLine size={20} className="hidden animate-bounce md:block" />
 				)}
 			</Button>
+			<GlowEffect
+				colors={['#FF5733', '#33FF57', '#3357FF', '#F1C40F']}
+				mode="colorShift"
+				className="-z-10"
+				blur="soft"
+				duration={3}
+				scale={1}
+			/>
 		</a>
 	)
 }
