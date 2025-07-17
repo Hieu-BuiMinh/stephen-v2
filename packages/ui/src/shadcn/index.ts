@@ -45,6 +45,8 @@ export * from './toggle-group'
 export * from './tooltip'
 
 // common components
+export * from './common/badges/badge-shine'
+export * from './common/card-spotlight'
 export * from './common/image/blur-image'
 export * from './common/image/image-zoom'
 export * from './common/marquee'

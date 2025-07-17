@@ -42,7 +42,7 @@ function HeroSection() {
 					</div>
 				</div>
 
-				<div className="flex flex-col items-start gap-2 md:flex-row md:items-center">
+				<div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
 					<DownLoadResumeButton className="w-full md:w-auto" />
 					<Link
 						href={APP_CONFIG.author.resume}
