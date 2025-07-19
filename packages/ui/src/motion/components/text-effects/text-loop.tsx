@@ -56,7 +56,9 @@ export function TextLoop({
 				<motion.div
 					key={currentIndex}
 					initial="initial"
-					animate="animate"
+					// animate="animate"
+					whileInView="animate"
+					viewport={{ once: true }}
 					exit="exit"
 					transition={transition}
 					variants={variants || motionVariants}

@@ -36,7 +36,9 @@ function TextShimmerComponent({
 				className
 			)}
 			initial={{ backgroundPosition: '100% center' }}
-			animate={{ backgroundPosition: '0% center' }}
+			// animate={{ backgroundPosition: '0% center' }}
+			whileInView={{ backgroundPosition: '0% center' }}
+			viewport={{ once: true }}
 			transition={{
 				repeat: Infinity,
 				duration,

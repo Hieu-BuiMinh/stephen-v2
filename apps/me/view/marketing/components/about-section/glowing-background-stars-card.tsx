@@ -40,7 +40,7 @@ export const GlowingStarsDescription = ({
 	className?: string
 	children?: React.ReactNode
 }) => {
-	return <p className={cn('text-base text-white max-w-[16rem]', className)}>{children}</p>
+	return <div className={cn('text-base text-white max-w-[16rem]', className)}>{children}</div>
 }
 
 export const GlowingStarsTitle = ({ className, children }: { className?: string; children?: React.ReactNode }) => {

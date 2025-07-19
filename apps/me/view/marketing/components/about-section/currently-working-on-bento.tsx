@@ -21,7 +21,9 @@ function CurrentlyWorkingOnBento() {
 					</GlowingStarsTitle>
 					<div className="flex justify-between items-end gap-2">
 						<GlowingStarsDescription className="text-right">
-							Optimizing my workflow with Turborepo for faster builds and scalable monorepos.
+							<TextEffect>
+								Optimizing my workflow with Turborepo for faster builds and scalable monorepos.
+							</TextEffect>
 						</GlowingStarsDescription>
 						<div className="size-8 rounded-full bg-[hsla(0,0%,100%,.1)] flex items-center justify-center">
 							<TurborepoIcon />
@@ -36,7 +38,7 @@ function CurrentlyWorkingOnBento() {
 					</GlowingStarsTitle>
 					<div className="flex justify-between items-end gap-2">
 						<GlowingStarsDescription>
-							Building my app with the power of Next.js. Check out the details.
+							<TextEffect>Building my app with the power of Next.js. Check out the details.</TextEffect>
 						</GlowingStarsDescription>
 						<div className="size-8 rounded-full bg-[hsla(0,0%,100%,.1)] flex items-center justify-center">
 							<ArrowIcon />

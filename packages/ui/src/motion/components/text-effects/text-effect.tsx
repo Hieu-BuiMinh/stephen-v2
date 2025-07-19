@@ -240,7 +240,9 @@ function TextEffect({
 			{trigger && (
 				<MotionTag
 					initial="hidden"
-					animate="visible"
+					// animate="visible"
+					whileInView="visible"
+					viewport={{ once: true }}
 					exit="exit"
 					variants={computedVariants.container}
 					className={className}

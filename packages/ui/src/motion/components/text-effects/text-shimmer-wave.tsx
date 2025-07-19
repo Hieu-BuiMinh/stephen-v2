@@ -58,7 +58,15 @@ export function TextShimmerWave({
 							rotateY: 0,
 							color: 'var(--base-color)',
 						}}
-						animate={{
+						// animate={{
+						// 	translateZ: [0, zDistance, 0],
+						// 	translateX: [0, xDistance, 0],
+						// 	translateY: [0, yDistance, 0],
+						// 	scale: [1, scaleDistance, 1],
+						// 	rotateY: [0, rotateYDistance, 0],
+						// 	color: ['var(--base-color)', 'var(--base-gradient-color)', 'var(--base-color)'],
+						// }}
+						whileInView={{
 							translateZ: [0, zDistance, 0],
 							translateX: [0, xDistance, 0],
 							translateY: [0, yDistance, 0],
@@ -66,6 +74,7 @@ export function TextShimmerWave({
 							rotateY: [0, rotateYDistance, 0],
 							color: ['var(--base-color)', 'var(--base-gradient-color)', 'var(--base-color)'],
 						}}
+						viewport={{ once: true }}
 						transition={{
 							duration: duration,
 							repeat: Infinity,
