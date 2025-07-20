@@ -62,7 +62,7 @@ function DownLoadResumeButton({ innerText, className }: Readonly<IDownLoadResume
 				// })}
 				onClick={handleloading}
 				disabled={loading}
-				className="z-10 bg-background"
+				className="z-10 bg-background max-md:w-full"
 				variant="secondary"
 			>
 				{innerText ?? 'know more about me!'}

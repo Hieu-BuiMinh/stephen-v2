@@ -9,6 +9,11 @@
 		8px 4px 12px 0px #111,
 		4px 4px 4px 0px #111 inset,
 		-4px -4px 4px 0px #040404 inset;
+
+	background: #111111;
+	box-shadow:
+		-8px -8px 16px rgba(24, 24, 24, 0.85),
+		8px 8px 16px rgba(8, 8, 8, 0.8);
 }
 .profile-ring {
 	box-shadow:

@@ -14,10 +14,8 @@ import { ProfilePicture } from '@/view/marketing/components/hero-section/profile
 
 function HeroSection() {
 	return (
-		<div className="flex flex-col-reverse items-center justify-between rounded-md p-5 sm:pt-16 md:pt-20 sm:flex-row bg-[#e8e8e8] dark:bg-transparent">
-			<div className="bg-hero-section absolute inset-0 top-0 -z-10 mx-auto max-h-[600px] w-full opacity-20 dark:opacity-[0.05] bg-[url('/assets/images/bg/bg-hero-section-light.svg')] dark:bg-[url('/assets/images/bg/bg-hero-section-dark.svg')] bg-repeat" />
-
-			<div className="flex flex-col gap-5 w-full">
+		<div className="flex flex-col-reverse items-center justify-between rounded-md p-5 sm:pt-16 md:pt-20 sm:flex-row md:bg-[#e8e8e8] dark:md:bg-[#111111]">
+			<div className="flex flex-col gap-6 w-full">
 				<div className="max-w-7xl flex flex-col gap-5 mt-7 text-center text-4xl font-semibold md:text-6xl sm:text-left sm:mt-0">
 					<h1 className="font-black">
 						Hey, I'm{' '}
@@ -36,13 +34,13 @@ function HeroSection() {
 					<h2 className="bg-gradient-to-b from-foreground via-foreground/90 to-foreground/40 to-90% bg-clip-text text-2xl font-black text-transparent sm:text-4xl md:text-5xl leading-[1.1]">
 						Creating websites using
 					</h2>
-					<div className="flex flex-col gap-2">
+					<div className="flex flex-col gap-4">
 						<span className="hero-stack-name">React</span>
 						<div className="text-xs text-muted-foreground">Ho Chi Minh City • UTC/GMT +7</div>
 					</div>
 				</div>
 
-				<div className="flex flex-col items-start gap-4 md:flex-row md:items-center">
+				<div className="flex flex-col items-start gap-4 md:flex-row md:items-center z-10">
 					<DownLoadResumeButton className="w-full md:w-auto" />
 					<Link
 						href={APP_CONFIG.author.resume}

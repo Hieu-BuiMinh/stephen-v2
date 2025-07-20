@@ -1,4 +1,11 @@
-// https://motion-primitives.com/docs/text-shimmer
+/**
+ * primitives (MIT License)
+ * Copyright (c) motion-primitives: https://21st.dev/motion-primitives
+ * Source:
+ *  - https://motion-primitives.com/docs/text-shimmer
+ *
+ * Modified by: Stephen
+ */
 
 'use client'
 import { cn } from '@repo/stephen-v2-utils'
@@ -58,7 +65,15 @@ export function TextShimmerWave({
 							rotateY: 0,
 							color: 'var(--base-color)',
 						}}
-						animate={{
+						// animate={{
+						// 	translateZ: [0, zDistance, 0],
+						// 	translateX: [0, xDistance, 0],
+						// 	translateY: [0, yDistance, 0],
+						// 	scale: [1, scaleDistance, 1],
+						// 	rotateY: [0, rotateYDistance, 0],
+						// 	color: ['var(--base-color)', 'var(--base-gradient-color)', 'var(--base-color)'],
+						// }}
+						whileInView={{
 							translateZ: [0, zDistance, 0],
 							translateX: [0, xDistance, 0],
 							translateY: [0, yDistance, 0],
@@ -66,6 +81,7 @@ export function TextShimmerWave({
 							rotateY: [0, rotateYDistance, 0],
 							color: ['var(--base-color)', 'var(--base-gradient-color)', 'var(--base-color)'],
 						}}
+						viewport={{ once: true }}
 						transition={{
 							duration: duration,
 							repeat: Infinity,

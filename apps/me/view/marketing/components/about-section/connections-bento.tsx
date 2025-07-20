@@ -115,7 +115,7 @@ function ConnectionsBento({ linkTo }: IConnectionsBento) {
 				</span>
 			</div>
 
-			<div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 w-full text-center text-muted-foreground group-hover:text-foreground transition-colors hidden md:block">
+			<div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 w-full text-center text-muted-foreground pointer-events-none group-hover:text-foreground transition-colors hidden md:block">
 				<h2 className="text-base font-medium">Connections</h2>
 				<p className="mt-1 text-text-secondary">
 					A journey through the amazing people I&apos;ve met — and dream of meeting
@@ -130,7 +130,7 @@ export default ConnectionsBento
 function BackgroundPattern() {
 	return (
 		<svg
-			className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 dark:opacity-20"
+			className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 dark:opacity-50"
 			width="704"
 			height="250"
 			viewBox="0 0 637 250"

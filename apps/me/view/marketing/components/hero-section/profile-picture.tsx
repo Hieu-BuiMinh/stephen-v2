@@ -62,7 +62,7 @@ export function ProfilePicture({}: ProfilePictureProps) {
 					whileTap={{ scale: 0.9 }}
 					onAnimationComplete={() => setIsChanging(false)}
 				>
-					<GlareHover className="rounded-full size-[180px] lg:size-[270px]">
+					<GlareHover className="!rounded-full size-[180px] lg:size-[270px]">
 						<Image
 							key={imageSrc}
 							className="cursor-pointer rounded-full object-cover size-[180px] lg:size-[270px] grayscale hover:grayscale-0 transition-all"

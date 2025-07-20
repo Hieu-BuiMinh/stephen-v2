@@ -14,6 +14,7 @@ interface GlareHoverProps {
 	transitionDuration?: number
 	playOnce?: boolean
 	className?: string
+	style?: React.CSSProperties
 }
 
 /* default srC: https://reactbits.dev/animations/glare-hover */
@@ -49,6 +50,7 @@ const GlareHover: React.FC<GlareHoverProps> = ({
 	transitionDuration = 650,
 	playOnce = false,
 	className = '',
+	style,
 }) => {
 	const overlayRef = useRef<HTMLDivElement>(null)
 	const rgba = hexToRgba(glareColor, glareOpacity)
@@ -89,17 +91,15 @@ const GlareHover: React.FC<GlareHoverProps> = ({
 		backgroundRepeat: 'no-repeat',
 		backgroundPosition: '-100% -100%, 0 0',
 		pointerEvents: 'none',
-		zIndex: 9,
+		zIndex: 99,
 	}
 
 	return (
 		<div
-			className={cn(
-				'relative size-full grid place-items-center overflow-hidden border cursor-pointer',
-				className
-			)}
+			className={cn('relative size-full overflow-hidden cursor-pointer', className)}
 			onMouseEnter={animateIn}
 			onMouseLeave={animateOut}
+			style={style}
 		>
 			<div ref={overlayRef} style={overlayStyle} />
 			{children}
