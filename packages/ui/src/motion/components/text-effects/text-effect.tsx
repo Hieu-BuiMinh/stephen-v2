@@ -1,4 +1,11 @@
-// https://motion-primitives.com/docs/text-effect
+/**
+ * primitives (MIT License)
+ * Copyright (c) motion-primitives: https://21st.dev/motion-primitives
+ * Source:
+ *  - https://motion-primitives.com/docs/text-effect
+ *
+ * Modified by: Stephen
+ */
 
 'use client'
 import { cn } from '@repo/stephen-v2-utils'

@@ -38,7 +38,7 @@ const items = softwareData
 
 function TechStackBento({ linkTo }: ITechStackBento) {
 	return (
-		<BentoCard linkTo={linkTo} className="size-full overflow-hidden border-none p-0">
+		<BentoCard linkTo={linkTo} className="size-full overflow-hidden border-none p-0 rounded-none">
 			<div className="flex flex-col gap-5 size-full items-center justify-center bg-background">
 				<Marquee>
 					<MarqueeFade side="left" />

@@ -1,4 +1,12 @@
 // https://motion-primitives.com/docs/text-scramble
+/**
+ * primitives (MIT License)
+ * Copyright (c) motion-primitives: https://21st.dev/motion-primitives
+ * Source:
+ *  - https://motion-primitives.com/docs/text-scramble
+ *
+ * Modified by: Stephen
+ */
 
 'use client'
 import type { MotionProps } from 'motion/react'

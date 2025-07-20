@@ -1,3 +1,6 @@
+import type { SVGIconComponent } from '@/components/icons/svg-icons'
+import { SVGIcons } from '@/components/icons/svg-icons'
+
 export const isProduction = process.env.NODE_ENV === 'production'
 
 export const APP_CONFIG = {
@@ -37,3 +40,35 @@ export const APP_CONFIG = {
 }
 
 export type APP_CONFIG = typeof APP_CONFIG
+
+export const SOCIAL_LINKS: {
+	label: string
+	icon: SVGIconComponent
+	href: string
+}[] = [
+	{
+		label: 'GitHub',
+		icon: SVGIcons.gitHub,
+		href: APP_CONFIG.links.github,
+	},
+	{
+		label: 'Twitter',
+		icon: SVGIcons.X,
+		href: APP_CONFIG.links.twitter,
+	},
+	{
+		label: 'Facebook',
+		icon: SVGIcons.facebook,
+		href: APP_CONFIG.links.facebook,
+	},
+	{
+		label: 'Youtube',
+		icon: SVGIcons.youtube,
+		href: APP_CONFIG.links.youtube,
+	},
+	{
+		label: 'Instagram',
+		icon: SVGIcons.instagram,
+		href: APP_CONFIG.links.instagram,
+	},
+]

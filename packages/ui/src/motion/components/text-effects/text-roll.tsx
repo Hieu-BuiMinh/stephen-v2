@@ -1,4 +1,11 @@
-// https://motion-primitives.com/docs/text-roll
+/**
+ * primitives (MIT License)
+ * Copyright (c) motion-primitives: https://21st.dev/motion-primitives
+ * Source:
+ *  - https://motion-primitives.com/docs/text-roll
+ *
+ * Modified by: Stephen
+ */
 
 'use client'
 import type { Target, TargetAndTransition, Transition, VariantLabels } from 'motion/react'

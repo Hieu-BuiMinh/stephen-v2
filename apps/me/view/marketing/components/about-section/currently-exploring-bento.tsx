@@ -57,7 +57,7 @@ function CurrentlyExploringBento({ linkTo }: { linkTo?: string }) {
 				))}
 			</div>
 
-			<div className="flex flex-col gap-0 text-muted-foreground group-hover:text-foreground transition-colors">
+			<div className="flex flex-col gap-0 text-foreground group-hover:text-foreground transition-colors">
 				<p className="text-xl font-bold hidden md:block">Currently Exploring!</p>
 			</div>
 
