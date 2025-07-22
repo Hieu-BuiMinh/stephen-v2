@@ -1,6 +1,0 @@
-[data-state='open'] .navbar-chevron-icon {
-	@apply rotate-180 transition-transform duration-300;
-}
-.navbar-chevron-icon {
-	@apply rotate-0 transition-transform duration-300;
-}
