@@ -13,7 +13,7 @@ function Navbar() {
 	const navKeys = Object.keys(navbarItems)
 
 	return (
-		<nav className="fixed hidden h-16 w-full items-center justify-between px-4 bg-background left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:border-b lg:border-x md:border-primary/10 z-[60]">
+		<nav className="fixed hidden h-16 w-full items-center justify-between px-4 bg-background left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:border-b lg:border-x md:border-primary/10 z-[51]">
 			<div className="flex items-center justify-center gap-2 capitalize">
 				<Link href="/">
 					<Image

@@ -1,10 +1,12 @@
 import React from 'react'
 
+import BProgressProvider from '@/components/providers/bprogress-provider'
 import { ThemeProvider } from '@/components/providers/shadcn-provider'
 
 function AppProvider({ children }: { children: React.ReactNode }) {
 	return (
 		<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+			<BProgressProvider>{children}</BProgressProvider>
 			{/* <ConvexClientProvider>
 				<Hello />
 				<NuqsAdapter>
@@ -13,7 +15,6 @@ function AppProvider({ children }: { children: React.ReactNode }) {
 				<ConfirmModal />
 				<LoginModal />
 			</ConvexClientProvider> */}
-			{children}
 
 			{/* <Script
 				defer
