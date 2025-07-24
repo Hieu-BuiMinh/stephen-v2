@@ -9,6 +9,7 @@ import { useFormContext } from 'react-hook-form'
 type TRHFTextFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
 	name: string
 	description?: string
+	showMessage?: boolean
 	label?: string
 	placeholder?: string
 	className?: string
@@ -19,6 +20,7 @@ type TRHFTextFieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
 function RHFTextField({
 	name,
 	description,
+	showMessage = true,
 	label,
 	placeholder,
 	className,
@@ -43,7 +45,7 @@ function RHFTextField({
 						/>
 					</FormControl>
 					{description && <FormDescription>{description}</FormDescription>}
-					<FormMessage className="text-red-500" />
+					{showMessage && <FormMessage className="text-red-500" />}
 				</FormItem>
 			)}
 		/>

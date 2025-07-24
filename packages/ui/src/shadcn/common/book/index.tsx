@@ -19,10 +19,8 @@ const bookvariants = tv({
 	slots: {
 		container:
 			'contain-inline-size aspect-[49/60] w-fit rotate-0 relative [transform-style:preserve-3d] min-w-[calc(var(--book-width))] transition-transform duration-500 ease-out group-hover/book:[transform:rotateY(-20deg)_scale(1.066)translateX(-8px)] overflow-visible',
-		'book-front':
-			'rounded-l rounded-r shadow-book bg-[#292524] size-full absolute overflow-hidden z-10 text-zinc-200',
-		'book-paper':
-			'absolute bg-book-pages w-[calc(var(--book-depth)-2px)] h-[calc(100%-2*6px)] top-[6px] book-paper',
+		'book-front': 'rounded-l rounded-r shadow-book bg-[#292524] size-full absolute overflow-hidden text-zinc-200',
+		'book-paper': 'absolute w-[calc(var(--book-depth)-2px)] h-[calc(100%-2*6px)] top-[6px] book-paper',
 		'book-back': 'rounded-l-md rounded-r bg-[var(--book-color)] book-bg absolute left-0 w-full h-full',
 	},
 })
@@ -55,7 +53,7 @@ function Book({ color, depth, illustration, icon, textColor, texture, variant, w
 				} as React.CSSProperties
 			}
 		>
-			<GlareHover className={cn(container())}>
+			<div className={cn(container())}>
 				<Stack align="stretch" className={cn(bookFront())}>
 					{variant !== 'simple' && (
 						<Stack
@@ -74,7 +72,9 @@ function Book({ color, depth, illustration, icon, textColor, texture, variant, w
 						<div className="mix-blend-overlay opacity-100 min-w-[8.2%] h-full book-bind" />
 						<div className="contain-inline-size w-full">
 							<div className="p-3 mb-2 flex flex-col justify-between">
-								<h1 className="font-semibold text-[calc(var(--book-width)/12)]">{title}</h1>
+								<h1 className="font-semibold text-[calc(var(--book-width)/12)] text-[var(--text-color)]">
+									{title}
+								</h1>
 								{Icon ? Icon : <FireExtinguisher size={24} />}
 							</div>
 						</div>
@@ -95,7 +95,8 @@ function Book({ color, depth, illustration, icon, textColor, texture, variant, w
 						transform: 'translateZ(calc(-1 * var(--book-depth)))',
 					}}
 				/>
-			</GlareHover>
+			</div>
+			<GlareHover className="absolute inset-0 [transform-style:preserve-3d] transition-transform duration-500 ease-out group-hover/book:[transform:rotateY(-20deg)_scale(1.066)translateX(-8px)] rounded-[6px_4px_4px_6px]" />
 		</div>
 	)
 }
