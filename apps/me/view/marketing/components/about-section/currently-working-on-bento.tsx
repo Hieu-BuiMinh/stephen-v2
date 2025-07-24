@@ -1,14 +1,12 @@
 import { TextEffect } from '@repo/stephen-v2-ui/motion'
 import Link from 'next/link'
-import type { SVGProps } from 'react'
-import React from 'react'
 
+import { SVGIcons } from '@/components/icons/svg-icons'
 import {
 	GlowingStarsBackgroundCard,
 	GlowingStarsDescription,
 	GlowingStarsTitle,
 } from '@/view/marketing/components/about-section/glowing-background-stars-card'
-import { SVGIcons } from '@/components/icons/svg-icons'
 
 function CurrentlyWorkingOnBento() {
 	return (

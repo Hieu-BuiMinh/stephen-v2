@@ -8,7 +8,7 @@ import BentoCard from '@/view/marketing/components/bento-card'
 
 function CurrentlyReadingBento() {
 	return (
-		<BentoCard className="group overflow-hidden size-full bg-dots-sm">
+		<BentoCard className="group overflow-hidden size-full bg-dots-sm bento-shadow">
 			<div className="flex items-center justify-center gap-8 w-full">
 				<Link href="https://labs42io.github.io/clean-code-typescript" target="_blank">
 					<Book

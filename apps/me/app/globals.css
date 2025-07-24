@@ -9,17 +9,6 @@ body {
 }
 
 :root {
-	/* --bg-dashed: linear-gradient(
-		45deg,
-		var(--muted-foreground) 12.5%,
-		transparent 0,
-		transparent 50%,
-		var(--muted-foreground) 0,
-		var(--muted-foreground) 62.5%,
-		transparent 0,
-		transparent
-	); */
-
 	/* https://www.reddit.com/r/reactjs/comments/1fjcwkh/shadcnradix_ui_scrollbar_removal_bug/ */
 	/* Add the following to fix the margin issue that shifts the page to the left. */
 	body[data-scroll-locked][data-scroll-locked] {
@@ -65,8 +54,18 @@ body {
 	.bg-dots-md {
 		@apply bg-[radial-gradient(#ffffff33_1px,transparent_1px)] bg-[size:20px_20px];
 	}
-}
 
-.bprogress .bar {
-	background: linear-gradient(90deg, #f3ca4d 0%, #ff979a 45.3125%, #cbabff 100%) !important;
+	.bprogress .bar {
+		background: linear-gradient(90deg, #f3ca4d 0%, #ff979a 45.3125%, #cbabff 100%) !important;
+	}
+
+	.bento-shadow {
+		box-shadow:
+			0 0 0 0.5px var(--border),
+			0 0 0 1px color-mix(in srgb, var(--border) 50%, transparent),
+			0 0 0 3px var(--background),
+			0 0 0 3.5px color-mix(in srgb, var(--muted) 90%, transparent),
+			0 5px 10px -3px var(--muted),
+			0 4px 6px -4px var(--ring);
+	}
 }

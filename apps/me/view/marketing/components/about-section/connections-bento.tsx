@@ -74,7 +74,7 @@ function ConnectionsBento({ linkTo }: IConnectionsBento) {
 	const controls = useAnimation()
 
 	return (
-		<BentoCard className="group overflow-hidden size-full min-h-[210px]" linkTo={linkTo}>
+		<BentoCard className="group overflow-hidden size-full min-h-[210px] bento-shadow" linkTo={linkTo}>
 			<div
 				className="flex h-full flex-col"
 				onMouseEnter={() => controls.start('active')}
