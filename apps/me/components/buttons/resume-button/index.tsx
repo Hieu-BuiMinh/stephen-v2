@@ -1,7 +1,6 @@
 'use client'
 
-import { GlowEffect } from '@repo/stephen-v2-ui/motion'
-import { Button, toast } from '@repo/stephen-v2-ui/shadcn'
+import { RainbowButton, toast } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
 import confetti from 'canvas-confetti'
 import { ArrowDownToLine, Loader } from 'lucide-react'
@@ -56,10 +55,7 @@ function DownLoadResumeButton({ innerText, className }: Readonly<IDownLoadResume
 			className={cn('relative', className)}
 			download
 		>
-			<Button
-				// className={cn('w-full bg-muted text-foreground', {
-				// 	'dark:bg-gradient-to-r dark:from-yellow-500 dark:to-red-500 bg-foreground text-white': !loading,
-				// })}
+			{/* <Button
 				onClick={handleloading}
 				disabled={loading}
 				className="z-10 bg-background max-md:w-full"
@@ -71,15 +67,24 @@ function DownLoadResumeButton({ innerText, className }: Readonly<IDownLoadResume
 				) : (
 					<ArrowDownToLine size={20} className="hidden animate-bounce md:block" />
 				)}
-			</Button>
-			<GlowEffect
+			</Button> */}
+			{/* <GlowEffect
 				colors={['#FF5733', '#33FF57', '#3357FF', '#F1C40F']}
 				mode="colorShift"
 				className="-z-10"
 				blur="soft"
 				duration={3}
 				scale={1}
-			/>
+			/> */}
+
+			<RainbowButton onClick={handleloading} disabled={loading} variant="outline" className="rounded-lg">
+				{innerText ?? 'know more about me!'}
+				{loading ? (
+					<Loader size={20} className="animate-spin" />
+				) : (
+					<ArrowDownToLine size={20} className="hidden animate-bounce md:block" />
+				)}
+			</RainbowButton>
 		</a>
 	)
 }

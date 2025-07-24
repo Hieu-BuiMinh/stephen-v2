@@ -18,7 +18,7 @@ function BentoCard({ children, className, linkTo }: IBentoCard) {
 					href={linkTo}
 					target={isInternalLink ? undefined : '_blank'}
 					rel={isInternalLink ? undefined : 'noopener noreferrer'}
-					className="size-full"
+					className="size-full flex"
 				>
 					{children}
 				</Link>

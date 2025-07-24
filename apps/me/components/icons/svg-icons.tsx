@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type React from 'react'
 
 type TSVGIconsProps = React.HtmlHTMLAttributes<SVGElement>

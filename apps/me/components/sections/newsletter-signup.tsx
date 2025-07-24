@@ -61,7 +61,7 @@ function NewsletterSignUp() {
 						<Image
 							width={400}
 							height={400}
-							className="w-[514px] h-[600px] hidden absolute -top-32 right-0 z-20 lg:block"
+							className="w-[514px] h-[540px] hidden absolute bottom-0 right-0 z-20 lg:block"
 							src="/assets/images/logo/logo-light-rotate.svg"
 							alt="Stephen's Logo"
 						/>
@@ -69,7 +69,7 @@ function NewsletterSignUp() {
 						<Image
 							width={400}
 							height={400}
-							className="w-[514px] h-[600px] hidden absolute -top-32 right-0 z-20 lg:block"
+							className="w-[514px] h-[540px] hidden absolute bottom-0 right-0 z-20 lg:block"
 							src="/assets/images/logo/logo-dark-rotate.svg"
 							alt="Stephen's Logo"
 						/>
@@ -77,14 +77,9 @@ function NewsletterSignUp() {
 
 					<h2 className="mb-4 text-3xl font-medium">Subscribe to my newsletter</h2>
 					<p className="z-50 mb-8 max-w-[336px] text-base leading-8 md:mb-12">
-						A periodic update about my life, recent blog posts, how-tos, and discoveries.
+						Keep up to date about my life, recent blog posts, how-tos, and discoveries.
 					</p>
 					<div className="flex flex-col gap-3">
-						<span className="text-sm font-semibold">Keep up to date</span>
-						<span className="text-xs text-muted-foreground">
-							Don&apos;t miss out 😉. Get an email whenever I post, no spam.
-						</span>
-
 						<FormProvider {...methods}>
 							<form
 								onSubmit={methods.handleSubmit(onSubmit)}
@@ -96,6 +91,7 @@ function NewsletterSignUp() {
 									name="email"
 									type="email"
 									autoComplete="email"
+									showMessage={false}
 								/>
 
 								<Button type="submit" className="w-full md:w-auto" variant="secondary">
@@ -103,6 +99,10 @@ function NewsletterSignUp() {
 								</Button>
 							</form>
 						</FormProvider>
+						<span className="text-xs text-muted-foreground">
+							Don&apos;t miss out 😉. Get an email whenever I post,{' '}
+							<b className="text-foreground">no spam</b>.
+						</span>
 					</div>
 				</div>
 			</div>

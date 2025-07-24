@@ -65,7 +65,7 @@ body {
 			0 0 0 1px color-mix(in srgb, var(--border) 50%, transparent),
 			0 0 0 3px var(--background),
 			0 0 0 3.5px color-mix(in srgb, var(--muted) 90%, transparent),
-			0 5px 10px -3px var(--muted),
+			/* 0 5px 10px -3px var(--muted), */
 			0 4px 6px -4px var(--ring);
 	}
 }
