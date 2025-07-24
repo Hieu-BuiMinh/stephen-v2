@@ -19,7 +19,7 @@ export function AboutMeBento({ linkTo }: { linkTo?: string }) {
 	const timeOfDayGreeting = getTimeOfDayGreeting()
 
 	return (
-		<BentoCard className="group overflow-hidden size-full bg-dots-sm h-[260px] sm:h-full">
+		<BentoCard className="group overflow-hidden size-full bg-dots-sm h-[260px] sm:h-full bento-shadow">
 			<div className="hidden flex-col gap-0 justify-end text-foreground transition-colors sm:flex z-20">
 				<h2 className="mb-4 font-medium text-base md:text-2xl backdrop-blur-md px-2">Learn more about me</h2>
 				<p className="mb-2 pr-1 text-text-secondary md:pr-4 px-2">

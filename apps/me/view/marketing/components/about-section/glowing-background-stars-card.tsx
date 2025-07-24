@@ -23,7 +23,7 @@ export const GlowingStarsBackgroundCard = ({
 			onMouseLeave={() => {
 				setMouseEnter(false)
 			}}
-			className={cn('bg-black p-4 max-h-[20rem] size-full rounded-xl border', className)}
+			className={cn('bg-black p-4 max-h-[20rem] size-full rounded-xl border bento-shadow', className)}
 		>
 			<div className="flex justify-center items-center">
 				<Illustration mouseEnter={mouseEnter} />

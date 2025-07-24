@@ -34,7 +34,7 @@ const defaultCards = [
 // haydenbleasel/ultracite/docs/app/(docs)/[[...slug]]/(home)/components/benefits/type-safety.tsx
 function CurrentlyExploringBento({ linkTo }: { linkTo?: string }) {
 	return (
-		<BentoCard linkTo={linkTo} className="size-full relative overflow-hidden min-h-[210px]">
+		<BentoCard linkTo={linkTo} className="size-full relative overflow-hidden min-h-[210px] bento-shadow">
 			<div className="absolute right-0 top-1/2 -translate-y-1/2 fade-in-0 grid animate-in place-items-center opacity-100 duration-700 [grid-template-areas:'stack'] z-10">
 				{defaultCards.map((card) => (
 					<div
