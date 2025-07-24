@@ -66,3 +66,7 @@ body {
 		@apply bg-[radial-gradient(#ffffff33_1px,transparent_1px)] bg-[size:20px_20px];
 	}
 }
+
+.bprogress .bar {
+	background: linear-gradient(90deg, #f3ca4d 0%, #ff979a 45.3125%, #cbabff 100%) !important;
+}

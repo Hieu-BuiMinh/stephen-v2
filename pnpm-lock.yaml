@@ -47,6 +47,9 @@ importers:
       '@bprogress/next':
         specifier: ^3.2.12
         version: 3.2.12(next@15.3.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@hookform/resolvers':
+        specifier: ^5.1.1
+        version: 5.1.1(react-hook-form@7.60.0(react@19.1.0))
       '@repo/stephen-v2-ui':
         specifier: workspace:^
         version: link:../../packages/ui
@@ -74,6 +77,12 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
+      react-hook-form:
+        specifier: ^7.60.0
+        version: 7.60.0(react@19.1.0)
+      zod:
+        specifier: ^4.0.2
+        version: 4.0.2
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3

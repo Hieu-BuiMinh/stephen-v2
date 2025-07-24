@@ -1,13 +1,11 @@
 'use client'
 
-import './style.css'
-
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
-import { ChevronDown } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { ModeToggle } from '@/components/mode-toggle'
+import NavMenuDropdown from '@/components/navigation/menu-dropdown'
 import type { TNavbarItem } from '@/constants/components/navbar.const'
 import { navbarItems } from '@/constants/components/navbar.const'
 
@@ -15,8 +13,24 @@ function Navbar() {
 	const navKeys = Object.keys(navbarItems)
 
 	return (
-		<nav className="fixed hidden h-16 w-full items-center justify-between px-4 bg-background left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:border-b lg:border-x md:border-primary/10 z-[60]">
+		<nav className="fixed hidden h-16 w-full items-center justify-between px-4 bg-background left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:border-b lg:border-x md:border-primary/10 z-[51]">
 			<div className="flex items-center justify-center gap-2 capitalize">
+				<Link href="/">
+					<Image
+						src="/assets/images/logo/logo-dark.svg"
+						width={35}
+						height={35}
+						alt="logo"
+						className="hidden dark:block"
+					/>
+					<Image
+						src="/assets/images/logo/logo-light.svg"
+						width={35}
+						height={35}
+						alt="logo"
+						className="block dark:hidden"
+					/>
+				</Link>
 				{navKeys.map((key) => {
 					const navItem = navbarItems[key as keyof typeof navbarItems]
 					if (navItem?.length === 1) {
@@ -29,24 +43,16 @@ function Navbar() {
 					return (
 						<div key={navItem[0].href} className="flex gap-1 items-center">
 							<div className="flex-1 h-5 w-[1px] border-r" />
-							<DropdownMenu>
-								<DropdownMenuTrigger className="capitalize p-2 cursor-pointer group focus:outline-0 flex items-center gap-1">
-									{key}
-
-									<ChevronDown size={12} className="navbar-chevron-icon" />
-								</DropdownMenuTrigger>
-
-								<DropdownMenuContent
-									className="p-2 rounded-xl bg-foreground/10 shadow-xl/30 outline-none backdrop-blur-sm border dark:border-none border-background z-[60]"
-									align="center"
-								>
+							<NavMenuDropdown
+								triggerText={key}
+								dropDownContent={
 									<div className="grid grid-cols-2 gap-2">
 										{navItem.map((item) => {
 											return <ItemLink item={item} className="col-span-1 w-60" key={item.href} />
 										})}
 									</div>
-								</DropdownMenuContent>
-							</DropdownMenu>
+								}
+							/>
 						</div>
 					)
 				})}

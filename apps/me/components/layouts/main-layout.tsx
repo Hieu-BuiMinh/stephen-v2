@@ -2,6 +2,7 @@ import React from 'react'
 
 import SiteFooter from '@/components/footer'
 import Navbar from '@/components/navigation/navbar'
+import NewsletterSignUp from '@/components/sections/newsletter-signup'
 
 function MainLayout({ children }: { children: React.ReactNode }) {
 	return (
@@ -14,6 +15,8 @@ function MainLayout({ children }: { children: React.ReactNode }) {
 					<div className="relative col-span-1 p-3">{children}</div>
 					<div className="hidden w-full border-l dark:opacity-10 bg-dashed lg:block" />
 				</div>
+
+				<NewsletterSignUp />
 
 				<SiteFooter />
 			</main>

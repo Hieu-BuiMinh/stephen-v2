@@ -43,6 +43,7 @@ function CurrentlyReadingBento() {
 					<Book
 						width={190}
 						title="Game of Thrones"
+						color="#4A6189"
 						textColor="#fff"
 						icon={<span className="text-xs">-George R.R. Martin-</span>}
 						illustration={

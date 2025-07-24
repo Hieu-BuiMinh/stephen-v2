@@ -1,6 +1,7 @@
 'use client'
 
 import { Separator } from '@repo/stephen-v2-ui/shadcn'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import FooterRoutingSection from '@/components/footer/routing-section'
@@ -13,12 +14,16 @@ function SiteFooter() {
 			<div className="grid grid-cols-1 gap-7 py-16 md:grid-cols-2 md:gap-5">
 				<div className="col-span-1 flex flex-col gap-6">
 					<Link className="inline-block" href="/">
-						<img
+						<Image
+							width={40}
+							height={40}
 							className="size-10 hidden dark:block"
 							src="/assets/images/logo/logo-dark.svg"
 							alt="Stephen's Logo"
 						/>
-						<img
+						<Image
+							width={40}
+							height={40}
 							className="size-10 block dark:hidden"
 							src="/assets/images/logo/logo-light.svg"
 							alt="Stephen's Logo"
