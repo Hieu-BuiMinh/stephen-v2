@@ -8,7 +8,7 @@ import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { forwardRef, useEffect, useState } from 'react'
 
-import Spinner from '../spinner'
+import { Spinner } from '../spinner'
 
 type ImageProps = {
 	description?: string | React.ReactNode

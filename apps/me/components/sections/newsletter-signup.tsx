@@ -1,7 +1,7 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, RHFTextField } from '@repo/stephen-v2-ui/shadcn'
+import { Button, RHFTextField, Spinner } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
@@ -35,7 +35,11 @@ function NewsletterSignUp() {
 	}, [])
 
 	if (loading) {
-		return <>Loading...</>
+		return (
+			<div className="border-t flex items-center justify-center p-5">
+				<Spinner />
+			</div>
+		)
 	}
 
 	return (

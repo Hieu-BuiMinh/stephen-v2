@@ -73,7 +73,7 @@ const ItemLink = ({ className, item }: IItemLink) => {
 	return (
 		<Link
 			className={cn(
-				'flex gap-2 items-center rounded-lg p-2 border border-transparent bg-background/40 hover:bg-background/60 transition-colors group dark:text-muted-foreground dark:hover:text-foreground hover:bg-background/70 dark:hover:border-transparent',
+				'flex gap-2 items-center rounded-lg p-2 border border-transparent bg-background/40 transition-colors group dark:text-muted-foreground dark:hover:text-foreground hover:bg-background/70 dark:hover:border-transparent',
 				className
 			)}
 			href={item.href}

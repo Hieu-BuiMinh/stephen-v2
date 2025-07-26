@@ -7,12 +7,13 @@
  * Modified by: Stephen
  */
 
-import { tv } from 'tailwind-variants'
+import './style.css'
 
 import { cn } from '@repo/stephen-v2-utils'
 import { FireExtinguisher } from 'lucide-react'
-import { ComponentProps } from 'react'
-import './style.css'
+import type { ComponentProps } from 'react'
+import { tv } from 'tailwind-variants'
+
 import { GlareHover } from '../../../motion/components/glare-hover'
 
 const bookvariants = tv({

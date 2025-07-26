@@ -1,5 +1,15 @@
 import type { LucideIcon } from 'lucide-react'
-import { Clover, Library, MessageCircleHeart, Notebook, NotebookPen, Pen, Sparkles, Tags } from 'lucide-react'
+import {
+	Clover,
+	Library,
+	MessageCircleHeart,
+	Notebook,
+	NotebookPen,
+	Pen,
+	Sparkles,
+	Tags,
+	TextSelect,
+} from 'lucide-react'
 
 export type TNavbarItem = {
 	title: string
@@ -43,9 +53,15 @@ export const navbarItems: TNavbarItems = {
 		},
 		{
 			title: 'Posts',
-			href: '/posts',
-			description: 'Thoughts, mental models, and tutorials about front-end development',
+			href: '/dev/post',
+			description: 'Thoughts, mental models, and tutorials about development',
 			icon: Pen,
+		},
+		{
+			title: 'Shorts',
+			href: '/dev/short',
+			description: `My personal notes that's not long enough to be a blog post`,
+			icon: TextSelect,
 		},
 		{
 			title: 'Notes',

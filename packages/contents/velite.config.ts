@@ -1,10 +1,6 @@
-import { defineConfig, s } from 'velite'
+import { defineConfig } from 'velite'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const computedFields: any = <T extends { slug: string }>(data: T) => {
-	return { ...data, slugAsParams: data.slug.split('/').slice(1).join('/') }
-	// blog/hello-world => ['blog', 'hello-world'] => ['hello-world] => '/hello-world'
-}
+import { devPost, devShort } from './collections/dev.collections'
 
 export default defineConfig({
 	root: '.',
@@ -16,18 +12,7 @@ export default defineConfig({
 		clean: true,
 	},
 	collections: {
-		posts: {
-			name: 'ShortNotes',
-			pattern: 'posts/**/*.md',
-			schema: s
-				.object({
-					title: s.string().max(99),
-					slug: s.path(),
-					date: s.isodate(),
-					metadata: s.metadata(),
-					content: s.markdown(),
-				})
-				.transform(computedFields),
-		},
+		devPost,
+		devShort,
 	},
 })

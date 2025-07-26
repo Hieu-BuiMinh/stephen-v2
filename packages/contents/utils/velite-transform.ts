@@ -1,0 +1,36 @@
+import { nanoid } from 'nanoid'
+
+import type { DevBlogPost, DevShortPost } from '../.velite'
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const computedFields: any = <T extends { slug: string }>(data: T) => {
+	return {
+		...data,
+		id: nanoid(),
+		updatedAt: new Date().toISOString(),
+		author: {
+			avatar: '/assets/images/logo/logo-circle-dark.svg',
+			name: 'Hieu.BuiMinh',
+			github: 'https://github.com/Hieu-BuiMinh',
+		},
+		slugAsParams: data.slug.split('/').slice(1).join('/'), // blog/hello-world => ['blog', 'hello-world'] => ['hello-world] => '/hello-world'
+	}
+}
+
+export function sortPostsByDate(
+	posts: Array<DevBlogPost | DevShortPost>,
+	order: 'asc' | 'desc' = 'asc'
+): Array<DevBlogPost | DevShortPost> {
+	return posts.sort((a, b) => {
+		const dateA = new Date(a.date).getTime()
+		const dateB = new Date(b.date).getTime()
+
+		if (order === 'asc') {
+			return dateA - dateB // Sort in ascending order
+		} else if (order === 'desc') {
+			return dateB - dateA // Sort in descending order
+		} else {
+			throw new Error("Invalid order parameter. Use 'asc' for ascending or 'desc' for descending.")
+		}
+	})
+}
