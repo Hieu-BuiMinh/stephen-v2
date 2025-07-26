@@ -14,7 +14,7 @@ function CurrentlyWorkingOnBento() {
 			<GlowingStarsBackgroundCard>
 				<Link href="https://turborepo.com/" target="_blank" className="absolute top-6 right-6 z-10">
 					<GlowingStarsTitle>
-						<TextEffect per="char" preset="fade" className="text-right">
+						<TextEffect per="char" preset="fade" className="text-right text-5xl md:text-2xl">
 							Turborepo
 						</TextEffect>
 					</GlowingStarsTitle>
@@ -31,7 +31,7 @@ function CurrentlyWorkingOnBento() {
 				</Link>
 				<Link href="https://nextjs.org/" target="_blank" className="absolute bottom-6 left-6 z-10">
 					<GlowingStarsTitle>
-						<TextEffect per="char" preset="fade">
+						<TextEffect per="char" preset="fade" className="text-5xl md:text-2xl">
 							Next.js 15
 						</TextEffect>
 					</GlowingStarsTitle>

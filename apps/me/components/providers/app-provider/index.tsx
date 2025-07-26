@@ -2,6 +2,7 @@ import React from 'react'
 
 import BProgressProvider from '@/components/providers/bprogress-provider'
 import { ThemeProvider } from '@/components/providers/shadcn-provider'
+import { Toaster } from '@/components/toaster'
 
 function AppProvider({ children }: { children: React.ReactNode }) {
 	return (
@@ -21,6 +22,7 @@ function AppProvider({ children }: { children: React.ReactNode }) {
 				src="https://cloud.umami.is/script.js"
 				data-website-id="e33a48b3-c890-4ba6-9430-947be1127fc0"
 			/> */}
+			<Toaster />
 		</ThemeProvider>
 	)
 }

@@ -9,6 +9,7 @@
 		},
 		"./shadcn": "./src/shadcn/index.ts",
 		"./motion": "./src/motion/index.ts",
+		"./hooks": "./hooks/index.ts",
 		"./styles/shadcn-preset": "./styles/shadcn-preset.css"
 	},
 	"main": "./dist/index.js",

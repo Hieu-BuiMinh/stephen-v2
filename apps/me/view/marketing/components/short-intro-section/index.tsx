@@ -1,6 +1,8 @@
 import { TextEffect } from '@repo/stephen-v2-ui/motion'
 
 import TextGradient from '@/components/texts/text-gradient'
+import GuestbooksBento from '@/view/marketing/components/short-intro-section/guestbook-bento'
+import ProjectsBento from '@/view/marketing/components/short-intro-section/projects-bento copy'
 import RetroBento from '@/view/marketing/components/short-intro-section/retro-bento'
 
 function ShortIntroSection() {
@@ -21,6 +23,8 @@ function ShortIntroSection() {
 
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-7xl">
 				<RetroBento className="col-span-1" />
+				<ProjectsBento className="col-span-1" />
+				<GuestbooksBento className="col-span-1" />
 			</div>
 		</div>
 	)
