@@ -3,7 +3,7 @@
     "slug": "articles/dev/short/dev-short",
     "title": "Common copmponents compilation",
     "createdAt": "2024-08-02T00:00:00.000Z",
-    "cover": "/assets/images/content/post/dev-blog/common-copmponents-compilation/cover.png",
+    "cover": "/assets/images/books/48-laws-of-power-cover.png",
     "description": "My Favorite MDX Components and How They Look!",
     "published": true,
     "hashTags": [
@@ -31,11 +31,11 @@
         ]
       }
     ],
-    "id": "qilqyfEZTeUtH2qG0aJmH",
-    "updatedAt": "2025-07-26T15:29:22.440Z",
+    "id": "SJ2TcwUqgb6F8uIoAAKwb",
+    "updatedAt": "7/27/2025, 9:05:20 PM",
     "author": {
-      "avatar": "/assets/images/logo/logo-circle-dark.svg",
-      "name": "Hieu.BuiMinh",
+      "avatar": "/assets/images/avt/me_04.png",
+      "name": "Stephen",
       "github": "https://github.com/Hieu-BuiMinh"
     },
     "slugAsParams": "dev/short/dev-short"

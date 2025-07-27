@@ -46,12 +46,6 @@ export const navbarItems: TNavbarItems = {
 	],
 	blog: [
 		{
-			title: 'Documents',
-			href: '/docs',
-			description: 'Welcome to my corner of the internet',
-			icon: Library,
-		},
-		{
 			title: 'Posts',
 			href: '/dev/post',
 			description: 'Thoughts, mental models, and tutorials about development',
@@ -64,10 +58,10 @@ export const navbarItems: TNavbarItems = {
 			icon: TextSelect,
 		},
 		{
-			title: 'Notes',
-			href: '/notes',
-			description: `My personal notes that's not long enough to be a blog post`,
-			icon: NotebookPen,
+			title: 'Documents',
+			href: '/dev/doc',
+			description: 'Welcome to my corner of the internet',
+			icon: Library,
 		},
 	],
 	more: [

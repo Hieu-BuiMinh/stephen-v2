@@ -7,10 +7,10 @@ export const computedFields: any = <T extends { slug: string }>(data: T) => {
 	return {
 		...data,
 		id: nanoid(),
-		updatedAt: new Date().toISOString(),
+		updatedAt: new Date().toLocaleString(),
 		author: {
-			avatar: '/assets/images/logo/logo-circle-dark.svg',
-			name: 'Hieu.BuiMinh',
+			avatar: '/assets/images/avt/me_04.png',
+			name: 'Stephen',
 			github: 'https://github.com/Hieu-BuiMinh',
 		},
 		slugAsParams: data.slug.split('/').slice(1).join('/'), // blog/hello-world => ['blog', 'hello-world'] => ['hello-world] => '/hello-world'
