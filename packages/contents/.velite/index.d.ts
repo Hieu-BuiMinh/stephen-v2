@@ -6,6 +6,3 @@ type Collections = typeof __vc.collections
 
 export type DevBlogPost = Collections['devPost']['schema']['_output']
 export declare const devPost: DevBlogPost[]
-
-export type DevShortPost = Collections['devShort']['schema']['_output']
-export declare const devShort: DevShortPost[]

@@ -37,6 +37,7 @@ export const APP_CONFIG = {
 		light: '/assets/images/logo/logo-circle-light.svg',
 		dark: '/assets/images/logo/logo-circle-dark.svg',
 	},
+	og: '/',
 }
 
 export type APP_CONFIG = typeof APP_CONFIG

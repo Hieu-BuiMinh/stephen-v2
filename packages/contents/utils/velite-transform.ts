@@ -1,12 +1,9 @@
-import { nanoid } from 'nanoid'
-
-import type { DevBlogPost, DevShortPost } from '../.velite'
+import type { DevBlogPost } from '../.velite'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const computedFields: any = <T extends { slug: string }>(data: T) => {
 	return {
 		...data,
-		id: nanoid(),
 		updatedAt: new Date().toLocaleString(),
 		author: {
 			avatar: '/assets/images/avt/me_04.png',
@@ -17,10 +14,7 @@ export const computedFields: any = <T extends { slug: string }>(data: T) => {
 	}
 }
 
-export function sortPostsByDate(
-	posts: Array<DevBlogPost | DevShortPost>,
-	order: 'asc' | 'desc' = 'asc'
-): Array<DevBlogPost | DevShortPost> {
+export function sortPostsByDate(posts: Array<DevBlogPost>, order: 'asc' | 'desc' = 'asc'): Array<DevBlogPost> {
 	return posts.sort((a, b) => {
 		const dateA = new Date(a.date).getTime()
 		const dateB = new Date(b.date).getTime()

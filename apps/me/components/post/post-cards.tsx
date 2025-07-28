@@ -1,9 +1,9 @@
-import type { DevBlogPost, DevShortPost } from '@repo/stephen-v2-contents'
+import type { DevBlogPost } from '@repo/stephen-v2-contents'
 
 import { PostCard } from '@/components/post/post-card'
 
 type PostCardsProps = {
-	posts: DevBlogPost[] | DevShortPost[]
+	posts: DevBlogPost[]
 }
 
 const PostCards = ({ posts }: PostCardsProps) => {

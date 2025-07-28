@@ -1,6 +1,6 @@
 import { defineConfig } from 'velite'
 
-import { devPost, devShort } from './collections/dev.collections'
+import { devPost } from './collections/dev.collections'
 
 export default defineConfig({
 	root: '.',
@@ -13,6 +13,5 @@ export default defineConfig({
 	},
 	collections: {
 		devPost,
-		devShort,
 	},
 })

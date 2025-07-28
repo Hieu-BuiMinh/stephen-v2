@@ -68,10 +68,12 @@ interface MdxProps {
 	code: string
 }
 
-export function MDXContent({ code }: MdxProps) {
+function MDXContent({ code }: MdxProps) {
 	const Component = useMDXComponent(code)
 	if (!code) {
 		return <p className="py-5">The content is on updating 🧪...</p>
 	}
 	return <Component components={components} key={nanoid()} />
 }
+
+export { MDXContent }

@@ -1,12 +1,11 @@
 'use client'
 
-import type { DevBlogPost, DevShortPost } from '@repo/stephen-v2-contents'
+import type { DevBlogPost } from '@repo/stephen-v2-contents'
 import { AspectRatio, BlurImage } from '@repo/stephen-v2-ui/shadcn'
-import Image from 'next/image'
 import Link from 'next/link'
 
 interface PostCardProps {
-	post: DevBlogPost | DevShortPost
+	post: DevBlogPost
 }
 
 function PostCardV2({ post }: PostCardProps) {
