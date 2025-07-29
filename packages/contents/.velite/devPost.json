@@ -1,0 +1,44 @@
+[
+  {
+    "id": "bcca9b66-e5bc-449d-a8fc-6132a198ce96",
+    "slug": "articles/dev/posts/dev-post",
+    "title": "Common copmponents compilation",
+    "createdAt": "2024-08-02T00:00:00.000Z",
+    "cover": "/assets/images/books/48-laws-of-power-cover.png",
+    "description": "My Favorite MDX Components and How They Look!",
+    "published": true,
+    "hashTags": [
+      "dev",
+      "short",
+      "js"
+    ],
+    "type": "POST",
+    "body": "const{Fragment:n,jsx:e,jsxs:t}=arguments[0];function _createMdxContent(r){const o={h1:\"h1\",h2:\"h2\",h3:\"h3\",p:\"p\",...r.components};return t(n,{children:[e(o.p,{children:\"In this post, I'll share the MDX components I frequently use in my projects and how they render visually. From interactive buttons and code blocks to custom alert messages and image components, I'll walk you through the design and usage of each one.\"}),\"\\n\",e(o.h1,{children:\"Heading 1\"}),\"\\n\",e(o.h2,{children:\"Heading 2\"}),\"\\n\",e(o.h3,{children:\"Heading 3\"}),\"\\n\",e(o.p,{children:\"xdsdfsdf\\r\\nxsdfsdg\"})]})}return{default:function(n={}){const{wrapper:t}=n.components||{};return t?e(t,{...n,children:e(_createMdxContent,{...n})}):_createMdxContent(n)}};",
+    "toc": [
+      {
+        "title": "Heading 1",
+        "url": "#heading-1",
+        "items": [
+          {
+            "title": "Heading 2",
+            "url": "#heading-2",
+            "items": [
+              {
+                "title": "Heading 3",
+                "url": "#heading-3",
+                "items": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "updatedAt": "7/29/2025, 12:18:04 AM",
+    "author": {
+      "avatar": "/assets/images/avt/me_04.png",
+      "name": "Stephen",
+      "github": "https://github.com/Hieu-BuiMinh"
+    },
+    "slugAsParams": "dev/posts/dev-post"
+  }
+]

@@ -1,0 +1,25 @@
+{
+	"name": "@repo/stephen-v2-contents",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"exports": {
+		".": "./index.ts",
+		"./content-type": "./.velite/index.d.ts",
+		"./utils": "./utils/index.ts"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"typescript": "^5.8.3",
+		"velite": "^0.2.4"
+	},
+	"dependencies": {
+		"@repo/typescript-config": "workspace:^",
+		"nanoid": "^5.1.5"
+	}
+}

@@ -77,7 +77,12 @@ function DownLoadResumeButton({ innerText, className }: Readonly<IDownLoadResume
 				scale={1}
 			/> */}
 
-			<RainbowButton onClick={handleloading} disabled={loading} variant="outline" className="rounded-lg">
+			<RainbowButton
+				onClick={handleloading}
+				disabled={loading}
+				variant="outline"
+				className="rounded-lg max-md:w-full"
+			>
 				{innerText ?? 'know more about me!'}
 				{loading ? (
 					<Loader size={20} className="animate-spin" />

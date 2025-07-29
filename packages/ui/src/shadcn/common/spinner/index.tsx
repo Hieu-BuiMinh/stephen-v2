@@ -23,4 +23,4 @@ function Spinner(props: ISpinnerProps) {
 	return <Loader color={props.color} className={cn(spinnerVariants({ size: props.size }), props.className)} />
 }
 
-export default Spinner
+export { Spinner }

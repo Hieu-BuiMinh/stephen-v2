@@ -1,11 +1,12 @@
 // eslint-disable react/display-name
 'use client'
 
-import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../../../form'
-import { Textarea } from '../../../textarea'
 import { cn } from '@repo/stephen-v2-utils'
 import React, { forwardRef, useEffect, useRef } from 'react'
 import { useFormContext } from 'react-hook-form'
+
+import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../../../form'
+import { Textarea } from '../../../textarea'
 
 type TRHFTextAreaProps = React.InputHTMLAttributes<HTMLTextAreaElement> & {
 	name: string
@@ -60,7 +61,6 @@ export const useAutosizeTextArea = ({
 				}
 			}
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [textAreaRef, triggerAutoSize])
 }
 
@@ -100,7 +100,6 @@ const RHFTextArea = forwardRef<HTMLTextAreaElement | null, TRHFTextAreaProps>(
 			if (textareaRef && 'current' in textareaRef) {
 				setTriggerAutoSize(textareaRegisterName)
 			}
-			// eslint-disable-next-line react-hooks/exhaustive-deps
 		}, [textareaRegisterName])
 
 		return (

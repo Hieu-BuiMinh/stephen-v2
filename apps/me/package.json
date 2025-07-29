@@ -11,6 +11,7 @@
   "dependencies": {
     "@bprogress/next": "^3.2.12",
     "@hookform/resolvers": "^5.1.1",
+    "@repo/stephen-v2-contents": "workspace:^",
     "@repo/stephen-v2-ui": "workspace:^",
     "@repo/stephen-v2-utils": "workspace:^",
     "canvas-confetti": "^1.9.3",
