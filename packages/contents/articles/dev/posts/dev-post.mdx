@@ -9,13 +9,204 @@ hashTags: ['dev', 'short', 'js']
 type: 'POST'
 ---
 
-In this post, I'll share the MDX components I frequently use in my projects and how they render visually. From interactive buttons and code blocks to custom alert messages and image components, I'll walk you through the design and usage of each one.
+## 🔸 Part 1: `Set` - The Unique Value Hero
 
-# Heading 1
+Believe it or not, this is my first MacBook bought with my own money. I got my last one for free from Apple Academy 🤣.
 
-## Heading 2
+Though I can't say it isn't expensive, I feel this purchase is well justified since it has brought me thousands of percent in returns as it supports my work.
 
-### Heading 3
+This one is a 14" MacBook Pro M3 Pro, with 36GB RAM and 1TB storage. You can never go wrong with more RAM; I don't regret spending extra hundreds for just the extra RAM. I don't want to see the 'out of application memory' popup
 
-xdsdfsdf
-xsdfsdg
+### What is a `Set`?
+
+- A `Set` is a collection of **unique values** (no duplicates).
+- Maintains the **insertion order**.
+- Values can be **any type**: strings, numbers, objects, etc.
+
+### Basic Example
+
+
+```js showLineNumbers
+const mySet = new Set()
+mySet.add(1)
+mySet.add(2)
+mySet.add(2) // Won’t be added again
+console.log(mySet) // Set(2) { 1, 2 }
+```
+
+### 🔥 Advanced Use Cases for `Set`
+
+#### 1.1. Remove duplicates from an array
+
+
+```js showLineNumbers
+const arr = [1, 2, 2, 3, 4, 4, 5]
+const uniqueArr = [...new Set(arr)]
+console.log(uniqueArr) // [1, 2, 3, 4, 5]
+```
+
+#### 1.2. Check for duplicates
+
+
+```js showLineNumbers
+const hasDuplicates = arr.length !== new Set(arr).size
+console.log(hasDuplicates) // true
+```
+
+#### 1.3. Use Set for managing tags (case-insensitive)
+
+
+```js showLineNumbers
+const tags = new Set()
+
+function addTag(tag) {
+	tags.add(tag.trim().toLowerCase())
+}
+
+addTag('Design')
+addTag('design') // Won’t add again
+addTag('Marketing')
+
+console.log(tags) // Set(2) { 'design', 'marketing' }
+```
+
+---
+
+## 🔸 Part 2: `Map` - The Key-Value Power Tool
+
+### What is a `Map`?
+
+- A `Map` holds **key-value pairs**, just like an `Object`.
+- Keys can be **any type**, even objects or functions.
+- Maintains the **insertion order**.
+- Built-in methods: `set()`, `get()`, `has()`, `delete()`, etc.
+
+### Basic Example
+
+
+```js showLineNumbers
+const myMap = new Map()
+myMap.set('name', 'John')
+myMap.set(123, 'a number')
+myMap.set({ id: 1 }, 'an object')
+
+console.log(myMap.get('name')) // John
+console.log(myMap.size) // 3
+```
+
+### 🔥 Advanced Use Cases for `Map`
+
+#### 2.1. Use objects as keys
+
+
+```js showLineNumbers
+const user1 = { id: 1 }
+const user2 = { id: 2 }
+
+const roles = new Map()
+roles.set(user1, 'admin')
+roles.set(user2, 'editor')
+
+console.log(roles.get(user1)) // 'admin'
+```
+
+#### 2.2. Count item occurrences
+
+
+```js showLineNumbers
+const fruits = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple']
+const countMap = new Map()
+
+for (const fruit of fruits) {
+	countMap.set(fruit, (countMap.get(fruit) || 0) + 1)
+}
+console.log(countMap)
+
+// Map(3) { 'apple' => 3, 'banana' => 2, 'orange' => 1 }
+```
+
+#### 2.3. Implement caching with `Map`
+
+
+```js showLineNumbers
+const cache = new Map()
+
+function fetchUser(id) {
+	if (cache.has(id)) {
+		console.log('⚡ From cache')
+		return cache.get(id)
+	}
+	const user = { id, name: `User ${id}` }
+	cache.set(id, user)
+	return user
+}
+
+console.log(fetchUser(1)) // Fetch
+console.log(fetchUser(1)) // From cache
+
+// { "id": 1,"name": "User 1" }
+// ⚡ From cache
+// { "id": 1,"name": "User 1" }
+```
+
+---
+
+## Combine `Map` + `Set`: Real-Life Grouping
+
+### Group users by role, with unique names
+
+
+```js showLineNumbers
+const users = [
+	{ name: 'Alice', role: 'admin' },
+	{ name: 'Bob', role: 'editor' },
+	{ name: 'Charlie', role: 'admin' },
+	{ name: 'Bob', role: 'editor' },
+]
+
+const grouped = new Map()
+
+for (const user of users) {
+	if (!grouped.has(user.role)) {
+		grouped.set(user.role, new Set())
+	}
+	grouped.get(user.role).add(user.name)
+}
+
+for (const [role, names] of grouped) {
+	console.log(`${role}:`, [...names])
+}
+
+// admin: ['Alice', 'Charlie']
+// editor: ['Bob']
+```
+
+---
+
+## Map vs Set - Quick Reference
+
+
+## Pro Tips Recap 💡
+
+
+<CodeBlockTabs options={["npm", "yarn", "pnpm", "bun"]}>
+  ```bash {{ filename: 'terminal' }}
+  npm uninstall vue-clerk
+  npm install @clerk/vue
+  ```
+
+  ```bash {{ filename: 'terminal' }}
+  yarn remove vue-clerk
+  yarn add @clerk/vue
+  ```
+
+  ```bash {{ filename: 'terminal' }}
+  pnpm remove vue-clerk
+  pnpm add @clerk/vue
+  ```
+
+  ```bash {{ filename: 'terminal' }}
+  bun remove vue-clerk
+  bun add @clerk/vue
+  ```
+</CodeBlockTabs>

@@ -6,6 +6,7 @@ import Link from 'next/link'
 import * as runtime from 'react/jsx-runtime'
 
 import { ImageZoom } from '../image/image-zoom'
+import CodeBlockTabs from './custom-components/code-block-tabs'
 import Heading from './custom-components/heading'
 
 const useMDXComponent = (code: string) => {
@@ -62,6 +63,7 @@ const components = {
 			</>
 		)
 	},
+	CodeBlockTabs,
 }
 
 interface MdxProps {

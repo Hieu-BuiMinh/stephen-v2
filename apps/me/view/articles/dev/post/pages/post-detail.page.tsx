@@ -4,6 +4,7 @@ import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import { notFound } from 'next/navigation'
 
 import MDXContentComponent from '@/components/mdx-content'
+import PostLastUpdated from '@/components/post/post-last-updated'
 
 interface PostPageProps {
 	params: Promise<{ slug: DEV_POST_TYPE; id: string }>
@@ -19,9 +20,11 @@ export default async function PostDetailPageView({ params }: PostPageProps) {
 
 	return (
 		<>
-			<div className="relative flex justify-between gap-10">
-				<article className="prose w-full max-w-full dark:prose-invert lg:max-w-[calc(100%-260px)]">
+			<div className="flex justify-between gap-10">
+				<article className="prose prose-neutral prose-sm w-full max-w-full dark:prose-invert md:prose-base pb-12">
 					<MDXContentComponent code={post.body} />
+
+					{post.updatedAt && <PostLastUpdated date={post.updatedAt} />}
 				</article>
 			</div>
 		</>

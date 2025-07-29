@@ -9,11 +9,13 @@ import Link from 'next/link'
 import { useParams, usePathname } from 'next/navigation'
 import pluralize from 'pluralize'
 
-interface PostCardProps {
+import FoldedCornerCard from '@/components/cards/folded-corner-card'
+
+interface ShortCardProps {
 	post: DevBlogPost
 }
 
-export const PostCard = ({ post }: PostCardProps) => {
+export const ShortCard = ({ post }: ShortCardProps) => {
 	const { slug } = useParams<{ slug: string }>()
 
 	const pathName = usePathname()
@@ -29,11 +31,11 @@ export const PostCard = ({ post }: PostCardProps) => {
 	// const likesQuery = postBySlug?.likes?.reduce((acc, like) => acc + like.count, 0) || 0 // save in api here
 
 	return (
-		<AnimatedBlock type="FADE_IN_FROM_BOTTOM">
-			<div className="group/post-card rounded-lg p-1 post-card transition-all border border-dashed border-transparent duration-300 md:hover:shadow-2xl md:hover:border-border md:hover:scale-[1.02]">
+		<AnimatedBlock type="FADE_IN_FROM_BOTTOM" className="group/post-card relative">
+			<FoldedCornerCard className="z-[1]">
 				<Link
 					href={`/${articles[1]}/${slug}/${id}`}
-					className="flex flex-col justify-between rounded-md border p-2 gap-2"
+					className="flex flex-col justify-between rounded-md p-2 gap-2"
 				>
 					<AspectRatio ratio={16 / 9} className="rounded-md overflow-hidden flex items-center justify-center">
 						<BlurImage
@@ -85,7 +87,8 @@ export const PostCard = ({ post }: PostCardProps) => {
 						</span>
 					</div>
 				</Link>
-			</div>
+			</FoldedCornerCard>
+			<div className="absolute inset-0 border border-transparent border-dashed rounded-lg bg-muted-foreground/10 z-[0] group-hover/post-card:border-muted-foreground" />
 		</AnimatedBlock>
 	)
 }

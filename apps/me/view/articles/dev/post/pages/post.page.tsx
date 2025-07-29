@@ -1,6 +1,7 @@
 import type { ARTICLES, DEV_POST_TYPE } from '@repo/stephen-v2-contents'
 import { devPost } from '@repo/stephen-v2-contents'
 import { sortPostsByDate } from '@repo/stephen-v2-contents/utils'
+import { TextEffect } from '@repo/stephen-v2-ui/motion'
 
 import PostCards from '@/components/post/post-cards'
 
@@ -28,9 +29,11 @@ function PostPageView({ article, slug }: { slug: DEV_POST_TYPE; article: keyof t
 	return (
 		<div className="w-full min-h-52 flex">
 			{postList?.length > 0 ? (
-				<PostCards posts={postList} />
+				<PostCards posts={postList} slug={slug} />
 			) : (
-				<span className="mx-auto">I have no posts yet... ㄟ( ▔, ▔ )ㄏ</span>
+				<TextEffect preset="slide" per="word" delay={0.5} className="mx-auto">
+					I have no posts yet... ㄟ( ▔, ▔ )ㄏ
+				</TextEffect>
 			)}
 		</div>
 	)
