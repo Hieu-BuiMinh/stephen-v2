@@ -17,16 +17,19 @@ export default async function PostDetailPageView({ params }: PostPageProps) {
 	if (!post || !post.published) {
 		notFound()
 	}
-
 	return (
 		<>
-			<div className="flex justify-between gap-10">
-				<article className="prose prose-neutral prose-sm w-full max-w-full dark:prose-invert md:prose-base pb-12">
+			<div className="grid grid-cols-[1fr_250px] gap-10">
+				<article className="prose prose-neutral prose-sm dark:prose-invert md:prose-base">
 					<MDXContentComponent code={post.body} />
-
-					{post.updatedAt && <PostLastUpdated date={post.updatedAt} />}
 				</article>
+
+				<div className="col-span-1">
+					<div className="sticky top-24">Table of content...</div>
+				</div>
 			</div>
+
+			<div className="pb-12">{post.updatedAt && <PostLastUpdated date={post.updatedAt} />}</div>
 		</>
 	)
 }

@@ -4,6 +4,10 @@
 @import '@repo/stephen-v2-ui/styles/shadcn-preset';
 @source '../../../packages/ui/src/**/*.{js,jsx,ts,tsx}';
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	@apply text-sm;
 	font-family: var(--font-roboto), sans-serif;

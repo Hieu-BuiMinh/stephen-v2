@@ -39,8 +39,9 @@ const components = {
 
 		return (
 			<Link
-				className="font-bold text-green-600 no-underline transition-colors hover:text-foreground hover:underline dark:text-green-400"
+				className="font-semibold text-sky-600 no-underline transition-colors hover:text-foreground hover:underline dark:text-sky-300"
 				href={href}
+				target="_blank"
 				{...rest}
 			>
 				{children}
