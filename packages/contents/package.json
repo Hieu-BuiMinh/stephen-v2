@@ -21,9 +21,11 @@
 	"dependencies": {
 		"@repo/typescript-config": "workspace:^",
 		"@shikijs/rehype": "^3.8.1",
+		"@shikijs/transformers": "^3.8.1",
 		"nanoid": "^5.1.5",
 		"rehype-autolink-headings": "^7.1.0",
 		"rehype-highlight": "^7.0.2",
+		"rehype-pretty-code": "^0.14.1",
 		"rehype-slug": "^6.0.0"
 	}
 }

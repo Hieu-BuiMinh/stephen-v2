@@ -1,6 +1,6 @@
 ---
 id: 'bcca9b66-e5bc-449d-a8fc-6132a198ce96'
-title: 'Common copmponents compilation'
+title: 'Conventional Commits'
 cover: '/assets/images/books/48-laws-of-power-cover.png'
 createdAt: '2024-08-02T00:00:00Z'
 description: 'My Favorite MDX Components and How They Look!'
@@ -9,176 +9,402 @@ hashTags: ['dev', 'short', 'js']
 type: 'POST'
 ---
 
-## 🔸 Part 1: `Set` - The Unique Value Hero
+## Conventional Commits
 
-Believe it or not, this is my first MacBook bought with my own money. I got my last one for free from Apple Academy 🤣.
+I first came across Conventional Commits during my time at [Stephen](/about), but initially, I didn't give much thought
+to these unique commit messages. It wasn't until recently that I took a closer look and realized how much more efficient and organized they make the
+development process.
 
-Though I can't say it isn't expensive, I feel this purchase is well justified since it has brought me thousands of percent in returns as it supports my work.
+Here's why you might want to give them a try too! 😃
 
-This one is a 14" MacBook Pro M3 Pro, with 36GB RAM and 1TB storage. You can never go wrong with more RAM; I don't regret spending extra hundreds for just the extra RAM. I don't want to see the 'out of application memory' popup
+## What Are Conventional Commits?
 
-### What is a `Set`?
+Conventional Commits is a specification that provides a simple, structured convention for commit messages.
+It allows to write messages that are easy to read and maintain, and which convey the specific intent behind each
+change.
 
-- A `Set` is a collection of **unique values** (no duplicates).
-- Maintains the **insertion order**.
-- Values can be **any type**: strings, numbers, objects, etc.
+The conventional commit message format is straightforward. It starts with a **type**, optionally followed by a **scope**, and a short **description**. For example:
 
-### Basic Example
+<CodeBlockTabs fileName='Git Bash'>
 
-```js showLineNumbers
-const mySet = new Set()
-mySet.add(1)
-mySet.add(2)
-mySet.add(2) // Won’t be added again
-console.log(mySet) // Set(2) { 1, 2 }
+```bash
+feat(login): add authentication with JWT
 ```
 
-### 🔥 Advanced Use Cases for `Set`
+</CodeBlockTabs>
 
-#### 1.1. Remove duplicates from an array
+In this example:
 
-```js showLineNumbers
-const arr = [1, 2, 2, 3, 4, 4, 5]
-const uniqueArr = [...new Set(arr)]
-console.log(uniqueArr) // [1, 2, 3, 4, 5]
+- `feat` is the type of the commit, indicating a new feature.
+- `login` is the scope, specifying the part of the project that is affected.
+- `add authentication with JWT` is the short description of the change.
+
+## Why Use Conventional Commits?
+
+Using Conventional Commits offers several key benefits:
+
+- `Consistency`: Standardized commit messages ensure that everyone on the team follows the same format, which enhances
+  readability and reduces ambiguity.
+- `Automation`: Tools can automatically generate change logs, version numbers, and releases based on the structured
+  commit messages.
+- `Collaboration`: Clear and descriptive commit messages help team members understand the history and context of
+  changes, improving collaboration.
+- `Compliance`: Adhering to a standardized format helps in meeting the guidelines and best practices of many open-source
+  projects.
+
+## Types of Conventional Commits
+
+There are several predefined types of Conventional Commits that help categorize the nature of each change. Each type
+indicates a specific kind of modification, making it easier to understand the impact of the commit. Here are the most
+commonly used types:
+
+- **feat**: A new feature for the user.
+- **fix**: A bug fix for the user.
+- **chore**: Changes that don't modify src or test files, such as updating build tasks.
+- **docs**: Documentation-only changes.
+- **style**: Changes that do not affect the meaning of the code (e.g., formatting, missing semicolons, etc.).
+- **refactor**: A code change that neither fixes a bug nor adds a feature.
+- **perf**: A code change that improves performance.
+- **test**: Adding or updating tests.
+- **build**: Changes that affect the build system or external dependencies (e.g., gulp, npm).
+- **ci**: Changes to CI configuration files and scripts (e.g., CircleCI, Travis).
+- **revert**: Reverts a previous commit.
+
+## Cheat Sheet for Conventional Commits
+
+{/* <Image src="conventional-commits-cheatsheet.png" alt="Conventional Commits Cheatsheet" /> */}
+
+| Type     | Description                | Example                          |
+| :------- | :------------------------- | :------------------------------- |
+| feat     | New feature                | feat(ui): add dark mode          |
+| fix      | Bug fix                    | fix(api): resolve login issue    |
+| docs     | Documentation only changes | docs(readme): update setup guide |
+| style    | Code style changes only    | style(css): format CSS classes   |
+| refactor | Code refactoring           | refactor(auth): optimize logic   |
+| perf     | Performance improvement    | perf(database): optimize queries |
+| test     | Adding tests               | test(routes): add unit tests     |
+| chore    | Build tool/config changes  | chore(deps): bump dependencies   |
+| ci       | Continuous Integration     | ci(travis): update config        |
+| revert   | Revert previous commit     | revert: rollback last change     |
+
+## Leveraging AI with Conventional Commits
+
+AI-powered IDEs like **JetBrains'** suite of tools enhances your workflow by intelligently suggesting commit messages that
+adhere to Conventional Commits standards. These suggestions are contextually generated based on changes you've made,
+significantly streamlining the process and reducing the cognitive load of writing detailed commit messages.
+
+### AI-Powered IDEs and Conventional Commits
+
+JetBrains IDEs, such as IntelliJ IDEA and WebStorm, integrate [AI tools](https://www.jetbrains.com/ai-assistant/) that:
+
+- Automatically suggest precise commit messages.
+- Detect commit types (feat, fix, docs, etc.) based on changes.
+- Recommend appropriate scopes, improving accuracy and efficiency.
+
+## Examples of Conventional Commits
+
+Understanding the theory behind Conventional Commits is one thing, but seeing how they are applied in real-world
+scenarios can be extremely helpful. Below are some examples illustrating how to write effective, clear, and standardized
+commit messages.
+
+> Here example of commits from [my GitHub](https://github.com/Shramkoweb/Portfolio/commits/develop/)
+
+### Example 1: Adding a New Feature
+
+**Commit Message**:
+
+<CodeBlockTabs fileName='Git Bash'>
+
+```bash
+feat(auth): add OAuth 2.0 authentication
 ```
 
-#### 1.2. Check for duplicates
+</CodeBlockTabs>
 
-```js showLineNumbers
-const hasDuplicates = arr.length !== new Set(arr).size
-console.log(hasDuplicates) // true
+**Explanation**:
+
+**Type**: `feat` (indicates a new feature). <br/>
+**Scope**: `auth` (specifies that the change is related to authentication). <br/>
+**Description**: `add OAuth 2.0 authentication` (brief summary of the change).
+
+### Example 2: Fixing a Bug
+
+**Commit Message**:
+
+<CodeBlockTabs fileName='Git Bash'>
+
+```bash
+fix(profile): resolve issue with avatar upload
 ```
 
-#### 1.3. Use Set for managing tags (case-insensitive)
+</CodeBlockTabs>
+**Explanation**:
 
-```js showLineNumbers
-const tags = new Set()
+**Type**: `fix` (indicates a bug fix). <br/>
+**Scope**: `profile` (specifies that the change affects the profile feature). <br/>
+**Description**: `resolve issue with avatar upload` (briefly describes the problem and solution).
 
-function addTag(tag) {
-	tags.add(tag.trim().toLowerCase())
+### Example 3: Updating Documentation
+
+**Commit Message**:
+
+<CodeBlockTabs fileName='Git Bash'>
+
+```bash
+docs(readme): update installation instructions
+```
+
+</CodeBlockTabs>
+
+**Explanation**:
+
+**Type**: `docs` (indicates a documentation change). <br/>
+**Scope**: `readme` (specifies the README file). <br/>
+**Description**: `update installation instructions` (details the specific update).
+
+### Example 4: Refactoring Code
+
+**Commit Message**:
+
+<CodeBlockTabs fileName='Git Bash'>
+
+```bash
+refactor(utils): simplify the date parsing logic
+```
+
+</CodeBlockTabs>
+
+**Explanation**:
+
+**Type**: `refactor` (indicates a code change that neither fixes a bug nor adds a feature). <br/>
+**Scope**: `utils` (specifies that the change pertains to utility functions). <br/>
+**Description**: `simplify the date parsing logic` (briefly describes the refactoring).
+
+### Example 5: Performance Improvement
+
+**Commit Message**:
+
+<CodeBlockTabs fileName='Git Bash'>
+
+```bash
+perf(db): optimize query execution time
+```
+
+</CodeBlockTabs>
+
+**Explanation**:
+
+**Type**: `perf` (indicates a performance improvement). <br/>
+**Scope**: `db` (specifies that the change affects the database). <br/>
+**Description**: `optimize query execution time` (summarizes the performance enhancement).
+
+### Example 6: Adding or Updating Tests
+
+**Commit Message**:
+
+<CodeBlockTabs fileName='Git Bash'>
+
+```bash
+test(router): add unit tests for routing module
+```
+
+</CodeBlockTabs>
+
+**Explanation**:
+
+**Type**: `test` (indicates test-related changes). <br/>
+**Scope**: `router` (specifies the routing module). <br/>
+**Description**: `add unit tests for routing module` (briefly describes the tests added).
+
+### Example 7: Maintenance or Chore
+
+**Commit Message**:
+
+<CodeBlockTabs fileName='Git Bash'>
+
+```bash
+chore(deps): upgrade lodash to version 4.17.21
+```
+
+</CodeBlockTabs>
+
+**Explanation**:
+
+**Type**: `chore` (indicates maintenance or chores). <br/>
+**Scope**: `deps` (specifies that the change pertains to dependencies). <br/>
+**Description**: `upgrade lodash to version 4.17.21` (details the specific update).
+
+### Example 8: Continuous Integration Configuration
+
+**Commit Message**:
+
+<CodeBlockTabs fileName='Git Bash'>
+
+```bash
+ci(circleci): add build step for linting
+```
+
+</CodeBlockTabs>
+
+**Explanation**:
+
+**Type**: `ci` (indicates changes to CI configuration). <br/>
+**Scope**: `circleci` (specifies the CI service being configured). <br/>
+**Description**: `add build step for linting` (briefly describes the new CI step).
+
+### Example 9: Reverting a Previous Commit
+
+**Commit Message**:
+
+<CodeBlockTabs fileName='Git Bash'>
+
+```bash
+revert: remove OAuth 2.0 authentication
+
+This reverts commit abc123.
+```
+
+</CodeBlockTabs>
+
+**Explanation**:
+
+**Type**: `revert` (indicates the commit is a revert). <br/>
+**Scope**: None (reverts don't usually need a scope). <br/>
+**Description**: `remove OAuth 2.0 authentication` (describes what is being reverted).
+Body: This reverts commit abc123. (provides context by specifying the commit being reverted).
+
+## Using Conventional Commits in Projects
+
+Incorporating Conventional Commits into your projects can significantly improve code quality and team collaboration.
+Heres a step-by-step guide on how to start using Conventional Commits in your projects.
+
+### Step 1: Educate Your Team
+
+Before adopting Conventional Commits, ensure that everyone on your team understands its benefits and guidelines. Share
+resources, conduct workshops, or organize short training sessions to help everyone get up to speed.
+
+### Step 2: Set Up Commit Message Linting
+
+To enforce the Conventional Commits standard, you can use tools
+like [commitlint](https://github.com/conventional-changelog/commitlint) and [husky](https://typicode.github.io/husky/).
+These tools help ensure that
+all commit messages adhere to the predefined format.
+
+Example Configuration:
+
+#### Install Dependencies:
+
+<CodeBlockTabs fileName='Git Bash'>
+
+```bash
+npm install --save-dev @commitlint/config-conventional @commitlint/cli husky
+```
+
+</CodeBlockTabs>
+
+#### Configure Commitlint:
+
+Create a new file named `commitlint.config.js` in the root of your project and add the following content:
+
+<CodeBlockTabs fileName='Git Bash'>
+
+```js
+module.exports = {
+	extends: ['@commitlint/config-conventional'],
 }
-
-addTag('Design')
-addTag('design') // Won’t add again
-addTag('Marketing')
-
-console.log(tags) // Set(2) { 'design', 'marketing' }
 ```
+
+</CodeBlockTabs>
+
+#### Set Up Husky Hooks:
+
+The `init` command simplifies setting up husky in a project. It creates a `pre-commit` script in `.husky/` and updates
+the prepare script in `package.json`. Modifications can be made later to suit your workflow.
+
+<CodeBlockTabs fileName='Git Bash'>
+
+```bash
+npx husky init
+```
+
+</CodeBlockTabs>
+
+### Step 3: Use Tools and Libraries
+
+Conventional commits can be parsed by tools, and a very nice use-case is that of generating release changelogs.
+
+{/* <Image src="changelog.png" alt="Changelog created from Conventional commits on GitHub page" /> */}
+
+#### Semantic Release:
+
+- Automates the whole package release workflow including determining the next version number, generating the release
+  notes, and publishing the package.
+- [Semantic Release Documentation](https://semantic-release.gitbook.io/semantic-release)
+
+#### Commitizen:
+
+- A tool that prompts you to fill out the commit message with a CLI, ensuring you follow the Conventional Commits
+  standard.
+- [Commitizen Documentation](https://github.com/commitizen/cz-cli)
+
+### Step 4: Continuous Integration and Continuous Deployment (CI/CD)
+
+Integrate Conventional Commits with your `CI/CD` pipeline to automate tasks such as generating changelogs and
+versioning.
+
+Heres how you can do it:
+
+#### Changelog Generation:
+
+- Use tools like standard-version to generate changelogs automatically.
+- [Standard Version Documentation](https://github.com/conventional-changelog/standard-version)
+
+#### Versioning and Releasing:
+
+- Automate versioning and releasing using tools like Semantic Release.
+- Define release steps in your CI configuration (e.g., GitHub Actions, Travis CI).
+
+Example GitHub Actions Configuration for Semantic Release:
+
+<CodeBlockTabs fileName='Git Bash'>
+
+```yaml
+name: Release
+on:
+    push:
+        branches:
+            - main
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2
+            - name: Install Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 14
+            - name: Install Dependencies
+              run: npm install
+            - name: Run Semantic Release
+              run: npx semantic-release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+</CodeBlockTabs>
+
+## Conclusion
+
+I hope this blog post has inspired you to delve into conventional commits.
+
+Initially, conventional commits might seem a bit odd, and you might find yourself questioning the format as you make
+commits. However, they soon become second nature, and youll appreciate their impact on your software engineering
+practices.
 
 ---
 
-## 🔸 Part 2: `Map` - The Key-Value Power Tool
-
-### What is a `Map`?
-
-- A `Map` holds **key-value pairs**, just like an `Object`.
-- Keys can be **any type**, even objects or functions.
-- Maintains the **insertion order**.
-- Built-in methods: `set()`, `get()`, `has()`, `delete()`, etc.
-
-### Basic Example
-
-```js showLineNumbers
-const myMap = new Map()
-myMap.set('name', 'John')
-myMap.set(123, 'a number')
-myMap.set({ id: 1 }, 'an object')
-
-console.log(myMap.get('name')) // John
-console.log(myMap.size) // 3
-```
-
-### 🔥 Advanced Use Cases for `Map`
-
-#### 2.1. Use objects as keys
-
-```js showLineNumbers
-const user1 = { id: 1 }
-const user2 = { id: 2 }
-
-const roles = new Map()
-roles.set(user1, 'admin')
-roles.set(user2, 'editor')
-
-console.log(roles.get(user1)) // 'admin'
-```
-
-#### 2.2. Count item occurrences
-
-```js showLineNumbers
-const fruits = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple']
-const countMap = new Map()
-
-for (const fruit of fruits) {
-	countMap.set(fruit, (countMap.get(fruit) || 0) + 1)
-}
-console.log(countMap)
-
-// Map(3) { 'apple' => 3, 'banana' => 2, 'orange' => 1 }
-```
-
-#### 2.3. Implement caching with `Map`
-
-```js showLineNumbers
-const cache = new Map()
-
-function fetchUser(id) {
-	if (cache.has(id)) {
-		console.log('⚡ From cache')
-		return cache.get(id)
-	}
-	const user = { id, name: `User ${id}` }
-	cache.set(id, user)
-	return user
-}
-
-console.log(fetchUser(1)) // Fetch
-console.log(fetchUser(1)) // From cache
-
-// { "id": 1,"name": "User 1" }
-// ⚡ From cache
-// { "id": 1,"name": "User 1" }
-```
-
----
-
-## Combine `Map` + `Set`: Real-Life Grouping
-
-### Group users by role, with unique names
-
-```js showLineNumbers
-const users = [
-	{ name: 'Alice', role: 'admin' },
-	{ name: 'Bob', role: 'editor' },
-	{ name: 'Charlie', role: 'admin' },
-	{ name: 'Bob', role: 'editor' },
-]
-
-const grouped = new Map()
-
-for (const user of users) {
-	if (!grouped.has(user.role)) {
-		grouped.set(user.role, new Set())
-	}
-	grouped.get(user.role).add(user.name)
-}
-
-for (const [role, names] of grouped) {
-	console.log(`${role}:`, [...names])
-}
-
-// admin: ['Alice', 'Charlie']
-// editor: ['Bob']
-```
-
----
-
-## Map vs Set - Quick Reference
-
-## Pro Tips Recap 💡
-
-<CodeBlockTabs options={["npm", "yarn", "pnpm", "bun"]}>
+<CodeBlockTabs fileName='Git Bash' options={["npm", "yarn", "pnpm", "bun"]}>
 
 ```bash {{ filename: 'terminal' }} showLineNumbers {1,2}
 npm uninstall vue-clerk
@@ -196,23 +422,8 @@ pnpm add @clerk/vue
 ```
 
 ```bash {{ filename: 'terminal' }}
-bun remove vue-clerk
+bun remove vue-clerk # [!code hl]
 bun add @clerk/vue
 ```
 
 </CodeBlockTabs>
-
-```ts showLineNumbers {1,2}
-
-const a = 1
-===
-
-function b = ()=>{
-	for (let index = 0; index < array.length; index++) {
-		const element = array[index];
-	}
-}
-
-```
-
-sdfs
