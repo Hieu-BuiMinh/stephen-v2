@@ -25,7 +25,6 @@ This one is a 14" MacBook Pro M3 Pro, with 36GB RAM and 1TB storage. You can nev
 
 ### Basic Example
 
-
 ```js showLineNumbers
 const mySet = new Set()
 mySet.add(1)
@@ -38,7 +37,6 @@ console.log(mySet) // Set(2) { 1, 2 }
 
 #### 1.1. Remove duplicates from an array
 
-
 ```js showLineNumbers
 const arr = [1, 2, 2, 3, 4, 4, 5]
 const uniqueArr = [...new Set(arr)]
@@ -47,14 +45,12 @@ console.log(uniqueArr) // [1, 2, 3, 4, 5]
 
 #### 1.2. Check for duplicates
 
-
 ```js showLineNumbers
 const hasDuplicates = arr.length !== new Set(arr).size
 console.log(hasDuplicates) // true
 ```
 
 #### 1.3. Use Set for managing tags (case-insensitive)
-
 
 ```js showLineNumbers
 const tags = new Set()
@@ -83,7 +79,6 @@ console.log(tags) // Set(2) { 'design', 'marketing' }
 
 ### Basic Example
 
-
 ```js showLineNumbers
 const myMap = new Map()
 myMap.set('name', 'John')
@@ -98,7 +93,6 @@ console.log(myMap.size) // 3
 
 #### 2.1. Use objects as keys
 
-
 ```js showLineNumbers
 const user1 = { id: 1 }
 const user2 = { id: 2 }
@@ -111,7 +105,6 @@ console.log(roles.get(user1)) // 'admin'
 ```
 
 #### 2.2. Count item occurrences
-
 
 ```js showLineNumbers
 const fruits = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple']
@@ -126,7 +119,6 @@ console.log(countMap)
 ```
 
 #### 2.3. Implement caching with `Map`
-
 
 ```js showLineNumbers
 const cache = new Map()
@@ -154,7 +146,6 @@ console.log(fetchUser(1)) // From cache
 ## Combine `Map` + `Set`: Real-Life Grouping
 
 ### Group users by role, with unique names
-
 
 ```js showLineNumbers
 const users = [
@@ -185,28 +176,43 @@ for (const [role, names] of grouped) {
 
 ## Map vs Set - Quick Reference
 
-
 ## Pro Tips Recap 💡
 
-
 <CodeBlockTabs options={["npm", "yarn", "pnpm", "bun"]}>
-  ```bash {{ filename: 'terminal' }}
-  npm uninstall vue-clerk
-  npm install @clerk/vue
-  ```
 
-  ```bash {{ filename: 'terminal' }}
-  yarn remove vue-clerk
-  yarn add @clerk/vue
-  ```
+```bash {{ filename: 'terminal' }} showLineNumbers {1,2}
+npm uninstall vue-clerk
+npm install @clerk/vue ===
+```
 
-  ```bash {{ filename: 'terminal' }}
-  pnpm remove vue-clerk
-  pnpm add @clerk/vue
-  ```
+```bash {{ filename: 'terminal' }}
+yarn remove vue-clerk
+yarn add @clerk/vue
+```
 
-  ```bash {{ filename: 'terminal' }}
-  bun remove vue-clerk
-  bun add @clerk/vue
-  ```
+```bash {{ filename: 'terminal' }}
+pnpm remove vue-clerk
+pnpm add @clerk/vue
+```
+
+```bash {{ filename: 'terminal' }}
+bun remove vue-clerk
+bun add @clerk/vue
+```
+
 </CodeBlockTabs>
+
+```ts showLineNumbers {1,2}
+
+const a = 1
+===
+
+function b = ()=>{
+	for (let index = 0; index < array.length; index++) {
+		const element = array[index];
+	}
+}
+
+```
+
+sdfs
