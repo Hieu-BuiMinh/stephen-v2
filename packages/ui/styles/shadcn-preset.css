@@ -42,6 +42,7 @@
 	--color-3: oklch(69.6% 0.165 251);
 	--color-4: oklch(80.2% 0.134 225);
 	--color-5: oklch(90.7% 0.231 133);
+	--font-jetbrains-mono: 'JetBrains Mono', monospace;
 }
 
 .dark {

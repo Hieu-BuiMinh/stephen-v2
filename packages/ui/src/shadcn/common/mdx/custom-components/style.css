@@ -1,0 +1,67 @@
+/* https://shiki.matsu.io/guide/dual-themes#class-based-dark-mode */
+
+html.dark .shiki,
+html.dark .shiki span {
+	color: var(--shiki-dark) !important;
+	background-color: transparent !important;
+	font-family: var(--font-jetbrains-mono) !important;
+	font-style: var(--shiki-dark-font-style) !important;
+	font-weight: var(--shiki-dark-font-weight) !important;
+	text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+.shiki span.line {
+	display: inline-block !important;
+	width: 100%;
+}
+
+pre.shiki {
+	width: 100%;
+	border-radius: 0;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	counter-reset: codeblock-line;
+
+	.line {
+		counter-increment: codeblock-line;
+
+		&::before {
+			content: counter(codeblock-line);
+			margin-right: 1rem;
+			text-align: right;
+			min-width: 1rem;
+			display: inline-block;
+			font-size: 10px;
+			color: var(--muted-foreground);
+		}
+	}
+}
+
+pre.shiki code {
+	width: 100%;
+	display: block;
+	font-family: var(--font-jetbrains-mono) !important;
+}
+
+span.line.code-block__line--highline {
+	width: 100%;
+	position: relative;
+	z-index: 10;
+}
+
+span.line.code-block__line--highline::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-color: #00000028;
+	z-index: -1;
+}
+
+html.dark span.line.code-block__line--highline::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-color: #ffffff23;
+	z-index: -1;
+}

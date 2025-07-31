@@ -3,6 +3,7 @@ import type { DEV_POST_TYPE } from '@repo/stephen-v2-contents'
 import LightRaysComponent from '@/components/effects/light-rays'
 import PageTitle from '@/components/post/page-title'
 import PostPageView from '@/view/articles/dev/post/pages/post.page'
+import { TextEffect } from '@repo/stephen-v2-ui/motion'
 
 interface IDevPostPageProps {
 	params: Promise<{ slug: DEV_POST_TYPE }>
@@ -46,8 +47,10 @@ async function DevPostPage({ params }: IDevPostPageProps) {
 					pulsating={false}
 					className="absolute inset-0 hidden md:block"
 				/>
-				<div className="flex flex-col gap-5 min-h-[450px]">
-					<span className="m-auto">Nothing you can find here... ㄟ( ▔, ▔ )ㄏ</span>
+				<div className="flex items-center justify-center min-h-[450px]">
+					<TextEffect preset="slide" per="word" as="span" delay={0.5} className="mx-auto">
+						Nothing you can find here... ㄟ( ▔, ▔ )ㄏ
+					</TextEffect>
 				</div>
 			</>
 		)
