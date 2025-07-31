@@ -1,6 +1,6 @@
 'use client'
 
-import type { DevBlogPost } from '@repo/stephen-v2-contents'
+import type { TPost } from '@repo/stephen-v2-contents'
 import { AnimatedBlock } from '@repo/stephen-v2-ui/motion'
 import { AspectRatio, BlurImage } from '@repo/stephen-v2-ui/shadcn'
 import { formatDate } from '@repo/stephen-v2-utils'
@@ -10,7 +10,7 @@ import { useParams, usePathname } from 'next/navigation'
 import pluralize from 'pluralize'
 
 interface PostCardProps {
-	post: DevBlogPost
+	post: TPost
 }
 
 export const PostCard = ({ post }: PostCardProps) => {
@@ -39,8 +39,8 @@ export const PostCard = ({ post }: PostCardProps) => {
 						<BlurImage
 							src={post.cover || ''}
 							className="size-full object-cover transition-all grayscale-100 md:group-hover/post-card:grayscale-0"
-							width={450}
-							height={450}
+							width={200}
+							height={200}
 							alt={title}
 							unoptimized={false}
 						/>
