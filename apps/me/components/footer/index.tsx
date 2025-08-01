@@ -13,18 +13,18 @@ function SiteFooter() {
 			<div className="bg-foreground/20 absolute top-0 right-1/2 left-1/2 h-px w-1/3 -translate-x-1/2 -translate-y-1/2 rounded-full blur" />
 			<div className="grid grid-cols-1 gap-7 py-16 md:grid-cols-2 md:gap-5">
 				<div className="col-span-1 flex flex-col gap-6">
-					<Link className="inline-block" href="/">
+					<Link className="size-[35px] inline-block" href="/">
 						<Image
 							width={40}
 							height={40}
-							className="size-10 hidden dark:block"
+							className="size-auto hidden dark:block"
 							src="/assets/images/logo/logo-dark.svg"
 							alt="Stephen's Logo"
 						/>
 						<Image
 							width={40}
 							height={40}
-							className="size-10 block dark:hidden"
+							className="size-auto block dark:hidden"
 							src="/assets/images/logo/logo-light.svg"
 							alt="Stephen's Logo"
 						/>

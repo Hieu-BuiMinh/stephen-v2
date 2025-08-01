@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
-import type { LegacyAnimationControls, TargetAndTransition, Transition, VariantLabels } from 'motion/react'
+import type { TargetAndTransition, Transition, VariantLabels } from 'motion/react'
 import { motion } from 'motion/react'
 
 // https://motion-primitives.com/docs/glow-effect
@@ -33,7 +33,7 @@ export function GlowEffect({
 		ease: 'linear',
 	}
 
-	const animations: { [key: string]: TargetAndTransition | VariantLabels | boolean | LegacyAnimationControls } = {
+	const animations: { [key: string]: TargetAndTransition | VariantLabels | boolean } = {
 		rotate: {
 			background: [
 				`conic-gradient(from 0deg at 50% 50%, ${colors.join(', ')})`,

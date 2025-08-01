@@ -54,7 +54,7 @@ span.line.code-block__line--highline::after {
 	content: '';
 	position: absolute;
 	inset: 0;
-	background-color: #00000028;
+	background-color: var(--color-neutral-200);
 	z-index: -1;
 }
 
@@ -62,6 +62,6 @@ html.dark span.line.code-block__line--highline::after {
 	content: '';
 	position: absolute;
 	inset: 0;
-	background-color: #ffffff23;
+	background-color: #212126;
 	z-index: -1;
 }

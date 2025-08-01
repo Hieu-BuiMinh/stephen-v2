@@ -1,3 +1,5 @@
+'use client'
+
 import { cn } from '@repo/stephen-v2-utils'
 import { GripVerticalIcon } from 'lucide-react'
 import * as React from 'react'

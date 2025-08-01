@@ -15,20 +15,20 @@ function Navbar() {
 	return (
 		<nav className="fixed hidden h-16 w-full items-center justify-between px-4 bg-background left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:border-b lg:border-x md:border-primary/10 z-[51]">
 			<div className="flex items-center justify-center gap-2 capitalize">
-				<Link href="/">
+				<Link href="/" className="size-[35px]">
 					<Image
 						src="/assets/images/logo/logo-dark.svg"
 						width={35}
 						height={35}
 						alt="logo"
-						className="hidden dark:block"
+						className="hidden dark:block size-auto"
 					/>
 					<Image
 						src="/assets/images/logo/logo-light.svg"
 						width={35}
 						height={35}
 						alt="logo"
-						className="block dark:hidden"
+						className="block dark:hidden size-auto"
 					/>
 				</Link>
 				{navKeys.map((key) => {
