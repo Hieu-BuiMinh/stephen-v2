@@ -47,20 +47,12 @@ export async function generateMetadata({ params }: GenerateMetaProps): Promise<M
 
 async function DevPostDetailLayout({
 	children,
-	params,
+	// params,
 }: {
 	children: React.ReactNode
-	params: Promise<{ id: string }>
+	// params: Promise<{ id: string }>
 }) {
-	const { id } = await params
-	const post = getVelitePostById({ id, postsList: devPost })
-
-	return (
-		<>
-			{/* <PostDetailHeader post={post} /> */}
-			{children}
-		</>
-	)
+	return <>{children}</>
 }
 
 export default DevPostDetailLayout

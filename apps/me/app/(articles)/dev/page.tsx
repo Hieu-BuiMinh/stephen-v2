@@ -1,7 +1,7 @@
-import React from 'react'
+import { redirect } from 'next/navigation'
 
 function DevBlogPage() {
-	return <div>DevBlogPage</div>
+	redirect('/dev/post')
 }
 
 export default DevBlogPage

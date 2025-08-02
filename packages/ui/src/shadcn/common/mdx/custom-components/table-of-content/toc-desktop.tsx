@@ -61,7 +61,7 @@ function TableOfContentDesktop<T>({ post }: { post: T & { toc: TTOC[] } }) {
 
 	return (
 		<nav aria-label="Table of Contents" className="relative flex-col gap-3">
-			<p className="flex gap-1 text-sm font-bold text-muted-foreground">
+			<p className="flex gap-1 items-center text-xs font-bold text-muted-foreground">
 				<Text size={20} />
 				On this page
 			</p>
@@ -73,16 +73,9 @@ function TableOfContentDesktop<T>({ post }: { post: T & { toc: TTOC[] } }) {
 						className={cn(`pt-5 first:pt-0`)}
 						style={{ paddingLeft: toc.level * 10 }}
 					>
-						{/* <svg
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 16 16"
-							className="absolute -top-1.5 start-0 size-4 rtl:-scale-x-100"
-						>
-							<line x1="0" y1="0" x2="10" y2="12" className="stroke-amber-400" strokeWidth="1"></line>
-						</svg> */}
 						<Link
 							className={cn(
-								'line-clamp-1 text-sm leading-[1.2] text-muted-foreground no-underline transition-colors hover:text-foreground',
+								'line-clamp-1 text-xs leading-[1.2] text-muted-foreground no-underline transition-colors hover:text-foreground',
 								toc.url.slice(1) === activeId && 'font-semibold text-foreground underline'
 							)}
 							href={toc.url}

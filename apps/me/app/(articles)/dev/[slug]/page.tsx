@@ -1,9 +1,9 @@
 import type { DEV_POST_TYPE } from '@repo/stephen-v2-contents'
+import { TextEffect } from '@repo/stephen-v2-ui/motion'
 
-import LightRaysComponent from '@/components/effects/light-rays'
+import LightRaysClient from '@/components/effects/light-rays-client'
 import PageTitle from '@/components/post/page-title'
 import PostPageView from '@/view/articles/dev/post/pages/post.page'
-import { TextEffect } from '@repo/stephen-v2-ui/motion'
 
 interface IDevPostPageProps {
 	params: Promise<{ slug: DEV_POST_TYPE }>
@@ -15,11 +15,11 @@ async function DevPostPage({ params }: IDevPostPageProps) {
 	const headertitle = {
 		post: {
 			title: 'Dev Post',
-			description: `My personal notes that's not long enough to be a blog post`,
+			description: `Thoughts, mental models, and tutorials about front-end development.`,
 		},
 		short: {
 			title: 'Dev Short',
-			description: `My personal notes that's not long enough to be a blog post`,
+			description: `These are a collection of code snippets I have used in the past and want to share with you.`,
 		},
 		doc: {
 			title: 'Dev Doc',
@@ -32,23 +32,9 @@ async function DevPostPage({ params }: IDevPostPageProps) {
 	if (!headerTitleBySlug) {
 		return (
 			<>
-				<LightRaysComponent
-					raysOrigin="top-center"
-					raysColor="#ffffff"
-					raysSpeed={0.5}
-					lightSpread={2}
-					rayLength={1.2}
-					fadeDistance={0.5}
-					saturation={0.9}
-					followMouse={true}
-					mouseInfluence={0}
-					noiseAmount={0.1}
-					distortion={0}
-					pulsating={false}
-					className="absolute inset-0 hidden md:block"
-				/>
+				<LightRaysClient />
 				<div className="flex items-center justify-center min-h-[450px]">
-					<TextEffect preset="slide" per="word" as="span" delay={0.5} className="mx-auto">
+					<TextEffect preset="slide" per="word" as="span" delay={0.5} className="mx-auto text-xl capitalize">
 						Nothing you can find here... ㄟ( ▔, ▔ )ㄏ
 					</TextEffect>
 				</div>
@@ -58,21 +44,7 @@ async function DevPostPage({ params }: IDevPostPageProps) {
 
 	return (
 		<>
-			<LightRaysComponent
-				raysOrigin="top-center"
-				raysColor="#ffffff"
-				raysSpeed={0.5}
-				lightSpread={2}
-				rayLength={1.2}
-				fadeDistance={0.5}
-				saturation={0.9}
-				followMouse={true}
-				mouseInfluence={0}
-				noiseAmount={0.1}
-				distortion={0}
-				pulsating={false}
-				className="absolute inset-0 hidden md:block"
-			/>
+			<LightRaysClient />
 			<div className="flex flex-col gap-5">
 				<PageTitle title={headerTitleBySlug.title} description={headerTitleBySlug.description} />
 				<PostPageView article="dev" slug={slug} />

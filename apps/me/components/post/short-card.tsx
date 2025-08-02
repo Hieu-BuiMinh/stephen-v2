@@ -35,7 +35,7 @@ export const ShortCard = ({ post }: ShortCardProps) => {
 			<FoldedCornerCard className="z-[1]">
 				<Link
 					href={`/${articles[1]}/${slug}/${id}`}
-					className="flex flex-col justify-between rounded-md p-2 gap-2"
+					className="flex flex-col justify-between rounded-md p-2 gap-2 bg-neutral-200 dark:bg-transparent"
 				>
 					<AspectRatio ratio={16 / 9} className="rounded-md overflow-hidden flex items-center justify-center">
 						<BlurImage

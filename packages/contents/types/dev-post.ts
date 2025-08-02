@@ -1,1 +1,1 @@
-export type DEV_POST_TYPE = 'POST' | 'SHORT'
+export type DEV_POST_TYPE = 'post' | 'short'
