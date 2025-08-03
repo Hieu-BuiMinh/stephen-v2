@@ -6,3 +6,6 @@ type Collections = typeof __vc.collections
 
 export type DevBlogPost = Collections['devPost']['schema']['_output']
 export declare const devPost: DevBlogPost[]
+
+export type BookRecap = Collections['bookRecap']['schema']['_output']
+export declare const bookRecap: BookRecap[]

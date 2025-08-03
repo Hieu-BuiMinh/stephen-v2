@@ -1,5 +1,5 @@
-import type { DEV_POST_TYPE } from '@repo/stephen-v2-contents'
-import { devPost } from '@repo/stephen-v2-contents'
+import type { BOOKS_POST_TYPE } from '@repo/stephen-v2-contents'
+import { bookRecap } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import { TableOfContentDesktop } from '@repo/stephen-v2-ui/shadcn'
 // import dynamic from 'next/dynamic'
@@ -10,12 +10,12 @@ import DocDetailHeader from '@/components/post/post-detail-header'
 import PostLastUpdated from '@/components/post/post-last-updated'
 
 interface PostPageProps {
-	params: Promise<{ slug: DEV_POST_TYPE; id: string }>
+	params: Promise<{ collection: BOOKS_POST_TYPE; id: string }>
 }
 
-export default async function PostDetailPageView({ params }: PostPageProps) {
+export default async function BookDetailPageView({ params }: PostPageProps) {
 	const { id } = await params
-	const post = await getVelitePostById({ id, postsList: devPost })
+	const post = await getVelitePostById({ id, postsList: bookRecap })
 
 	if (!post || !post.published) {
 		notFound()

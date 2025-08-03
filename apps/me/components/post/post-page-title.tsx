@@ -3,13 +3,13 @@ import type { LucideIcon } from 'lucide-react'
 
 import TextGradient from '@/components/texts/text-gradient'
 
-interface IPageTitleProps {
+interface IPostPageTitleProps {
 	title: string
 	description: string
 	icon?: LucideIcon
 }
 
-function PageTitle({ description, title }: IPageTitleProps) {
+function PostPageTitle({ description, title }: IPostPageTitleProps) {
 	return (
 		<div className="relative p-12 flex w-full flex-col items-center justify-center gap-5 text-center md:p-20">
 			<AnimatedBlock>
@@ -24,4 +24,4 @@ function PageTitle({ description, title }: IPageTitleProps) {
 	)
 }
 
-export default PageTitle
+export default PostPageTitle

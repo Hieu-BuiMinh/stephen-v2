@@ -1,5 +1,6 @@
 import type { LucideIcon } from 'lucide-react'
 import {
+	Book,
 	Clover,
 	Library,
 	MessageCircleHeart,
@@ -62,6 +63,12 @@ export const navbarItems: TNavbarItems = {
 			href: '/dev/doc',
 			description: 'Welcome to my corner of the internet',
 			icon: Library,
+		},
+		{
+			title: 'Books',
+			href: '/books',
+			description: 'Some personal book recommendations',
+			icon: Book,
 		},
 	],
 	more: [

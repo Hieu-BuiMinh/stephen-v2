@@ -8,6 +8,7 @@ import * as runtime from 'react/jsx-runtime'
 import { ImageZoom } from '../image/image-zoom'
 import CodeBlockTabs from './custom-components/code-block-tabs'
 import Heading from './custom-components/heading'
+import { Table } from './custom-components/table'
 
 const useMDXComponent = (code: string) => {
 	if (!code) {
@@ -55,7 +56,7 @@ const components = {
 		return (
 			<>
 				<ImageZoom
-					className={cn('h-[530px] rounded-lg border', className)}
+					className={cn('h-[350px] cursor-pointer', className)}
 					alt={alt || ''}
 					width={1200}
 					height={630}
@@ -66,6 +67,7 @@ const components = {
 		)
 	},
 	CodeBlockTabs,
+	Table,
 }
 
 interface MdxProps {

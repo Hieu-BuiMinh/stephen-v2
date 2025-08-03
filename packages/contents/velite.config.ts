@@ -9,6 +9,7 @@ import rehypeAutoLinkHeading from 'rehype-autolink-headings'
 import rehypeSlug from 'rehype-slug'
 import { defineConfig } from 'velite'
 
+import { bookRecap } from './collections/book.collections'
 import { devPost } from './collections/dev.collections'
 
 export default defineConfig({
@@ -22,6 +23,7 @@ export default defineConfig({
 	},
 	collections: {
 		devPost,
+		bookRecap,
 	},
 	mdx: {
 		rehypePlugins: [

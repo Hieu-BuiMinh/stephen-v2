@@ -1,35 +1,35 @@
-import type { DEV_POST_TYPE } from '@repo/stephen-v2-contents'
+import type { BOOKS_POST_TYPE } from '@repo/stephen-v2-contents'
 import { TextEffect } from '@repo/stephen-v2-ui/motion'
 
 import LightRaysClient from '@/components/effects/light-rays-client'
 import PostPageTitle from '@/components/post/post-page-title'
-import PostPageView from '@/view/articles/dev/post/pages/post.page'
+import BooksCollectionsPageView from '@/view/articles/books/pages/books-collection.page'
 
-interface IDevPostPageProps {
-	params: Promise<{ slug: DEV_POST_TYPE }>
+interface IBooksPostPageProps {
+	params: Promise<{ collection: BOOKS_POST_TYPE }>
 }
 
-async function DevPostPage({ params }: IDevPostPageProps) {
-	const { slug } = await params
+async function BooksPostPage({ params }: IBooksPostPageProps) {
+	const { collection } = await params
 
 	const headertitle = {
-		post: {
-			title: 'Dev Post',
+		'life-habits': {
+			title: 'Life Habits',
 			description: `Thoughts, mental models, and tutorials about front-end development.`,
 		},
-		short: {
-			title: 'Dev Short',
+		productivity: {
+			title: 'Productivity',
 			description: `These are a collection of code snippets I have used in the past and want to share with you.`,
 		},
-		doc: {
-			title: 'Dev Doc',
+		others: {
+			title: 'Others',
 			description: `My personal notes that's not long enough to be a blog post`,
 		},
 	}
 
-	const headerTitleBySlug = headertitle[slug as keyof typeof headertitle]
+	const headerTitleByCollection = headertitle[collection as keyof typeof headertitle]
 
-	if (!headerTitleBySlug) {
+	if (!headerTitleByCollection) {
 		return (
 			<>
 				<LightRaysClient />
@@ -46,11 +46,14 @@ async function DevPostPage({ params }: IDevPostPageProps) {
 		<>
 			<LightRaysClient />
 			<div className="flex flex-col gap-5">
-				<PostPageTitle title={headerTitleBySlug.title} description={headerTitleBySlug.description} />
-				<PostPageView article="dev" slug={slug} />
+				<PostPageTitle
+					title={headerTitleByCollection.title}
+					description={headerTitleByCollection.description}
+				/>
+				<BooksCollectionsPageView article="books" collection={collection} />
 			</div>
 		</>
 	)
 }
 
-export default DevPostPage
+export default BooksPostPage
