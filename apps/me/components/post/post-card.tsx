@@ -1,23 +1,18 @@
-'use client'
-
 import type { TPost } from '@repo/stephen-v2-contents'
 import { AnimatedBlock } from '@repo/stephen-v2-ui/motion'
 import { AspectRatio, BlurImage } from '@repo/stephen-v2-ui/shadcn'
 import { formatDate } from '@repo/stephen-v2-utils'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import { useParams, usePathname } from 'next/navigation'
 import pluralize from 'pluralize'
 
 interface PostCardProps {
 	post: TPost
+	slug: string
+	article: string
 }
 
-export const PostCard = ({ post }: PostCardProps) => {
-	const { slug } = useParams<{ slug: string }>()
-
-	const pathName = usePathname()
-	const articles = pathName.split('/')
+export const PostCard = ({ post, article, slug }: PostCardProps) => {
 	const { title, description, createdAt, author, id } = post
 
 	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
@@ -30,9 +25,9 @@ export const PostCard = ({ post }: PostCardProps) => {
 
 	return (
 		<AnimatedBlock type="FADE_IN_FROM_BOTTOM">
-			<div className="group/post-card rounded-lg p-1 post-card transition-all border border-dashed border-transparent duration-300 md:hover:shadow-2xl md:hover:border-border md:hover:scale-[1.02]">
+			<div className="group/post-card rounded-lg p-1 post-card transition-all border border-dashed border-transparent duration-300 md:hover:shadow-2xl md:hover:border-border md:hover:scale-[1.02] bg-background">
 				<Link
-					href={`/${articles[1]}/${slug}/${id}`}
+					href={`/${article}/${slug}/${id}`}
 					className="flex flex-col justify-between rounded-md border p-2 gap-2"
 				>
 					<AspectRatio ratio={16 / 9} className="rounded-md overflow-hidden flex items-center justify-center">

@@ -1,25 +1,20 @@
-'use client'
-
 import type { TPost } from '@repo/stephen-v2-contents'
 import { AnimatedBlock } from '@repo/stephen-v2-ui/motion'
 import { AspectRatio, BlurImage } from '@repo/stephen-v2-ui/shadcn'
 import { formatDate } from '@repo/stephen-v2-utils'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import { useParams, usePathname } from 'next/navigation'
 import pluralize from 'pluralize'
 
 import FoldedCornerCard from '@/components/cards/folded-corner-card'
 
 interface ShortCardProps {
 	post: TPost
+	slug: string
+	article: string
 }
 
-export const ShortCard = ({ post }: ShortCardProps) => {
-	const { slug } = useParams<{ slug: string }>()
-
-	const pathName = usePathname()
-	const articles = pathName.split('/')
+export const ShortCard = ({ post, article, slug }: ShortCardProps) => {
 	const { title, description, createdAt, author, id } = post
 
 	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
@@ -34,8 +29,8 @@ export const ShortCard = ({ post }: ShortCardProps) => {
 		<AnimatedBlock type="FADE_IN_FROM_BOTTOM" className="group/post-card relative">
 			<FoldedCornerCard className="z-[1]">
 				<Link
-					href={`/${articles[1]}/${slug}/${id}`}
-					className="flex flex-col justify-between rounded-md p-2 gap-2"
+					href={`/${article}/${slug}/${id}`}
+					className="flex flex-col justify-between rounded-md p-2 gap-2 bg-neutral-200 dark:bg-transparent"
 				>
 					<AspectRatio ratio={16 / 9} className="rounded-md overflow-hidden flex items-center justify-center">
 						<BlurImage

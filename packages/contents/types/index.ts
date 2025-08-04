@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { DEV_POST_TYPE } from './dev-post'
+import type { BOOKS_POST_TYPE, DEV_POST_TYPE } from './post'
 
 export * from './articles'
-export * from './dev-post'
+export * from './post'
 
 export type TPost = {
 	id: string
@@ -15,7 +15,7 @@ export type TPost = {
 	description?: string
 	published: boolean
 	hashTags?: string[]
-	type: DEV_POST_TYPE
+	type: DEV_POST_TYPE | BOOKS_POST_TYPE
 	body: any // s.mdx() | string
 	author: {
 		avatar: string

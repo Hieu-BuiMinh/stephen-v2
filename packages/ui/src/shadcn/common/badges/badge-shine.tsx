@@ -9,7 +9,7 @@ type BadgeShineProps = {
 const BadgeShine: React.FC<BadgeShineProps> = ({ children }) => {
 	return (
 		<motion.span
-			className="inline-flex item-center justify-center text-center cursor-pointer items-center justify-center rounded-full border bg-[linear-gradient(110deg,#000,45%,#4D4B4B,55%,#000)] bg-[length:250%_100%] px-3 py-1 text-xs font-medium text-gray-300 border-gray-600 leading-none py-1"
+			className="inline-flex item-center justify-center text-center cursor-pointer items-center rounded-full border bg-[linear-gradient(110deg,#000,45%,#4D4B4B,55%,#000)] bg-[length:250%_100%] px-3 text-xs font-medium text-gray-300 border-gray-600 leading-none py-1"
 			animate={{ backgroundPosition: '-200% 0' }}
 			transition={{ duration: 2, ease: 'linear', repeat: Infinity }}
 		>

@@ -9,7 +9,7 @@ import Image from 'next/image'
 import type { MouseEventHandler, Ref } from 'react'
 import { forwardRef, useEffect, useState } from 'react'
 
-const MotionImage = motion(
+const MotionImage = motion.create(
 	forwardRef(function MotionImage(props: ImageProps, ref: Ref<HTMLImageElement>) {
 		return <BlurImage ref={ref} {...props} unoptimized={false} />
 	})
@@ -92,6 +92,7 @@ export const Photo = ({
 					alt={alt}
 					{...props}
 					draggable={false}
+					sizes="228px"
 				/>
 			</div>
 		</motion.div>

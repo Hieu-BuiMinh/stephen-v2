@@ -5,12 +5,12 @@ import { TextEffect } from '@repo/stephen-v2-ui/motion'
 
 import PostCards from '@/components/post/post-cards'
 
-const sortedPostsBySlug = ({ article, slug }: { slug: DEV_POST_TYPE; article: keyof typeof ARTICLES }) => {
+const sortedPostsBySlug = ({ article, slug }: { article: keyof typeof ARTICLES; slug: DEV_POST_TYPE }) => {
 	let postCollection = []
 
 	switch (article) {
 		case 'dev':
-			postCollection = devPost
+			postCollection = devPost?.filter((post) => post.type === slug)
 			break
 
 		default:
@@ -31,7 +31,7 @@ function PostPageView({ article, slug }: { slug: DEV_POST_TYPE; article: keyof t
 			{postList?.length > 0 ? (
 				<PostCards posts={postList} slug={slug} />
 			) : (
-				<TextEffect preset="slide" per="word" delay={0.5} className="mx-auto">
+				<TextEffect preset="slide" per="word" delay={0.5} className="mx-auto text-xl capitalize">
 					I have no posts yet... ㄟ( ▔, ▔ )ㄏ
 				</TextEffect>
 			)}

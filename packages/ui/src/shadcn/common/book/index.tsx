@@ -69,17 +69,19 @@ function Book({ color, depth, illustration, icon, textColor, texture, variant, w
 							{illustration && <div className="size-full">{illustration}</div>}
 						</Stack>
 					)}
-					<Stack grow={variant === 'simple'} direction="row" className="h-fit bg-[var(--book-color)]">
-						<div className="mix-blend-overlay opacity-100 min-w-[8.2%] h-full book-bind" />
-						<div className="contain-inline-size w-full">
-							<div className="p-3 mb-2 flex flex-col justify-between">
-								<h1 className="font-semibold text-[calc(var(--book-width)/12)] text-[var(--text-color)]">
-									{title}
-								</h1>
-								{Icon ? Icon : <FireExtinguisher size={24} />}
+					{title && (
+						<Stack grow={variant === 'simple'} direction="row" className="h-fit bg-[var(--book-color)]">
+							<div className="mix-blend-overlay opacity-60 min-w-[8.2%] h-full book-bind" />
+							<div className="contain-inline-size w-full">
+								<div className="p-3 mb-2 flex flex-col justify-between">
+									<h1 className="font-semibold text-[calc(var(--book-width)/12)] text-[var(--text-color)]">
+										{title}
+									</h1>
+									{Icon ? Icon : <FireExtinguisher size={24} />}
+								</div>
 							</div>
-						</div>
-					</Stack>
+						</Stack>
+					)}
 					{texture && <div className="book-texture" />}
 				</Stack>
 
