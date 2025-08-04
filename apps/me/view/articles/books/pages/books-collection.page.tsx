@@ -40,7 +40,7 @@ function BooksCollectionsPageView({
 	return (
 		<div className="w-full min-h-52 flex">
 			{postList?.length > 0 ? (
-				<BookCards posts={postList} />
+				<BookCards posts={postList} collection={collection} />
 			) : (
 				<TextEffect preset="slide" per="word" delay={0.5} className="mx-auto text-xl capitalize">
 					I have no posts yet... ㄟ( ▔, ▔ )ㄏ
