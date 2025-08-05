@@ -7,22 +7,20 @@ import { useIsMobile } from '@repo/stephen-v2-utils/hooks'
 import { CircleQuestionMarkIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useParams, usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
 interface BookCardProps {
 	post: TPost & { bookCover: string }
+	collection: string
+	article: string
 }
 
-export const BookCard = ({ post }: BookCardProps) => {
+export const BookCard = ({ post, article, collection }: BookCardProps) => {
 	const [loaded, setLoaded] = useState<boolean>(false)
 	const isMobile = useIsMobile()
 	const { theme } = useTheme()
-	const { collection } = useParams<{ collection: string }>()
 
-	const pathName = usePathname()
-	const articles = pathName.split('/')
 	const { title, description, bookCover, id } = post
 
 	useEffect(() => {
@@ -35,7 +33,7 @@ export const BookCard = ({ post }: BookCardProps) => {
 
 	return (
 		<AnimatedBlock as="div" type="FADE_IN_FROM_BOTTOM" className="flex">
-			<Link href={`/${articles[1]}/${collection}/${id}`} className="m-auto flex">
+			<Link href={`/${article}/${collection}/${id}`} className="m-auto flex">
 				<Book
 					width={isMobile ? 150 : 190}
 					title={title}
