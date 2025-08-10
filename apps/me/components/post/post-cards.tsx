@@ -1,16 +1,17 @@
-import type { BOOKS_POST_TYPE, DEV_POST_TYPE, TPost } from '@repo/stephen-v2-contents'
+import type { ARTICLES, BOOKS_POST_TYPE, DEV_POST_TYPE, TPost } from '@repo/stephen-v2-contents'
 import { cn } from '@repo/stephen-v2-utils'
 
 import { PostCard } from '@/components/post/post-card'
 import { ShortCard } from '@/components/post/short-card'
 
 type PostCardsProps = {
+	article?: ARTICLES
+	slug?: DEV_POST_TYPE | BOOKS_POST_TYPE
 	posts: TPost[]
-	slug: DEV_POST_TYPE | BOOKS_POST_TYPE
 	className?: string
 }
 
-const PostCards = ({ posts, slug, className }: PostCardsProps) => {
+const PostCards = ({ article, posts, slug, className }: PostCardsProps) => {
 	if (slug === 'short') {
 		return (
 			<div
@@ -20,7 +21,12 @@ const PostCards = ({ posts, slug, className }: PostCardsProps) => {
 				)}
 			>
 				{posts.map((post) => (
-					<ShortCard key={post.slug} article="dev" slug={slug} post={post} />
+					<ShortCard
+						key={post.slug}
+						article={article?.toLocaleLowerCase() || 'dev'}
+						slug={slug}
+						post={post}
+					/>
 				))}
 			</div>
 		)
@@ -34,7 +40,7 @@ const PostCards = ({ posts, slug, className }: PostCardsProps) => {
 			)}
 		>
 			{posts.map((post) => (
-				<PostCard key={post.slug} article="dev" slug={slug} post={post} />
+				<PostCard key={post.slug} article={article?.toLocaleLowerCase() || 'dev'} slug={slug} post={post} />
 			))}
 		</div>
 	)

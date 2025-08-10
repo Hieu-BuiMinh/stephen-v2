@@ -1,4 +1,4 @@
-// // https://ui.ibelick.com/badge-shine
+// https://ui.ibelick.com/badge-shine
 
 import { motion } from 'motion/react'
 

@@ -8,12 +8,12 @@ import pluralize from 'pluralize'
 
 interface PostCardProps {
 	post: TPost
-	slug: string
+	slug?: string
 	article: string
 }
 
 export const PostCard = ({ post, article, slug }: PostCardProps) => {
-	const { title, description, createdAt, author, id } = post
+	const { title, description, createdAt, author, id, cover } = post
 
 	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
 
@@ -23,19 +23,18 @@ export const PostCard = ({ post, article, slug }: PostCardProps) => {
 
 	// const likesQuery = postBySlug?.likes?.reduce((acc, like) => acc + like.count, 0) || 0 // save in api here
 
+	const url = slug ? `/${article}/${slug}/${id}` : `/${article}/${id}`
+
 	return (
 		<AnimatedBlock type="FADE_IN_FROM_BOTTOM">
 			<div className="group/post-card rounded-lg p-1 post-card transition-all border border-dashed border-transparent duration-300 md:hover:shadow-2xl md:hover:border-border md:hover:scale-[1.02] bg-background">
-				<Link
-					href={`/${article}/${slug}/${id}`}
-					className="flex flex-col justify-between rounded-md border p-2 gap-2"
-				>
+				<Link href={url} className="flex flex-col justify-between rounded-md border p-2 gap-2">
 					<AspectRatio ratio={16 / 9} className="rounded-md overflow-hidden flex items-center justify-center">
 						<BlurImage
-							src={post.cover || ''}
+							src={cover || ''}
 							className="size-full object-cover transition-all grayscale-100 md:group-hover/post-card:grayscale-0"
-							width={200}
-							height={200}
+							width={300}
+							height={300}
 							alt={title}
 							unoptimized={false}
 						/>

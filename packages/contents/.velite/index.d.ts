@@ -9,3 +9,9 @@ export declare const devPost: DevBlogPost[]
 
 export type BookRecap = Collections['bookRecap']['schema']['_output']
 export declare const bookRecap: BookRecap[]
+
+export type shortWriting = Collections['shortWriting']['schema']['_output']
+export declare const shortWriting: shortWriting[]
+
+export type ProjectPost = Collections['projectPost']['schema']['_output']
+export declare const projectPost: ProjectPost[]

@@ -6,7 +6,7 @@ import { TableOfContentDesktop } from '@repo/stephen-v2-ui/shadcn'
 import { notFound } from 'next/navigation'
 
 import MDXContentComponent from '@/components/mdx-content'
-import DocDetailHeader from '@/components/post/post-detail-header'
+import PostDetailHeader from '@/components/post/post-detail-header'
 import PostLastUpdated from '@/components/post/post-last-updated'
 
 interface PostPageProps {
@@ -22,7 +22,7 @@ export default async function PostDetailPageView({ params }: PostPageProps) {
 	}
 	return (
 		<>
-			<DocDetailHeader post={post} />
+			<PostDetailHeader post={post} />
 			<div className="grid col-span-1 lg:grid-cols-[1fr_250px] gap-10 mt-5">
 				<MDXContentComponent code={post.body} className="col-span-1 min-w-full" />
 

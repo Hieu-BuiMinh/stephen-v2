@@ -2,3 +2,5 @@
 
 export { default as devPost } from './devPost.json'
 export { default as bookRecap } from './bookRecap.json'
+export { default as shortWriting } from './shortWriting.json'
+export { default as projectPost } from './projectPost.json'

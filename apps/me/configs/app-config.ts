@@ -4,13 +4,13 @@ import { SVGIcons } from '@/components/icons/svg-icons'
 export const isProduction = process.env.NODE_ENV === 'production'
 
 export const APP_CONFIG = {
-	name: 'Stephen',
-	shortName: 'ST',
+	name: 'Stephen Blog',
+	shortName: 'by Stephen',
 	url: isProduction ? 'https://hieu-buiminh.io.vn/' : 'http://localhost:3000',
 	description: 'Next js 15 blog using Turborepo, velite, tailwind and shadcn',
 	siteKeywords: [
 		'hieu.buiminh',
-		'stephen-lab',
+		'stephen-blog',
 		'turborepo',
 		'next.js',
 		'react',
