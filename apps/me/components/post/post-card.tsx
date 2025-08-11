@@ -17,7 +17,7 @@ export const PostCard = ({ post, article, slug }: PostCardProps) => {
 
 	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
 
-	const formattedDate = formatDate(createdAt)
+	const formattedDate = formatDate(createdAt, 'MMMM D, YYYY')
 
 	// const viewsQuery = postBySlug?.views || 0 // save in api here
 
@@ -62,7 +62,7 @@ export const PostCard = ({ post, article, slug }: PostCardProps) => {
 						</div>
 						<div className="flex flex-col gap-1">
 							<p>@{author.name}</p>
-							<p>{formattedDate}</p>
+							<p className="capitalize">{formattedDate}</p>
 						</div>
 					</div>
 

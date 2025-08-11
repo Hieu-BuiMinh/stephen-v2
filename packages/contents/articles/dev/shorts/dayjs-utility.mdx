@@ -1,0 +1,208 @@
+---
+id: 'c9348bb0-c69f-43cf-9a61-109947c7f60a'
+title: 'How to Use the Dayjs Utility'
+cover: '/assets/articles/dev/post/dayjs-utility.png'
+createdAt: '2025-08-11T03:10:26.204Z'
+description: 'A tiny guide to the reusable Dayjs helper I use across my apps—plugins, locale/timezone, and practical format examples'
+published: true
+hashTags: ['dev', 'short', 'ts']
+type: 'short'
+---
+
+This utility wraps Dayjs with a curated set of plugins and sensible defaults. It ships a small API you can call anywhere in your app.
+
+## What this util configures
+
+- Plugins: utc, timezone, localizedFormat, relativeTime, customParseFormat, advancedFormat, isBetween, isSameOrAfter, isSameOrBefore, weekOfYear, duration.
+- Defaults: locale = en, timezone = Asia/Ho_Chi_Minh.
+- Exports:
+  - d — the configured Dayjs instance
+  - setLocale(locale) — switch locale at runtime (e.g., en, vi)
+  - formatDate(input, fmt?, tz?) — quick formatter (default MM/DD/YYYY)
+  - parseAndFormat(input, parseFmt, outFmt?, tz?) — strict-parse then format
+  - fromNow(input) — humanized distance ("a day ago", "in 2 hours")
+  - toISO(input) — ISO string in UTC
+  - clampTo(input, unit, edge?, tz?) — start/end of unit (day, month, ...)
+  - parse(input, parseFmt?, tz?) — parse to Dayjs (or null if invalid)
+
+## Source code (drop-in)
+
+<CodeBlockTabs fileName='src/utils/dayjs.ts'>
+
+```ts
+// Locales
+import 'dayjs/locale/vi'
+import 'dayjs/locale/en'
+
+import dayjs, { type Dayjs, type OpUnitType } from 'dayjs'
+import advancedFormat from 'dayjs/plugin/advancedFormat'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+import duration from 'dayjs/plugin/duration'
+import isBetween from 'dayjs/plugin/isBetween'
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
+
+// Register plugins (safe to call multiple times)
+dayjs.extend(utc)
+dayjs.extend(timezone)
+dayjs.extend(localizedFormat)
+dayjs.extend(relativeTime)
+dayjs.extend(customParseFormat)
+dayjs.extend(advancedFormat)
+dayjs.extend(isBetween)
+dayjs.extend(isSameOrAfter)
+dayjs.extend(isSameOrBefore)
+dayjs.extend(weekOfYear)
+dayjs.extend(duration)
+
+// Defaults for the whole app
+dayjs.locale('en')
+dayjs.tz.setDefault('Asia/Ho_Chi_Minh')
+
+// Types
+type DateInput = string | number | Date | Dayjs | null | undefined
+
+// Short alias for the configured instance
+const d = dayjs
+
+// Switch runtime locale (e.g., 'en', 'vi')
+const setLocale = (locale: string) => dayjs.locale(locale)
+
+// Quick formatter (default MM/DD/YYYY). Optional tz converts before formatting.
+const formatDate = (input: DateInput, fmt = 'MM/DD/YYYY', tz?: string): string => {
+	if (input == null) return ''
+	const inst = tz ? dayjs(input).tz(tz) : dayjs(input)
+	return inst.isValid() ? inst.format(fmt) : ''
+}
+
+// Strict parse by input format, then format out. Optional tz converts before output.
+const parseAndFormat = (input: string, parseFmt: string, outFmt = 'MM/DD/YYYY', tz?: string): string => {
+	const base = dayjs(input, parseFmt, true)
+	const inst = tz ? base.tz(tz) : base
+	return inst.isValid() ? inst.format(outFmt) : ''
+}
+
+// Humanized distance: "a day ago", "in 2 hours"
+const fromNow = (input: DateInput): string => {
+	if (input == null) return ''
+	const inst = dayjs(input)
+	return inst.isValid() ? inst.fromNow() : ''
+}
+
+// ISO string (UTC)
+const toISO = (input: DateInput): string => {
+	if (input == null) return ''
+	const inst = dayjs(input)
+	return inst.isValid() ? inst.toDate().toISOString() : ''
+}
+
+// Start/end of a unit ('day', 'week', 'month', ...)
+const clampTo = (input: DateInput, unit: OpUnitType, edge: 'start' | 'end' = 'start', tz?: string): Dayjs | null => {
+	if (input == null) return null
+	const base = tz ? dayjs(input).tz(tz) : dayjs(input)
+	if (!base.isValid()) return null
+	return edge === 'start' ? base.startOf(unit) : base.endOf(unit)
+}
+
+// Parse to Dayjs (or null). Optional parse format & tz.
+const parse = (input: string, parseFmt?: string, tz?: string): Dayjs | null => {
+	const base = parseFmt ? dayjs(input, parseFmt, true) : dayjs(input)
+	if (!base.isValid()) return null
+	return tz ? base.tz(tz) : base
+}
+
+// Barrel export
+export { clampTo, d, formatDate, fromNow, parse, parseAndFormat, setLocale, toISO }
+export type { DateInput }
+export default dayjs
+```
+
+</CodeBlockTabs>
+
+## Quick start
+
+<CodeBlockTabs fileName='index.ts'>
+
+```ts
+import { d, setLocale, formatDate, parseAndFormat, fromNow, toISO, clampTo, parse } from '@/utils/dayjs'
+
+// Demo datetime
+const sample = '2025-08-11 08:30' // interpreted in Asia/Ho_Chi_Minh by default
+
+// Use the configured instance
+d().format('YYYY-MM-DD HH:mm') // → current time (HCM)
+d(sample).add(2, 'day').format('L') // → "08/13/2025"
+d(sample).tz('UTC').format('HH:mm') // → time converted to UTC
+
+// Locale switching
+setLocale('en')
+d(sample).format('LL') // → "August 11, 2025"
+setLocale('vi')
+d(sample).format('LL') // → "11 tháng 8, 2025"
+
+// Quick formatting (default MM/DD/YYYY)
+formatDate(sample) // → "08/11/2025"
+formatDate(sample, 'DD/MM/YYYY') // → "11/08/2025"
+formatDate(sample, 'HH:mm, DD/MM', 'UTC') // → "01:30, 11/08"
+formatDate(null) // → "" (guard for null/undefined)
+
+// Strict parse then format
+parseAndFormat('11-08-2025', 'DD-MM-YYYY', 'YYYY/MM/DD') // → "2025/08/11"
+parseAndFormat('08/11/25 08:30', 'MM/DD/YY HH:mm', 'HH:mm [on] LLL')
+// → e.g. "08:30 on August 11, 2025" when locale = en
+
+// Humanized distance
+fromNow('2025-08-10') // → "a day ago" (en) / "một ngày trước" (vi)
+
+// ISO (UTC)
+toISO(sample) // → "2025-08-11T01:30:00.000Z"
+
+// Clamp to start/end of unit
+clampTo(sample, 'day', 'start')?.format() // → "2025-08-11T00:00:00+07:00"
+clampTo(sample, 'month', 'end')?.format('YYYY-MM-DD HH:mm')
+// → "2025-08-31 23:59" (format to see the edge clearly)
+
+// Parse to Dayjs (or null)
+const inst1 = parse('2025-08-11')
+inst1?.format('YYYY/MM/DD') // → "2025/08/11"
+
+const inst2 = parse('11-08-2025 08:30', 'DD-MM-YYYY HH:mm', 'UTC')
+inst2?.format() // → "2025-08-11T08:30:00Z"
+
+const bad = parse('31-02-2025', 'DD-MM-YYYY') // invalid date
+bad // → null
+```
+
+</CodeBlockTabs>
+
+## Design notes (why this shape)
+
+- Locale & timezone defaults: en + Asia/Ho_Chi_Minh keeps output predictable in SSR and CI. Override at runtime via setLocale() or pass a tz per call.
+- Chosen plugins:
+  - utc + timezone: reliable conversions across regions.
+  - localizedFormat: convenient L/LL/LLL/LLLL tokens, locale-aware.
+  - customParseFormat: strict parsing prevents silent coercion.
+  - advancedFormat: extra tokens like Do (11th), Q.
+  - relativeTime: humanized distance (fromNow).
+  - isBetween, isSameOrAfter, isSameOrBefore: readable comparisons.
+  - weekOfYear, duration: reporting & UX needs.
+- Return shapes:
+  - formatDate() returns '' when input is null/invalid → safe for UI labels.
+  - parse() returns Dayjs | null → explicit handling in logic.
+- Timezone semantics:
+  - Passing tz converts the interpreted instant before formatting/output, so output reflects the target zone.
+
+## Common format tokens
+
+A tiny cheat sheet you'll actually use day-to-day:
+
+- Month: M (1-12), MM (01-12), MMM (Aug), MMMM (August / "tháng 8" in vi)
+- Day of month: D (1-31), DD (01-31), Do (11th) ← requires advancedFormat
+- Weekday: d (0-6), ddd (Mon), dddd (Monday / "Thứ hai")
+- Year: YY (25), YYYY (2025)
+- Locale presets: L, LL, LLL, LLLL (provided by localizedFormat)

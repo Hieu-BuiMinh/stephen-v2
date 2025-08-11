@@ -7,7 +7,13 @@ interface IPostLastUpdated {
 }
 
 function PostLastUpdated({ date }: IPostLastUpdated) {
-	return <>{date && <div className="py-10 text-right text-sm">Last updated:&nbsp;{formatDate(date)}</div>}</>
+	return (
+		<>
+			{date && (
+				<div className="py-10 text-right text-sm">Last updated:&nbsp;{formatDate(date, 'MMMM D, YYYY')}</div>
+			)}
+		</>
+	)
 }
 
 export default PostLastUpdated
