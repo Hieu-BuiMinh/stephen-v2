@@ -130,6 +130,9 @@ importers:
 
   packages/contents:
     dependencies:
+      '@repo/stephen-v2-ui':
+        specifier: workspace:^
+        version: link:../ui
       '@repo/typescript-config':
         specifier: workspace:^
         version: link:../typescript-config
@@ -375,8 +378,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2
     devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:*
+      '@repo/stephen-v2-eslint-config':
+        specifier: workspace:^
         version: link:../eslint-config
       '@repo/typescript-config':
         specifier: workspace:*
