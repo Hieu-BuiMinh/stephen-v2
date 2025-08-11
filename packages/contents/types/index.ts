@@ -27,6 +27,10 @@ export type TPost = {
 		ordered: boolean
 		maxDepth: number
 	}
+	links?: {
+		repoUrl?: string
+		demoUrl?: string
+	}
 
 	[key: string]: any
 }

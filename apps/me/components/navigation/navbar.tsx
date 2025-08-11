@@ -78,11 +78,13 @@ const ItemLink = ({ className, item }: IItemLink) => {
 			)}
 			href={item.href}
 		>
-			<div className="size-10 flex items-center justify-center shrink-0 p-2 rounded-lg border group-hover:border-transparent dark:group-hover:border-foreground/60 transition-colors">
+			{/* <div className="size-10 flex items-center justify-center shrink-0 p-2 rounded-lg border group-hover:border-transparent dark:group-hover:border-foreground/60 transition-colors">
 				{<Icon size={16} />}
-			</div>
+			</div> */}
 			<div className="flex flex-col gap-2">
-				<div className="capitalize group-hover:underline transition-all">{item.title}</div>
+				<div className="flex gap-3 font-semibold items-center capitalize group-hover:underline transition-all">
+					{<Icon size={14} />} {item.title}
+				</div>
 				<div className="text-xs font-light text-foreground/70 group-hover:text-foreground line-clamp-1">
 					{item.description}
 				</div>

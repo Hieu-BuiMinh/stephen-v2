@@ -77,7 +77,7 @@ function CodeBlockTabs({ children, options, fileName }: ICodeBlockTabs) {
 					return (
 						<TabsContent
 							key={index}
-							className="w-full flex-none px-[3px] pb-[3px]"
+							className="w-full flex-none px-[3px] pb-[3.5px]"
 							value={index.toString()}
 						>
 							<div
@@ -93,7 +93,7 @@ function CodeBlockTabs({ children, options, fileName }: ICodeBlockTabs) {
 					)
 				})
 			) : (
-				<TabsContent className="w-full flex-none px-[3px] pb-[3px]" value="0">
+				<TabsContent className="w-full flex-none px-[3px] pb-[3.5px]" value="0">
 					<div
 						ref={textInput}
 						className={cn(

@@ -1,13 +1,11 @@
 import { AnimatedBlock } from '@repo/stephen-v2-ui/motion'
 import { cn } from '@repo/stephen-v2-utils'
-import type { LucideIcon } from 'lucide-react'
 
 import TextGradient from '@/components/texts/text-gradient'
 
 interface IPostPageTitleProps {
 	title: string
 	description: string
-	icon?: LucideIcon
 	className?: string
 }
 
@@ -25,7 +23,9 @@ function PostPageTitle({ description, title, className }: IPostPageTitleProps) {
 				</TextGradient>
 			</AnimatedBlock>
 			<AnimatedBlock delay={0.3}>
-				<TextGradient as="div">{description}</TextGradient>
+				<TextGradient className="text-base" as="div">
+					{description}
+				</TextGradient>
 			</AnimatedBlock>
 		</div>
 	)

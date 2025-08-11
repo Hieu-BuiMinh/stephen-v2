@@ -19,6 +19,7 @@
 		"velite": "^0.2.4"
 	},
 	"dependencies": {
+		"@repo/stephen-v2-ui": "workspace:^",
 		"@repo/typescript-config": "workspace:^",
 		"@shikijs/rehype": "^3.8.1",
 		"@shikijs/transformers": "^3.8.1",

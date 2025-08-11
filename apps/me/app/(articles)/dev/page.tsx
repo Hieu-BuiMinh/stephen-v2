@@ -22,12 +22,12 @@ function DevBlogPage() {
 						<AnimatedBlock type="FADE_IN_FROM_BOTTOM" className="group/post-card relative">
 							<div
 								className="absolute -top-24 capitalize z-[-1] text-9xl font-extrabold text-neutral-400 opacity-20 duration-300 ease-in group-hover:opacity-90 dark:text-neutral-800"
-								style={{
-									textShadow: `-0.3px 0 var(--muted-foreground),
-											0 0.3px var(--muted-foreground),
-											0.3px 0 var(--muted-foreground),
-											0 -0.3px var(--muted-foreground)`,
-								}}
+								// style={{
+								// 	textShadow: `-0.3px 0 var(--muted-foreground),
+								// 			0 0.3px var(--muted-foreground),
+								// 			0.3px 0 var(--muted-foreground),
+								// 			0 -0.3px var(--muted-foreground)`,
+								// }}
 							>
 								{key}
 							</div>

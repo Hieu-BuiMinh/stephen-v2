@@ -1,0 +1,160 @@
+---
+id: 'a7b1b545-a7f7-4760-bd66-d3e757ff70c5'
+title: 'Notion Clone App'
+createdAt: '2024-12-15T13:24:01.955Z'
+description: 'A Fullstack Notion Clone Repository'
+cover: '/assets/articles/projects/notion-clone-app/cover.png'
+links:
+    { repoUrl: 'https://github.com/Hieu-BuiMinh/notion-clone-app', demoUrl: 'https://notion-clone-app-xii.vercel.app/' }
+published: true
+hashTags: ['project']
+---
+
+## Notion Clone App 📚
+
+Notion - [https://notion-clone-app-xii.vercel.app/](https://notion-clone-app-xii.vercel.app/)
+
+This project is a simplified clone of the popular productivity application, Notion. It replicates some of Notion's core features, offering a platform where users can create, edit, and organize their notes in a flexible and intuitive interface.
+
+The backend is powered by Convex, a real-time database that enables instant data updates. Additionally, Edgestore, a distributed key-value store, manages the images and files uploaded by users. User authentication is handled securely and efficiently by Clerk, a scalable authentication API.
+
+<Image className="h-[410px] max-w-full m-auto" src="/assets/articles/projects/notion-clone-app/cover-01.png" />
+
+- NextJS 14: https://nextjs.org/
+- Shadcn UI: https://ui.shadcn.com/
+- Convex: https://www.convex.dev
+- Clerk: https://clerk.com/
+- Edgestore: https://edgestore.dev
+
+## Key Features
+
+- Real-time database 🔗
+- Notion-style editor 📝
+- Light and Dark mode 🌓
+- Infinite children documents 🌲
+- Trash can & soft delete 🗑️
+- Authentication 🔐
+- File upload
+- File deletion
+- File replacement
+- Icons for each document (changes in real-time) 🌠
+- Expandable sidebar ➡️🔀⬅️
+- Full mobile responsiveness 📱
+- Publish your note to the web 🌐
+- Fully collapsable sidebar ↕️
+- Landing page 🛬
+- Cover image of each document 🖼️
+- Recover deleted files 🔄📄
+
+## User Experience
+
+- 🌓 Light and Dark mode to suit preferences
+- 📱 Full mobile responsiveness for productivity on the go
+- 🛬 Landing page for a welcoming user entry point
+- 🖼️ Cover image for each document to add a personal touch
+
+## Data Management
+
+- 🔄 Real-time database for instant data updates
+- 📤📥 File upload, deletion, and replacement options
+
+## Security and Sharing
+
+- 🔐 Authentication to secure notes
+- 🌍 Option to publish your note to the web for sharing
+
+## Technologies
+
+<div className="not-prose flex gap-2 flex-wrap">
+	![NextJS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+
+    ![Shadcn-ui](https://img.shields.io/badge/shadcn/ui-000000.svg?style=for-the-badge&logo=shadcn/ui&logoColor=white)
+
+    ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white)
+
+    ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC.svg?style=for-the-badge&logo=Tailwind-CSS&logoColor=white)
+
+    ![Clerk](https://img.shields.io/badge/Clerk-6C47FF.svg?style=for-the-badge&logo=Clerk&logoColor=white)
+
+    ![Convex](https://img.shields.io/badge/Convex-ee342f.svg?style=for-the-badge&logo=Convex&logoColor=white)
+
+    ![Edgestore](https://img.shields.io/badge/Edgestore-a57fff.svg?style=for-the-badge&logo=Edgestore&logoColor=white)
+
+    ![Blocknote](https://img.shields.io/badge/Blocknote-ff8c00.svg?style=for-the-badge&logo=Blocknote&logoColor=white)
+
+</div>
+
+## Installation
+
+1. Clone the repository
+2. Install the dependencies
+
+<CodeBlockTabs fileName="terminal" options={["npm", "yarn", "pnpm", "bun"]}>
+
+```bash
+npm install # [!code hl]
+```
+
+```bash
+yarn install # [!code hl]
+```
+
+```bash
+pnpm install # [!code hl]
+```
+
+```bash
+bun install # [!code hl]
+```
+
+</CodeBlockTabs>
+
+3. Set up the environment variables
+
+<CodeBlockTabs fileName=".env">
+
+```ts
+# Deployment used by `npx convex dev`
+CONVEX_DEPLOYMENT=xxxxxxxx-xxxxx-xxxxx-xxxx-xxxx
+NEXT_PUBLIC_CONVEX_URL=xxxxxxxx-xxxxx-xxxxx-xxxx-xxxx
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=xxxxxxxx-xxxxx-xxxxx-xxxx-xxxx
+CLERK_SECRET_KEY=xxxxxxxx-xxxxx-xxxxx-xxxx-xxxx
+
+EDGE_STORE_ACCESS_KEY=xxxxxxxx-xxxxx-xxxxx-xxxx-xxxx
+EDGE_STORE_SECRET_KEY=xxxxxxxx-xxxxx-xxxxx-xxxx-xxxx
+```
+
+</CodeBlockTabs>
+
+4. Run Convex
+
+<CodeBlockTabs fileName="terminal">
+
+```bash
+npx convex dev
+```
+
+</CodeBlockTabs>
+
+5. Run the development server
+
+<CodeBlockTabs options={["npm", "yarn", "pnpm", "bun"]}>
+
+```bash
+npm run dev
+```
+
+```bash
+yarn dev
+```
+
+```bash
+pnpm dev
+```
+
+```bash
+bun run dev
+```
+
+</CodeBlockTabs>

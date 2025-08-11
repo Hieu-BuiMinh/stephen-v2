@@ -5,7 +5,7 @@ cover: '/assets/articles/dev/post/conventional-commits.png'
 createdAt: '2024-08-02T00:00:00Z'
 description: Discover how Conventional Commits can enhance your work and project's readability.
 published: true
-hashTags: ['dev', 'short', 'js']
+hashTags: ['dev', 'post', 'ts']
 type: 'post'
 ---
 
@@ -25,7 +25,7 @@ The conventional commit message format is straightforward. It starts with a **ty
 
 <CodeBlockTabs fileName='Git Bash'>
 
-```bash
+```cmd
 feat(login): add authentication with JWT
 ```
 
@@ -113,7 +113,7 @@ commit messages.
 
 <CodeBlockTabs fileName='Git Bash'>
 
-```bash
+```cmd
 feat(auth): add OAuth 2.0 authentication
 ```
 
@@ -131,7 +131,7 @@ feat(auth): add OAuth 2.0 authentication
 
 <CodeBlockTabs fileName='Git Bash'>
 
-```bash
+```cmd
 fix(profile): resolve issue with avatar upload
 ```
 
@@ -148,7 +148,7 @@ fix(profile): resolve issue with avatar upload
 
 <CodeBlockTabs fileName='Git Bash'>
 
-```bash
+```cmd
 docs(readme): update installation instructions
 ```
 
@@ -166,7 +166,7 @@ docs(readme): update installation instructions
 
 <CodeBlockTabs fileName='Git Bash'>
 
-```bash
+```cmd
 refactor(utils): simplify the date parsing logic
 ```
 
@@ -184,7 +184,7 @@ refactor(utils): simplify the date parsing logic
 
 <CodeBlockTabs fileName='Git Bash'>
 
-```bash
+```cmd
 perf(db): optimize query execution time
 ```
 
@@ -202,7 +202,7 @@ perf(db): optimize query execution time
 
 <CodeBlockTabs fileName='Git Bash'>
 
-```bash
+```cmd
 test(router): add unit tests for routing module
 ```
 
@@ -220,7 +220,7 @@ test(router): add unit tests for routing module
 
 <CodeBlockTabs fileName='Git Bash'>
 
-```bash
+```cmd
 chore(deps): upgrade lodash to version 4.17.21
 ```
 
@@ -238,7 +238,7 @@ chore(deps): upgrade lodash to version 4.17.21
 
 <CodeBlockTabs fileName='Git Bash'>
 
-```bash
+```cmd
 ci(circleci): add build step for linting
 ```
 
@@ -256,7 +256,7 @@ ci(circleci): add build step for linting
 
 <CodeBlockTabs fileName='Git Bash'>
 
-```bash
+```cmd
 revert: remove OAuth 2.0 authentication
 
 This reverts commit abc123.
@@ -294,7 +294,7 @@ Example Configuration:
 
 <CodeBlockTabs fileName='Git Bash'>
 
-```bash
+```cmd
 npm install --save-dev @commitlint/config-conventional @commitlint/cli husky
 ```
 
@@ -321,7 +321,7 @@ the prepare script in `package.json`. Modifications can be made later to suit yo
 
 <CodeBlockTabs fileName='Git Bash'>
 
-```bash
+```cmd
 npx husky init
 ```
 
@@ -399,29 +399,3 @@ I hope this blog post has inspired you to delve into conventional commits.
 Initially, conventional commits might seem a bit odd, and you might find yourself questioning the format as you make
 commits. However, they soon become second nature, and youll appreciate their impact on your software engineering
 practices.
-
----
-
-<CodeBlockTabs options={["npm", "yarn", "pnpm", "bun"]}>
-
-```bash {{ filename: 'terminal' }} showLineNumbers {1,2}
-npm uninstall vue-clerk
-npm install @clerk/vue ===
-```
-
-```bash {{ filename: 'terminal' }}
-yarn remove vue-clerk
-yarn add @clerk/vue
-```
-
-```bash {{ filename: 'terminal' }}
-pnpm remove vue-clerk
-pnpm add @clerk/vue
-```
-
-```bash {{ filename: 'terminal' }}
-bun remove vue-clerk # [!code hl]
-bun add @clerk/vue
-```
-
-</CodeBlockTabs>

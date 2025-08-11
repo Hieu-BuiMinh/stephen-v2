@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid'
 import Link from 'next/link'
 import * as runtime from 'react/jsx-runtime'
 
+import { AnimatedBlock } from '../../../motion/components/animate-block'
 import { ImageZoom } from '../image/image-zoom'
 import CodeBlockTabs from './custom-components/code-block-tabs'
 import Heading from './custom-components/heading'
@@ -68,6 +69,9 @@ const components = {
 	},
 	CodeBlockTabs,
 	Table,
+
+	// effect
+	AnimatedBlock,
 }
 
 interface MdxProps {

@@ -1,4 +1,4 @@
-import type { DevBlogPost } from '../.velite'
+import type { TPost } from '../types'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const computedFields: any = <T extends { slug: string }>(data: T) => {
@@ -14,10 +14,10 @@ export const computedFields: any = <T extends { slug: string }>(data: T) => {
 	}
 }
 
-export function sortPostsByDate(posts: Array<DevBlogPost>, order: 'asc' | 'desc' = 'asc'): Array<DevBlogPost> {
+export function sortPostsByDate(posts: Array<TPost>, order: 'asc' | 'desc' = 'asc'): Array<TPost> {
 	return posts.sort((a, b) => {
-		const dateA = new Date(a.date).getTime()
-		const dateB = new Date(b.date).getTime()
+		const dateA = new Date(a.createdAt).getTime()
+		const dateB = new Date(b.createdAt).getTime()
 
 		if (order === 'asc') {
 			return dateA - dateB // Sort in ascending order

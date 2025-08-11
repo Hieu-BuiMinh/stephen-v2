@@ -4,12 +4,12 @@ import type { TPost } from '@repo/stephen-v2-contents'
 import { ImageZoom } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
 
-interface IDocDetailHeaderProps {
+interface IPostDetailHeaderProps {
 	post: TPost
 	className?: string
 }
 
-function DocDetailHeader({ post, className }: IDocDetailHeaderProps) {
+function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
 	const { cover, title } = post
 
 	return (
@@ -38,4 +38,4 @@ function DocDetailHeader({ post, className }: IDocDetailHeaderProps) {
 	)
 }
 
-export default DocDetailHeader
+export default PostDetailHeader
