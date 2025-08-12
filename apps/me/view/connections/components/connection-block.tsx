@@ -9,7 +9,10 @@ function ConnectionBlock({ data }: { data: Connection }) {
 		<div className="flex flex-col gap-2">
 			<RenderLink
 				data={data}
-				className="group bento-shadow relative border size-28 m-auto rounded-lg p-1 overflow-hidden"
+				className={cn(
+					'group bento-shadow relative border size-28 m-auto rounded-lg p-1 overflow-hidden',
+					data?.connectedDate && 'drop-shadow-2xl'
+				)}
 			>
 				<BlurImage
 					src={data.profile_picture}
@@ -27,7 +30,13 @@ function ConnectionBlock({ data }: { data: Connection }) {
 					</div>
 				)}
 			</RenderLink>
-			<div className="w-full border line-clamp-1 rounded-xs bg-background/50 backdrop-blur-sm text-xs text-center p-1">
+			<div
+				className={cn(
+					'w-full border line-clamp-1 rounded-sm bg-transparent text-xs text-center p-1',
+					data?.connectedDate &&
+						'bg-linear-to-b from-white/10 to-white/20 to-70% shadow-md ring inset-shadow-2xs ring-background/20 inset-shadow-foreground/10'
+				)}
+			>
 				{data.name}
 			</div>
 		</div>

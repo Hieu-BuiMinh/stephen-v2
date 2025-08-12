@@ -1,0 +1,203 @@
+---
+id: 'b0c4d5c7-4c1a-4b6d-9df2-6e3e9e0b8a11'
+title: 'Prefetch & Hydration with TanStack Query in Next.js'
+cover: '/assets/articles/dev/post/tanstack-prefetch-hydration.png'
+createdAt: '2025-08-12T16:55:00.000Z'
+description: 'Server prefetch, dehydrate, and instant-load UX with TanStack Query in Next.js (App Router first, Pages Router included).'
+published: true
+hashTags: ['dev', 'react', 'tanstack-query', 'nextjs']
+type: 'short'
+---
+
+## Required Libraries
+
+<CodeBlockTabs options={["npm", "yarn", "pnpm", "bun"]}>
+
+```bash
+npm i @tanstack/react-query @tanstack/react-query-devtools
+```
+
+```bash
+yarn add @tanstack/react-query @tanstack/react-query-devtools
+```
+
+```bash
+pnpm add @tanstack/react-query @tanstack/react-query-devtools
+```
+
+```bash
+bun add @tanstack/react-query @tanstack/react-query-devtools
+```
+
+</CodeBlockTabs>
+
+> Optional: Persist cache across reloads with `@tanstack/query-sync-storage-persister` if needed.
+
+---
+
+## How to Use (Complete Flow — App Router)
+
+<CodeBlockTabs options={["Providers & Layout", "Server Helpers", "List Page (Server + Client)", "Detail Page (Server + Client)", "Client Hover Prefetch"]}>
+
+```tsx
+// app/providers.tsx
+'use client'
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { useState, type PropsWithChildren } from 'react'
+
+export default function Providers({ children }: PropsWithChildren) {
+	// Each browser session gets its own QueryClient
+	const [client] = useState(() => new QueryClient()) // [!code hl]
+	return (
+		<QueryClientProvider client={client}>
+			{children}
+			<ReactQueryDevtools initialIsOpen={false} />
+		</QueryClientProvider>
+	)
+}
+```
+
+```tsx
+// app/layout.tsx
+import Providers from './providers'
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+	return (
+		<html lang="en">
+			<body>
+				<Providers>{children}</Providers> {/* [!code hl] */}
+			</body>
+		</html>
+	)
+}
+```
+
+```ts
+// lib/react-query-server.ts
+// A per-request QueryClient + helpers for server prefetch & dehydration
+import { QueryClient, dehydrate } from '@tanstack/react-query'
+
+export function createServerQueryClient() {
+	// You can tune defaults (retries, gcTime) for server prefetch here
+	return new QueryClient() // [!code hl]
+}
+
+export function dehydrateClient(qc: QueryClient) {
+	return dehydrate(qc) // [!code hl]
+}
+```
+
+```tsx
+// app/users/page.tsx  (Server Component)
+// Server prefetch the list, then HydrationBoundary -> Client component uses useUsers()
+import { HydrationBoundary } from '@tanstack/react-query'
+import { createServerQueryClient, dehydrateClient } from '@/lib/react-query-server'
+import { userKeys } from '@/queries/useUserQuery' // keys only (safe to import on server) // [!code hl]
+import { getUsers } from '@/services/user.service'
+import UsersClient from './users-client'
+
+export const revalidate = 0 // or use 'force-dynamic' if your fetch layer caches // optional
+
+export default async function UsersPageServer() {
+	const qc = createServerQueryClient()
+
+	const page = 1
+	const pageSize = 10
+	const search = ''
+
+	await qc.prefetchQuery({
+		queryKey: userKeys.list({ page, pageSize, search }), // [!code hl]
+		queryFn: () => getUsers({ page, pageSize, search }), // [!code hl]
+	})
+
+	const state = dehydrateClient(qc)
+
+	return (
+		<HydrationBoundary state={state}>
+			{' '}
+			{/* [!code hl] */}
+			<UsersClient initialPage={page} initialSearch={search} />
+		</HydrationBoundary>
+	)
+}
+```
+
+```tsx
+// app/users/[id]/page.tsx  (Server Component)
+// Prefetch a user detail by id on the server and hydrate
+import { HydrationBoundary } from '@tanstack/react-query'
+import { createServerQueryClient, dehydrateClient } from '@/lib/react-query-server'
+import { userKeys } from '@/queries/useUserQuery'
+import { getUserById } from '@/services/user.service'
+import UserDetailClient from './user-detail-client'
+
+type Props = { params: { id: string } }
+
+export default async function UserDetailPageServer({ params }: Props) {
+	const qc = createServerQueryClient()
+	const id = params.id
+
+	await qc.prefetchQuery({
+		queryKey: userKeys.detail(id), // [!code hl]
+		queryFn: () => getUserById(id),
+	})
+
+	const state = dehydrateClient(qc)
+	return (
+		<HydrationBoundary state={state}>
+			<UserDetailClient id={id} />
+		</HydrationBoundary>
+	)
+}
+```
+
+```tsx
+// app/users/[id]/user-detail-client.tsx  (Client Component)
+'use client'
+import { useUserQuery } from '@/queries/useUserQuery'
+
+export default function UserDetailClient({ id }: { id: string }) {
+	const { useUser } = useUserQuery()
+	const { data, isLoading } = useUser(id) // hits hydrated cache first // [!code hl]
+	if (isLoading) return <p>Loading…</p>
+	if (!data) return <p>Not found</p>
+	return (
+		<article>
+			<h1>{data.name}</h1>
+			<p>{data.email}</p>
+		</article>
+	)
+}
+```
+
+```tsx
+// Optional: Link hover prefetch on the client (bonus UX)
+'use client'
+import Link from 'next/link'
+import { useUserQuery } from '@/queries/useUserQuery'
+
+export function UserLink({ id, children }: { id: string; children: React.ReactNode }) {
+	const { prefetchUserDetail } = useUserQuery() // client-side prefetch helper from your hook
+	return (
+		<Link href={`/users/${id}`} onMouseEnter={() => prefetchUserDetail(id)}>
+			{' '}
+			{/* [!code hl] */}
+			{children}
+		</Link>
+	)
+}
+```
+
+</CodeBlockTabs>
+
+---
+
+## Quick Checklist
+
+- [x] Wrap the app with `QueryClientProvider` (client).
+- [x] On the server, create a **per-request** `QueryClient`, call `prefetchQuery()`, then `dehydrate()`.
+- [x] Wrap client pages with `<HydrationBoundary state={...}>`.
+- [x] Use your domain hooks (`useUsers`, `useUser`) on the client — they read the hydrated cache instantly.
+- [x] (Optional) Add hover prefetch for instant route transitions.

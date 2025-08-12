@@ -17,9 +17,10 @@ This guide focuses on **Next.js 14/15** with the **App Router** (`app/`) and **T
 
 **How it works:**
 
-The initial HTML contains minimal content, and data is **fetched** directly from the browser after JavaScript loads.
+- The server sends a mostly empty HTML shell.
+- The browser downloads JavaScript, then fetches data on the client and renders the content dynamically.
 
-UI renders first, then data is fetched in the **browser**. Use a **Client Component** (`'use client'`).
+In Next js UI renders first, then data is fetched in the **browser**. Use a **Client Component** (`'use client'`).
 
 <CodeBlockTabs options={["App Router", "Pages Router"]}>
 
@@ -68,22 +69,27 @@ export default function Page() {
 
 **When to use:**
 
-- Dashboards/internal tools, post-login areas.
-- Personalization that can happen in the browser.
+- Data is user-specific: Dashboards/internal tools, post-login areas.
+- Personalization that can happen in the browser or heavy interactivity.
 - SEO is not required for the changing parts.
 
 **Pros:**
 
-- Less server load per request, highly interactive after hydration.
+- Lighter server load.
+- Great for highly interactive UIs.
+- Easy client-side state management.
 
 **Cons:**
 
-- Weaker SEO for dynamic content.
-- Slower first contentful render vs pre-rendered pages.
+- Poor SEO (content isn't ready at first load).
+- Slower “first content” because rendering waits for JavaScript.
 
 ## 2. SSR - Server-Side Rendering (App Router)
 
 **How it works:**
+
+- On every request, the server fetches data and renders a full HTML page.
+- The HTML is sent to the browser already containing the content.
 
 The page is rendered on the **server for each request**. In App Router, you typically fetch with `cache: 'no-store'` or mark the route dynamic.
 
@@ -128,7 +134,8 @@ import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 
 type ApiData = { message: string }
 
-export const getServerSideProps: GetServerSideProps<{ data: ApiData }> = async () => { // [!code hl]
+export const getServerSideProps: GetServerSideProps<{ data: ApiData }> = async () => {
+	// [!code hl]
 	const res = await fetch('https://api.example.com/data')
 	const data = (await res.json()) as ApiData
 	return { props: { data } }
@@ -143,9 +150,8 @@ export default function Page({ data }: InferGetServerSidePropsType<typeof getSer
 
 **When to use:**
 
-- Frequently changing data that must always be fresh.
-- Request-dependent content (cookies, auth tokens, geolocation).
-- **SEO-critical** pages where search engines must see the latest HTML/meta.
+- Data changes on every request (e.g., personalized content, real-time dashboards).
+- You want strong SEO for dynamic content.
 
 **Pros:**
 
@@ -159,6 +165,9 @@ export default function Page({ data }: InferGetServerSidePropsType<typeof getSer
 ## 3. SSG - Static Site Generation (App Router)
 
 **How it works:**
+
+- Pages are pre-rendered at build time into static HTML files.
+- Content is fixed until the next build.
 
 HTML is **pre-rendered at build time**. In App Router, this is the **default** when nothing forces dynamic behavior. You can be explicit with `force-static` or cache the fetch.
 
@@ -190,7 +199,8 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 type ApiData = { message: string }
 
-export const getStaticProps: GetStaticProps<{ data: ApiData }> = async () => { // [!code hl]
+export const getStaticProps: GetStaticProps<{ data: ApiData }> = async () => {
+	// [!code hl]
 	const res = await fetch('https://api.example.com/data')
 	const data = (await res.json()) as ApiData
 	return { props: { data } }
@@ -209,15 +219,19 @@ export default function Page({ data }: InferGetStaticPropsType<typeof getStaticP
 
 **Pros:**
 
-- Fastest TTFB and great SEO (served from CDN).
+- Super fast (served from CDN).
+- Almost zero server cost.
 
 **Cons:**
 
-- Stale until you rebuild (no auto refresh).
+- Requires a rebuild to update content.
 
 ## 4. ISR - Incremental Static Regeneration (App Router)
 
 **How it works:**
+
+- A hybrid between SSG and SSR.
+- Pages are pre-rendered like SSG, but Next.js can regenerate them in the background after a set revalidate time.
 
 Like SSG, but the page **regenerates in the background** on an interval. In App Router, use the `revalidate` export or per-request `fetch` option.
 
@@ -277,6 +291,7 @@ export default function Page({ data }: InferGetStaticPropsType<typeof getStaticP
 
 **Cons:**
 
+- There can be a short “stale” window before regeneration.
 - Not instantly up-to-date (freshness tied to interval).
 - Requires platform support for on-demand/background regeneration.
 

@@ -1,0 +1,250 @@
+---
+id: 'f3a2f550-7cb2-4c9b-97c6-6a132b5dd731'
+title: 'A Better Way to Organize TanStack Query Hooks'
+cover: '/assets/articles/dev/tanstack-query-pattern.png'
+createdAt: '2025-08-12T16:25:00.000Z'
+description: 'A reusable, scalable pattern for managing TanStack Query keys, queries, and mutations in large projects—centralized keys, pagination, params validation, and cache control.'
+published: true
+hashTags: ['dev', 'react', 'tanstack-query', 'typescript']
+type: 'short'
+---
+
+When using **TanStack Query** in a large-scale app, query key management and mutation cache handling can quickly get messy — especially if you scatter hooks across multiple files.  
+Here's a pattern I've been using that centralizes **query keys**, **pagination**, **params validation**, and **cache control** in a single place.
+
+<CodeBlockTabs options={["Query Hook", "Service"]}>
+
+```ts
+// queries/useUserQuery.ts
+import { useQuery, useMutation, useQueryClient, keepPreviousData, type QueryKey } from '@tanstack/react-query'
+import {
+	getUsers,
+	getUserById,
+	updateUser,
+	deleteUser,
+	createUser,
+	type User,
+	type UserListFilters,
+	type UpdateUserInput,
+	type CreateUserInput,
+	type Paginated,
+} from '@/services/user.service'
+
+// Centralized, strongly-typed query keys
+export const userKeys = {
+	all: () => ['user'] as const,
+	lists: () => [...userKeys.all(), 'list'] as const,
+	list: (filters: Readonly<UserListFilters>) => [...userKeys.lists(), normalizeListFilters(filters)] as const,
+	details: () => [...userKeys.all(), 'detail'] as const,
+	detail: (id: string) => [...userKeys.details(), id] as const,
+}
+
+function normalizeListFilters(f: UserListFilters) {
+	return {
+		page: Math.max(1, f.page),
+		pageSize: f.pageSize ?? 10,
+		search: f.search?.trim() ?? '',
+	}
+}
+
+type UserListKey = ReturnType<typeof userKeys.list>
+type UserDetailKey = ReturnType<typeof userKeys.detail>
+
+export function useUserQuery() {
+	const qc = useQueryClient()
+
+	return {
+		// Queries
+		useUsers: (filters: UserListFilters) =>
+			useQuery<Paginated<User>, Error, Paginated<User>, UserListKey>({
+				queryKey: userKeys.list(filters),
+				queryFn: () => getUsers(filters),
+				placeholderData: keepPreviousData,
+				staleTime: 5000,
+			}),
+
+		useUser: (id: string | undefined) =>
+			useQuery<User, Error, User, UserDetailKey>({
+				queryKey: userKeys.detail(String(id)),
+				queryFn: () => getUserById(String(id)),
+				enabled: !!id,
+			}),
+
+		// Mutations
+		useCreateUser: () =>
+			useMutation({
+				mutationFn: (input: CreateUserInput) => createUser(input),
+				onSuccess: () => {
+					qc.invalidateQueries({ queryKey: userKeys.lists() as unknown as QueryKey })
+				},
+			}),
+
+		useUpdateUser: () =>
+			useMutation({
+				mutationFn: (input: UpdateUserInput) => updateUser(input),
+				onSuccess: (updated, variables) => {
+					qc.setQueryData(userKeys.detail(variables.id), updated)
+					qc.invalidateQueries({ queryKey: userKeys.lists() as unknown as QueryKey })
+				},
+			}),
+
+		useDeleteUser: () =>
+			useMutation({
+				mutationFn: (id: string) => deleteUser(id),
+				onSuccess: (_void, id) => {
+					qc.removeQueries({ queryKey: userKeys.detail(id) as unknown as QueryKey })
+					qc.invalidateQueries({ queryKey: userKeys.lists() as unknown as QueryKey })
+				},
+			}),
+
+		// Prefetch helpers
+		prefetchUserList: async (filters: UserListFilters) => {
+			await qc.prefetchQuery({
+				queryKey: userKeys.list(filters),
+				queryFn: () => getUsers(filters),
+			})
+		},
+		prefetchUserDetail: async (id: string) => {
+			await qc.prefetchQuery({
+				queryKey: userKeys.detail(id),
+				queryFn: () => getUserById(id),
+			})
+		},
+
+		keys: userKeys,
+	}
+}
+```
+
+```ts
+// services/user.service.ts
+export type User = { id: string; name: string; email: string }
+export type Paginated<T> = { items: T[]; page: number; pageSize: number; total: number }
+export type UserListFilters = { page: number; pageSize?: number; search?: string }
+
+const BASE_URL = '/api'
+
+async function fetchJSON<T>(input: RequestInfo, init?: RequestInit): Promise<T> {
+	const res = await fetch(input, {
+		...init,
+		headers: { 'Content-Type': 'application/json', ...(init?.headers || {}) },
+	})
+	if (!res.ok) throw new Error(await res.text().catch(() => `HTTP ${res.status}`))
+	return res.json() as Promise<T>
+}
+
+// Queries
+export async function getUsers(params: UserListFilters) {
+	const qp = new URLSearchParams({
+		page: String(Math.max(1, params.page)),
+		pageSize: String(params.pageSize ?? 10),
+		...(params.search ? { search: params.search.trim() } : {}),
+	})
+	return fetchJSON<Paginated<User>>(`${BASE_URL}/users?${qp.toString()}`)
+}
+
+export async function getUserById(id: string) {
+	if (!id) throw new Error('User ID is required')
+	return fetchJSON<User>(`${BASE_URL}/users/${id}`)
+}
+
+// Mutations
+export type UpdateUserInput = { id: string; name?: string; email?: string }
+export async function updateUser(input: UpdateUserInput) {
+	if (!input?.id) throw new Error('User ID is required')
+	return fetchJSON<User>(`${BASE_URL}/users/${input.id}`, {
+		method: 'PUT',
+		body: JSON.stringify(input),
+	})
+}
+
+export async function deleteUser(id: string) {
+	if (!id) throw new Error('User ID is required')
+	await fetchJSON<void>(`${BASE_URL}/users/${id}`, { method: 'DELETE' })
+}
+
+export type CreateUserInput = { name: string; email: string }
+export async function createUser(input: CreateUserInput) {
+	if (!input?.name || !input?.email) throw new Error('Name & email are required')
+	return fetchJSON<User>(`${BASE_URL}/users`, {
+		method: 'POST',
+		body: JSON.stringify(input),
+	})
+}
+```
+
+</CodeBlockTabs>
+
+## How to Use
+
+<CodeBlockTabs fileName={"page.tsx"}>
+
+```tsx
+// app/users/page.tsx
+'use client'
+
+import { useState } from 'react'
+import { useUserQuery } from '@/queries/useUserQuery'
+
+export default function UsersPage() {
+	const { useUsers, useCreateUser, useUpdateUser, useDeleteUser } = useUserQuery() // [!code hl]
+
+	const [page, setPage] = useState(1)
+	const [search, setSearch] = useState('')
+
+	const { data, isFetching, isLoading } = useUsers({ page, pageSize: 10, search }) // [!code hl]
+
+	const createUser = useCreateUser()
+	const updateUser = useUpdateUser()
+	const deleteUser = useDeleteUser()
+
+	if (isLoading) return <p>Loading…</p>
+
+	return (
+		<div>
+			<h1>Users</h1>
+			<input value={search} placeholder="Search…" onChange={(e) => setSearch(e.target.value)} />
+			<button onClick={() => createUser.mutate({ name: 'Ada', email: 'ada@lovelace.dev' })}>Create</button>
+			<ul>
+				{data?.items.map((u) => (
+					<li key={u.id}>
+						{u.name}{' '}
+						<button onClick={() => updateUser.mutate({ id: u.id, name: u.name + ' *' })}>Rename</button>{' '}
+						<button onClick={() => deleteUser.mutate(u.id)}>Delete</button>
+					</li>
+				))}
+			</ul>
+			<button disabled={page <= 1 || isFetching} onClick={() => setPage((p) => p - 1)}>
+				Prev
+			</button>
+			<button
+				disabled={isFetching || (data && page * data.pageSize >= data.total)}
+				onClick={() => setPage((p) => p + 1)}
+			>
+				Next
+			</button>
+			{isFetching && <span> Refreshing…</span>}
+		</div>
+	)
+}
+```
+
+</CodeBlockTabs>
+
+## Why This Pattern Works
+
+**Advantages:**
+
+1. **Centralized Query Keys** – No more magic strings scattered in multiple files; all keys live in one place.
+2. **Typed Keys with Filters** – Strong typing ensures correct key usage, prevents cache collisions.
+3. **Built-in Pagination & Filters** – Filters are normalized, so caching stays consistent.
+4. **Param Validation in Services** – Fail early if required params are missing.
+5. **Automatic Cache Updates** – Mutations directly update/remove relevant caches, no manual key hunting.
+6. **Prefetch Support** – Easily warm up caches for better UX.
+
+**Trade-offs:**
+
+- Slightly more upfront boilerplate when creating a new domain API.
+- Requires discipline to always use the centralized keys and not inline keys in components.
+
+For large React projects, this trade-off is worth it — the codebase becomes **predictable, maintainable, and scalable** as the number of queries/mutations grows.
