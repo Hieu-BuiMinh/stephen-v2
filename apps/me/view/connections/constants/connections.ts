@@ -1,120 +1,59 @@
 export type Connection = {
 	name: string
 	profile_picture: string
-	socialLink: string
+	socialLink?: string
 	isConnected: boolean
-	connectedDate?: Date
+	connectedDate?: string
 }
 
 export const MyConnections: Connection[] = [
 	{
-		name: 'Hoàng Nam Tiến',
+		name: 'Dao Nguyen',
+		profile_picture: '/assets/images/connections/dao-nguyen.png',
+		connectedDate: '02/26/2022',
+		socialLink: 'https://github.com/daonguyendev',
+		isConnected: true,
+	},
+	{
+		name: 'Trang Alice',
+		profile_picture: '/assets/images/connections/trang-alice.png',
+		connectedDate: '04/15/2023',
+		socialLink: 'https://github.com/maitnt',
+		isConnected: true,
+	},
+	{
+		name: 'Hoang Bao Vu',
+		profile_picture: '/assets/images/connections/hoang-bao-vu.png',
+		connectedDate: '02/26/2023',
+		socialLink: 'https://github.com/hoangbaovu',
+		isConnected: true,
+	},
+	{
+		name: 'Phuc Mai',
+		profile_picture: '/assets/images/connections/phuc-mai.png',
+		connectedDate: '08/02/2024',
+		socialLink: 'https://github.com/Phucmh98',
+		isConnected: false,
+	},
+	{
+		name: 'Braydon Coyer',
+		profile_picture: '/assets/images/connections/braydon-coyer.png',
+		socialLink: 'https://github.com/braydoncoyer',
+		isConnected: false,
+	},
+	{
+		name: 'Keanu Reeves',
+		profile_picture: '/assets/images/connections/keanu-reeves.png',
+		isConnected: false,
+	},
+	{
+		name: 'Hoang Nam Tien',
 		profile_picture: '/assets/images/connections/hoang-nam-tien.png',
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
+		isConnected: false,
 	},
 	{
-		name: 'Lê Thẩm Dương',
+		name: 'Le Tham Duong',
 		profile_picture: '/assets/images/connections/le-tham-duong.png',
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'Danny Thompson',
-		profile_picture: '/connections/DannyThompson.jpeg',
-		connectedDate: new Date('11/23/2022'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'Kyle Shook',
-		profile_picture: '/connections/Kyle Shook.jpeg',
-		connectedDate: new Date('02/13/2023'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'James Q Quick',
-		profile_picture: '/connections/James Q Quick.jpeg',
-		connectedDate: new Date('01/15/2023'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'Clark Sell',
-		profile_picture: '/connections/Clark Sell.jpeg',
-		connectedDate: new Date('01/15/2023'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'Amy Dutton',
-		profile_picture: '/connections/Amy Dutton.jpeg',
-		connectedDate: new Date('01/15/2023'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'Shashi Lo',
-		profile_picture: '/connections/shashi.jpeg',
-		connectedDate: new Date('01/15/2023'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'Taylor Desseyn',
-		profile_picture: '/connections/Taylor Desseyn.jpeg',
-		connectedDate: new Date('01/15/2023'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'Bekah',
-		profile_picture: '/connections/Bekah.jpeg',
-		connectedDate: new Date('01/15/2023'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'Brad Garropy',
-		profile_picture: '/connections/brad.jpeg',
-		connectedDate: new Date('01/15/2023'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'Brian Morrison II',
-		profile_picture: '/connections/Brian.jpeg',
-		connectedDate: new Date('01/15/2023'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'Tessa Kriesel',
-		profile_picture: '/connections/Tessa Kriesel.jpeg',
-		connectedDate: new Date('01/30/2024'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'Kevin Powell',
-		profile_picture: '/connections/Kevin Powell.jpeg',
-		connectedDate: new Date('01/30/2024'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'Ben Lesh',
-		profile_picture: '/connections/Ben Lesh.jpeg',
-		connectedDate: new Date('01/30/2024'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
-	},
-	{
-		name: 'Jesse Hall',
-		profile_picture: '/connections/Jesse Hall.jpeg',
-		connectedDate: new Date('01/29/2024'),
-		socialLink: 'https://x.com/BraydonCoyer',
-		isConnected: true,
+		isConnected: false,
 	},
 ]

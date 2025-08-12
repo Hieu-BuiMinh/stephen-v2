@@ -11,40 +11,40 @@ interface IConnectionsBento {
 }
 const desktopConnections = [
 	{
-		name: 'Amy',
-		src: '/assets/images/avt/me_09.png',
-		top: '55%',
+		name: 'Trang Alice',
+		src: '/assets/images/connections/trang-alice.png',
+		top: '65%',
 		left: '23%',
 		delay: 0.1,
-		className: 'size-12',
 	},
 	{
-		name: 'James Q Quick',
-		src: '/assets/images/avt/me_09.png',
+		name: 'Dao Nguyen',
+		src: '/assets/images/connections/dao-nguyen.png',
 		top: '53%',
 		left: '67%',
 		delay: 0.3,
+		className: 'size-12',
 	},
 	{
-		name: 'Colby',
-		src: '/assets/images/avt/me_09.png',
-		top: '4%',
+		name: 'Phuc Mai',
+		src: '/assets/images/connections/phuc-mai.png',
+		top: '8%',
 		left: '32%',
 		delay: 0.2,
 		className: 'size-14',
 	},
 	{
-		name: 'Sarah',
-		src: '/assets/images/avt/me_09.png',
+		name: 'Hoang Bao Vu',
+		src: '/assets/images/connections/hoang-bao-vu.png',
 		top: '15%',
 		left: '78%',
 		delay: 0.4,
 		className: 'size-10',
 	},
 	{
-		name: 'Shashi',
-		src: '/assets/images/avt/me_09.png',
-		top: '5%',
+		name: 'Braydon Coyer',
+		src: '/assets/images/connections/braydon-coyer.png',
+		top: '15%',
 		left: '7%',
 		delay: 0.5,
 		className: 'size-9',
@@ -53,19 +53,19 @@ const desktopConnections = [
 
 const mobileConnections = [
 	{
-		src: '/assets/images/avt/me_09.png',
-		className: 'size-10 absolute left-4 top-6 md:left-24',
+		src: '/assets/images/connections/trang-alice.png',
+		className: 'size-12 absolute left-4 top-6 md:left-24',
 	},
 	{
-		src: '/assets/images/avt/me_09.png',
-		className: 'size-12 absolute bottom-20 left-14 md:left-52',
+		src: '/assets/images/connections/dao-nguyen.png',
+		className: 'size-10 absolute bottom-20 left-14 md:left-52',
 	},
 	{
-		src: '/assets/images/avt/me_09.png',
+		src: '/assets/images/connections/hoang-bao-vu.png',
 		className: 'size-14 absolute right-16 top-4 md:right-52',
 	},
 	{
-		src: '/assets/images/avt/me_09.png',
+		src: '/assets/images/connections/phuc-mai.png',
 		className: 'size-11 absolute bottom-20 right-4 md:right-12',
 	},
 ]
@@ -109,7 +109,13 @@ function ConnectionsBento({ linkTo }: IConnectionsBento) {
 				<span className="block lg:hidden">
 					{mobileConnections.map((conn, index) => (
 						<ConnectionCircle key={conn.src + index} className={conn.className}>
-							<Image className="rounded-full" src={conn.src} alt="Connection" width={70} height={70} />
+							<Image
+								className="rounded-full size-full object-cover"
+								src={conn.src}
+								alt="Connection"
+								width={70}
+								height={70}
+							/>
 						</ConnectionCircle>
 					))}
 				</span>
@@ -232,10 +238,16 @@ function AnimatedConnectionCircle({
 			}}
 			transition={{ duration: 0.25, delay, ease: 'easeOut' }}
 			style={{ top, left }}
-			className={cn('absolute siz-16 p-1 z-10', className)}
+			className={cn('absolute size-16 p-1 z-10', className)}
 		>
-			<ConnectionCircle className="size-16 p-1">
-				<Image className="rounded-full" src={src} alt="Connection" width={70} height={70} />
+			<ConnectionCircle className={cn('size-16 p-1', className)}>
+				<Image
+					className="rounded-full size-full object-cover"
+					src={src}
+					alt="Connection"
+					width={70}
+					height={70}
+				/>
 			</ConnectionCircle>
 		</motion.div>
 	)

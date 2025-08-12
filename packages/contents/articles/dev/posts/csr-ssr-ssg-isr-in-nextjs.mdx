@@ -1,0 +1,313 @@
+---
+id: '3d420fc4-5b75-4c41-9319-9e4a1bdb7a1c'
+title: 'CSR, SSR, SSG, and ISR in Next.js'
+cover: '/assets/articles/dev/post/nextjs-rendering-strategies.png'
+createdAt: '2025-08-12T00:00:00Z'
+description: A practical guide to CSR, SSR, SSG, and ISR in Next.js 14/15 using the App Router with TypeScript—when to use each, pros/cons, and working examples.
+published: true
+hashTags: ['dev', 'post', 'nextjs', 'typescript']
+type: 'post'
+---
+
+Next.js supports multiple rendering strategies to help you optimize **performance**, **SEO**, and **user experience**. The four most common ones are **CSR**, **SSR**, **SSG**, and **ISR**.
+
+This guide focuses on **Next.js 14/15** with the **App Router** (`app/`) and **TypeScript**. You'll see when to use **CSR**, **SSR**, **SSG**, and **ISR**, their pros and cons.
+
+## 1. CSR - Client-Side Rendering (App Router)
+
+**How it works:**
+
+The initial HTML contains minimal content, and data is **fetched** directly from the browser after JavaScript loads.
+
+UI renders first, then data is fetched in the **browser**. Use a **Client Component** (`'use client'`).
+
+<CodeBlockTabs options={["App Router", "Pages Router"]}>
+
+```tsx
+// app/client-example/page.tsx
+'use client' // [!code hl]
+import { useEffect, useState } from 'react'
+
+type ApiData = { message: string }
+
+export default function ClientPage() {
+	const [data, setData] = useState<ApiData | null>(null)
+
+	useEffect(() => {
+		fetch('/api/data')
+			.then((r) => r.json() as Promise<ApiData>)
+			.then(setData)
+	}, [])
+
+	if (!data) return <p>Loading...</p>
+	return <div>{data.message}</div>
+}
+```
+
+```tsx
+// pages/index.tsx
+import { useEffect, useState } from 'react'
+
+type ApiData = { message: string }
+
+export default function Page() {
+	const [data, setData] = useState<ApiData | null>(null)
+
+	useEffect(() => {
+		fetch('/api/data')
+			.then((r) => r.json() as Promise<ApiData>)
+			.then(setData)
+	}, [])
+
+	if (!data) return <p>Loading...</p>
+	return <div>{data.message}</div>
+}
+```
+
+</CodeBlockTabs>
+
+**When to use:**
+
+- Dashboards/internal tools, post-login areas.
+- Personalization that can happen in the browser.
+- SEO is not required for the changing parts.
+
+**Pros:**
+
+- Less server load per request, highly interactive after hydration.
+
+**Cons:**
+
+- Weaker SEO for dynamic content.
+- Slower first contentful render vs pre-rendered pages.
+
+## 2. SSR - Server-Side Rendering (App Router)
+
+**How it works:**
+
+The page is rendered on the **server for each request**. In App Router, you typically fetch with `cache: 'no-store'` or mark the route dynamic.
+
+<CodeBlockTabs options={["App Router", "Pages Router"]}>
+
+```tsx
+// app/ssr-example/page.tsx
+import type { Metadata } from 'next'
+
+type ApiData = { message: string }
+
+async function getData(): Promise<ApiData> {
+	const res = await fetch('https://api.example.com/data', {
+		cache: 'no-store', // [!code hl]
+	})
+	return res.json()
+}
+
+// Optional but recommended for SEO in App Router:
+export async function generateMetadata(): Promise<Metadata> {
+	const data = await getData() // [!code hl]
+	return {
+		title: `${data.message} | My Site`,
+		description: `Up-to-date information about ${data.message}.`,
+		openGraph: {
+			title: `${data.message} | My Site`,
+			description: `Up-to-date information about ${data.message}.`,
+			type: 'website',
+		},
+	}
+}
+
+export default async function Page() {
+	const data = await getData() // [!code hl]
+	return <div>{data.message}</div>
+}
+```
+
+```tsx
+// pages/index.tsx
+import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+
+type ApiData = { message: string }
+
+export const getServerSideProps: GetServerSideProps<{ data: ApiData }> = async () => { // [!code hl]
+	const res = await fetch('https://api.example.com/data')
+	const data = (await res.json()) as ApiData
+	return { props: { data } }
+}
+
+export default function Page({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+	return <div>{data.message}</div>
+}
+```
+
+</CodeBlockTabs>
+
+**When to use:**
+
+- Frequently changing data that must always be fresh.
+- Request-dependent content (cookies, auth tokens, geolocation).
+- **SEO-critical** pages where search engines must see the latest HTML/meta.
+
+**Pros:**
+
+- Excellent SEO (full HTML + metadata sent from server).
+- Always fresh data per request.
+
+**Cons:**
+
+- Slower than SSG/ISR; higher server cost.
+
+## 3. SSG - Static Site Generation (App Router)
+
+**How it works:**
+
+HTML is **pre-rendered at build time**. In App Router, this is the **default** when nothing forces dynamic behavior. You can be explicit with `force-static` or cache the fetch.
+
+<CodeBlockTabs options={["App Router", "Pages Router"]}>
+
+```tsx
+// app/ssg-example/page.tsx
+export const dynamic = 'force-static' // optional, makes intent explicit // [!code hl]
+
+type ApiData = { message: string }
+
+async function getData(): Promise<ApiData> {
+	// default is 'force-cache' in static routes
+	const res = await fetch('https://api.example.com/data', {
+		cache: 'force-cache', // [!code hl]
+	})
+	return res.json()
+}
+
+export default async function Page() {
+	const data = await getData() // [!code hl]
+	return <div>{data.message}</div>
+}
+```
+
+```tsx
+// pages/index.tsx
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+
+type ApiData = { message: string }
+
+export const getStaticProps: GetStaticProps<{ data: ApiData }> = async () => { // [!code hl]
+	const res = await fetch('https://api.example.com/data')
+	const data = (await res.json()) as ApiData
+	return { props: { data } }
+}
+
+export default function Page({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
+	return <div>{data.message}</div>
+}
+```
+
+</CodeBlockTabs>
+
+**When to use:**
+
+- Content changes rarely (docs, marketing, evergreen blog posts).
+
+**Pros:**
+
+- Fastest TTFB and great SEO (served from CDN).
+
+**Cons:**
+
+- Stale until you rebuild (no auto refresh).
+
+## 4. ISR - Incremental Static Regeneration (App Router)
+
+**How it works:**
+
+Like SSG, but the page **regenerates in the background** on an interval. In App Router, use the `revalidate` export or per-request `fetch` option.
+
+<CodeBlockTabs options={["App Router", "Pages Router"]}>
+
+```tsx
+// app/isr-example/page.tsx
+export const revalidate = 60 // seconds // optional // [!code hl]
+
+type ApiData = { message: string }
+
+async function getData(): Promise<ApiData> {
+	// You can also do per-request control:
+	// fetch(url, { next: { revalidate: 60 } })
+	const res = await fetch('https://api.example.com/data', {
+		next: { revalidate: 60 }, // [!code hl]
+	})
+	return res.json()
+}
+
+export default async function Page() {
+	const data = await getData() // [!code hl]
+	return <div>{data.message}</div>
+}
+```
+
+```tsx
+// pages/index.tsx
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+
+type ApiData = { message: string }
+
+export const getStaticProps: GetStaticProps<{ data: ApiData }> = async () => {
+	const res = await fetch('https://api.example.com/data')
+	const data = (await res.json()) as ApiData
+	return {
+		props: { data },
+		revalidate: 60, // seconds // [!code hl]
+	}
+}
+
+export default function Page({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
+	return <div>{data.message}</div>
+}
+```
+
+</CodeBlockTabs>
+
+**When to use:**
+
+- Data updates, but **not** strictly real-time (blogs, listings, catalogs).
+
+**Pros:**
+
+- Near-SSG speed with periodic freshness.
+- CDN-friendly, lower server cost than SSR.
+
+**Cons:**
+
+- Not instantly up-to-date (freshness tied to interval).
+- Requires platform support for on-demand/background regeneration.
+
+## Migration table (Pages Router → App Router)
+
+Use this table to migrate from `pages/` APIs to the App Router equivalents in Next.js 14/15.
+
+| Goal           | Pages Router (`pages/`)         | App Router (`app/`)                                                                            |
+| -------------- | ------------------------------- | ---------------------------------------------------------------------------------------------- |
+| **SSR**        | `getServerSideProps`            | `fetch(url, { cache: 'no-store' })` **or** `export const dynamic = 'force-dynamic'`            |
+| **SSG**        | `getStaticProps`                | Default static, optionally `export const dynamic = 'force-static'`                             |
+| **ISR**        | `getStaticProps` + `revalidate` | `export const revalidate = <seconds>` **or** `fetch(url, { next: { revalidate: <seconds> } })` |
+| **SEO meta**   | `<Head>`                        | `export async function generateMetadata()`                                                     |
+| **Route data** | `getStaticPaths`                | `generateStaticParams()`                                                                       |
+| **Caching**    | Manual/headers                  | `fetch` cache options (`force-cache`, `no-store`), route-level `revalidate`                    |
+| **Edge**       | `runtime: 'edge'` in pages      | Route Handlers / `export const runtime = 'edge'`                                               |
+
+## Practical tips for Next 14/15
+
+- **Force SSR**: `fetch(url, { cache: 'no-store' })` or `export const dynamic = 'force-dynamic'`.
+- **Force SSG**: avoid dynamic functions; optionally `export const dynamic = 'force-static'`.
+- **ISR**: `export const revalidate = <seconds>` (at file level) **or** `fetch(url, { next: { revalidate: <seconds> } })`.
+- **SEO (App Router)**: Prefer `generateMetadata()` over `<Head />`.
+- **Client Components**: add `'use client'` at the top and keep server-only APIs out of them.
+- **Static params for dynamic routes**: use `generateStaticParams()` to prebuild `[slug]` pages.
+
+---
+
+## Conclusion
+
+- **CSR** for post-login/app-like experiences.
+- **SSR** when you need request-aware or always-fresh content with strong SEO.
+- **SSG** for stable content; fastest and cheapest.
+- **ISR** balances speed and freshness without full rebuilds.
