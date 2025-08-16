@@ -25,7 +25,7 @@ const intros = [
 ]
 function ShortIntroSection() {
 	return (
-		<div className="flex flex-col gap-10 items-center justify-center my-32">
+		<div className="flex flex-col gap-10 items-center justify-center mb-32">
 			<div className="flex flex-col gap-0">
 				<TextGradient as="div" className="text-center font-semibold text-3xl md:text-4xl max-w-xl">
 					<TextEffect preset="slide" per="char">

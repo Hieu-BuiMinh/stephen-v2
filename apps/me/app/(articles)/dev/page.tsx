@@ -1,5 +1,6 @@
 import type { DEV_POST_TYPE, TPost } from '@repo/stephen-v2-contents'
 import { devPost } from '@repo/stephen-v2-contents'
+import { sortPostsByDate } from '@repo/stephen-v2-contents/utils'
 import { AnimatedBlock } from '@repo/stephen-v2-ui/motion'
 import { Button } from '@repo/stephen-v2-ui/shadcn'
 import Link from 'next/link'
@@ -9,8 +10,14 @@ import PostCards from '@/components/post/post-cards'
 
 function DevBlogPage() {
 	const devPosts: { [key: string]: TPost[] } = {
-		post: devPost?.filter((post) => post.type === 'post'),
-		short: devPost?.filter((post) => post.type === 'short'),
+		post: sortPostsByDate(
+			devPost?.filter((post) => post.type === 'post'),
+			'desc'
+		),
+		short: sortPostsByDate(
+			devPost?.filter((post) => post.type === 'short'),
+			'desc'
+		),
 	}
 
 	return (

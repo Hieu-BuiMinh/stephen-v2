@@ -17,14 +17,14 @@ export const MyConnections: Connection[] = [
 	{
 		name: 'Trang Alice',
 		profile_picture: '/assets/images/connections/trang-alice.png',
-		connectedDate: '04/15/2023',
+		connectedDate: '09/09/2023',
 		socialLink: 'https://github.com/maitnt',
 		isConnected: true,
 	},
 	{
 		name: 'Hoang Bao Vu',
 		profile_picture: '/assets/images/connections/hoang-bao-vu.png',
-		connectedDate: '02/26/2023',
+		connectedDate: '04/24/2023',
 		socialLink: 'https://github.com/hoangbaovu',
 		isConnected: true,
 	},
@@ -44,16 +44,19 @@ export const MyConnections: Connection[] = [
 	{
 		name: 'Keanu Reeves',
 		profile_picture: '/assets/images/connections/keanu-reeves.png',
+		socialLink: 'https://keanu-reeves.org/',
 		isConnected: false,
 	},
 	{
 		name: 'Hoang Nam Tien',
 		profile_picture: '/assets/images/connections/hoang-nam-tien.png',
+		socialLink: 'https://hoangnamtien.com/',
 		isConnected: false,
 	},
 	{
 		name: 'Le Tham Duong',
 		profile_picture: '/assets/images/connections/le-tham-duong.png',
+		socialLink: 'https://lethamduong.edu.vn/',
 		isConnected: false,
 	},
 ]

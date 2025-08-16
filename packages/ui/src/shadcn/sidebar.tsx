@@ -2,12 +2,12 @@
 
 import { Slot } from '@radix-ui/react-slot'
 import { cn } from '@repo/stephen-v2-utils'
+import { useIsMobile } from '@repo/stephen-v2-utils/hooks'
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
 import { PanelLeftIcon } from 'lucide-react'
 import * as React from 'react'
 
-import { useIsMobile } from '../../hooks/use-mobile'
 import { Button } from '../shadcn/button'
 import { Input } from '../shadcn/input'
 import { Separator } from '../shadcn/separator'

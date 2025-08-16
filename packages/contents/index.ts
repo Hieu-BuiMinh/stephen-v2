@@ -1,2 +1,2 @@
-export * from './.velite/index'
+export * from './.velite/index.js'
 export * from './types'
