@@ -27,7 +27,7 @@ export const ShortCard = ({ post, article, slug }: ShortCardProps) => {
 
 	return (
 		<AnimatedBlock type="FADE_IN_FROM_BOTTOM" className="group/post-card relative">
-			<FoldedCornerCard className="z-[1]">
+			<FoldedCornerCard className="z-[1] size-full">
 				<Link
 					href={`/${article}/${slug}/${id}`}
 					className="flex flex-col justify-between rounded-md p-2 gap-2 bg-neutral-200 dark:bg-transparent"

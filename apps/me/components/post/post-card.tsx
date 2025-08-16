@@ -1,7 +1,7 @@
 import type { TPost } from '@repo/stephen-v2-contents'
 import { AnimatedBlock } from '@repo/stephen-v2-ui/motion'
 import { AspectRatio, BlurImage } from '@repo/stephen-v2-ui/shadcn'
-import { formatDate } from '@repo/stephen-v2-utils'
+import { cn, formatDate } from '@repo/stephen-v2-utils'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import pluralize from 'pluralize'
@@ -10,9 +10,10 @@ interface PostCardProps {
 	post: TPost
 	slug?: string
 	article: string
+	className?: string
 }
 
-export const PostCard = ({ post, article, slug }: PostCardProps) => {
+export const PostCard = ({ post, article, slug, className }: PostCardProps) => {
 	const { title, description, createdAt, author, id, cover } = post
 
 	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
@@ -27,7 +28,12 @@ export const PostCard = ({ post, article, slug }: PostCardProps) => {
 
 	return (
 		<AnimatedBlock type="FADE_IN_FROM_BOTTOM">
-			<div className="group/post-card rounded-lg p-1 post-card transition-all border border-dashed border-transparent duration-300 md:hover:shadow-2xl md:hover:border-border md:hover:scale-[1.02] bg-background">
+			<div
+				className={cn(
+					'group/post-card rounded-lg p-1 post-card transition-all border border-dashed border-transparent duration-300 md:hover:shadow-2xl md:hover:border-border md:hover:scale-[1.02] bg-background',
+					className
+				)}
+			>
 				<Link href={url} className="flex flex-col justify-between rounded-md border p-2 gap-2">
 					<AspectRatio ratio={16 / 9} className="rounded-md overflow-hidden flex items-center justify-center">
 						<BlurImage

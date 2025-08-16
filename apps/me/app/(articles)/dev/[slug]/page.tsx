@@ -15,7 +15,7 @@ async function DevPostPage({ params }: IDevPostPageProps) {
 	const headertitle = {
 		post: {
 			title: 'Dev Post',
-			description: `Thoughts, mental models, and tutorials about front-end development.`,
+			description: `Thoughts, mental models about front-end development.`,
 		},
 		short: {
 			title: 'Dev Short',
@@ -23,7 +23,7 @@ async function DevPostPage({ params }: IDevPostPageProps) {
 		},
 		doc: {
 			title: 'Dev Doc',
-			description: `My personal notes that's not long enough to be a blog post`,
+			description: `...`,
 		},
 	}
 

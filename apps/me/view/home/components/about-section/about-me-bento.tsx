@@ -1,4 +1,4 @@
-import { ImageZoom } from '@repo/stephen-v2-ui/shadcn'
+import { BlurImage } from '@repo/stephen-v2-ui/shadcn'
 
 import BentoCard from '@/view/home/components/bento-card'
 
@@ -41,7 +41,7 @@ export function AboutMeBento({ linkTo }: { linkTo?: string }) {
 							/>
 						</div>
 					</div>
-					<ImageZoom
+					<BlurImage
 						className="absolute -top-1 left-0 h-[270px] w-[180px] rotate-[8deg] rounded-lg object-cover shadow transition-all duration-500 group-hover:rotate-[4deg] group-hover:scale-105 cursor-pointer"
 						src="/assets/images/avt/me_09.png"
 						alt="A headshot"
