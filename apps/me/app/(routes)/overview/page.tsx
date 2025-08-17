@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import LightRaysClient from '@/components/effects/light-rays-client'
 import MDXContentComponent from '@/components/mdx-content'
 import PostPageTitle from '@/components/post/post-page-title'
+import Signature from '@/components/signature'
 import { APP_CONFIG } from '@/configs/app-config'
 
 const getShortWritingPost = () => {
@@ -54,11 +55,19 @@ function OverviewPage() {
 	}
 
 	return (
-		<>
+		<div className="pb-44">
 			<LightRaysClient />
-			<PostPageTitle title="Attribution" description="Journey to create this website." />
+			<PostPageTitle
+				title="Welcome to Version 2.0"
+				description="A fresh new look, better performance, and more to explore."
+			/>
 			<MDXContentComponent code={post.body} className="min-w-full" />
-		</>
+
+			<div className="flex flex-col items-end justify-center gap-3 ml-auto max-w-[226px]">
+				<p className="w-full text-base text-center">All the best,</p>
+				<Signature className="h-[145px] w-full max-w-[226px]" />
+			</div>
+		</div>
 	)
 }
 
