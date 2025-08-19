@@ -6,7 +6,7 @@ import { ShortCard } from '@/components/post/short-card'
 
 type PostCardsProps = {
 	article?: ARTICLES
-	slug?: DEV_POST_TYPE | BOOKS_POST_TYPE
+	slug: DEV_POST_TYPE | BOOKS_POST_TYPE
 	posts: TPost[]
 	className?: string
 }
@@ -23,8 +23,8 @@ const PostCards = ({ article, posts, slug, className }: PostCardsProps) => {
 				{posts.map((post) => (
 					<ShortCard
 						key={post.slug}
-						article={article?.toLocaleLowerCase() || 'dev'}
-						slug={slug}
+						collection={article?.toLocaleLowerCase() || 'dev'}
+						type={slug}
 						post={post}
 					/>
 				))}
@@ -40,7 +40,7 @@ const PostCards = ({ article, posts, slug, className }: PostCardsProps) => {
 			)}
 		>
 			{posts.map((post) => (
-				<PostCard key={post.slug} article={article?.toLocaleLowerCase() || 'dev'} slug={slug} post={post} />
+				<PostCard key={post.slug} collection={article?.toLocaleLowerCase() || 'dev'} type={slug} post={post} />
 			))}
 		</div>
 	)

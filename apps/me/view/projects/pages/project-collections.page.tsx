@@ -9,13 +9,13 @@ function ProjectCollectionsPageView() {
 
 	return (
 		<div className="w-full min-h-52 flex">
-			{postList?.length > 0 ? (
+			{/* {postList?.length > 0 ? (
 				<PostCards article={ARTICLES.projects} posts={postList} />
 			) : (
 				<TextEffect preset="slide" per="word" delay={0.5} className="mx-auto text-xl capitalize">
 					I have no posts yet... ㄟ( ▔, ▔ )ㄏ
 				</TextEffect>
-			)}
+			)} */}
 		</div>
 	)
 }

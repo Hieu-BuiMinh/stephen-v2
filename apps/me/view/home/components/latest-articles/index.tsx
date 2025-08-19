@@ -23,13 +23,13 @@ function LatestArticles() {
 					return post.type === 'post' ? (
 						<PostCard
 							key={post.slug}
-							article={'dev'}
-							slug={post.type}
+							collection={'dev'}
+							type={post.type}
 							post={post}
 							className="p-0 border-none"
 						/>
 					) : (
-						<ShortCard key={post.slug} article={'dev'} slug={post.type} post={post} />
+						<ShortCard key={post.slug} collection={'dev'} type={post.type} post={post} />
 					)
 				})}
 			</div>

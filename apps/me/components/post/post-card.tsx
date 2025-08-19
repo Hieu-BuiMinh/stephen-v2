@@ -8,12 +8,12 @@ import pluralize from 'pluralize'
 
 interface PostCardProps {
 	post: TPost
-	slug?: string
-	article: string
+	type: string
+	collection: string
 	className?: string
 }
 
-export const PostCard = ({ post, article, slug, className }: PostCardProps) => {
+export const PostCard = ({ post, collection, type, className }: PostCardProps) => {
 	const { title, description, createdAt, author, id, cover } = post
 
 	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
@@ -24,7 +24,7 @@ export const PostCard = ({ post, article, slug, className }: PostCardProps) => {
 
 	// const likesQuery = postBySlug?.likes?.reduce((acc, like) => acc + like.count, 0) || 0 // save in api here
 
-	const url = slug ? `/${article}/${slug}/${id}` : `/${article}/${id}`
+	const url = type ? `/topics/${collection}/${type}/${id}` : `/topics/${collection}/${id}`
 
 	return (
 		<AnimatedBlock type="FADE_IN_FROM_BOTTOM">

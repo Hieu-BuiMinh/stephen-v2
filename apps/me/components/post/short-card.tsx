@@ -10,11 +10,11 @@ import FoldedCornerCard from '@/components/cards/folded-corner-card'
 
 interface ShortCardProps {
 	post: TPost
-	slug: string
-	article: string
+	type: string
+	collection: string
 }
 
-export const ShortCard = ({ post, article, slug }: ShortCardProps) => {
+export const ShortCard = ({ post, collection, type }: ShortCardProps) => {
 	const { title, description, createdAt, author, id } = post
 
 	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
@@ -25,11 +25,13 @@ export const ShortCard = ({ post, article, slug }: ShortCardProps) => {
 
 	// const likesQuery = postBySlug?.likes?.reduce((acc, like) => acc + like.count, 0) || 0 // save in api here
 
+	const url = type ? `/topics/${collection}/${type}/${id}` : `/topics/${collection}/${id}`
+
 	return (
 		<AnimatedBlock type="FADE_IN_FROM_BOTTOM" className="group/post-card relative">
 			<FoldedCornerCard className="z-[1] size-full">
 				<Link
-					href={`/${article}/${slug}/${id}`}
+					href={url}
 					className="flex flex-col justify-between rounded-md p-2 gap-2 bg-neutral-200 dark:bg-transparent"
 				>
 					<AspectRatio ratio={16 / 9} className="rounded-md overflow-hidden flex items-center justify-center">

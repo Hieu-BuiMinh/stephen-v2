@@ -1,11 +1,11 @@
 import { cn } from '@repo/stephen-v2-utils'
-import { FireExtinguisher } from 'lucide-react'
 
+import { SVGIcons } from '@/components/icons/svg-icons'
 import BentoCard from '@/view/home/components/bento-card'
 
 const defaultCards = [
 	{
-		icon: <FireExtinguisher className="size-4" />,
+		icon: <SVGIcons.NestJS />,
 		title: 'Nest JS',
 		description:
 			'A progressive Node.js framework for building efficient, reliable and scalable server-side applications.',
@@ -14,7 +14,7 @@ const defaultCards = [
 			"[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
 	},
 	{
-		icon: <FireExtinguisher className="size-4" />,
+		icon: <SVGIcons.NextJS />,
 		title: 'Next JS',
 		description: 'Create high-quality web applications',
 		date: 'Line 15, Column 14',
@@ -22,7 +22,7 @@ const defaultCards = [
 			"[grid-area:stack] translate-x-12 translate-y-10 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
 	},
 	{
-		icon: <FireExtinguisher className="size-4" />,
+		icon: <SVGIcons.Turborepo />,
 		title: 'Turborepo',
 		description: 'A build system for JavaScript and TypeScript codebases',
 		date: 'Line 28, Column 20',
@@ -48,7 +48,7 @@ function CurrentlyExploringBento({ linkTo }: { linkTo?: string }) {
 						key={card.title}
 					>
 						<div>
-							{card.icon}
+							<div className="size-5 flex items-center justify-center">{card.icon}</div>
 							<p className="font-medium text-sm">{card.title}</p>
 						</div>
 						<p className="line-clamp-2 text-balance">{card.description}</p>

@@ -1,88 +1,96 @@
+import type { SVGIconComponent } from '@/components/icons/svg-icons'
+import { SVGIcons } from '@/components/icons/svg-icons'
+
 type SoftwareDataItem = {
 	title: string
-	imgSrc: string
+	icon: SVGIconComponent
 	link: string
 }
 
 export const softwareData: SoftwareDataItem[] = [
 	{
-		title: 'Raycast',
-		imgSrc: '/raycast_logo.png',
+		title: 'NextJS',
+		icon: SVGIcons.NextJS,
 		link: 'https://raycast.com/?via=braydon',
 	},
 	{
-		title: 'Arc',
-		imgSrc: '/arc_logo.png',
+		title: 'NestJS',
+		icon: SVGIcons.NestJS,
 		link: 'https://arc.net/',
 	},
 	{
-		title: 'VSCode',
-		imgSrc: '/vscode_logo.png',
+		title: 'TailwindCSS',
+		icon: SVGIcons.TailwindCSS,
 		link: 'https://code.visualstudio.com/',
 	},
 	{
-		title: 'mymind',
-		imgSrc: '/mymind_logo.png',
+		title: 'Tanstack',
+		icon: SVGIcons.Tanstack,
 		link: 'https://mymind.com/',
 	},
 	{
-		title: 'Obsidian',
-		imgSrc: '/obsidian_logo.png',
+		title: 'React',
+		icon: SVGIcons.React,
 		link: 'https://obsidian.md/',
 	},
 	{
-		title: 'Notion',
-		imgSrc: '/notion_logo.png',
+		title: 'TypeScript',
+		icon: SVGIcons.TypeScript,
 		link: 'https://www.notion.so/',
 	},
 	{
-		title: 'Tana',
-		imgSrc: '/tana_logo.png',
+		title: 'Node',
+		icon: SVGIcons.Node,
 		link: 'https://try.tana.inc/66bqr1sp5wkb',
 	},
 	{
-		title: 'Spotify',
-		imgSrc: '/spotify_logo.png',
+		title: 'Turborepo',
+		icon: SVGIcons.Turborepo,
 		link: 'https://www.spotify.com/',
 	},
 	{
-		title: 'Figma',
-		imgSrc: '/figma_logo.png',
+		title: 'SWC',
+		icon: SVGIcons.SWC,
 		link: 'https://www.figma.com/',
 	},
 	{
-		title: 'Things 3',
-		imgSrc: '/things3_logo.png',
+		title: 'Vercel',
+		icon: SVGIcons.Vercel,
 		link: 'https://culturedcode.com/things/',
 	},
 	{
-		title: 'Fantastical',
-		imgSrc: '/fantastical_logo.png',
+		title: 'Firebase',
+		icon: SVGIcons.Firebase,
 		link: 'https://flexibits.com/fantastical',
 	},
 	{
-		title: '1Password',
-		imgSrc: '/1password_logo.png',
+		title: 'Figma',
+		icon: SVGIcons.Figma,
 		link: 'https://1password.com/',
 	},
 	{
-		title: 'Framer',
-		imgSrc: '/framer_logo.png',
+		title: 'Prisma',
+		icon: SVGIcons.Prisma,
 		link: 'https://www.framer.com/',
 	},
 	{
-		title: 'Cleanshot X',
-		imgSrc: '/cleanshotx_logo.png',
+		title: 'gitHub',
+		icon: SVGIcons.gitHub,
+		link: 'https://www.framer.com/',
+	},
+	{
+		title: 'Clerk',
+		icon: SVGIcons.Clerk,
 		link: 'https://getcleanshot.com/',
 	},
 	{
-		title: 'PixelSnap 2',
-		imgSrc: '/pixelsnap2_logo.png',
+		title: 'Convex',
+		icon: SVGIcons.Convex,
 		link: 'https://getpixelsnap.com/',
 	},
-	{
-		title: 'Linear',
-		imgSrc: '/linear_logo.png',
-		link: 'https://linear.app/',
-	},
+	// {
+	// 	title: 'NextJS',
+	// 	icon: SVGIcons.NextJS,
+	// 	link: 'https://linear.app/',
+	// },
 ]
