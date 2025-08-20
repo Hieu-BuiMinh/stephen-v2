@@ -8,13 +8,12 @@ import pluralize from 'pluralize'
 
 interface PostCardProps {
 	post: TPost
-	type: string
-	collection: string
+	url?: string
 	className?: string
 }
 
-export const PostCard = ({ post, collection, type, className }: PostCardProps) => {
-	const { title, description, createdAt, author, id, cover } = post
+export const PostCard = ({ post, className, url }: PostCardProps) => {
+	const { title, description, createdAt, author, cover } = post
 
 	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
 
@@ -24,8 +23,6 @@ export const PostCard = ({ post, collection, type, className }: PostCardProps) =
 
 	// const likesQuery = postBySlug?.likes?.reduce((acc, like) => acc + like.count, 0) || 0 // save in api here
 
-	const url = type ? `/topics/${collection}/${type}/${id}` : `/topics/${collection}/${id}`
-
 	return (
 		<AnimatedBlock type="FADE_IN_FROM_BOTTOM">
 			<div
@@ -34,7 +31,7 @@ export const PostCard = ({ post, collection, type, className }: PostCardProps) =
 					className
 				)}
 			>
-				<Link href={url} className="flex flex-col justify-between rounded-md border p-2 gap-2">
+				<Link href={url || '#'} className="flex flex-col justify-between rounded-md border p-2 gap-2">
 					<AspectRatio ratio={16 / 9} className="rounded-md overflow-hidden flex items-center justify-center">
 						<BlurImage
 							src={cover || ''}

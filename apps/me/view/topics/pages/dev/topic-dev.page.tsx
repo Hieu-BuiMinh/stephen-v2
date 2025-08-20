@@ -1,4 +1,4 @@
-import type { DEV_POST_TYPE, TPost } from '@repo/stephen-v2-contents'
+import type { TPost } from '@repo/stephen-v2-contents'
 import { devPost } from '@repo/stephen-v2-contents'
 import { sortPostsByDate } from '@repo/stephen-v2-contents/utils'
 import { AnimatedBlock } from '@repo/stephen-v2-ui/motion'
@@ -6,7 +6,8 @@ import { Button } from '@repo/stephen-v2-ui/shadcn'
 import Link from 'next/link'
 
 import LightRaysClient from '@/components/effects/light-rays-client'
-import PostCards from '@/components/post/post-cards'
+import { PostCard } from '@/components/post/post-card'
+import { ShortCard } from '@/components/post/short-card'
 
 function TopicDevPage() {
 	const devPosts: { [key: string]: TPost[] } = {
@@ -31,7 +32,27 @@ function TopicDevPage() {
 								{key}
 							</div>
 						</AnimatedBlock>
-						<PostCards className="pb-0" posts={posts} slug={key as DEV_POST_TYPE} />
+
+						{key === 'post' && (
+							<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+								{posts.map((post) => {
+									const url = post.type
+										? `/topics/dev/${post.type}/${post.id}`
+										: `/topics/dev/${post.id}`
+									return <PostCard key={post.slug} post={post} url={url} />
+								})}
+							</div>
+						)}
+						{key === 'short' && (
+							<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+								{posts.map((post) => {
+									const url = post.type
+										? `/topics/dev/${post.type}/${post.id}`
+										: `/topics/dev/${post.id}`
+									return <ShortCard key={post.slug} post={post} url={url} />
+								})}
+							</div>
+						)}
 
 						<div className="my-8 flex items-center justify-center">
 							<Link href={`/topics/dev/${key}`}>

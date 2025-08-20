@@ -12,16 +12,15 @@ import { useEffect, useState } from 'react'
 
 interface BookCardProps {
 	post: TPost & { bookCover: string }
-	collection: string
-	article: string
+	url?: string
 }
 
-export const BookCard = ({ post, article, collection }: BookCardProps) => {
+export const BookCard = ({ post, url }: BookCardProps) => {
 	const [loaded, setLoaded] = useState<boolean>(false)
 	const isMobile = useIsMobile()
 	const { theme } = useTheme()
 
-	const { title, description, bookCover, id } = post
+	const { title, description, bookCover } = post
 
 	useEffect(() => {
 		setLoaded(true)
@@ -33,7 +32,7 @@ export const BookCard = ({ post, article, collection }: BookCardProps) => {
 
 	return (
 		<AnimatedBlock as="div" type="FADE_IN_FROM_BOTTOM" className="flex">
-			<Link href={`/${article}/${collection}/${id}`} className="m-auto flex">
+			<Link href={url || '#'} className="m-auto flex">
 				<Book
 					width={isMobile ? 150 : 190}
 					title={title}

@@ -1,4 +1,4 @@
-import type { DEV_POST_TYPE } from '@repo/stephen-v2-contents'
+import type { BOOKS_POST_TYPE, DEV_POST_TYPE } from '@repo/stephen-v2-contents'
 import { devPost } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import type { Metadata } from 'next'
@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation'
 import { APP_CONFIG } from '@/configs/app-config'
 
 interface GenerateMetaProps {
-	params: Promise<{ slug: DEV_POST_TYPE; id: string }>
+	params: Promise<{ slug: DEV_POST_TYPE & BOOKS_POST_TYPE; id: string }>
 }
 
 export async function generateMetadata({ params }: GenerateMetaProps): Promise<Metadata> {

@@ -1,10 +1,10 @@
-import type { DEV_POST_TYPE } from '@repo/stephen-v2-contents'
+import type { ARTICLES, BOOKS_POST_TYPE, DEV_POST_TYPE } from '@repo/stephen-v2-contents'
 import React from 'react'
 
 import TopicDevTypeDetailPageView from '@/view/topics/pages/dev/topic-dev-type-detail.page'
 
 interface IPostDetailProps {
-	params: Promise<{ collection: 'dev' | 'buddhism' | 'writing'; type: DEV_POST_TYPE; id: string }>
+	params: Promise<{ collection: keyof typeof ARTICLES; type: DEV_POST_TYPE & BOOKS_POST_TYPE; id: string }>
 }
 
 async function PostDetailPage({ params }: IPostDetailProps) {
@@ -12,6 +12,8 @@ async function PostDetailPage({ params }: IPostDetailProps) {
 
 	switch (collection) {
 		case 'dev':
+			return <TopicDevTypeDetailPageView params={params} />
+		case 'books':
 			return <TopicDevTypeDetailPageView params={params} />
 
 		default:

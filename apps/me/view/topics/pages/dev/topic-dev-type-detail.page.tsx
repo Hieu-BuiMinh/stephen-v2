@@ -1,4 +1,4 @@
-import type { DEV_POST_TYPE } from '@repo/stephen-v2-contents'
+import type { ARTICLES, DEV_POST_TYPE } from '@repo/stephen-v2-contents'
 import { devPost } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import { TableOfContentDesktop } from '@repo/stephen-v2-ui/shadcn'
@@ -9,7 +9,7 @@ import PostDetailHeader from '@/components/post/post-detail-header'
 import PostLastUpdated from '@/components/post/post-last-updated'
 
 interface PostPageProps {
-	params: Promise<{ collection: 'dev' | 'buddhism' | 'writing'; type: DEV_POST_TYPE; id: string }>
+	params: Promise<{ collection: keyof typeof ARTICLES; type: DEV_POST_TYPE; id: string }>
 }
 
 export default async function TopicDevTypeDetailPageView({ params }: PostPageProps) {

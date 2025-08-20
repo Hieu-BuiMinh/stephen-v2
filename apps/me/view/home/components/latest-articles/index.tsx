@@ -20,16 +20,12 @@ function LatestArticles() {
 
 			<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 				{postList.map((post) => {
+					const url = post.type ? `/topics/dev/${post.type}/${post.id}` : `/topics/dev/${post.id}`
+
 					return post.type === 'post' ? (
-						<PostCard
-							key={post.slug}
-							collection={'dev'}
-							type={post.type}
-							post={post}
-							className="p-0 border-none"
-						/>
+						<PostCard key={post.slug} url={url} post={post} className="p-0 border-none" />
 					) : (
-						<ShortCard key={post.slug} collection={'dev'} type={post.type} post={post} />
+						<ShortCard key={post.slug} url={url} post={post} />
 					)
 				})}
 			</div>

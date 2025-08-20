@@ -3,35 +3,24 @@ import { sortPostsByDate } from '@repo/stephen-v2-contents/utils'
 import { TextEffect } from '@repo/stephen-v2-ui/motion'
 
 import LightRaysClient from '@/components/effects/light-rays-client'
-import PostCards from '@/components/post/post-cards'
+import { PostCard } from '@/components/post/post-card'
 import PostPageTitle from '@/components/post/post-page-title'
+import { ShortCard } from '@/components/post/short-card'
 
 interface ITopicDevTypePageProps {
-	params: Promise<{ collection: 'dev' | 'buddhism' | 'writing'; type: DEV_POST_TYPE }>
+	params: Promise<{ collection: keyof typeof ARTICLES; type: DEV_POST_TYPE }>
 }
 
-const sortedPostsBySlug = ({ article, slug }: { article: keyof typeof ARTICLES; slug: DEV_POST_TYPE }) => {
-	let postCollection = []
-
-	switch (article) {
-		case 'dev':
-			postCollection = devPost?.filter((post) => post.type === slug)
-			break
-
-		default:
-			postCollection = []
-			break
-	}
-
-	const posts = postCollection?.filter((post) => post?.type?.toLocaleLowerCase() === slug)
+const sortedPostsByType = ({ type }: { type: DEV_POST_TYPE }) => {
+	const posts = devPost?.filter((post) => post?.type?.toLocaleLowerCase() === type)
 
 	return sortPostsByDate(posts, 'desc')
 }
 
 async function TopicDevTypePage({ params }: ITopicDevTypePageProps) {
-	const { collection, type } = await params
+	const { type } = await params
 
-	const headertitle = {
+	const headertitle: Record<DEV_POST_TYPE, { title: string; description: string }> = {
 		post: {
 			title: 'Dev Post',
 			description: `Thoughts, mental models about front-end development.`,
@@ -42,7 +31,7 @@ async function TopicDevTypePage({ params }: ITopicDevTypePageProps) {
 		},
 		doc: {
 			title: 'Dev Doc',
-			description: `...`,
+			description: `Developer documentation, guidelines, and references for projects.`,
 		},
 	}
 
@@ -52,6 +41,7 @@ async function TopicDevTypePage({ params }: ITopicDevTypePageProps) {
 		return (
 			<>
 				<LightRaysClient />
+
 				<div className="flex items-center justify-center min-h-[450px]">
 					<TextEffect preset="slide" per="word" as="span" delay={0.5} className="mx-auto text-xl capitalize">
 						Nothing you can find here... ㄟ( ▔, ▔ )ㄏ
@@ -61,7 +51,7 @@ async function TopicDevTypePage({ params }: ITopicDevTypePageProps) {
 		)
 	}
 
-	const postList = sortedPostsBySlug({ article: collection, slug: type })
+	const postList = sortedPostsByType({ type })
 
 	return (
 		<>
@@ -69,9 +59,20 @@ async function TopicDevTypePage({ params }: ITopicDevTypePageProps) {
 
 			<div className="flex flex-col gap-5">
 				<PostPageTitle title={headerTitleByType.title} description={headerTitleByType.description} />
+
 				<div className="w-full min-h-52 flex">
 					{postList?.length > 0 ? (
-						<PostCards posts={postList} slug={type} />
+						<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+							{postList.map((post) => {
+								const url = post.type ? `/topics/dev/${post.type}/${post.id}` : `/topics/dev/${post.id}`
+
+								if (post.type === 'short') {
+									return <ShortCard key={post.slug} post={post} url={url} />
+								}
+
+								return <PostCard key={post.slug} post={post} url={url} />
+							})}
+						</div>
 					) : (
 						<TextEffect preset="slide" per="word" delay={0.5} className="mx-auto text-xl capitalize">
 							I have no posts yet... ㄟ( ▔, ▔ )ㄏ

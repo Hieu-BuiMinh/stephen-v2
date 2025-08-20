@@ -1,7 +1,10 @@
+import type { ARTICLES } from '@repo/stephen-v2-contents'
+
+import TopicBookPageView from '@/view/topics/pages/book/topic-book.page'
 import TopicDevPage from '@/view/topics/pages/dev/topic-dev.page'
 
 interface ICollectionProps {
-	params: Promise<{ collection: 'dev' | 'buddhism' | 'writing' }>
+	params: Promise<{ collection: keyof typeof ARTICLES }>
 }
 
 async function TopicCollectionPage({ params }: ICollectionProps) {
@@ -10,6 +13,9 @@ async function TopicCollectionPage({ params }: ICollectionProps) {
 	switch (collection) {
 		case 'dev':
 			return <TopicDevPage />
+
+		case 'books':
+			return <TopicBookPageView />
 
 		default:
 			return null
