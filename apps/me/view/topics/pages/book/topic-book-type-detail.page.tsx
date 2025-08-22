@@ -1,19 +1,19 @@
-import type { BOOKS_POST_TYPE } from '@repo/stephen-v2-contents'
+import type { ARTICLES, BOOKS_POST_TYPE } from '@repo/stephen-v2-contents'
 import { bookRecap } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import { TableOfContentDesktop } from '@repo/stephen-v2-ui/shadcn'
-// import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
+import React from 'react'
 
 import MDXContentComponent from '@/components/mdx-content'
 import PostDetailHeader from '@/components/post/post-detail-header'
 import PostLastUpdated from '@/components/post/post-last-updated'
 
-interface PostPageProps {
-	params: Promise<{ collection: BOOKS_POST_TYPE; id: string }>
+interface IBookTypeDetailProps {
+	params: Promise<{ collection: keyof typeof ARTICLES; type: BOOKS_POST_TYPE; id: string }>
 }
 
-export default async function BookDetailPageView({ params }: PostPageProps) {
+async function TopicBookTypeDetailPage({ params }: IBookTypeDetailProps) {
 	const { id } = await params
 	const post = await getVelitePostById({ id, postsList: bookRecap })
 
@@ -38,3 +38,5 @@ export default async function BookDetailPageView({ params }: PostPageProps) {
 		</>
 	)
 }
+
+export default TopicBookTypeDetailPage

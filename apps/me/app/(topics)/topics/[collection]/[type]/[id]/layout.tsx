@@ -1,5 +1,5 @@
-import type { DEV_POST_TYPE } from '@repo/stephen-v2-contents'
-import { devPost } from '@repo/stephen-v2-contents'
+import type { BOOKS_POST_TYPE, DEV_POST_TYPE } from '@repo/stephen-v2-contents'
+import { bookRecap, devPost } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -7,12 +7,15 @@ import { notFound } from 'next/navigation'
 import { APP_CONFIG } from '@/configs/app-config'
 
 interface GenerateMetaProps {
-	params: Promise<{ slug: DEV_POST_TYPE; id: string }>
+	params: Promise<{ slug: DEV_POST_TYPE & BOOKS_POST_TYPE; id: string }>
 }
 
 export async function generateMetadata({ params }: GenerateMetaProps): Promise<Metadata> {
 	const { id } = await params
-	const post = await getVelitePostById({ id, postsList: devPost })
+
+	const allPost = [...devPost, ...bookRecap]
+
+	const post = await getVelitePostById({ id, postsList: allPost })
 
 	if (!post) {
 		notFound()
@@ -45,7 +48,7 @@ export async function generateMetadata({ params }: GenerateMetaProps): Promise<M
 	}
 }
 
-async function DevPostDetailLayout({
+async function TopicCollectionTypeDetailLayout({
 	children,
 	// params,
 }: {
@@ -55,4 +58,4 @@ async function DevPostDetailLayout({
 	return <>{children}</>
 }
 
-export default DevPostDetailLayout
+export default TopicCollectionTypeDetailLayout

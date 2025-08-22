@@ -8,13 +8,13 @@ import pluralize from 'pluralize'
 
 interface PostCardProps {
 	post: TPost
-	slug?: string
-	article: string
+	url?: string
 	className?: string
+	delay?: number | undefined
 }
 
-export const PostCard = ({ post, article, slug, className }: PostCardProps) => {
-	const { title, description, createdAt, author, id, cover } = post
+export const PostCard = ({ post, className, url, delay }: PostCardProps) => {
+	const { title, description, createdAt, author, cover } = post
 
 	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
 
@@ -24,17 +24,15 @@ export const PostCard = ({ post, article, slug, className }: PostCardProps) => {
 
 	// const likesQuery = postBySlug?.likes?.reduce((acc, like) => acc + like.count, 0) || 0 // save in api here
 
-	const url = slug ? `/${article}/${slug}/${id}` : `/${article}/${id}`
-
 	return (
-		<AnimatedBlock type="FADE_IN_FROM_BOTTOM">
+		<AnimatedBlock type="FADE_IN" delay={delay}>
 			<div
 				className={cn(
 					'group/post-card rounded-lg p-1 post-card transition-all border border-dashed border-transparent duration-300 md:hover:shadow-2xl md:hover:border-border md:hover:scale-[1.02] bg-background',
 					className
 				)}
 			>
-				<Link href={url} className="flex flex-col justify-between rounded-md border p-2 gap-2">
+				<Link href={url || '#'} className="flex flex-col justify-between rounded-md border p-2 gap-2">
 					<AspectRatio ratio={16 / 9} className="rounded-md overflow-hidden flex items-center justify-center">
 						<BlurImage
 							src={cover || ''}

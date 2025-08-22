@@ -63,9 +63,10 @@ function OverviewPage() {
 			/>
 			<MDXContentComponent code={post.body} className="min-w-full" />
 
-			<div className="flex flex-col items-end justify-center gap-3 ml-auto max-w-[226px]">
+			<div className="flex flex-col items-end justify-center gap-4 mt-10 ml-auto max-w-[226px]">
 				<p className="w-full text-base text-center">All the best,</p>
 				<Signature className="h-[145px] w-full max-w-[226px]" />
+				<p className="w-full text-base text-center">Stephen 🪶</p>
 			</div>
 		</div>
 	)

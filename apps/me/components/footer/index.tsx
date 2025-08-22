@@ -29,9 +29,10 @@ function SiteFooter() {
 							alt="Stephen's Logo"
 						/>
 					</Link> */}
-					<Signature className="h-[145px] w-full max-w-[226px]" />
+					<Signature className="h-[145px] w-full max-w-[290px]" />
 					<p className="max-w-72 leading-5 text-muted-foreground text-center">
-						I&apos;m Stephen - a Front-end Developer and blogger. Thanks for checking out my site 🪶
+						I&apos;m Stephen - a Front-end Developer and blogger. Thanks for checking out my site <br />
+						(❁´◡`❁)
 					</p>
 				</div>
 				<div className="col-span-1">

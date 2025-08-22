@@ -1,0 +1,303 @@
+---
+id: '7f92dba0-axios-builder-utility'
+title: 'Axios Builder Utility'
+cover: '/assets/articles/dev/post/axios-utility.png'
+createdAt: '2025-08-22T08:30:00.000Z'
+description: 'A reusable Axios wrapper with baseURL, headers, interceptors, token injection, and typed HTTP methods.'
+published: true
+hashTags: ['dev', 'short', 'ts']
+type: 'short'
+---
+
+A lightweight utility to configure and reuse **Axios** across your app.
+
+Supports baseURL, headers, token injection, and request/response interceptors.
+
+## What this util provides
+
+- Base URL and default headers setup
+- Request & response interceptors
+- Auto token injection
+- Typed HTTP methods (`get`, `post`, `put`, `patch`, `delete`)
+- Builder pattern for chaining configs
+
+## Source code (drop-in)
+
+<CodeBlockTabs fileName='src/utils/axios-builder.ts'>
+
+```ts
+import type {
+	AxiosInstance,
+	AxiosRequestConfig,
+	AxiosResponse,
+	InternalAxiosRequestConfig,
+	RawAxiosRequestHeaders,
+} from 'axios'
+import axios from 'axios'
+
+export class AxiosBuilder {
+	private instance: AxiosInstance
+
+	constructor() {
+		this.instance = axios.create()
+	}
+
+	public setBaseUrl(baseURL: AxiosInstance['defaults']['baseURL']) {
+		this.instance.defaults.baseURL = baseURL
+		return this
+	}
+
+	public setHeaders(headers: RawAxiosRequestHeaders) {
+		this.instance.defaults.headers.common = {
+			...this.instance.defaults.headers.common,
+			...headers,
+		}
+		return this
+	}
+
+	public addRequestInterceptor(
+		interceptor: (
+			value: InternalAxiosRequestConfig<any>
+		) => InternalAxiosRequestConfig<any> | Promise<InternalAxiosRequestConfig<any>>
+	) {
+		this.instance.interceptors.request.use(interceptor)
+		return this
+	}
+
+	public setResponseInterceptor(interceptor: (value: any) => any | Promise<any>) {
+		this.instance.interceptors.response.use(interceptor, undefined)
+		return this
+	}
+
+	public setResponseErrorInterceptor(interceptor: (error: any) => any) {
+		this.instance.interceptors.response.use(undefined, interceptor)
+		return this
+	}
+
+	public setToken(token: string) {
+		this.setHeaders({
+			Authorization: `Bearer ${token}`,
+		} as RawAxiosRequestHeaders)
+		return this
+	}
+
+	public async get<T>({ url, config }: { url: string; config?: AxiosRequestConfig }): Promise<AxiosResponse<T>> {
+		return await this.instance.get(url, config)
+	}
+
+	public async post<T>({
+		data,
+		url,
+		config,
+	}: {
+		url: string
+		data: Record<string, any>
+		config?: AxiosRequestConfig
+	}): Promise<AxiosResponse<T>> {
+		return await this.instance.post(url, data, config)
+	}
+
+	public async put<T>({
+		data,
+		url,
+		config,
+	}: {
+		url: string
+		data: Record<string, any>
+		config?: AxiosRequestConfig
+	}): Promise<AxiosResponse<T>> {
+		return await this.instance.put(url, data, config)
+	}
+
+	public async patch<T>({
+		data,
+		url,
+		config,
+	}: {
+		url: string
+		data: Record<string, any>
+		config?: AxiosRequestConfig
+	}): Promise<AxiosResponse<T>> {
+		return await this.instance.patch(url, data, config)
+	}
+
+	public async delete<T>({ url, config }: { url: string; config?: AxiosRequestConfig }): Promise<AxiosResponse<T>> {
+		return await this.instance.delete(url, config)
+	}
+
+	public build(): AxiosInstance {
+		return this.instance
+	}
+}
+```
+
+</CodeBlockTabs>
+
+This short shows how to **use a reusable Axios instance** and build a tiny **Users service** on top of it.
+It assumes you have an `AxiosBuilder` utility (a wrapper around Axios with baseURL, headers, interceptors, and typed methods).
+
+## Quick usage (initialize a shared instance)
+
+<CodeBlockTabs fileName='src/libs/api.ts'>
+
+```ts
+import { AxiosBuilder } from '@/utils/axios-builder'
+
+// Create a shared Axios instance for the whole app
+export const api = new AxiosBuilder()
+	.setBaseUrl(process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.example.com')
+	.addRequestInterceptor((config) => {
+		// Example: attach token from localStorage
+		const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
+		if (token) {
+			config.headers = {
+				...config.headers,
+				Authorization: `Bearer ${token}`,
+			}
+		}
+		return config
+	})
+	// Optionally: unwrap response.data globally for cleaner call sites
+	// .setResponseInterceptor((res) => res.data)
+	.setResponseErrorInterceptor((error) => {
+		console.error('[API ERROR]', error?.response?.status, error?.message)
+		// Example: redirect on 401
+		// if (error?.response?.status === 401) router.push('/login')
+		return Promise.reject(error)
+	})
+	.build()
+```
+
+</CodeBlockTabs>
+
+## Tiny Users service (CRUD)
+
+<CodeBlockTabs fileName='src/services/user.service.ts'>
+
+```ts
+import type { AxiosRequestConfig } from 'axios'
+import { api } from '@/libs/api'
+
+// Demo types
+export type User = {
+	id: string
+	name: string
+	email: string
+	role?: 'admin' | 'user'
+}
+
+export type Pagination = {
+	page?: number
+	limit?: number
+	q?: string
+}
+
+const withParams = (params?: Record<string, any>): AxiosRequestConfig => ({ params })
+
+export const UserService = {
+	// GET /users?page=1&limit=10&q=alice
+	list: (params?: Pagination) => api.get<User[]>({ url: '/users', config: withParams(params) }),
+
+	// GET /users/:id
+	getById: (id: string) => api.get<User>({ url: `/users/${id}` }),
+
+	// POST /users
+	create: (payload: Pick<User, 'name' | 'email' | 'role'>) => api.post<User>({ url: '/users', data: payload }),
+
+	// PUT /users/:id
+	update: (id: string, payload: Partial<Pick<User, 'name' | 'email' | 'role'>>) =>
+		api.put<User>({ url: `/users/${id}`, data: payload }),
+
+	// DELETE /users/:id
+	remove: (id: string) => api.delete<{ success: boolean }>({ url: `/users/${id}` }),
+}
+```
+
+</CodeBlockTabs>
+
+## Using it in a component (React/Next.js)
+
+<CodeBlockTabs fileName='src/app/users/page.tsx'>
+
+```tsx
+'use client'
+
+import { useEffect, useState } from 'react'
+import { UserService, type User } from '@/services/user.service'
+
+export default function UsersPage() {
+	const [users, setUsers] = useState<User[]>([])
+	const [loading, setLoading] = useState(false)
+	const [error, setError] = useState<string | null>(null)
+
+	useEffect(() => {
+		const run = async () => {
+			try {
+				setLoading(true)
+				setError(null)
+
+				const res = await UserService.list({ page: 1, limit: 10, q: 'alice' })
+				// If your response interceptor returns `res`, access data via `res.data`:
+				const data = res.data
+				// If your interceptor already returns `res.data`, just do: const data = await UserService.list(...)
+				setUsers(data)
+			} catch (e: any) {
+				setError(e?.message ?? 'Something went wrong')
+			} finally {
+				setLoading(false)
+			}
+		}
+		run()
+	}, [])
+
+	if (loading) return <p>Loading...</p>
+	if (error) return <p className="text-red-500">{error}</p>
+
+	return (
+		<div className="space-y-2">
+			<h1 className="text-xl font-semibold">Users</h1>
+			<ul className="list-disc pl-6">
+				{users.map((u) => (
+					<li key={u.id}>
+						{u.name} — <span className="text-gray-500">{u.email}</span>
+					</li>
+				))}
+			</ul>
+		</div>
+	)
+}
+```
+
+</CodeBlockTabs>
+
+## Standalone actions (create/update/delete)
+
+<CodeBlockTabs fileName='src/actions/user-actions.ts'>
+
+```ts
+import { UserService } from '@/services/user.service'
+
+export const createUser = async () => {
+	const payload = { name: 'Alice', email: 'alice@example.com', role: 'user' as const }
+	const res = await UserService.create(payload)
+	return res.data // or `return res` if your interceptor unwraps .data globally
+}
+
+export const updateUser = async (id: string) => {
+	const res = await UserService.update(id, { name: 'Alice Updated' })
+	return res.data
+}
+
+export const deleteUser = async (id: string) => {
+	const res = await UserService.remove(id)
+	return res.data.success
+}
+```
+
+</CodeBlockTabs>
+
+## Notes
+
+- Prefer one service file per resource (`auth.service.ts`, `post.service.ts`, ...).
+- Consider setting `.setResponseInterceptor((res) => res.data)` to avoid repetitive `.data` access.
+- Works great with **TanStack Query**: pass `UserService` promises to `useQuery`/`useMutation`.

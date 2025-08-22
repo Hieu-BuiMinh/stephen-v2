@@ -78,24 +78,24 @@ export class AxiosBuilder {
 		return this
 	}
 
-	public get<T>({ url, config }: AxiosParams): Promise<AxiosResponse<T>> {
-		return this.instance.get(url, config)
+	public async get<T>({ url, config }: AxiosParams): Promise<AxiosResponse<T>> {
+		return await this.instance.get(url, config)
 	}
 
-	public post<T>({ data, url, config }: AxiosMutaionParams): Promise<AxiosResponse<T>> {
-		return this.instance.post(url, data, config)
+	public async post<T>({ data, url, config }: AxiosMutaionParams): Promise<AxiosResponse<T>> {
+		return await this.instance.post(url, data, config)
 	}
 
-	public put<T>({ data, url, config }: AxiosMutaionParams): Promise<AxiosResponse<T>> {
-		return this.instance.put(url, data, config)
+	public async put<T>({ data, url, config }: AxiosMutaionParams): Promise<AxiosResponse<T>> {
+		return await this.instance.put(url, data, config)
 	}
 
-	public patch<T>({ data, url, config }: AxiosMutaionParams): Promise<AxiosResponse<T>> {
-		return this.instance.patch(url, data, config)
+	public async patch<T>({ data, url, config }: AxiosMutaionParams): Promise<AxiosResponse<T>> {
+		return await this.instance.patch(url, data, config)
 	}
 
-	public delete<T>({ url, config }: Omit<AxiosMutaionParams, 'data'>): Promise<AxiosResponse<T>> {
-		return this.instance.delete(url, config)
+	public async delete<T>({ url, config }: Omit<AxiosMutaionParams, 'data'>): Promise<AxiosResponse<T>> {
+		return await this.instance.delete(url, config)
 	}
 
 	public build(): AxiosInstance {

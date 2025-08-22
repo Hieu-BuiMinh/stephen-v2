@@ -165,7 +165,7 @@ function AnimatedBlock({
 	switch (type) {
 		case 'FADE_IN':
 			animateProps.initial = { opacity: 0, y: 20 }
-			animateProps.animate = { opacity: 1, y: 0 }
+			animateProps.whileInView = { opacity: 1, y: 0 }
 			animateProps.transition = {
 				duration,
 				delay,
@@ -174,7 +174,7 @@ function AnimatedBlock({
 			break
 		case 'BLUR_IN':
 			animateProps.initial = { filter: 'blur(20px)', opacity: 0 }
-			animateProps.animate = { filter: 'blur(0px)', opacity: 1, y: 0 }
+			animateProps.whileInView = { filter: 'blur(0px)', opacity: 1, y: 0 }
 			animateProps.transition = {
 				duration,
 				delay,
@@ -183,12 +183,12 @@ function AnimatedBlock({
 			break
 		case 'FADE_IN_FROM_BOTTOM':
 			animateProps.initial = { filter: 'blur(20px)', opacity: 0 }
-			animateProps.animate = { filter: 'blur(0px)', opacity: 1 }
+			animateProps.whileInView = { filter: 'blur(0px)', opacity: 1 }
 			animateProps.transition = { duration, delay, ease: 'easeOut' }
 			break
 		case 'BOUNCE_IN':
 			animateProps.initial = { scale: 0, opacity: 0 }
-			animateProps.animate = { scale: 1, opacity: 1 }
+			animateProps.whileInView = { scale: 1, opacity: 1 }
 			animateProps.transition = {
 				duration: 0.4,
 				delay,
@@ -206,6 +206,7 @@ function AnimatedBlock({
 			className={cn(restartOnClick && 'cursor-pointer', className)}
 			onClick={handleClick}
 			whileTap={restartOnClick ? { scale: 0.9 } : {}}
+			viewport={{ once: true }}
 		>
 			{children}
 		</Component>
