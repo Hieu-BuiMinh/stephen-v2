@@ -19,19 +19,25 @@ function LatestArticles() {
 			</TextGradient>
 
 			<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-				{postList.map((post) => {
+				{postList.map((post, index) => {
 					const url = post.type ? `/topics/dev/${post.type}/${post.id}` : `/topics/dev/${post.id}`
 
 					return post.type === 'post' ? (
-						<PostCard key={post.slug} url={url} post={post} className="p-0 border-none" />
+						<PostCard
+							key={post.slug}
+							url={url}
+							post={post}
+							className="p-0 border-none"
+							delay={0.1 * index}
+						/>
 					) : (
-						<ShortCard key={post.slug} url={url} post={post} />
+						<ShortCard key={post.slug} url={url} post={post} delay={0.1 * index} />
 					)
 				})}
 			</div>
 
 			<div className="my-8 flex items-center justify-center">
-				<Link href={`/dev`}>
+				<Link href={`/topics/dev`}>
 					<Button variant="outline" className="w-auto cursor-pointer">
 						Explore
 					</Button>

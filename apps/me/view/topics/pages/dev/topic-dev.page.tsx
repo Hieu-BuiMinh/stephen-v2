@@ -35,21 +35,21 @@ function TopicDevPage() {
 
 						{key === 'post' && (
 							<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-								{posts.map((post) => {
+								{posts.map((post, index) => {
 									const url = post.type
 										? `/topics/dev/${post.type}/${post.id}`
 										: `/topics/dev/${post.id}`
-									return <PostCard key={post.slug} post={post} url={url} />
+									return <PostCard key={post.slug} post={post} url={url} delay={0.1 * index} />
 								})}
 							</div>
 						)}
 						{key === 'short' && (
 							<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-								{posts.map((post) => {
+								{posts.map((post, index) => {
 									const url = post.type
 										? `/topics/dev/${post.type}/${post.id}`
 										: `/topics/dev/${post.id}`
-									return <ShortCard key={post.slug} post={post} url={url} />
+									return <ShortCard key={post.slug} post={post} url={url} delay={0.1 * index} />
 								})}
 							</div>
 						)}

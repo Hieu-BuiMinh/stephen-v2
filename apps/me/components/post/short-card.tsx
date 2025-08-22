@@ -12,9 +12,10 @@ interface ShortCardProps {
 	post: TPost
 	url?: string
 	className?: string
+	delay?: number | undefined
 }
 
-export const ShortCard = ({ post, url, className }: ShortCardProps) => {
+export const ShortCard = ({ post, url, className, delay }: ShortCardProps) => {
 	const { title, description, createdAt, author } = post
 
 	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
@@ -26,7 +27,7 @@ export const ShortCard = ({ post, url, className }: ShortCardProps) => {
 	// const likesQuery = postBySlug?.likes?.reduce((acc, like) => acc + like.count, 0) || 0 // save in api here
 
 	return (
-		<AnimatedBlock type="FADE_IN_FROM_BOTTOM" className="group/post-card relative">
+		<AnimatedBlock type="FADE_IN" delay={delay} className="group/post-card relative">
 			<FoldedCornerCard className="z-[1] size-full">
 				<Link
 					href={url || '#'}
@@ -39,8 +40,8 @@ export const ShortCard = ({ post, url, className }: ShortCardProps) => {
 						<BlurImage
 							src={post.cover || ''}
 							className="size-full object-cover transition-all grayscale-100 md:group-hover/post-card:grayscale-0"
-							width={200}
-							height={200}
+							width={300}
+							height={300}
 							alt={title}
 							unoptimized={false}
 						/>

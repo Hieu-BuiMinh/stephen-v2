@@ -63,14 +63,14 @@ async function TopicDevTypePage({ params }: ITopicDevTypePageProps) {
 				<div className="w-full min-h-52 flex">
 					{postList?.length > 0 ? (
 						<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-							{postList.map((post) => {
+							{postList.map((post, index) => {
 								const url = post.type ? `/topics/dev/${post.type}/${post.id}` : `/topics/dev/${post.id}`
 
 								if (post.type === 'short') {
-									return <ShortCard key={post.slug} post={post} url={url} />
+									return <ShortCard key={post.slug} post={post} url={url} delay={0.1 * index} />
 								}
 
-								return <PostCard key={post.slug} post={post} url={url} />
+								return <PostCard key={post.slug} post={post} url={url} delay={0.1 * index} />
 							})}
 						</div>
 					) : (

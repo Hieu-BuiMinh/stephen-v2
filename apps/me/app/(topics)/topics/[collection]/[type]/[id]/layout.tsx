@@ -1,5 +1,5 @@
 import type { BOOKS_POST_TYPE, DEV_POST_TYPE } from '@repo/stephen-v2-contents'
-import { devPost } from '@repo/stephen-v2-contents'
+import { bookRecap, devPost } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -12,7 +12,10 @@ interface GenerateMetaProps {
 
 export async function generateMetadata({ params }: GenerateMetaProps): Promise<Metadata> {
 	const { id } = await params
-	const post = await getVelitePostById({ id, postsList: devPost })
+
+	const allPost = [...devPost, ...bookRecap]
+
+	const post = await getVelitePostById({ id, postsList: allPost })
 
 	if (!post) {
 		notFound()

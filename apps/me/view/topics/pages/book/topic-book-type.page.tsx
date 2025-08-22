@@ -18,7 +18,7 @@ const sortedPostsByType = ({ type }: { type: BOOKS_POST_TYPE }) => {
 	return sortPostsByDate(posts, 'desc')
 }
 
-async function TopicBookTypePageView({ params }: ITopicBookTypePageProps) {
+async function TopicBookTypePage({ params }: ITopicBookTypePageProps) {
 	const { type } = await params
 
 	const headertitle: Record<BOOKS_POST_TYPE, { title: string; description: string }> = {
@@ -80,4 +80,4 @@ async function TopicBookTypePageView({ params }: ITopicBookTypePageProps) {
 	)
 }
 
-export default TopicBookTypePageView
+export default TopicBookTypePage
