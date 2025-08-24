@@ -9,7 +9,6 @@ function LightRaysClient() {
 	const { theme } = useTheme()
 
 	const [loaded, setLoaded] = useState(false)
-	const [show, setShow] = useState(true)
 
 	useEffect(() => {
 		setLoaded(true)
@@ -19,7 +18,7 @@ function LightRaysClient() {
 
 	return (
 		<Suspense fallback={null}>
-			{theme === 'dark' && show && (
+			{theme === 'dark' && (
 				<LightRaysComponent
 					raysOrigin="top-center"
 					raysColor="#ffffff"
@@ -36,13 +35,6 @@ function LightRaysClient() {
 					className="absolute inset-0 hidden md:block"
 				/>
 			)}
-			<button
-				onClick={() => {
-					setShow((prev) => !prev)
-				}}
-			>
-				click
-			</button>
 		</Suspense>
 	)
 }
