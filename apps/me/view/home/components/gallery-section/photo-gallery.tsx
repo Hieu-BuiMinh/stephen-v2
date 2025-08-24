@@ -83,7 +83,20 @@ function PhotoGallery({ animationDelay = 0.5 }: { animationDelay?: number }) {
 			scale: 1,
 			// keep the same z-index throughout animation
 		}),
-		visible: (custom) => ({
+		// visible: (custom) => ({
+		// 	x: custom.x,
+		// 	y: custom.y,
+		// 	rotate: 0, // No rotation
+		// 	scale: 1,
+		// 	transition: {
+		// 		type: 'spring',
+		// 		stiffness: 70,
+		// 		damping: 12,
+		// 		mass: 1,
+		// 		delay: custom.order * 0.15, // explicit delay based on order
+		// 	},
+		// }),
+		inview: (custom) => ({
 			x: custom.x,
 			y: custom.y,
 			rotate: 0, // No rotation
@@ -119,7 +132,7 @@ function PhotoGallery({ animationDelay = 0.5 }: { animationDelay?: number }) {
 	}, [animationDelay])
 
 	return (
-		<div className="relative h-[350px] w-full items-center justify-center hidden overflow-visible my-32 lg:flex">
+		<div className="relative min-h-[50vh] w-full items-center justify-center hidden overflow-visible my-32 lg:flex">
 			<motion.div
 				className="relative mx-auto flex w-full max-w-7xl justify-center"
 				initial={{ opacity: 0 }}
@@ -140,6 +153,9 @@ function PhotoGallery({ animationDelay = 0.5 }: { animationDelay?: number }) {
 								className="absolute left-0 top-0"
 								style={{ zIndex: photo.zIndex }} // apply z-index directly in style
 								variants={photoVariants}
+								initial="hidden"
+								whileInView="inview" // just run while in view
+								viewport={{ once: true, amount: 0.2 }}
 								custom={{
 									x: photo.x,
 									y: photo.y,

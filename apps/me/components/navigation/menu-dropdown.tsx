@@ -1,6 +1,7 @@
 'use client'
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@repo/stephen-v2-ui/shadcn'
+import { cn } from '@repo/stephen-v2-utils'
 import { ChevronDown } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { type ReactNode, useEffect, useState } from 'react'
@@ -8,9 +9,10 @@ import { type ReactNode, useEffect, useState } from 'react'
 interface INavMenuDropdown {
 	triggerText?: string | ReactNode
 	dropDownContent?: ReactNode
+	triggerClass?: string
 }
 
-function NavMenuDropdown({ triggerText, dropDownContent }: INavMenuDropdown) {
+function NavMenuDropdown({ triggerText, dropDownContent, triggerClass }: INavMenuDropdown) {
 	const pathName = usePathname()
 	const [open, setOpen] = useState(false)
 	const handleOpen = () => {
@@ -30,13 +32,16 @@ function NavMenuDropdown({ triggerText, dropDownContent }: INavMenuDropdown) {
 			<DropdownMenuTrigger
 				onMouseEnter={handleOpen}
 				onMouseLeave={handleClose}
-				className="capitalize p-2 cursor-pointer group focus:outline-0 flex items-center gap-1"
+				className={cn(
+					'capitalize p-2 cursor-pointer group focus:outline-0 flex items-center gap-1',
+					triggerClass
+				)}
 			>
 				{triggerText}
 
 				<ChevronDown
 					size={12}
-					className=" transition duration-300 group-data-[state=open]:rotate-180 pointer-events-none"
+					className="transition duration-300 group-data-[state=open]:rotate-180 pointer-events-none"
 				/>
 			</DropdownMenuTrigger>
 

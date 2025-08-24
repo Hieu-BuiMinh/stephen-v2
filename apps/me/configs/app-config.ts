@@ -4,7 +4,7 @@ import { SVGIcons } from '@/components/icons/svg-icons'
 export const isProduction = process.env.NODE_ENV === 'production'
 
 export const APP_CONFIG = {
-	name: 'Stephen Blog',
+	name: `Stephen's Corner`,
 	shortName: 'by Stephen',
 	url: isProduction ? 'https://hieu-buiminh.io.vn/' : 'http://localhost:3000',
 	description: 'Next js 15 blog using Turborepo, velite, tailwind and shadcn',

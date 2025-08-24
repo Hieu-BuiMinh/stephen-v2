@@ -5,7 +5,7 @@ import { BlurImage } from '@repo/stephen-v2-ui/shadcn'
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 
-import FlyArounds from '@/view/home/components/hero-section/fly-arounds'
+// import FlyArounds from '@/view/home/components/hero-section/fly-arounds'
 
 interface ProfilePictureProps {
 	delay?: number
@@ -34,10 +34,10 @@ export function ProfilePicture({}: ProfilePictureProps) {
 	}
 
 	return (
-		<div className="relative size-[190px] lg:size-[380px] shrink-0">
+		<div className="relative size-[190px] lg:size-[280px] shrink-0">
 			<motion.div
 				key={imageSrc}
-				className="profile-ring size-full rounded-full dark:bg-background"
+				className="profile-ring size-full rounded-full bg-foreground shadow-2xl"
 				initial={{ scale: 0 }}
 				animate={isChanging ? { scale: 0.95 } : { scale: 1 }}
 				transition={{
@@ -65,7 +65,7 @@ export function ProfilePicture({}: ProfilePictureProps) {
 					<GlareHover className="!rounded-full size-[180px] lg:size-[270px]">
 						<BlurImage
 							key={imageSrc}
-							className="cursor-pointer rounded-full object-cover size-[180px] lg:size-[270px] grayscale hover:grayscale-0 transition-all"
+							className="cursor-pointer rounded-full object-cover size-[180px] lg:size-[270px] transition-all"
 							src={imageSrc}
 							alt=""
 							width={350}
@@ -76,7 +76,7 @@ export function ProfilePicture({}: ProfilePictureProps) {
 				</motion.div>
 			</AnimatePresence>
 
-			{!isChanging && <FlyArounds />}
+			{/* {!isChanging && <FlyArounds />} */}
 		</div>
 	)
 }

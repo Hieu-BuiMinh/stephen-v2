@@ -1,8 +1,11 @@
 'use client'
 
+import { TextRoll } from '@repo/stephen-v2-ui/motion'
 import { cn } from '@repo/stephen-v2-utils'
+import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 
 import { ModeToggle } from '@/components/mode-toggle'
 import NavMenuDropdown from '@/components/navigation/menu-dropdown'
@@ -11,10 +14,34 @@ import { navbarItems } from '@/constants/components/navbar.const'
 
 function Navbar() {
 	const navKeys = Object.keys(navbarItems)
+	const { scrollY } = useScroll()
+
+	const [isVisible, setIsVisible] = useState(true)
+
+	useMotionValueEvent(scrollY, 'change', (latest) => {
+		const previous = scrollY.getPrevious() ?? 0
+		if (latest > previous && latest > 150) {
+			setIsVisible(false)
+		} else {
+			setIsVisible(true)
+		}
+	})
 
 	return (
-		<nav className="fixed hidden h-16 w-full items-center justify-between px-4 bg-background left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:border-b lg:border-x md:border-primary/10 z-[51]">
-			<div className="flex items-center justify-center gap-2 capitalize">
+		<motion.nav
+			initial={{ opacity: 0, y: -20 }}
+			animate={{
+				opacity: 1,
+				y: isVisible ? 0 : -100,
+			}}
+			transition={{
+				duration: 0.6,
+				ease: 'easeOut',
+				y: { duration: 0.3, ease: 'easeInOut' },
+			}}
+			className="fixed hidden h-16 w-full items-center justify-between px-4 bg-background left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:border-b lg:border-x md:border-primary/10 z-[51]"
+		>
+			<div className="flex items-center justify-between gap-2 capitalize">
 				<Link href="/" className="size-[35px]">
 					<Image
 						src="/assets/images/logo/logo-dark.svg"
@@ -31,12 +58,16 @@ function Navbar() {
 						className="block dark:hidden size-auto"
 					/>
 				</Link>
+			</div>
+			<div className="flex items-center justify-center gap-5">
 				{navKeys.map((key) => {
 					const navItem = navbarItems[key as keyof typeof navbarItems]
 					if (navItem?.length === 1) {
 						return (
 							<Link key={navItem[0].href} href={navItem[0].href}>
-								<div className="p-2">{navItem[0].title}</div>
+								<div className="p-2 text-muted-foreground hover:text-foreground transition-colors">
+									{navItem[0].title}
+								</div>
 							</Link>
 						)
 					}
@@ -45,6 +76,7 @@ function Navbar() {
 							<div className="flex-1 h-5 w-[1px] border-r" />
 							<NavMenuDropdown
 								triggerText={key}
+								triggerClass="text-muted-foreground hover:text-foreground transition-colors"
 								dropDownContent={
 									<div className="grid grid-cols-2 gap-2">
 										{navItem.map((item) => {
@@ -58,7 +90,7 @@ function Navbar() {
 				})}
 			</div>
 			<ModeToggle />
-		</nav>
+		</motion.nav>
 	)
 }
 export default Navbar
@@ -78,9 +110,6 @@ const ItemLink = ({ className, item }: IItemLink) => {
 			)}
 			href={item.href}
 		>
-			{/* <div className="size-10 flex items-center justify-center shrink-0 p-2 rounded-lg border group-hover:border-transparent dark:group-hover:border-foreground/60 transition-colors">
-				{<Icon size={16} />}
-			</div> */}
 			<div className="flex flex-col gap-2">
 				<div className="flex gap-3 font-semibold items-center capitalize group-hover:underline transition-all">
 					{<Icon size={14} />} {item.title}

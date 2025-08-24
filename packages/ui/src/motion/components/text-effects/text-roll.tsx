@@ -10,6 +10,7 @@
 'use client'
 import type { Target, TargetAndTransition, Transition, VariantLabels } from 'motion/react'
 import { motion } from 'motion/react'
+import { memo, useState } from 'react'
 
 export type TextRollProps = {
 	children: string
@@ -29,9 +30,10 @@ export type TextRollProps = {
 		}
 	}
 	onAnimationComplete?: () => void
+	withHover?: boolean
 }
 
-export function TextRoll({
+function TextRoll({
 	children,
 	duration = 0.5,
 	getEnterDelay = (i) => i * 0.1,
@@ -40,6 +42,7 @@ export function TextRoll({
 	transition = { ease: 'easeIn' },
 	variants,
 	onAnimationComplete,
+	withHover = false,
 }: TextRollProps) {
 	const defaultVariants = {
 		enter: {
@@ -52,22 +55,35 @@ export function TextRoll({
 		},
 	} as const
 
+	const enterAnim = variants?.enter?.animate ?? defaultVariants.enter.animate
+	const exitAnim = variants?.exit?.animate ?? defaultVariants.exit.animate
+
 	const letters = children.split('')
 
+	const [playTick, setPlayTick] = useState(0)
+
 	return (
-		<span className={className}>
+		<span
+			className={className}
+			onMouseEnter={() => {
+				if (withHover) setPlayTick((t) => t + 1)
+			}}
+		>
 			{letters.map((letter, i) => {
+				const visibleChar = letter === ' ' ? '\u00A0' : letter
+				const remountKey = `${i}-${withHover ? playTick : 'inview'}`
+
 				return (
 					<span
-						key={i}
+						key={remountKey}
 						className="relative inline-block [perspective:10000px] [transform-style:preserve-3d] [width:auto]"
 						aria-hidden="true"
 					>
 						<motion.span
-							className="absolute inline-block [backface-visibility:hidden] [transform-origin:50%_25%]"
+							className="absolute inline-block [backface-visibility:hidden] [transform-origin:50%_25%] [will-change:transform]"
 							initial={variants?.enter?.initial ?? defaultVariants.enter.initial}
-							// animate={variants?.enter?.animate ?? defaultVariants.enter.animate}
-							whileInView={variants?.enter?.animate ?? defaultVariants.enter.animate}
+							animate={withHover ? (playTick > 0 ? enterAnim : undefined) : undefined}
+							whileInView={!withHover ? enterAnim : undefined}
 							viewport={{ once: true }}
 							transition={{
 								...transition,
@@ -75,13 +91,14 @@ export function TextRoll({
 								delay: getEnterDelay(i),
 							}}
 						>
-							{letter === ' ' ? '\u00A0' : letter}
+							{visibleChar}
 						</motion.span>
+
 						<motion.span
-							className="absolute inline-block [backface-visibility:hidden] [transform-origin:50%_100%]"
+							className="absolute inline-block [backface-visibility:hidden] [transform-origin:50%_100%] [will-change:transform]"
 							initial={variants?.exit?.initial ?? defaultVariants.exit.initial}
-							// animate={variants?.exit?.animate ?? defaultVariants.exit.animate}
-							whileInView={variants?.exit?.animate ?? defaultVariants.exit.animate}
+							animate={withHover ? (playTick > 0 ? exitAnim : undefined) : undefined}
+							whileInView={!withHover ? exitAnim : undefined}
 							viewport={{ once: true }}
 							transition={{
 								...transition,
@@ -90,9 +107,10 @@ export function TextRoll({
 							}}
 							onAnimationComplete={letters.length === i + 1 ? onAnimationComplete : undefined}
 						>
-							{letter === ' ' ? '\u00A0' : letter}
+							{visibleChar}
 						</motion.span>
-						<span className="invisible">{letter === ' ' ? '\u00A0' : letter}</span>
+
+						<span className="invisible">{visibleChar}</span>
 					</span>
 				)
 			})}
@@ -100,3 +118,5 @@ export function TextRoll({
 		</span>
 	)
 }
+
+export default memo<TextRollProps>(TextRoll)

@@ -34,7 +34,7 @@ function TopicDevPage() {
 						</AnimatedBlock>
 
 						{key === 'post' && (
-							<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+							<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 z-10">
 								{posts.map((post, index) => {
 									const url = post.type
 										? `/topics/dev/${post.type}/${post.id}`

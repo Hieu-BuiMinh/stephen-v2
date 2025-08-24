@@ -1,7 +1,7 @@
 'use client'
 
 import { useTheme } from 'next-themes'
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { memo, Suspense, useEffect, useState } from 'react'
 
 import LightRaysComponent from '@/components/effects/light-rays'
 
@@ -9,6 +9,7 @@ function LightRaysClient() {
 	const { theme } = useTheme()
 
 	const [loaded, setLoaded] = useState(false)
+	const [show, setShow] = useState(true)
 
 	useEffect(() => {
 		setLoaded(true)
@@ -18,7 +19,7 @@ function LightRaysClient() {
 
 	return (
 		<Suspense fallback={null}>
-			{theme === 'dark' && (
+			{theme === 'dark' && show && (
 				<LightRaysComponent
 					raysOrigin="top-center"
 					raysColor="#ffffff"
@@ -35,8 +36,15 @@ function LightRaysClient() {
 					className="absolute inset-0 hidden md:block"
 				/>
 			)}
+			<button
+				onClick={() => {
+					setShow((prev) => !prev)
+				}}
+			>
+				click
+			</button>
 		</Suspense>
 	)
 }
 
-export default LightRaysClient
+export default memo(LightRaysClient)

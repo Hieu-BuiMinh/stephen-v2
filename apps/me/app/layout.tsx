@@ -132,7 +132,7 @@ export default function RootLayout({
 			<body className={`${roboto.variable} antialiased`} suppressHydrationWarning>
 				<AppProvider>
 					{/* <SiteHeader /> */}
-					<main role="main">{children}</main>
+					{children}
 					{/* <SiteFooter /> */}
 				</AppProvider>
 			</body>
