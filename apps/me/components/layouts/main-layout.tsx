@@ -12,7 +12,7 @@ function MainLayout({ children }: { children: React.ReactNode }) {
 
 				<div className="relative grid flex-1 grid-cols-1 lg:grid-cols-[32px_1fr_32px] pt-0">
 					<div className="sticky top-0 h-[calc(100vh)] hidden w-full border-r dark:opacity-10 bg-dashed lg:block" />
-					<div className="relative col-span-1 px-3 sm:pt-10 md:pt-16">{children}</div>
+					<div className="relative col-span-1 px-3 sm:pt-10 md:pt-[calc(4rem+0.75rem)]">{children}</div>
 					<div className="sticky top-0 h-[calc(100vh)] hidden w-full border-l dark:opacity-10 bg-dashed lg:block" />
 				</div>
 
