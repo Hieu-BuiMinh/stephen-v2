@@ -5,7 +5,6 @@ import { cn, getRandomNumberInRange } from '@repo/stephen-v2-utils'
 import type { Direction } from 'motion/react'
 import { motion, useMotionValue } from 'motion/react'
 import type { ImageProps } from 'next/image'
-import Image from 'next/image'
 import type { MouseEventHandler, Ref } from 'react'
 import { forwardRef, useEffect, useState } from 'react'
 

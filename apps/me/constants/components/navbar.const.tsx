@@ -5,7 +5,7 @@ import {
 	Library,
 	MessageCircleHeart,
 	Notebook,
-	NotebookPen,
+	// NotebookPen,
 	Pen,
 	Sparkles,
 	Tags,
@@ -21,14 +21,14 @@ export type TNavbarItem = {
 export type TNavbarItems = { [key: string]: TNavbarItem[] }
 
 export const navbarItems: TNavbarItems = {
-	Home: [
-		{
-			title: 'Home',
-			href: '/',
-			description: 'Welcome to my corner of the internet',
-			icon: Library,
-		},
-	],
+	// Home: [
+	// 	{
+	// 		title: 'Home',
+	// 		href: '/',
+	// 		description: 'Welcome to my corner of the internet',
+	// 		icon: Library,
+	// 	},
+	// ],
 	about: [
 		{
 			title: 'About',

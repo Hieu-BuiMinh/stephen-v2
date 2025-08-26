@@ -10,10 +10,10 @@ function MainLayout({ children }: { children: React.ReactNode }) {
 			<main className="flex flex-1 flex-col lg:border-x border-muted-foreground/10">
 				<Navbar />
 
-				<div className="grid flex-1 grid-cols-1 lg:grid-cols-[32px_1fr_32px] mt-0 sm:mt-5 md:mt-16">
-					<div className="sticky top-16 h-[calc(100vh-4rem)] hidden w-full border-r dark:opacity-10 bg-dashed lg:block" />
-					<div className="relative col-span-1 p-3">{children}</div>
-					<div className="sticky top-16 h-[calc(100vh-4rem)] hidden w-full border-l dark:opacity-10 bg-dashed lg:block" />
+				<div className="relative grid flex-1 grid-cols-1 lg:grid-cols-[32px_1fr_32px] pt-0">
+					<div className="sticky top-0 h-[calc(100vh)] hidden w-full border-r dark:opacity-10 bg-dashed lg:block" />
+					<div className="relative col-span-1 px-3 sm:pt-10 md:pt-[calc(4rem+0.75rem)]">{children}</div>
+					<div className="sticky top-0 h-[calc(100vh)] hidden w-full border-l dark:opacity-10 bg-dashed lg:block" />
 				</div>
 
 				<NewsletterSignUp />

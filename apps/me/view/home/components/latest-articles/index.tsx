@@ -11,7 +11,7 @@ function LatestArticles() {
 	const postList = sortPostsByDate([...devPost], 'desc').slice(0, 4)
 
 	return (
-		<div className="flex flex-col gap-10 items-center justify-center my-32">
+		<div className="flex flex-col gap-10 items-center justify-center my-32 min-h-[50vh]">
 			<TextGradient as="div" className="text-center font-semibold text-3xl md:text-4xl max-w-xl">
 				<TextEffect preset="slide" per="char">
 					Latest Articles
@@ -36,7 +36,7 @@ function LatestArticles() {
 				})}
 			</div>
 
-			<div className="my-8 flex items-center justify-center">
+			<div className="flex items-center justify-center">
 				<Link href={`/topics/dev`}>
 					<Button variant="outline" className="w-auto cursor-pointer">
 						Explore

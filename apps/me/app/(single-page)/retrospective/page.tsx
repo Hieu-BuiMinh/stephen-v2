@@ -1,7 +1,7 @@
-import React from 'react'
+import RetrospectivePageView from '@/view/retrospective/pages/retrospective.page'
 
 function RetrospectivePage() {
-	return <div>RetrospectivePage</div>
+	return <RetrospectivePageView />
 }
 
 export default RetrospectivePage

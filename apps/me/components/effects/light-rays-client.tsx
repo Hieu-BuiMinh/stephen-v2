@@ -1,7 +1,7 @@
 'use client'
 
 import { useTheme } from 'next-themes'
-import React, { Suspense, useEffect, useState } from 'react'
+import React, { memo, Suspense, useEffect, useState } from 'react'
 
 import LightRaysComponent from '@/components/effects/light-rays'
 
@@ -39,4 +39,4 @@ function LightRaysClient() {
 	)
 }
 
-export default LightRaysClient
+export default memo(LightRaysClient)

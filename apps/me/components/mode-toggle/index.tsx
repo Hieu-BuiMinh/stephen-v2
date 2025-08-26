@@ -7,12 +7,27 @@ import { useTheme } from 'next-themes'
 export function ModeToggle() {
 	const { setTheme, theme } = useTheme()
 
-	const handleSwichTheme = () => {
-		if (theme === 'dark') {
-			setTheme('light')
-		} else {
-			setTheme('dark')
+	const switchTheme = () => {
+		switch (theme) {
+			case 'light':
+				setTheme('dark')
+				break
+			case 'dark':
+				setTheme('light')
+				break
+			default:
+				break
 		}
+	}
+
+	const handleSwichTheme = () => {
+		// if (theme === 'dark') {
+		// 	setTheme('light')
+		// } else {
+		// 	setTheme('dark')
+		// }
+		if (!document.startViewTransition) switchTheme()
+		document.startViewTransition(switchTheme)
 	}
 
 	return (
