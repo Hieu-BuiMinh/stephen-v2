@@ -14,7 +14,7 @@ interface PostCardProps {
 }
 
 export const PostCard = ({ post, className, url, delay }: PostCardProps) => {
-	const { title, description, createdAt, author, cover, id } = post
+	const { title, description, createdAt, author, id } = post
 
 	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
 
@@ -38,8 +38,8 @@ export const PostCard = ({ post, className, url, delay }: PostCardProps) => {
 						className="relative rounded-md overflow-hidden flex items-center justify-center"
 					>
 						<BlurImage
-							src={cover || ''}
-							className="size-full object-cover transition-all !grayscale-100 md:group-hover/post-card:grayscale-0"
+							src={post.cover || ''}
+							className="size-full object-cover transition-all grayscale-100 md:group-hover/post-card:grayscale-0"
 							width={300}
 							height={300}
 							alt={title}
@@ -47,7 +47,7 @@ export const PostCard = ({ post, className, url, delay }: PostCardProps) => {
 						/>
 						{/* this image is used for view transition */}
 						<BlurImage
-							src={cover || ''}
+							src={post.cover || ''}
 							className="size-full object-cover transition-all !grayscale-100 md:group-hover/post-card:grayscale-0 opacity-0 absolute inset-0 -z-10"
 							width={300}
 							height={300}
@@ -64,14 +64,20 @@ export const PostCard = ({ post, className, url, delay }: PostCardProps) => {
 						>
 							{title}
 						</h3>
-						<p className="mt-2 line-clamp-1 md:line-clamp-2 text-left text-xs text-muted-foreground md:h-8 transition-colors group-hover/post-card:text-foreground">
+						<p
+							className="mt-2 line-clamp-1 md:line-clamp-2 text-left text-xs text-muted-foreground md:h-8 transition-colors group-hover/post-card:text-foreground"
+							style={{ viewTransitionName: `description-${id}` }}
+						>
 							{description}
 						</p>
 					</div>
 
 					<div className="w-full h-[1px] border-t border-dashed"></div>
 
-					<div className="flex gap-2 items-center text-muted-foreground text-xs mt-2 transition-colors group-hover/post-card:text-foreground">
+					<div
+						className="flex gap-2 items-center text-muted-foreground text-xs mt-2 transition-colors group-hover/post-card:text-foreground"
+						style={{ viewTransitionName: `auth-${id}` }}
+					>
 						<div className="size-6 rounded-full flex items-center justify-center overflow-hidden md:size-8">
 							<BlurImage
 								src={author.avatar}
@@ -88,7 +94,10 @@ export const PostCard = ({ post, className, url, delay }: PostCardProps) => {
 						</div>
 					</div>
 
-					<div className="flex items-center justify-between gap-2 text-xs text-zinc-500 transition-colors group-hover/post-card:text-foreground">
+					<div
+						className="flex items-center justify-between gap-2 text-xs text-zinc-500 transition-colors group-hover/post-card:text-foreground"
+						style={{ viewTransitionName: `meta-${id}` }}
+					>
 						<div className="flex gap-2">
 							{/* <div>{pluralize('like', likesQuery, true)}</div> */}
 							<div>{pluralize('like', 100, true)}</div>

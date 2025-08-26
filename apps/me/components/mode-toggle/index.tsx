@@ -16,18 +16,19 @@ export function ModeToggle() {
 				setTheme('light')
 				break
 			default:
+				setTheme('dark')
 				break
 		}
 	}
 
 	const handleSwichTheme = () => {
-		// if (theme === 'dark') {
-		// 	setTheme('light')
-		// } else {
-		// 	setTheme('dark')
-		// }
-		if (!document.startViewTransition) switchTheme()
-		document.startViewTransition(switchTheme)
+		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+		document && document.documentElement.classList.add('theme-switch')
+
+		setTimeout(() => {
+			if (!document.startViewTransition) switchTheme()
+			document.startViewTransition(switchTheme)
+		}, 100)
 	}
 
 	return (

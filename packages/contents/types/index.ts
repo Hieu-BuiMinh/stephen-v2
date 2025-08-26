@@ -11,7 +11,10 @@ export type TPost = {
 	createdAt: string // ISO date
 	updatedAt?: string // ISO date
 	cover?: string
-	metadata?: Record<string, any> // s.metadata()
+	metadata?: {
+		wordCount: number
+		readingTime: number
+	} & Record<string, any> // s.metadata()
 	description?: string
 	published: boolean
 	hashTags?: string[]

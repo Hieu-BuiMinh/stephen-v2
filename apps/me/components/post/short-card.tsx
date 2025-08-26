@@ -67,14 +67,20 @@ export const ShortCard = ({ post, url, className, delay }: ShortCardProps) => {
 						>
 							{title}
 						</h3>
-						<p className="mt-2 line-clamp-1 md:line-clamp-2 text-left text-xs text-muted-foreground md:h-8 transition-colors group-hover/post-card:text-foreground">
+						<p
+							className="mt-2 line-clamp-1 md:line-clamp-2 text-left text-xs text-muted-foreground md:h-8 transition-colors group-hover/post-card:text-foreground"
+							style={{ viewTransitionName: `description-${id}` }}
+						>
 							{description}
 						</p>
 					</div>
 
 					<div className="w-full h-[1px] border-t border-dashed"></div>
 
-					<div className="flex gap-2 items-center text-muted-foreground text-xs mt-2 transition-colors group-hover/post-card:text-foreground">
+					<div
+						className="flex gap-2 items-center text-muted-foreground text-xs mt-2 transition-colors group-hover/post-card:text-foreground"
+						style={{ viewTransitionName: `auth-${id}` }}
+					>
 						<div className="size-6 rounded-full flex items-center justify-center overflow-hidden md:size-8">
 							<BlurImage
 								src={author.avatar}
@@ -91,7 +97,10 @@ export const ShortCard = ({ post, url, className, delay }: ShortCardProps) => {
 						</div>
 					</div>
 
-					<div className="flex items-center justify-between gap-2 text-xs text-zinc-500 transition-colors group-hover/post-card:text-foreground">
+					<div
+						className="flex items-center justify-between gap-2 text-xs text-zinc-500 transition-colors group-hover/post-card:text-foreground"
+						style={{ viewTransitionName: `meta-${id}` }}
+					>
 						<div className="flex gap-2">
 							{/* <div>{pluralize('like', likesQuery, true)}</div> */}
 							<div>{pluralize('like', 100, true)}</div>
