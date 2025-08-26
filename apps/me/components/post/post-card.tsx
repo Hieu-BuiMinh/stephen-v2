@@ -14,7 +14,7 @@ interface PostCardProps {
 }
 
 export const PostCard = ({ post, className, url, delay }: PostCardProps) => {
-	const { title, description, createdAt, author, cover, id } = post
+	const { title, description, createdAt, author, id } = post
 
 	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
 

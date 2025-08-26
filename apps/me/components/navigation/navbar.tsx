@@ -3,7 +3,7 @@
 import { cn } from '@repo/stephen-v2-utils'
 import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 import Image from 'next/image'
-import { Link } from 'next-view-transitions'
+import Link from 'next/link'
 import { useState } from 'react'
 
 import { ModeToggle } from '@/components/mode-toggle'
