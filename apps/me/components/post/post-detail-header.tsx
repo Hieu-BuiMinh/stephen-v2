@@ -10,7 +10,7 @@ interface IPostDetailHeaderProps {
 }
 
 function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
-	const { cover, title } = post
+	const { cover, title, id } = post
 
 	return (
 		<div className={cn('relative flex flex-col gap-5 border-b border-dashed pb-5', className)}>
@@ -22,8 +22,12 @@ function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
 					height={630}
 					unoptimized={false}
 					className="dot-cover relative h-[230px] md:h-[630px] w-full rounded-lg hidden md:block"
+					style={{ viewTransitionName: `cover-${id}` }}
 				/>
-				<h1 className="z-10 bg-gradient-to-b from-black via-black/90 to-black/70 to-90% bg-clip-text py-2 text-center text-4xl font-bold text-transparent dark:from-white dark:via-white/90 dark:to-white/70 md:text-5xl md:leading-[64px]">
+				<h1
+					className="z-10 bg-gradient-to-b from-black via-black/90 to-black/70 to-90% bg-clip-text py-2 text-center text-4xl font-bold text-transparent dark:from-white dark:via-white/90 dark:to-white/70 md:text-5xl md:leading-[64px]"
+					style={{ viewTransitionName: `title-${id}` }}
+				>
 					{title}
 				</h1>
 				<ImageZoom
@@ -32,6 +36,7 @@ function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
 					width={1200}
 					height={630}
 					className="dot-cover relative h-[230px] md:h-[630px] w-full rounded-lg block md:hidden"
+					style={{ viewTransitionName: `cover-${id}` }}
 				/>
 			</div>
 		</div>

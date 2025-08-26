@@ -1,10 +1,9 @@
 'use client'
 
-import { TextRoll } from '@repo/stephen-v2-ui/motion'
 import { cn } from '@repo/stephen-v2-utils'
 import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import { useState } from 'react'
 
 import { ModeToggle } from '@/components/mode-toggle'

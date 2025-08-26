@@ -1,3 +1,4 @@
+import { ViewTransitions } from 'next-view-transitions'
 import React from 'react'
 
 import Hello from '@/components/hello'
@@ -7,10 +8,11 @@ import { Toaster } from '@/components/toaster'
 
 function AppProvider({ children }: { children: React.ReactNode }) {
 	return (
-		<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-			<BProgressProvider>{children}</BProgressProvider>
-			<Hello />
-			{/* <ConvexClientProvider>
+		<ViewTransitions>
+			<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+				<BProgressProvider>{children}</BProgressProvider>
+				<Hello />
+				{/* <ConvexClientProvider>
 				<NuqsAdapter>
 					<BProgressProvider>{children}</BProgressProvider>
 				</NuqsAdapter>
@@ -18,13 +20,14 @@ function AppProvider({ children }: { children: React.ReactNode }) {
 				<LoginModal />
 			</ConvexClientProvider> */}
 
-			{/* <Script
+				{/* <Script
 				defer
 				src="https://cloud.umami.is/script.js"
 				data-website-id="e33a48b3-c890-4ba6-9430-947be1127fc0"
 			/> */}
-			<Toaster />
-		</ThemeProvider>
+				<Toaster />
+			</ThemeProvider>
+		</ViewTransitions>
 	)
 }
 

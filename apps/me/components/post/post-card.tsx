@@ -3,7 +3,7 @@ import { AnimatedBlock } from '@repo/stephen-v2-ui/motion'
 import { AspectRatio, BlurImage } from '@repo/stephen-v2-ui/shadcn'
 import { cn, formatDate } from '@repo/stephen-v2-utils'
 import { ArrowRight } from 'lucide-react'
-import Link from 'next/link'
+import { Link } from 'next-view-transitions'
 import pluralize from 'pluralize'
 
 interface PostCardProps {
@@ -14,7 +14,7 @@ interface PostCardProps {
 }
 
 export const PostCard = ({ post, className, url, delay }: PostCardProps) => {
-	const { title, description, createdAt, author, cover } = post
+	const { title, description, createdAt, author, cover, id } = post
 
 	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
 
@@ -33,19 +33,37 @@ export const PostCard = ({ post, className, url, delay }: PostCardProps) => {
 				)}
 			>
 				<Link href={url || '#'} className="flex flex-col justify-between rounded-md border p-2 gap-2">
-					<AspectRatio ratio={16 / 9} className="rounded-md overflow-hidden flex items-center justify-center">
+					<AspectRatio
+						ratio={16 / 9}
+						className="relative rounded-md overflow-hidden flex items-center justify-center"
+					>
 						<BlurImage
 							src={cover || ''}
-							className="size-full object-cover transition-all grayscale-100 md:group-hover/post-card:grayscale-0"
+							className="size-full object-cover transition-all !grayscale-100 md:group-hover/post-card:grayscale-0"
 							width={300}
 							height={300}
 							alt={title}
 							unoptimized={false}
 						/>
+						{/* this image is used for view transition */}
+						<BlurImage
+							src={cover || ''}
+							className="size-full object-cover transition-all !grayscale-100 md:group-hover/post-card:grayscale-0 opacity-0 absolute inset-0 -z-10"
+							width={300}
+							height={300}
+							alt={title}
+							unoptimized={false}
+							style={{ viewTransitionName: `cover-${id}` }}
+						/>
 					</AspectRatio>
 
 					<div className="flex flex-col">
-						<h3 className="font-title text-md line-clamp-1 text-left font-bold">{title}</h3>
+						<h3
+							className="font-title text-md line-clamp-1 text-left font-bold"
+							style={{ viewTransitionName: `title-${id}` }}
+						>
+							{title}
+						</h3>
 						<p className="mt-2 line-clamp-1 md:line-clamp-2 text-left text-xs text-muted-foreground md:h-8 transition-colors group-hover/post-card:text-foreground">
 							{description}
 						</p>
