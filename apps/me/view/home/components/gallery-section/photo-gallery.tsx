@@ -1,8 +1,9 @@
 'use client'
 
+import { formatDate } from '@repo/stephen-v2-utils'
 import type { Direction, TargetAndTransition, TargetResolver } from 'motion/react'
-import { motion } from 'motion/react'
-import React, { useEffect, useState } from 'react'
+import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'motion/react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { Photo } from '@/view/home/components/gallery-section/photo'
 const photos = [
@@ -11,9 +12,11 @@ const photos = [
 		order: 0,
 		x: '-350px',
 		y: '15px',
-		zIndex: 50, // Highest z-index (on top)
+		zIndex: 50,
 		direction: 'left' as Direction,
 		src: '/assets/images/avt/me_09.png',
+		name: 'Binh Hung Island',
+		date: '05/18/2025',
 	},
 	{
 		id: 2,
@@ -23,6 +26,8 @@ const photos = [
 		zIndex: 40,
 		direction: 'left' as Direction,
 		src: '/assets/images/avt/me_02.png',
+		name: 'Vung Tau',
+		date: '07/30/2024',
 	},
 	{
 		id: 3,
@@ -32,6 +37,8 @@ const photos = [
 		zIndex: 30,
 		direction: 'right' as Direction,
 		src: '/assets/images/avt/me_04.png',
+		name: 'Home Land',
+		date: '04/30/2025',
 	},
 	{
 		id: 4,
@@ -41,15 +48,19 @@ const photos = [
 		zIndex: 20,
 		direction: 'right' as Direction,
 		src: '/assets/images/avt/me_03.png',
+		name: 'Ben Tre',
+		date: '07/30/2024',
 	},
 	{
 		id: 5,
 		order: 4,
 		x: '350px',
 		y: '44px',
-		zIndex: 10, // Lowest z-index (at bottom)
+		zIndex: 10,
 		direction: 'left' as Direction,
 		src: '/assets/images/avt/me_05.png',
+		name: 'Binh Hung Island',
+		date: '05/18/2025',
 	},
 ]
 
@@ -59,6 +70,13 @@ interface Variants {
 }
 
 function PhotoGallery({ animationDelay = 0.5 }: { animationDelay?: number }) {
+	const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+	const springConfig = { stiffness: 100, damping: 15 }
+	const x = useMotionValue(0)
+	const animationFrameRef = useRef<number | null>(null)
+	const rotate = useSpring(useTransform(x, [-100, 100], [-45, 45]), springConfig)
+	const translateX = useSpring(useTransform(x, [-100, 100], [-50, 50]), springConfig)
+
 	const [isVisible, setIsVisible] = useState(false)
 	const [isLoaded, setIsLoaded] = useState(false)
 
@@ -69,7 +87,7 @@ function PhotoGallery({ animationDelay = 0.5 }: { animationDelay?: number }) {
 			opacity: 1,
 			transition: {
 				staggerChildren: 0.15,
-				delayChildren: 0.1, // reduced from 0.3 to 0.1 since we already have the fade-in delay
+				delayChildren: 0.1,
 			},
 		},
 	}
@@ -81,21 +99,7 @@ function PhotoGallery({ animationDelay = 0.5 }: { animationDelay?: number }) {
 			y: 0,
 			rotate: 0,
 			scale: 1,
-			// keep the same z-index throughout animation
 		}),
-		// visible: (custom) => ({
-		// 	x: custom.x,
-		// 	y: custom.y,
-		// 	rotate: 0, // No rotation
-		// 	scale: 1,
-		// 	transition: {
-		// 		type: 'spring',
-		// 		stiffness: 70,
-		// 		damping: 12,
-		// 		mass: 1,
-		// 		delay: custom.order * 0.15, // explicit delay based on order
-		// 	},
-		// }),
 		inview: (custom) => ({
 			x: custom.x,
 			y: custom.y,
@@ -106,9 +110,20 @@ function PhotoGallery({ animationDelay = 0.5 }: { animationDelay?: number }) {
 				stiffness: 70,
 				damping: 12,
 				mass: 1,
-				delay: custom.order * 0.15, // explicit delay based on order
+				delay: custom.order * 0.15,
 			},
 		}),
+	}
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const handleMouseMove = (event: any) => {
+		if (animationFrameRef.current) {
+			cancelAnimationFrame(animationFrameRef.current)
+		}
+		animationFrameRef.current = requestAnimationFrame(() => {
+			const halfWidth = event.target.offsetWidth / 2
+			x.set(event.nativeEvent.offsetX - halfWidth)
+		})
 	}
 
 	useEffect(() => {
@@ -147,14 +162,14 @@ function PhotoGallery({ animationDelay = 0.5 }: { animationDelay?: number }) {
 				>
 					<div className="relative h-[220px] w-[220px]">
 						{/* render photos in reverse order so that higher z-index photos are rendered later in the DOM */}
-						{[...photos].reverse().map((photo) => (
+						{[...photos].reverse().map((photo, index) => (
 							<motion.div
 								key={photo.id}
 								className="absolute left-0 top-0"
-								style={{ zIndex: photo.zIndex }} // apply z-index directly in style
+								style={{ zIndex: photo.zIndex }}
 								variants={photoVariants}
 								initial="hidden"
-								whileInView="inview" // just run while in view
+								whileInView="inview"
 								viewport={{ once: true, amount: 0.2 }}
 								custom={{
 									x: photo.x,
@@ -163,13 +178,53 @@ function PhotoGallery({ animationDelay = 0.5 }: { animationDelay?: number }) {
 								}}
 								whileHover={{ zIndex: 50 }}
 							>
-								<Photo
-									width={220}
-									height={220}
-									src={photo.src}
-									alt="Family photo"
-									direction={photo.direction}
-								/>
+								<div
+									className="group relative"
+									onMouseEnter={() => setHoveredIndex(index)}
+									onMouseLeave={() => setHoveredIndex(null)}
+								>
+									<AnimatePresence>
+										{hoveredIndex === index && (
+											<motion.div
+												initial={{ opacity: 0, y: 20, scale: 0.6 }}
+												animate={{
+													opacity: 1,
+													y: 0,
+													scale: 1,
+													transition: {
+														type: 'spring',
+														stiffness: 260,
+														damping: 10,
+													},
+												}}
+												exit={{ opacity: 0, y: 20, scale: 0.6 }}
+												style={{
+													translateX: translateX,
+													rotate: rotate,
+													whiteSpace: 'nowrap',
+												}}
+												className="absolute -top-16 left-1/2 z-[99] flex -translate-x-1/2 flex-col items-center justify-center rounded-md bg-black px-4 py-2 text-xs shadow-xl"
+											>
+												<div className="absolute inset-x-10 -bottom-px z-30 h-px w-[20%] bg-gradient-to-r from-transparent via-emerald-500 to-transparent" />
+												<div className="absolute -bottom-px left-10 z-30 h-px w-[40%] bg-gradient-to-r from-transparent via-sky-500 to-transparent" />
+												<div className="relative z-30 text-base font-bold text-white">
+													{photo.name}
+												</div>
+												<div className="text-xs text-white">
+													{formatDate(photo.date, 'MMMM D, YYYY')}
+												</div>
+											</motion.div>
+										)}
+									</AnimatePresence>
+									<Photo
+										width={220}
+										height={220}
+										src={photo.src}
+										alt="Family photo"
+										direction={photo.direction}
+										onMouseMove={handleMouseMove}
+									/>
+								</div>
 							</motion.div>
 						))}
 					</div>

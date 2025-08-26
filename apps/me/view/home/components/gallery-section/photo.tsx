@@ -21,6 +21,7 @@ export const Photo = ({
 	direction,
 	width,
 	height,
+	onMouseMove,
 	...props
 }: {
 	src: string
@@ -29,6 +30,8 @@ export const Photo = ({
 	direction: Direction
 	width: number
 	height: number
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	onMouseMove?: (even: any) => void
 }) => {
 	const [rotation, setRotation] = useState<number>(0)
 	const x = useMotionValue(200)
@@ -83,7 +86,10 @@ export const Photo = ({
 			draggable={false}
 			tabIndex={0}
 		>
-			<div className="relative h-full w-full overflow-hidden rounded-lg shadow-sm shadow-slate-900/30">
+			<div
+				onMouseMove={onMouseMove}
+				className="relative h-full w-full overflow-hidden rounded-lg shadow-sm shadow-slate-900/30"
+			>
 				<MotionImage
 					className={cn('rounded-lg object-cover size-full')}
 					fill
