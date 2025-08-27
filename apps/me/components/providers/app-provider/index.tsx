@@ -1,4 +1,3 @@
-import { ViewTransitions } from 'next-view-transitions'
 import React from 'react'
 
 import Hello from '@/components/hello'
@@ -8,7 +7,7 @@ import { Toaster } from '@/components/toaster'
 
 function AppProvider({ children }: { children: React.ReactNode }) {
 	return (
-		<ViewTransitions>
+		<>
 			<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
 				<BProgressProvider>{children}</BProgressProvider>
 				<Hello />
@@ -27,7 +26,7 @@ function AppProvider({ children }: { children: React.ReactNode }) {
 			/> */}
 				<Toaster />
 			</ThemeProvider>
-		</ViewTransitions>
+		</>
 	)
 }
 
