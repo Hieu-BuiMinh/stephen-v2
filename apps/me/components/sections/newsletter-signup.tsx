@@ -98,7 +98,7 @@ function NewsletterSignUp() {
 									showMessage={false}
 								/>
 
-								<Button type="submit" className="w-full md:w-auto" variant="secondary">
+								<Button type="submit" className="w-full md:w-auto" variant="secondary-matter">
 									Subscribe
 								</Button>
 							</form>

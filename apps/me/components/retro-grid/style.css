@@ -1,0 +1,12 @@
+@keyframes retro-grid {
+	0% {
+		transform: translateY(-50%);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+.animate-grid {
+	animation: retro-grid 15s linear infinite;
+}
