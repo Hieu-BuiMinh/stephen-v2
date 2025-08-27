@@ -38,7 +38,7 @@ function LatestArticles() {
 
 			<div className="flex items-center justify-center">
 				<Link href={`/topics/dev`}>
-					<Button variant="outline" className="w-auto cursor-pointer">
+					<Button variant="secondary-matter" className="w-auto cursor-pointer">
 						Explore
 					</Button>
 				</Link>

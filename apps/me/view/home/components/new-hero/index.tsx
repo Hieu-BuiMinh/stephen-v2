@@ -58,7 +58,7 @@ function NewHeroSection() {
 							<Link
 								href={APP_CONFIG.author.resume}
 								target="_blank"
-								className={cn(buttonVariants({ variant: 'default' }), 'w-full md:w-auto')}
+								className={cn(buttonVariants({ variant: 'primary-matter' }), 'w-full md:w-auto')}
 							>
 								<Zap className="hidden md:block" />
 								See for Yourself

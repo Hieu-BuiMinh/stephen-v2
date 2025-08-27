@@ -56,7 +56,7 @@ function TopicDevPage() {
 
 						<div className="my-8 flex items-center justify-center">
 							<Link href={`/topics/dev/${key}`}>
-								<Button variant="outline" className="w-auto cursor-pointer">
+								<Button variant="secondary-matter" className="w-auto cursor-pointer">
 									View All
 								</Button>
 							</Link>

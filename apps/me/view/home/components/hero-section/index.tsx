@@ -45,7 +45,7 @@ function HeroSection() {
 					<Link
 						href={APP_CONFIG.author.resume}
 						target="_blank"
-						className={cn(buttonVariants({ variant: 'default' }), 'w-full md:w-auto')}
+						className={cn(buttonVariants({ variant: 'primary-matter' }), 'w-full md:w-auto')}
 					>
 						See for Yourself
 						<SquareArrowOutUpRight className="hidden md:block" />

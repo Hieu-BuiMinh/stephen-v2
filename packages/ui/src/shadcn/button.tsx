@@ -1,3 +1,5 @@
+'use client'
+
 import { Slot } from '@radix-ui/react-slot'
 import { cn } from '@repo/stephen-v2-utils'
 import { cva, type VariantProps } from 'class-variance-authority'
@@ -16,6 +18,14 @@ const buttonVariants = cva(
 				secondary: 'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
 				ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
 				link: 'text-primary underline-offset-4 hover:underline',
+				'default-matter':
+					'from-sky-600 to-sky-600/85 text-white border border-sky-300/25 bg-gradient-to-t shadow-md shadow-sky-300/20 ring-1 ring-inset ring-sky-600 transition-[filter] duration-200 hover:brightness-110 active:brightness-90 dark:border-sky-600 dark:ring-transparent',
+				'primary-matter':
+					'bg-radial-[at_52%_-52%] **:[text-shadow:0_1px_0_var(--color-primary)] border-primary from-primary/70 to-primary/95 text-primary-foreground inset-shadow-2xs inset-shadow-white/25 dark:inset-shadow-white dark:from-primary dark:to-primary/70 dark:hover:to-primary border text-sm shadow-md shadow-zinc-950/30 ring-0 transition-[filter] duration-200 hover:brightness-125 active:brightness-95 dark:border-0',
+				'secondary-matter':
+					'shadow-xs bg-linear-to-t hover:to-muted to-background from-muted dark:from-muted/50 dark:border-border border border-zinc-300 shadow-zinc-950/10 transition-colors duration-200',
+				'destructive-matter':
+					'from-destructive to-destructive/85 text-destructive-foreground border border-zinc-950/25 bg-gradient-to-t shadow-md shadow-zinc-950/20 ring-1 ring-inset ring-white/20 transition-[filter] duration-200 hover:brightness-110 active:brightness-90 dark:border-white/15 dark:ring-transparent',
 			},
 			size: {
 				default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -43,7 +53,13 @@ function Button({
 	}) {
 	const Comp = asChild ? Slot : 'button'
 
-	return <Comp data-slot="button" className={cn(buttonVariants({ variant, size, className }))} {...props} />
+	return (
+		<Comp
+			data-slot="button"
+			className={cn(buttonVariants({ variant, size, className }), 'cursor-pointer')}
+			{...props}
+		/>
+	)
 }
 
 export { Button, buttonVariants }
