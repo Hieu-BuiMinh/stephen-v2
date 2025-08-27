@@ -29,6 +29,10 @@ export function ModeToggle() {
 			if (!document.startViewTransition) switchTheme()
 			document.startViewTransition(switchTheme)
 		}, 100)
+		setTimeout(() => {
+			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+			document && document.documentElement.classList.remove('theme-switch')
+		}, 1500)
 	}
 
 	return (

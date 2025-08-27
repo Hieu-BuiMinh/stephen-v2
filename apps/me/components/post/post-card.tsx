@@ -3,8 +3,9 @@ import { AnimatedBlock } from '@repo/stephen-v2-ui/motion'
 import { AspectRatio, BlurImage } from '@repo/stephen-v2-ui/shadcn'
 import { cn, formatDate } from '@repo/stephen-v2-utils'
 import { ArrowRight } from 'lucide-react'
-import { Link } from 'next-view-transitions'
+import Link from 'next/link'
 import pluralize from 'pluralize'
+import { unstable_ViewTransition as ViewTransition } from 'react'
 
 interface PostCardProps {
 	post: TPost
@@ -46,64 +47,61 @@ export const PostCard = ({ post, className, url, delay }: PostCardProps) => {
 							unoptimized={false}
 						/>
 						{/* this image is used for view transition */}
-						<BlurImage
-							src={post.cover || ''}
-							className="size-full object-cover transition-all !grayscale-100 md:group-hover/post-card:grayscale-0 opacity-0 absolute inset-0 -z-10"
-							width={300}
-							height={300}
-							alt={title}
-							unoptimized={false}
-							style={{ viewTransitionName: `cover-${id}` }}
-						/>
+						<ViewTransition name={`cover-${id}`}>
+							<BlurImage
+								src={post.cover || ''}
+								className="size-full object-cover transition-all !grayscale-100 md:group-hover/post-card:grayscale-0 opacity-0 absolute inset-0 -z-10"
+								width={300}
+								height={300}
+								alt={title}
+								unoptimized={false}
+							/>
+						</ViewTransition>
 					</AspectRatio>
 
 					<div className="flex flex-col">
-						<h3
-							className="font-title text-md line-clamp-1 text-left font-bold"
-							style={{ viewTransitionName: `title-${id}` }}
-						>
-							{title}
-						</h3>
-						<p
-							className="mt-2 line-clamp-1 md:line-clamp-2 text-left text-xs text-muted-foreground md:h-8 transition-colors group-hover/post-card:text-foreground"
-							style={{ viewTransitionName: `description-${id}` }}
-						>
-							{description}
-						</p>
+						<ViewTransition name={`title-${id}`}>
+							<h3 className="font-title text-md line-clamp-1 text-left font-bold">{title}</h3>
+						</ViewTransition>
+						<ViewTransition name={`description-${id}`}>
+							<p className="mt-2 line-clamp-1 md:line-clamp-2 text-left text-xs text-muted-foreground md:h-8 transition-colors group-hover/post-card:text-foreground">
+								{description}
+							</p>
+						</ViewTransition>
 					</div>
 
 					<div className="w-full h-[1px] border-t border-dashed"></div>
 
-					<div
-						className="flex gap-2 items-center text-muted-foreground text-xs mt-2 transition-colors group-hover/post-card:text-foreground"
-						style={{ viewTransitionName: `auth-${id}` }}
-					>
-						<div className="size-6 rounded-full flex items-center justify-center overflow-hidden md:size-8">
-							<BlurImage
-								src={author.avatar}
-								width={45}
-								height={45}
-								className="grayscale-100"
-								alt="author"
-								unoptimized={false}
-							/>
+					<ViewTransition name={`auth-${id}`}>
+						<div className="flex gap-2 items-center text-muted-foreground text-xs mt-2 transition-colors group-hover/post-card:text-foreground">
+							<div className="size-6 rounded-full flex items-center justify-center overflow-hidden md:size-8">
+								<BlurImage
+									src={author.avatar}
+									width={45}
+									height={45}
+									className="grayscale-100"
+									alt="author"
+									unoptimized={false}
+								/>
+							</div>
+							<div className="flex flex-col gap-1">
+								<p>@{author.name}</p>
+								<p className="capitalize">{formattedDate}</p>
+							</div>
 						</div>
-						<div className="flex flex-col gap-1">
-							<p>@{author.name}</p>
-							<p className="capitalize">{formattedDate}</p>
-						</div>
-					</div>
+					</ViewTransition>
 
-					<div
-						className="flex items-center justify-between gap-2 text-xs text-zinc-500 transition-colors group-hover/post-card:text-foreground"
-						style={{ viewTransitionName: `meta-${id}` }}
-					>
+					<div className="flex items-center justify-between gap-2 text-xs text-zinc-500 transition-colors group-hover/post-card:text-foreground">
 						<div className="flex gap-2">
-							{/* <div>{pluralize('like', likesQuery, true)}</div> */}
-							<div>{pluralize('like', 100, true)}</div>
+							<ViewTransition name={`like-${id}`}>
+								{/* <div>{pluralize('like', likesQuery, true)}</div> */}
+								<div>{pluralize('like', 100, true)}</div>
+							</ViewTransition>
 							<div>&middot;</div>
-							{/* <div>{pluralize('view', viewsQuery, true)}</div> */}
-							<div>{pluralize('view', 120, true)}</div>
+							<ViewTransition name={`view-${id}`}>
+								{/* <div>{pluralize('view', viewsQuery, true)}</div> */}
+								<div>{pluralize('view', 120, true)}</div>
+							</ViewTransition>
 						</div>
 						<span className="flex items-center justify-center gap-1">
 							Read more <ArrowRight size={10} />
