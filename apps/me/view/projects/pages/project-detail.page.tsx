@@ -15,7 +15,6 @@ interface PostPageProps {
 export default async function ProjectDetailPageView({ params }: PostPageProps) {
 	const { id } = await params
 	const post = await getVelitePostById({ id, postsList: projectPost })
-	console.log('post', post)
 
 	if (!post || !post.published) {
 		notFound()

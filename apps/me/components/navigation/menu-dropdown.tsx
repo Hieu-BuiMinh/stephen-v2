@@ -48,7 +48,7 @@ function NavMenuDropdown({ triggerText, dropDownContent, triggerClass }: INavMen
 			<DropdownMenuContent
 				onMouseEnter={handleOpen}
 				onMouseLeave={handleClose}
-				className="p-2 mt-1 rounded-xl bg-foreground/10 shadow-xl/30 outline-none backdrop-blur-sm border dark:border-none border-background z-[60] before:absolute before:-inset-1 before:-top-4 overflow-visible before:-z-10"
+				className="p-2 mt-1 rounded-xl bg-foreground/10 shadow-xl/30 outline-none backdrop-blur-sm border dark:border-background/50 border-background z-[60] before:absolute before:-inset-1 before:-top-4 overflow-visible before:-z-10"
 				align="center"
 			>
 				{dropDownContent}

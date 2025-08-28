@@ -10,6 +10,7 @@ import { ModeToggle } from '@/components/mode-toggle'
 import NavMenuDropdown from '@/components/navigation/menu-dropdown'
 import type { TNavbarItem } from '@/constants/components/navbar.const'
 import { navbarItems } from '@/constants/components/navbar.const'
+import { buttonVariants } from '@repo/stephen-v2-ui/shadcn'
 
 function Navbar() {
 	const navKeys = Object.keys(navbarItems)
@@ -105,6 +106,7 @@ const ItemLink = ({ className, item }: IItemLink) => {
 		<Link
 			className={cn(
 				'flex gap-2 items-center rounded-lg p-2 border border-transparent bg-background/40 transition-colors group dark:text-muted-foreground dark:hover:text-foreground hover:bg-background/70 dark:hover:border-transparent',
+				'bg-radial-[at_52%_-52%] **:[text-shadow:0_1px_0_var(--color-secondary)] border-secondary from-secondary/20 to-secondary/50 text-secondary-foreground inset-shadow-2xs inset-shadow-background/50 dark:inset-shadow-background/25 dark:from-secondary dark:to-secondary/70 dark:hover:to-secondary border text-sm shadow-md shadow-zinc-950/30 ring-0 transition-[filter] duration-200 dark:border-0',
 				className
 			)}
 			href={item.href}
