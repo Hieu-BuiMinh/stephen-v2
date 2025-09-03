@@ -11,7 +11,7 @@ function DocumentDetailLayout({ children }: { children: React.ReactNode }) {
 			<DocNavbar className="w-full h-16 sticky top-0 border-b bg-background z-10" />
 			<div className="flex">
 				<DocSidebar className="w-70 h-screen sticky top-16 border-r p-3" />
-				<div className="min-h-[300vh] p-3 flex-1">{children}</div>
+				<div className="min-h-[calc(200vh-4rem)] p-3 flex-1">{children}</div>
 			</div>
 
 			<NewsletterSignUp />

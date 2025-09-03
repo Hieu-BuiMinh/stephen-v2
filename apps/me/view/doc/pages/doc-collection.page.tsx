@@ -1,7 +1,7 @@
-import React from 'react'
+import MainLayout from '@/components/layouts/main-layout'
 
-function DocumentCollectionPageView() {
-	return <div>DocumentCollectionPageView</div>
+function DocumentCollectionPageView({ collection }: { collection: string }) {
+	return <MainLayout>{collection}</MainLayout>
 }
 
 export default DocumentCollectionPageView

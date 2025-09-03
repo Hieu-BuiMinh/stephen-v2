@@ -1,5 +1,5 @@
-function DocumentPostDetailPageView() {
-	return <>detail</>
+function DocumentPostDetailPageView({ id }: { id: string }) {
+	return <>{id}</>
 }
 
 export default DocumentPostDetailPageView

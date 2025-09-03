@@ -7,7 +7,7 @@ interface IDocumentPostDetail {
 async function DocumentPostDetail({ params }: IDocumentPostDetail) {
 	const { id } = await params
 
-	return <DocumentPostDetailPageView />
+	return <DocumentPostDetailPageView id={id} />
 }
 
 export default DocumentPostDetail
