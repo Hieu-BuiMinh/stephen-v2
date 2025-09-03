@@ -10,9 +10,8 @@ import { ModeToggle } from '@/components/mode-toggle'
 import NavMenuDropdown from '@/components/navigation/menu-dropdown'
 import type { TNavbarItem } from '@/constants/components/navbar.const'
 import { navbarItems } from '@/constants/components/navbar.const'
-import { buttonVariants } from '@repo/stephen-v2-ui/shadcn'
 
-function Navbar() {
+function Navbar({ className }: { className?: string }) {
 	const navKeys = Object.keys(navbarItems)
 	const { scrollY } = useScroll()
 
@@ -39,7 +38,10 @@ function Navbar() {
 				ease: 'easeOut',
 				y: { duration: 0.3, ease: 'easeInOut' },
 			}}
-			className="fixed hidden h-16 w-full items-center justify-between px-4 bg-background left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:border-b lg:border-x md:border-primary/10 z-[51]"
+			className={cn(
+				'fixed hidden h-16 w-full items-center justify-between px-4 bg-background left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:border-b lg:border-x md:border-primary/10 z-[51]',
+				className
+			)}
 		>
 			<div className="flex items-center justify-between gap-2 capitalize">
 				<Link href="/" className="size-[35px]">
