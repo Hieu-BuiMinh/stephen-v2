@@ -7,7 +7,7 @@ function DocumentPageView() {
 		<MainLayout>
 			<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 				{docCollections.map((collection) => {
-					const url = `/doc/${collection.collection}`
+					const url = `/doc/${collection.collectionName}`
 					return (
 						<DocCollectionCard
 							className="col-span-1"
