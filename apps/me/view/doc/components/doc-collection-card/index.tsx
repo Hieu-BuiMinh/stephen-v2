@@ -19,7 +19,7 @@ function DocCollectionCard({
 		<Link
 			href={url || '#'}
 			className={cn(
-				'group flex flex-col items-start justify-between gap-5 rounded-xl border p-3 relative overflow-hidden',
+				'group flex flex-col items-start justify-end gap-5 rounded-xl border p-3 relative overflow-hidden shadow-[0_0_0_3px_var(--muted)] hover:shadow-[0_0_0_3px_var(--muted-foreground)] duration-500',
 				className
 			)}
 		>

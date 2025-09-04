@@ -11,11 +11,11 @@ interface ICollections {
 	id: string
 	title: string
 	description: string
-	cover?: string
 	tableOfContent: ITableOfContent[]
+	icon?: ReactNode | string
+	cover?: string
 }
 export interface IDocCollection {
-	icon: ReactNode
 	title: string
 	description: string
 	collectionName: string

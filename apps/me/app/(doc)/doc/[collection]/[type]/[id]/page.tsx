@@ -1,7 +1,7 @@
 import DocumentPostDetailPageView from '@/view/doc/pages/doc-post-detail.page'
 
 interface IDocumentPostDetail {
-	params: Promise<{ collection: string; id: string }>
+	params: Promise<{ collection: string; type: string; id: string }>
 }
 
 async function DocumentPostDetail({ params }: IDocumentPostDetail) {
