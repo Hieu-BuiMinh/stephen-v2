@@ -5,18 +5,26 @@ import { Button } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
 import { ChevronLeft, House } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 import LightRaysClient from '@/components/effects/light-rays-client'
 import MainLayout from '@/components/layouts/main-layout'
 import { RetroGrid } from '@/components/retro-grid'
 
 export default function NotFound() {
+	const [loaded, setLoaded] = useState(false)
 	const router = useRouter()
 
 	const handleRedirect = (type: 'BACK' | 'HOME') => {
 		if (type === 'BACK') router.back()
 		else router.push('/')
 	}
+
+	useEffect(() => {
+		setLoaded(true)
+	}, [])
+
+	if (!loaded) return null
 
 	return (
 		<MainLayout>

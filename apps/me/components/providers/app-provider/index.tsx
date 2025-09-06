@@ -2,6 +2,7 @@ import React from 'react'
 
 import Hello from '@/components/hello'
 import BProgressProvider from '@/components/providers/bprogress-provider'
+import ClickSpark from '@/components/providers/click-spark'
 import { ThemeProvider } from '@/components/providers/shadcn-provider'
 import { Toaster } from '@/components/toaster'
 
@@ -9,9 +10,10 @@ function AppProvider({ children }: { children: React.ReactNode }) {
 	return (
 		<>
 			<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-				<BProgressProvider>{children}</BProgressProvider>
-				<Hello />
-				{/* <ConvexClientProvider>
+				<ClickSpark>
+					<BProgressProvider>{children}</BProgressProvider>
+					<Hello />
+					{/* <ConvexClientProvider>
 				<NuqsAdapter>
 					<BProgressProvider>{children}</BProgressProvider>
 				</NuqsAdapter>
@@ -19,12 +21,13 @@ function AppProvider({ children }: { children: React.ReactNode }) {
 				<LoginModal />
 			</ConvexClientProvider> */}
 
-				{/* <Script
+					{/* <Script
 				defer
 				src="https://cloud.umami.is/script.js"
 				data-website-id="e33a48b3-c890-4ba6-9430-947be1127fc0"
 			/> */}
-				<Toaster />
+					<Toaster />
+				</ClickSpark>
 			</ThemeProvider>
 		</>
 	)

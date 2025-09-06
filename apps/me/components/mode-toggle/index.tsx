@@ -22,17 +22,8 @@ export function ModeToggle() {
 	}
 
 	const handleSwichTheme = () => {
-		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-		document && document.documentElement.classList.add('theme-switch')
-
-		setTimeout(() => {
-			if (!document.startViewTransition) switchTheme()
-			document.startViewTransition(switchTheme)
-		}, 100)
-		setTimeout(() => {
-			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-			document && document.documentElement.classList.remove('theme-switch')
-		}, 1500)
+		if (!document.startViewTransition) switchTheme()
+		document.startViewTransition(switchTheme)
 	}
 
 	return (

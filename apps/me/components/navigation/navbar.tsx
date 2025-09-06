@@ -39,7 +39,7 @@ function Navbar({ className }: { className?: string }) {
 				y: { duration: 0.3, ease: 'easeInOut' },
 			}}
 			className={cn(
-				'fixed hidden h-16 w-full items-center justify-between px-4 bg-background left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:border-b lg:border-x md:border-primary/10 z-[51]',
+				'fixed hidden h-16 w-full items-center justify-between px-4 bg-background left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:border-b lg:border-x md:border-primary/10 z-[70]',
 				className
 			)}
 		>
