@@ -3,25 +3,22 @@
 	-webkit-mask-image: radial-gradient(ellipse 80% 100% at 50% 30%, #000 40%, transparent 75%);
 }
 
-.dark .profile-ring {
-	/* box-shadow:
-		-8px -4px 8px 0px #040404,
-		8px 4px 12px 0px #111,
-		4px 4px 4px 0px #111 inset,
-		-4px -4px 4px 0px #040404 inset;
-
-	background: #111111;
-	box-shadow:
-		-8px -8px 16px rgba(24, 24, 24, 0.85),
-		8px 8px 16px rgba(8, 8, 8, 0.8); */
-	box-shadow: none;
-	background: none;
-	border: 1.5px dashed var(--color-border);
-}
 .profile-ring {
 	box-shadow:
-		-8px -4px 8px 0px #fff,
-		8px 4px 12px 0px #d1d9e6,
-		4px 4px 4px 0px #d1d9e6 inset,
-		-4px -4px 4px 0px #fff inset;
+		rgba(0, 0, 0, 0.4) 0px 2px 4px,
+		rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+		rgba(0, 0, 0, 0.3) 0px -4px 13px -3px,
+		rgba(0, 0, 0, 0.2) 0px -3px 0px inset,
+		rgba(0, 0, 0, 0.2) 0px 3px 0px inset,
+		rgba(0, 0, 0, 0.2) 3px 0px 0px inset,
+		rgba(0, 0, 0, 0.2) -3px 0px 0px inset;
+}
+
+.dark .profile-ring {
+	box-shadow:
+		rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+		rgba(255, 255, 255, 0.2) 0px -3px 0px inset,
+		rgba(255, 255, 255, 0.2) 0px 3px 0px inset,
+		rgba(255, 255, 255, 0.2) 3px 0px 0px inset,
+		rgba(255, 255, 255, 0.2) -3px 0px 0px inset;
 }

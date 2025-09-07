@@ -11,6 +11,7 @@ import { defineConfig } from 'velite'
 
 import { bookRecap } from './collections/book.collections'
 import { devPost } from './collections/dev.collections'
+import { docPost } from './collections/doc.collections'
 import { projectPost } from './collections/project.collections'
 import { shortWriting } from './collections/short.collections'
 
@@ -28,6 +29,7 @@ export default defineConfig({
 		bookRecap,
 		shortWriting,
 		projectPost,
+		docPost,
 	},
 	mdx: {
 		rehypePlugins: [

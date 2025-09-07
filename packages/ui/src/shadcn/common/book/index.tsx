@@ -26,7 +26,7 @@ const bookvariants = tv({
 	},
 })
 
-interface BookProps {
+export interface BookProps {
 	color?: string
 	textColor?: string
 	texture?: boolean
@@ -36,9 +36,10 @@ interface BookProps {
 	illustration?: React.ReactNode
 	width?: number
 	title?: string
+	onClick?: () => void
 }
 
-function Book({ color, depth, illustration, icon, textColor, texture, variant, width, title }: BookProps) {
+function Book({ color, depth, illustration, icon, textColor, texture, variant, width, title, onClick }: BookProps) {
 	const { container, 'book-front': bookFront, 'book-paper': bookPaper, 'book-back': bookBack } = bookvariants()
 	const Icon = icon
 
@@ -53,6 +54,7 @@ function Book({ color, depth, illustration, icon, textColor, texture, variant, w
 					'--book-width': (width || 196) + 'px',
 				} as React.CSSProperties
 			}
+			onClick={onClick}
 		>
 			<div className={cn(container())}>
 				<Stack align="stretch" className={cn(bookFront())}>

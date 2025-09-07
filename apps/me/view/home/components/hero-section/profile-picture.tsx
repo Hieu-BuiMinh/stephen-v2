@@ -1,7 +1,10 @@
 'use client'
 
+import './style.css'
+
 import { GlareHover } from '@repo/stephen-v2-ui/motion'
 import { BlurImage } from '@repo/stephen-v2-ui/shadcn'
+import { cn } from '@repo/stephen-v2-utils'
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 
@@ -9,9 +12,10 @@ import { useState } from 'react'
 
 interface ProfilePictureProps {
 	delay?: number
+	className?: string
 }
 
-export function ProfilePicture({}: ProfilePictureProps) {
+export function ProfilePicture({ className }: ProfilePictureProps) {
 	const images = [
 		'/assets/images/avt/me_01.png',
 		'/assets/images/avt/me_02.png',
@@ -23,29 +27,30 @@ export function ProfilePicture({}: ProfilePictureProps) {
 		'/assets/images/avt/me_08.png',
 		'/assets/images/avt/me_09.png',
 	]
-	const [imageSrc, setImageSrc] = useState(images[8])
-	const [isChanging, setIsChanging] = useState(false)
+	const [imageSrc, setImageSrc] = useState(images[3])
+	// const [isChanging, setIsChanging] = useState(false)
 
 	const changeImage = () => {
-		setIsChanging(true)
+		// setIsChanging(true)
 		const availableImages = images.filter((img) => img !== imageSrc)
 		const randomIndex = Math.floor(Math.random() * availableImages.length)
 		setImageSrc(availableImages[randomIndex])
 	}
 
 	return (
-		<div className="relative size-[190px] lg:size-[280px] shrink-0">
+		<div className={cn('relative size-[150px] lg:size-[250px] shrink-0', className)}>
 			<motion.div
 				key={imageSrc}
-				className="profile-ring size-full rounded-full bg-foreground shadow-2xl"
+				className="profile-ring size-full rounded-full bg-background"
 				initial={{ scale: 0 }}
-				animate={isChanging ? { scale: 0.95 } : { scale: 1 }}
+				// animate={isChanging ? { scale: 0.95 } : { scale: 1 }}
+				animate={{ scale: 1 }}
 				transition={{
 					type: 'spring',
-					stiffness: 300,
-					damping: 15,
+					stiffness: 400,
+					damping: 20,
 				}}
-				onAnimationComplete={() => setIsChanging(false)}
+				// onAnimationComplete={() => setIsChanging(false)}
 			/>
 			<AnimatePresence mode="wait">
 				<motion.div
@@ -60,12 +65,12 @@ export function ProfilePicture({}: ProfilePictureProps) {
 						damping: 20,
 					}}
 					whileTap={{ scale: 0.9 }}
-					onAnimationComplete={() => setIsChanging(false)}
+					// onAnimationComplete={() => setIsChanging(false)}
 				>
-					<GlareHover className="!rounded-full size-[180px] lg:size-[270px]">
+					<GlareHover className="!rounded-full size-[130px] lg:size-[230px]">
 						<BlurImage
 							key={imageSrc}
-							className="cursor-pointer rounded-full object-cover size-[180px] lg:size-[270px] transition-all"
+							className="cursor-pointer rounded-full object-cover size-[130px] lg:size-[230px] transition-all"
 							src={imageSrc}
 							alt=""
 							width={350}

@@ -1,0 +1,33 @@
+[
+  {
+    "id": "75c80ca3-c5e4-449c-b718-f9dca03b6daa",
+    "slug": "articles/doc/i-ching/tu-hoc-kinh-dich-tap-1",
+    "title": "Tự học kinh dịch tập 1",
+    "createdAt": "2024-08-02T00:00:00.000Z",
+    "metadata": {
+      "readingTime": 1,
+      "wordCount": 119
+    },
+    "description": "...",
+    "published": true,
+    "hashTags": [
+      "doc",
+      "i-ching"
+    ],
+    "body": "const{Fragment:e,jsx:t,jsxs:n}=arguments[0];function _createMdxContent(o){const a={a:\"a\",h2:\"h2\",p:\"p\",strong:\"strong\",...o.components};return n(e,{children:[n(a.p,{children:[\"I first came across Conventional Commits during my time at \",t(a.a,{href:\"/about\",children:\"Stephen\"}),\", but initially, I didn't give much thought\\r\\nto these unique commit messages. It wasn't until recently that I took a closer look and realized how much more efficient and organized they make the\\r\\ndevelopment process.\"]}),\"\\n\",t(a.p,{children:\"Here's why you might want to give them a try too! 😃\"}),\"\\n\",t(a.h2,{id:\"what-are-conventional-commits\",children:t(a.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#what-are-conventional-commits\",children:\"What Are Conventional Commits?\"})}),\"\\n\",t(a.p,{children:\"Conventional Commits is a specification that provides a simple, structured convention for commit messages.\\r\\nIt allows to write messages that are easy to read and maintain, and which convey the specific intent behind each\\r\\nchange.\"}),\"\\n\",n(a.p,{children:[\"The conventional commit message format is straightforward. It starts with a \",t(a.strong,{children:\"type\"}),\", optionally followed by a \",t(a.strong,{children:\"scope\"}),\", and a short \",t(a.strong,{children:\"description\"}),\". For example:\"]})]})}return{default:function(e={}){const{wrapper:n}=e.components||{};return n?t(n,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
+    "toc": [
+      {
+        "title": "What Are Conventional Commits?",
+        "url": "#what-are-conventional-commits",
+        "items": []
+      }
+    ],
+    "updatedAt": "9/7/2025, 7:42:35 PM",
+    "author": {
+      "avatar": "/assets/images/avt/me_04.png",
+      "name": "Stephen",
+      "github": "https://github.com/Hieu-BuiMinh"
+    },
+    "slugAsParams": "doc/i-ching/tu-hoc-kinh-dich-tap-1"
+  }
+]

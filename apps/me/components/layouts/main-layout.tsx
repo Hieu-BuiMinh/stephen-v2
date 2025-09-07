@@ -1,12 +1,13 @@
+import { cn } from '@repo/stephen-v2-utils'
 import React from 'react'
 
 import SiteFooter from '@/components/footer'
 import Navbar from '@/components/navigation/navbar'
 import NewsletterSignUp from '@/components/sections/newsletter-signup'
 
-function MainLayout({ children }: { children: React.ReactNode }) {
+function MainLayout({ children, className }: { children: React.ReactNode; className?: string }) {
 	return (
-		<div className="flex min-h-screen flex-col md:max-w-7xl lg:mx-auto lg:flex-row">
+		<div className={cn('flex min-h-screen flex-col md:max-w-7xl lg:mx-auto lg:flex-row', className)}>
 			<main className="flex flex-1 flex-col lg:border-x border-muted-foreground/10">
 				<Navbar />
 

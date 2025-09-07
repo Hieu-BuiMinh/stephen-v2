@@ -15,3 +15,6 @@ export declare const shortWriting: shortWriting[]
 
 export type ProjectPost = Collections['projectPost']['schema']['_output']
 export declare const projectPost: ProjectPost[]
+
+export type DocBlogPost = Collections['docPost']['schema']['_output']
+export declare const docPost: DocBlogPost[]

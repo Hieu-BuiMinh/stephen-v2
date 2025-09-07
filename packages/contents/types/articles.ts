@@ -5,4 +5,5 @@ export enum ARTICLES {
 	'projects' = 'PROJECTS',
 	'buddhism' = 'BUDDHISM',
 	'writing' = 'WRITING',
+	'doc' = 'DOC',
 }

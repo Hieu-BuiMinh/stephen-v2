@@ -18,7 +18,7 @@ function PostPageTitle({ description, title, className }: IPostPageTitleProps) {
 			)}
 		>
 			<AnimatedBlock>
-				<TextGradient as="h1" className="text-4xl font-bold md:text-5xl">
+				<TextGradient as="h1" className="text-4xl font-bold md:text-5xl leading-snug">
 					{title}
 				</TextGradient>
 			</AnimatedBlock>
