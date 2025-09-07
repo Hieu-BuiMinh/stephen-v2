@@ -29,18 +29,19 @@ function DocumentPageView() {
 								</div>
 
 								<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-									{collection?.collections.map((doc) => {
-										const firstPostId = doc?.tableOfContent?.[0]?.id || ''
-										const url = `/doc/${collection.collectionName}/${firstPostId}`
+									{collection?.collections.map((doc, index) => {
+										const docSlug = doc?.slug
+										const firstPostId = doc?.tableOfContent?.[index]?.id || ''
+										const url = `/doc/${collection.collectionName}/${docSlug}/${firstPostId}`
 										return (
 											<Link href={url} className="z-10 flex" key={doc.title}>
 												<Book
 													width={220}
 													texture
-													title="Tự Học Kinh Dịch (Tập 1)"
-													color="#DBDBDB"
-													textColor="var(--background)"
-													variant="simple"
+													title={doc.title}
+													color={doc?.color || '#DBDBDB'}
+													textColor={doc?.textColor || 'var(--background)'}
+													variant={doc?.variant || 'simple'}
 													icon={doc.icon}
 												/>
 											</Link>

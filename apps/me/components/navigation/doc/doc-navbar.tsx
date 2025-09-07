@@ -8,7 +8,7 @@ import { APP_CONFIG } from '@/configs/app-config'
 
 function DocNavbar({ className }: { className?: string }) {
 	return (
-		<div className={cn('flex items-center justify-between', className)}>
+		<div className={cn('flex items-center justify-between bg-background', className)}>
 			<Link href="/" className="w-70 h-full border-r flex items-center p-3 gap-3">
 				<div className="size-[35px]">
 					<Image

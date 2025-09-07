@@ -7,7 +7,7 @@ interface IDocumentCollectionsPage {
 async function DocumentCollectionsPage({ params }: IDocumentCollectionsPage) {
 	const { collection } = await params
 
-	return <DocumentCollectionPageView collection={collection} />
+	return <DocumentCollectionPageView collectionName={collection} />
 }
 
 export default DocumentCollectionsPage

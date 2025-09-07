@@ -26,7 +26,7 @@ const bookvariants = tv({
 	},
 })
 
-interface BookProps {
+export interface BookProps {
 	color?: string
 	textColor?: string
 	texture?: boolean
