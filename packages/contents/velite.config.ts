@@ -38,8 +38,10 @@ export default defineConfig({
 				rehypeShiki,
 				{
 					themes: {
-						dark: 'night-owl',
-						light: 'github-light',
+						// dark: 'night-owl',
+						// light: 'github-light',
+						dark: 'min-dark',
+						light: 'min-dark',
 						keepBackground: false,
 					},
 
