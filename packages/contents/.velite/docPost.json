@@ -1,33 +1,89 @@
 [
   {
     "id": "75c80ca3-c5e4-449c-b718-f9dca03b6daa",
-    "slug": "articles/doc/i-ching/tu-hoc-kinh-dich-tap-1",
-    "title": "Tự học kinh dịch tập 1",
+    "slug": "articles/doc/i-ching/tu-hoc-kinh-dich-tap-1/khai-niem-va-y-nghia",
+    "title": "Khái Niệm Và Ý Nghĩa",
     "createdAt": "2024-08-02T00:00:00.000Z",
     "metadata": {
-      "readingTime": 1,
-      "wordCount": 119
+      "readingTime": 3,
+      "wordCount": 906.68
     },
-    "description": "...",
+    "description": "Kinh dịch là một triết lý cổ xưa, nhưng để hiểu được nó một cách chính xác, chúng ta cần làm quen với khái niệm cốt lõi của nó. Hiện này từ Kinh Dịch thường được sử dụng rộng rãi, nhưng không phải ai cũng hiểu đúng về ý nghĩa sâu sắc của nó.",
     "published": true,
     "hashTags": [
       "doc",
       "i-ching"
     ],
-    "body": "const{Fragment:e,jsx:t,jsxs:n}=arguments[0];function _createMdxContent(o){const a={a:\"a\",h2:\"h2\",p:\"p\",strong:\"strong\",...o.components};return n(e,{children:[n(a.p,{children:[\"I first came across Conventional Commits during my time at \",t(a.a,{href:\"/about\",children:\"Stephen\"}),\", but initially, I didn't give much thought\\r\\nto these unique commit messages. It wasn't until recently that I took a closer look and realized how much more efficient and organized they make the\\r\\ndevelopment process.\"]}),\"\\n\",t(a.p,{children:\"Here's why you might want to give them a try too! 😃\"}),\"\\n\",t(a.h2,{id:\"what-are-conventional-commits\",children:t(a.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#what-are-conventional-commits\",children:\"What Are Conventional Commits?\"})}),\"\\n\",t(a.p,{children:\"Conventional Commits is a specification that provides a simple, structured convention for commit messages.\\r\\nIt allows to write messages that are easy to read and maintain, and which convey the specific intent behind each\\r\\nchange.\"}),\"\\n\",n(a.p,{children:[\"The conventional commit message format is straightforward. It starts with a \",t(a.strong,{children:\"type\"}),\", optionally followed by a \",t(a.strong,{children:\"scope\"}),\", and a short \",t(a.strong,{children:\"description\"}),\". For example:\"]})]})}return{default:function(e={}){const{wrapper:n}=e.components||{};return n?t(n,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
+    "body": "const{Fragment:n,jsx:h,jsxs:t}=arguments[0];function _createMdxContent(i){const c={a:\"a\",h2:\"h2\",h3:\"h3\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...i.components};return t(n,{children:[h(c.h2,{id:\"khái-niệm-thông-thường\",children:h(c.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#khái-niệm-thông-thường\",children:\"Khái niệm thông thường\"})}),\"\\n\",t(c.p,{children:[\"Thông thường, nhiều người giải thích rằng từ \",h(c.strong,{children:\"Kinh\"}),\" có nghĩa là đọc sách, còn từ \",h(c.strong,{children:\"Dịch\"}),\" có nghĩa là sự thay đổi, dịch chuyển. Đây là cách định nghĩa phổ biến mà nhiều người dùng khi nói về \",h(c.strong,{children:\"Kinh Dịch\"}),\".\"]}),\"\\n\",h(c.h2,{id:\"khái-niệm-chuyên-sâu\",children:h(c.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#khái-niệm-chuyên-sâu\",children:\"Khái niệm chuyên sâu\"})}),\"\\n\",t(c.p,{children:[\"Tuy nhiên, theo cách tiếp cận chuyên sâu hơn, chúng ta có thể hiểu rằng \",h(c.strong,{children:\"Kinh Dịch\"}),\" là một hệ thống triết lý sâu xa, không chỉ dừng lại ở sự đọc sách hay dịch chuyển.\"]}),\"\\n\",t(c.p,{children:[h(c.strong,{children:\"Dịch\"}),\" (易) ở đây không chỉ đơn thuần là sự chuyển dịch, thay đổi, mà cần hiểu là sự thay đổi của Âm và Dương, mà đại diện của nó là \",h(c.strong,{children:\"Nhật\"}),\" và \",h(c.strong,{children:\"Nguyệt\"}),\". Trong chữ Hán gồm có hai yếu tố: Chữ \",h(c.strong,{children:\"Nhật\"}),\" (日) và chữ \",h(c.strong,{children:\"Nguyệt\"}),\" (月) tương ứng với Mặt Trời và Mặt Trăng. Mặt trời tượng trưng cho Dương, Mặt Trăng tượng trưng cho Âm. Như vậy, \",h(c.strong,{children:\"Kinh Dịch\"}),\" là bộ sách nói về sự tương tác và biến đổi không ngừng giữa \",h(c.strong,{children:\"Âm\"}),\" và \",h(c.strong,{children:\"Dương\"}),\", chính vì lẽ đó mà Nhật và Nguyệt đóng vai trò cực kỳ quan trong trong quẻ dịch.\"]}),\"\\n\",h(c.h2,{id:\"tính-chất-của-âm-dương\",children:h(c.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#tính-chất-của-âm-dương\",children:\"Tính chất của Âm Dương\"})}),\"\\n\",h(c.h3,{id:\"âm-dương-tương-hỗ-cùng-tồn-tại\",children:h(c.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#âm-dương-tương-hỗ-cùng-tồn-tại\",children:\"Âm Dương tương hỗ cùng tồn tại\"})}),\"\\n\",h(c.p,{children:\"Âm Dương tương hỗ cùng tồn tại là hai mặt đối lập của sự vật và hiện tượng, cùng tồn tại và có quan hệ với nhau. Mỗi mặt của Âm và Dương đều lấy mặt kia làm tiền đề tồn tại của mình tức là không có Âm thì Dương không thể tồn tại, ngược lại không có Dương thì cũng chẳng có Âm, vì vậy Âm Dương cùng nhau tồn tại, cùng tác động lẫn nhau.\"}),\"\\n\",h(c.h3,{id:\"âm-dương-tiêu-trưởng\",children:h(c.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#âm-dương-tiêu-trưởng\",children:\"Âm Dương tiêu trưởng\"})}),\"\\n\",h(c.p,{children:\"Tiêu là tiêu vong, trưởng là sự sinh trưởng và phát triển. Như vậy, quy luật tiêu trưởng của học thuyết âm dương phản ánh sự phát triển và tiêu vong, nó nói lên mối quan hệ chuyển hóa giữa hai mặt của âm dương.\\r\\nĐể hiểu hơn về quy luật này, các nhà triết học đã đưa ra ví dụ về sự thay đổi của khí hậu 4 mùa trong năm.\"}),\"\\n\",h(c.p,{children:\"Nhiệt độ của 4 mùa luôn thay đổi từ lạnh sang nóng rồi lại từ nóng sang lạnh, khi đó:\"}),\"\\n\",t(c.ul,{children:[\"\\n\",h(c.li,{children:\"Nhiệt độ thay đổi từ lạnh sang nóng được gọi là “âm tiêu dương trưởng”.\"}),\"\\n\",h(c.li,{children:\"Nhiệt độ thay đổi từ nóng sang lạnh gọi là “dương tiêu âm trưởng”.\"}),\"\\n\"]}),\"\\n\",h(c.p,{children:\"Cũng theo quy luật này, sự vận động và tiêu vong của hai mặt âm dương chỉ mang tính chất giai đoạn. Cho đến một giai đoạn nào đó, hai mặt này sẽ chuyển hóa sang nhau.\"}),\"\\n\",h(c.h3,{id:\"âm-dương-cùng-nhau-chuyển-hóa\",children:h(c.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#âm-dương-cùng-nhau-chuyển-hóa\",children:\"Âm Dương cùng nhau chuyển hóa\"})}),\"\\n\",h(c.p,{children:\"Âm Dương cùng nhau chuyển hóa chính là Âm Dương biến hóa. Nó là hai thuộc tính khác nhau Âm và Dương của sự vật hoặc hiện tượng chuyển hóa mặt đối lập trong một điều kiện nhất định nào đó. Âm Dương đối lập nhau nhưng lại có mặt cùng tồn tại, chỉ khi nào Âm Dương kết hợp lại thì mới có thể thúc đẩy sự vật biến hóa và phát triển, có như vậy Âm Dương mới cùng tồn tại lâu dài. Âm Dương cùng nhau chuyển hóa là quy luật tất yếu cho sự vật phát triển.\"}),\"\\n\",h(c.h2,{id:\"lời-kết\",children:h(c.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#lời-kết\",children:\"Lời kết\"})}),\"\\n\",h(c.p,{children:\"Hiểu về Kinh Dịch không phải chỉ là hiểu về sự thay đổi hay dịch chuyển đơn thuần, mà còn là sự hiểu biết về quy luật Âm Dương, về tính tương tác và cân bằng trong vạn vật\"})]})}return{default:function(n={}){const{wrapper:t}=n.components||{};return t?h(t,{...n,children:h(_createMdxContent,{...n})}):_createMdxContent(n)}};",
     "toc": [
       {
-        "title": "What Are Conventional Commits?",
-        "url": "#what-are-conventional-commits",
+        "title": "Khái niệm thông thường",
+        "url": "#khái-niệm-thông-thường",
+        "items": []
+      },
+      {
+        "title": "Khái niệm chuyên sâu",
+        "url": "#khái-niệm-chuyên-sâu",
+        "items": []
+      },
+      {
+        "title": "Tính chất của Âm Dương",
+        "url": "#tính-chất-của-âm-dương",
+        "items": [
+          {
+            "title": "Âm Dương tương hỗ cùng tồn tại",
+            "url": "#âm-dương-tương-hỗ-cùng-tồn-tại",
+            "items": []
+          },
+          {
+            "title": "Âm Dương tiêu trưởng",
+            "url": "#âm-dương-tiêu-trưởng",
+            "items": []
+          },
+          {
+            "title": "Âm Dương cùng nhau chuyển hóa",
+            "url": "#âm-dương-cùng-nhau-chuyển-hóa",
+            "items": []
+          }
+        ]
+      },
+      {
+        "title": "Lời kết",
+        "url": "#lời-kết",
         "items": []
       }
     ],
-    "updatedAt": "9/10/2025, 11:47:50 PM",
+    "updatedAt": "9/11/2025, 11:46:57 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
       "github": "https://github.com/Hieu-BuiMinh"
     },
-    "slugAsParams": "doc/i-ching/tu-hoc-kinh-dich-tap-1"
+    "slugAsParams": "doc/i-ching/tu-hoc-kinh-dich-tap-1/khai-niem-va-y-nghia"
+  },
+  {
+    "id": "db2a92a2-25f3-42dc-84e0-d6cc0f5545a2",
+    "slug": "articles/doc/i-ching/tu-hoc-kinh-dich-tap-1/kien-thuc-dai-cuong/am-duong",
+    "title": "Âm Dương",
+    "createdAt": "2024-08-02T00:00:00.000Z",
+    "metadata": {
+      "readingTime": 1,
+      "wordCount": 0
+    },
+    "description": "Kinh dịch là một triết lý cổ xưa, nhưng để hiểu được nó một cách chính xác, chúng ta cần làm quen với khái niệm cốt lõi của nó. Hiện này từ Kinh Dịch thường được sử dụng rộng rãi, nhưng không phải ai cũng hiểu đúng về ý nghĩa sâu sắc của nó.",
+    "published": true,
+    "hashTags": [
+      "doc",
+      "i-ching"
+    ],
+    "body": "const{jsx:n}=arguments[0];function _createMdxContent(t){const e={p:\"p\",...t.components};return n(e.p,{children:\"...\"})}return{default:function(t={}){const{wrapper:e}=t.components||{};return e?n(e,{...t,children:n(_createMdxContent,{...t})}):_createMdxContent(t)}};",
+    "toc": [],
+    "updatedAt": "9/11/2025, 11:46:57 PM",
+    "author": {
+      "avatar": "/assets/images/avt/me_04.png",
+      "name": "Stephen",
+      "github": "https://github.com/Hieu-BuiMinh"
+    },
+    "slugAsParams": "doc/i-ching/tu-hoc-kinh-dich-tap-1/kien-thuc-dai-cuong/am-duong"
   }
 ]

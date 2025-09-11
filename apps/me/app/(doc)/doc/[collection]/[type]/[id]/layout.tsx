@@ -6,6 +6,7 @@ import React from 'react'
 
 import DocumentDetailLayout from '@/components/layouts/doc-detail-layout'
 import { APP_CONFIG } from '@/configs/app-config'
+import { docCollections } from '@/constants/doc'
 
 interface IProps {
 	params: Promise<{ collection: string; type: string; id: string }>
@@ -49,8 +50,19 @@ export async function generateMetadata({ params }: IProps): Promise<Metadata> {
 	}
 }
 
-function Layout({ children }: IProps) {
-	return <DocumentDetailLayout>{children}</DocumentDetailLayout>
+async function Layout({ children, params }: IProps) {
+	const { id, collection: collectionName, type } = await params
+
+	const collection = docCollections.find((c) => c.collectionName === collectionName)
+	const tableOfContent = collection?.collections?.find((c) => c.slug === type)?.tableOfContent
+
+	if (!collection || !id) return null
+
+	return (
+		<DocumentDetailLayout docId={id} tableOfContent={tableOfContent}>
+			{children}
+		</DocumentDetailLayout>
+	)
 }
 
 export default Layout
