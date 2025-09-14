@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 
 interface ITableOfContent {
 	id: DevBlogPost['id'] | null
-	title: string
+	title?: string
 	description?: string
 	cover?: string
 	children?: ITableOfContent[]

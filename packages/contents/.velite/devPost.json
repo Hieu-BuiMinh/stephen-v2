@@ -3,7 +3,7 @@
     "id": "bcca9b66-e5bc-449d-a8fc-6132a198ce96",
     "slug": "articles/dev/posts/conventional-commits",
     "title": "Conventional Commits",
-    "createdAt": "2024-08-02T00:00:00.000Z",
+    "createdAt": "2025-08-15T00:00:00.000Z",
     "cover": "/assets/articles/dev/post/conventional-commits.png",
     "metadata": {
       "readingTime": 5,
@@ -171,7 +171,7 @@
         "items": []
       }
     ],
-    "updatedAt": "9/11/2025, 11:46:57 PM",
+    "updatedAt": "9/14/2025, 11:33:58 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -183,7 +183,7 @@
     "id": "3d420fc4-5b75-4c41-9319-9e4a1bdb7a1c",
     "slug": "articles/dev/posts/csr-ssr-ssg-isr-in-nextjs",
     "title": "CSR, SSR, SSG, and ISR in Next.js",
-    "createdAt": "2025-08-12T00:00:00.000Z",
+    "createdAt": "2025-07-12T00:00:00.000Z",
     "cover": "/assets/articles/dev/post/nextjs-rendering-strategies.png",
     "metadata": {
       "readingTime": 5,
@@ -236,7 +236,7 @@
         "items": []
       }
     ],
-    "updatedAt": "9/11/2025, 11:46:57 PM",
+    "updatedAt": "9/14/2025, 11:33:58 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -248,7 +248,7 @@
     "id": "bbb0ecab-95b2-430e-b930-2bdec6f53026",
     "slug": "articles/dev/shorts/axios-builder-utility",
     "title": "Axios Builder Utility",
-    "createdAt": "2025-08-22T08:30:00.000Z",
+    "createdAt": "2025-09-14T08:30:00.000Z",
     "cover": "/assets/articles/dev/post/axios-utility.png",
     "metadata": {
       "readingTime": 3,
@@ -300,7 +300,7 @@
         "items": []
       }
     ],
-    "updatedAt": "9/11/2025, 11:46:57 PM",
+    "updatedAt": "9/14/2025, 11:33:58 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -312,7 +312,7 @@
     "id": "c9348bb0-c69f-43cf-9a61-109947c7f60a",
     "slug": "articles/dev/shorts/dayjs-utility",
     "title": "Dayjs Utility",
-    "createdAt": "2025-08-11T03:10:26.204Z",
+    "createdAt": "2025-02-03T03:10:26.204Z",
     "cover": "/assets/articles/dev/post/dayjs-utility.png",
     "metadata": {
       "readingTime": 3,
@@ -354,7 +354,7 @@
         "items": []
       }
     ],
-    "updatedAt": "9/11/2025, 11:46:57 PM",
+    "updatedAt": "9/14/2025, 11:33:58 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -366,7 +366,7 @@
     "id": "f3a2f550-7cb2-4c9b-97c6-6a132b5dd731",
     "slug": "articles/dev/shorts/tanstack-query-pattern",
     "title": "Organize TanStack Query Hooks",
-    "createdAt": "2025-08-12T16:25:00.000Z",
+    "createdAt": "2025-05-10T16:25:00.000Z",
     "cover": "/assets/articles/dev/tanstack-query-pattern.png",
     "metadata": {
       "readingTime": 3,
@@ -394,7 +394,7 @@
         "items": []
       }
     ],
-    "updatedAt": "9/11/2025, 11:46:57 PM",
+    "updatedAt": "9/14/2025, 11:33:58 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",

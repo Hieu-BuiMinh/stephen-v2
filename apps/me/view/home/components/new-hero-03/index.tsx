@@ -26,25 +26,6 @@ function HeroSection03() {
 				Reflections, stories, and the moments that shape my world.
 			</TextEffect>
 
-			{/* CTA Buttons */}
-			<motion.div
-				initial={{ opacity: 0, y: 20 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ delay: 0.3 }}
-				className="flex flex-col items-center justify-center gap-3 sm:gap-4 pt-6 sm:pt-8 md:flex-row"
-			>
-				<DownLoadResumeButton className="w-full md:w-auto" />
-				<Link
-					href={APP_CONFIG.author.resume}
-					target="_blank"
-					className={cn(buttonVariants({ variant: 'primary-matter' }), 'w-full md:w-auto')}
-				>
-					<Zap className="hidden md:block" />
-					See for Yourself
-					<SquareArrowOutUpRight className="hidden md:block" />
-				</Link>
-			</motion.div>
-
 			<motion.div
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
@@ -60,6 +41,25 @@ function HeroSection03() {
 				<span className="text-muted-foreground">Available for</span>
 				<Zap className="size-2 text-orange-400" />
 				<span>new Opportunities 🎉</span>
+			</motion.div>
+
+			{/* CTA Buttons */}
+			<motion.div
+				initial={{ opacity: 0, y: 20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ delay: 0.3 }}
+				className="flex flex-col w-full items-center justify-center gap-3 sm:gap-4 pt-6 sm:pt-8 md:flex-row"
+			>
+				<DownLoadResumeButton className="w-full md:w-auto" />
+				<Link
+					href={APP_CONFIG.author.resume}
+					target="_blank"
+					className={cn(buttonVariants({ variant: 'primary-matter' }), 'w-full md:w-auto')}
+				>
+					<Zap className="hidden md:block" />
+					See for Yourself
+					<SquareArrowOutUpRight className="hidden md:block" />
+				</Link>
 			</motion.div>
 		</motion.section>
 	)

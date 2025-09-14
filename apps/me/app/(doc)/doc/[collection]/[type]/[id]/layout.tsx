@@ -4,7 +4,8 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
-import DocumentDetailLayout from '@/components/layouts/doc-detail-layout'
+import DocumentDetailLayout from '@/components/layouts/doc/doc-detail-layout'
+import DocDetailLayoutProvider from '@/components/layouts/doc/doc-detail-layout-provider'
 import { APP_CONFIG } from '@/configs/app-config'
 import { docCollections } from '@/constants/doc'
 
@@ -54,14 +55,13 @@ async function Layout({ children, params }: IProps) {
 	const { id, collection: collectionName, type } = await params
 
 	const collection = docCollections.find((c) => c.collectionName === collectionName)
-	const tableOfContent = collection?.collections?.find((c) => c.slug === type)?.tableOfContent
 
 	if (!collection || !id) return null
 
 	return (
-		<DocumentDetailLayout docId={id} tableOfContent={tableOfContent}>
-			{children}
-		</DocumentDetailLayout>
+		<DocDetailLayoutProvider docId={id} collectionName={collectionName} type={type}>
+			<DocumentDetailLayout>{children}</DocumentDetailLayout>
+		</DocDetailLayoutProvider>
 	)
 }
 

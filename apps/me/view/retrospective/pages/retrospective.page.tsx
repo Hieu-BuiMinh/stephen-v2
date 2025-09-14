@@ -1,4 +1,5 @@
 import { TextEffect } from '@repo/stephen-v2-ui/motion'
+import { formatDate } from '@repo/stephen-v2-utils'
 import React, { useId } from 'react'
 
 import TextGradient from '@/components/texts/text-gradient'
@@ -6,17 +7,17 @@ import TextGradient from '@/components/texts/text-gradient'
 function RetrospectivePageView() {
 	return (
 		<div className="grid grid-cols-1 lg:grid-cols-2">
-			<div className="relative col-span-1 py-4 px-0 border-b bg-gradient-to-tr from-transparent dark:via-stone-950/5 via-stone-100/30 to-stone-200/20 dark:to-transparent/10 lg:h-[calc(100vh-4rem)] lg:pr-20 lg:border-none">
+			<div className="relative col-span-1 py-4 px-0 border-b bg-gradient-to-tr from-transparent dark:via-stone-950/5 via-stone-100/30 to-stone-200/20 dark:to-transparent/10 h-auto lg:h-[calc(100vh-4rem)] lg:pr-20 lg:border-none">
 				<Glow />
 
-				<div className="sticky top-1/2 z-20 flex flex-col gap-3 md:justify-center max-w-xl mx-auto -translate-y-1/2">
-					<div className="text-gray-600 dark:text-gray-300 flex items-center gap-x-1">
-						<p className="text-[12px] uppercase font-mono">......</p>
+				<div className="z-20 flex flex-col mt-4 md:mt-40 gap-3 md:justify-center max-w-xl mx-auto md:sticky md:top-1/2 md:-translate-y-1/2">
+					<div className="text-muted-foreground flex items-center gap-x-1">
+						<p className="text-xs">{formatDate(new Date(), 'MMMM D, YYYY')}</p>
 					</div>
 					<TextGradient as="h1" className="font-sans font-bold !leading-[4rem] text-5xl">
 						Looking Back - Every step tells a story.
 					</TextGradient>
-					<TextEffect preset="fade-in-blur" per="char" className="text-sm text-gray-600 dark:text-gray-300">
+					<TextEffect preset="fade-in-blur" per="char" className="text-sm text-muted-foreground">
 						A collection of events, memories, and reflections from different stages of my life. A place to
 						look back at where I've been, what I've learned, and how far I've come.
 					</TextEffect>
