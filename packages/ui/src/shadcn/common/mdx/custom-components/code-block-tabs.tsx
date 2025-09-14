@@ -40,7 +40,7 @@ function CodeBlockTabs({ children, options, fileName }: ICodeBlockTabs) {
 	return (
 		<Tabs
 			defaultValue="0"
-			className="rounded-xl border border-slate-300 gap-1.5 bg-neutral-200 dark:bg-[#212126] dark:border-border/70"
+			className="rounded-xl border border-slate-300 gap-1.5 bg-neutral-200 dark:bg-[#18181B] dark:border-border/70"
 		>
 			{childrenIsArray && (
 				<div className="border-b border-b-slate-300 dark:border-b-[rgba(255,255,255,0.04)]">
@@ -84,7 +84,7 @@ function CodeBlockTabs({ children, options, fileName }: ICodeBlockTabs) {
 								ref={textInput}
 								className={cn(
 									JetBrainsMono.className,
-									'rounded-[0.5rem_0.5rem_0.8rem_0.8rem] size-full max-w-full border border-slate-300 dark:border-[var(--border)] flex p-2 bg-slate-100 dark:bg-[#2F3037] [&>pre]:min-w-full [&>pre]:h-full [&>pre]:!bg-transparent [&>pre]:max-w-1 [&>pre]:overflow-auto'
+									'rounded-[0.5rem_0.5rem_0.8rem_0.8rem] size-full max-w-full border border-slate-300 dark:border-[var(--border)] flex p-2 bg-slate-100 dark:bg-[#18181B] [&>pre]:min-w-full [&>pre]:h-full [&>pre]:!bg-transparent [&>pre]:max-w-1 [&>pre]:overflow-auto'
 								)}
 							>
 								{child}
@@ -98,7 +98,7 @@ function CodeBlockTabs({ children, options, fileName }: ICodeBlockTabs) {
 						ref={textInput}
 						className={cn(
 							JetBrainsMono.className,
-							'rounded-[0.5rem_0.5rem_0.8rem_0.8rem] size-full max-w-full border border-slate-300 dark:border-[var(--border)] flex p-2 bg-slate-100 dark:bg-[#2F3037] [&>pre]:min-w-full [&>pre]:h-full [&>pre]:!bg-transparent [&>pre]:max-w-1 [&>pre]:overflow-auto'
+							'rounded-[0.5rem_0.5rem_0.8rem_0.8rem] size-full max-w-full border border-slate-300 dark:border-[var(--border)] flex p-2 bg-slate-100 dark:bg-[#18181B] [&>pre]:min-w-full [&>pre]:h-full [&>pre]:!bg-transparent [&>pre]:max-w-1 [&>pre]:overflow-auto'
 						)}
 					>
 						{children}

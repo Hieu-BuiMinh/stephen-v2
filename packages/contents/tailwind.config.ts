@@ -1,5 +1,8 @@
 import type { Config } from 'tailwindcss'
 
+/* For Tailwind CSS intellisense */
 export default {
-	content: ['./**/*.{js,ts,jsx,tsx,mdx}', './packages/**/*.{js,ts,jsx,tsx,mdx}', './apps/**/*.{js,ts,jsx,tsx,mdx}'],
+	content: ['../../**/*.{ts,tsx,mdx}'],
+	theme: { extend: {} },
+	//   plugins: [require('@tailwindcss/typography')]
 } satisfies Config

@@ -23,7 +23,7 @@ const buttonVariants = cva(
 				'primary-matter':
 					'bg-radial-[at_52%_-52%] **:[text-shadow:0_1px_0_var(--color-primary)] border-primary from-primary/70 to-primary/95 text-primary-foreground inset-shadow-2xs inset-shadow-white/25 dark:inset-shadow-white dark:from-primary dark:to-primary/70 dark:hover:to-primary border text-sm shadow-md shadow-zinc-950/30 ring-0 transition-[filter] duration-200 hover:brightness-125 active:brightness-95 dark:border-0',
 				'secondary-matter':
-					'shadow-xs bg-linear-to-t hover:to-muted to-background from-muted dark:from-muted/50 dark:border-border border border-zinc-300 shadow-zinc-950/10 transition-colors duration-200',
+					'shadow-xs bg-linear-to-t hover:to-muted to-background from-muted dark:from-muted/50 border dark:border-none border-zinc-300 shadow-zinc-950/10 transition-colors duration-200 dark:inset-shadow-[1px_1px_1px,0px_0px_2px] dark:inset-shadow-white/15',
 				'destructive-matter':
 					'from-destructive to-destructive/85 text-destructive-foreground border border-zinc-950/25 bg-gradient-to-t shadow-md shadow-zinc-950/20 ring-1 ring-inset ring-white/20 transition-[filter] duration-200 hover:brightness-110 active:brightness-90 dark:border-white/15 dark:ring-transparent',
 			},

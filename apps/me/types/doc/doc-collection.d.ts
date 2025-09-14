@@ -1,10 +1,11 @@
+import type { DevBlogPost } from '@repo/stephen-v2-contents'
 import type { BookProps } from '@repo/stephen-v2-ui/shadcn'
 import type { ReactNode } from 'react'
 
 interface ITableOfContent {
-	id: string
-	title: string
-	description: string
+	id: DevBlogPost['id'] | null
+	title?: string
+	description?: string
 	cover?: string
 	children?: ITableOfContent[]
 }

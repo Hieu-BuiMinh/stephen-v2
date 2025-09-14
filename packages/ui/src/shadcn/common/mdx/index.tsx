@@ -67,6 +67,10 @@ const components = {
 			</>
 		)
 	},
+	code: (props: React.ComponentPropsWithoutRef<'code'>) => {
+		const { children } = props
+		return <span className="border bg-secondary/50 font-semibold px-1.5 py-px text-sm rounded-xs">{children}</span>
+	},
 	CodeBlockTabs,
 	Table,
 

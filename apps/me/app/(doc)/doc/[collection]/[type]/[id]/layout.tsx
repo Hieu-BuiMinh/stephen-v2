@@ -4,8 +4,10 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
-import DocumentDetailLayout from '@/components/layouts/doc-detail-layout'
+import DocumentDetailLayout from '@/components/layouts/doc/doc-detail-layout'
+import DocDetailLayoutProvider from '@/components/layouts/doc/doc-detail-layout-provider'
 import { APP_CONFIG } from '@/configs/app-config'
+import { docCollections } from '@/constants/doc'
 
 interface IProps {
 	params: Promise<{ collection: string; type: string; id: string }>
@@ -49,8 +51,18 @@ export async function generateMetadata({ params }: IProps): Promise<Metadata> {
 	}
 }
 
-function Layout({ children }: IProps) {
-	return <DocumentDetailLayout>{children}</DocumentDetailLayout>
+async function Layout({ children, params }: IProps) {
+	const { id, collection: collectionName, type } = await params
+
+	const collection = docCollections.find((c) => c.collectionName === collectionName)
+
+	if (!collection || !id) return null
+
+	return (
+		<DocDetailLayoutProvider docId={id} collectionName={collectionName} type={type}>
+			<DocumentDetailLayout>{children}</DocumentDetailLayout>
+		</DocDetailLayoutProvider>
+	)
 }
 
 export default Layout
