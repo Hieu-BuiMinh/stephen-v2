@@ -1,5 +1,7 @@
 'use client'
 
+import './style.css'
+
 import { cn } from '@repo/stephen-v2-utils'
 import { nanoid } from 'nanoid'
 import Link from 'next/link'
@@ -26,27 +28,22 @@ const components = {
 	h5: (props: React.ComponentPropsWithoutRef<'h5'>) => <Heading as="h5" {...props} />,
 	h6: (props: React.ComponentPropsWithoutRef<'h6'>) => <Heading as="h6" {...props} />,
 	hr: () => <hr className="w-full h-px border-t border-dashed border-foreground/60 dark:border-border" />,
-	p: (props: React.ComponentPropsWithRef<'p'>) => (
-		<p className="text-sm text-foreground dark:text-muted-foreground md:text-base">{props.children}</p>
-	),
+	// p: (props: React.ComponentPropsWithRef<'p'>) => (
+	// 	<p className="text-sm text-foreground dark:text-muted-foreground md:text-base">{props.children}</p>
+	// ),
 	a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
 		const { children, href, ...rest } = props
 
 		if (!href) {
 			return (
-				<span className="text-muted-foreground line-through transition-colors hover:text-foreground" {...rest}>
+				<span className="font-medium text-sky-600 hover:text-foreground dark:text-sky-300" {...rest}>
 					{children}
 				</span>
 			)
 		}
 
 		return (
-			<Link
-				className="font-semibold text-sky-600 no-underline transition-colors hover:text-foreground hover:underline dark:text-sky-300"
-				href={href}
-				target="_blank"
-				{...rest}
-			>
+			<Link className="font-medium text-sky-600 hover:text-foreground dark:text-sky-300" href={href} {...rest}>
 				{children}
 			</Link>
 		)
@@ -69,7 +66,8 @@ const components = {
 	},
 	code: (props: React.ComponentPropsWithoutRef<'code'>) => {
 		const { children } = props
-		return <span className="border bg-secondary/50 font-semibold px-1.5 py-px text-sm rounded-xs">{children}</span>
+		console.log('props', props)
+		return <code>{children}</code>
 	},
 	CodeBlockTabs,
 	Table,

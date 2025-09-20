@@ -20,7 +20,7 @@ This guide focuses on **Next.js 14/15** with the **App Router** (`app/`) and **T
 - The server sends a mostly empty HTML shell.
 - The browser downloads JavaScript, then fetches data on the client and renders the content dynamically.
 
-In Next js UI renders first, then data is fetched in the **browser**. Use a **Client Component** (`'use client'`).
+In Next js UI renders first, then data is fetched in the **browser**. Use a **Client Component** (**'use client'**).
 
 <CodeBlockTabs options={["App Router", "Pages Router"]}>
 
@@ -91,7 +91,7 @@ export default function Page() {
 - On every request, the server fetches data and renders a full HTML page.
 - The HTML is sent to the browser already containing the content.
 
-The page is rendered on the **server for each request**. In App Router, you typically fetch with `cache: 'no-store'` or mark the route dynamic.
+The page is rendered on the **server for each request**. In App Router, you typically fetch with **cache: 'no-store'** or mark the route dynamic.
 
 <CodeBlockTabs options={["App Router", "Pages Router"]}>
 
@@ -233,7 +233,7 @@ export default function Page({ data }: InferGetStaticPropsType<typeof getStaticP
 - A hybrid between SSG and SSR.
 - Pages are pre-rendered like SSG, but Next.js can regenerate them in the background after a set revalidate time.
 
-Like SSG, but the page **regenerates in the background** on an interval. In App Router, use the `revalidate` export or per-request `fetch` option.
+Like SSG, but the page **regenerates in the background** on an interval. In App Router, use the **revalidate** export or per-request **fetch** option.
 
 <CodeBlockTabs options={["App Router", "Pages Router"]}>
 

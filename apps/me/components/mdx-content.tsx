@@ -6,7 +6,7 @@ import React from 'react'
 
 function MDXContentComponent({ code, className }: { code: string; className?: string }) {
 	return (
-		<div className={cn('prose prose-neutral prose-sm dark:prose-invert md:prose-base', className)}>
+		<div className={cn('prose prose-gray prose-sm dark:prose-invert md:prose-sm', className)}>
 			<MDXContent code={code} />
 		</div>
 	)

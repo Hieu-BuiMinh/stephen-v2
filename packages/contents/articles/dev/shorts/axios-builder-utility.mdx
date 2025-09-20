@@ -18,7 +18,7 @@ Supports baseURL, headers, token injection, and request/response interceptors.
 - Base URL and default headers setup
 - Request & response interceptors
 - Auto token injection
-- Typed HTTP methods (`get`, `post`, `put`, `patch`, `delete`)
+- Typed HTTP methods (**get**, **post**, **put**, **patch**, **delete**)
 - Builder pattern for chaining configs
 
 ## Source code (drop-in)
@@ -134,7 +134,7 @@ export class AxiosBuilder {
 </CodeBlockTabs>
 
 This short shows how to **use a reusable Axios instance** and build a tiny **Users service** on top of it.
-It assumes you have an `AxiosBuilder` utility (a wrapper around Axios with baseURL, headers, interceptors, and typed methods).
+It assumes you have an **AxiosBuilder** utility (a wrapper around Axios with baseURL, headers, interceptors, and typed methods).
 
 ## Quick usage (initialize a shared instance)
 
@@ -298,6 +298,6 @@ export const deleteUser = async (id: string) => {
 
 ## Notes
 
-- Prefer one service file per resource (`auth.service.ts`, `post.service.ts`, ...).
-- Consider setting `.setResponseInterceptor((res) => res.data)` to avoid repetitive `.data` access.
-- Works great with **TanStack Query**: pass `UserService` promises to `useQuery`/`useMutation`.
+- Prefer one service file per resource (**auth.service.ts**, **post.service.ts**, ...).
+- Consider setting **.setResponseInterceptor((res) => res.data)** to avoid repetitive **.data** access.
+- Works great with **TanStack Query**: pass **UserService** promises to **useQuery**/**useMutation**.
