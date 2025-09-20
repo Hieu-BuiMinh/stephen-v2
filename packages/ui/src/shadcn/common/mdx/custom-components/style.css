@@ -12,6 +12,7 @@ html.dark .shiki span {
 
 .shiki span.line {
 	display: inline-block !important;
+	border: none !important;
 	width: 100%;
 }
 

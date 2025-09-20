@@ -146,3 +146,7 @@ body {
 		}
 	} */
 }
+
+.cursed {
+  mask-image:radial-gradient(transparent 1px, rgb(15, 17, 21), #ffffff 1px);mask-size:4px 4px;
+}

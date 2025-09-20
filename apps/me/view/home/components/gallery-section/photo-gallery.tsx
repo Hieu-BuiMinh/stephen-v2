@@ -148,6 +148,7 @@ function PhotoGallery({ animationDelay = 0.5 }: { animationDelay?: number }) {
 
 	return (
 		<div className="relative min-h-[50vh] w-full items-center justify-center hidden overflow-visible lg:flex">
+			<div className="bg-dots-md absolute inset-0 pointer-events-none opacity-50" />
 			<motion.div
 				className="relative mx-auto flex w-full max-w-7xl justify-center"
 				initial={{ opacity: 0 }}
