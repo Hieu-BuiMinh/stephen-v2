@@ -8,6 +8,7 @@ import { motion } from 'motion/react'
 import Link from 'next/link'
 
 import DownLoadResumeButton from '@/components/buttons/resume-button'
+import VectorField from '@/components/vector-field'
 import { APP_CONFIG } from '@/configs/app-config'
 import { ProfilePicture } from '@/view/home/components/hero-section/profile-picture'
 
@@ -17,9 +18,12 @@ function HeroSection03() {
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.7, ease: 'easeOut' }}
-			className="w-full min-h-[calc(100vh-10rem)] flex flex-col items-center justify-center gap-6 z-10"
+			className="w-full min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center gap-6 z-10"
 		>
-			<ProfilePicture />
+			<div className="relative">
+				<ProfilePicture />
+				<VectorField />
+			</div>
 			<p className="text-center text-3xl font-bold tracking-tight sm:text-4xl">{APP_CONFIG.name}</p>
 
 			<TextEffect preset="fade-in-blur" per="char" className="text-center text-lg text-balance sm:text-xl">
