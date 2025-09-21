@@ -28,13 +28,13 @@ function MobileNavbar() {
 				<Button
 					variant="ghost"
 					size="sm"
-					className="size-8 sticky top-0 right-0 p-0 z-10"
+					className="size-8 sticky top-0 right-0 p-0 z-[99]"
 					aria-label="Toggle menu"
 				>
 					{isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
 				</Button>
 			</SheetTrigger>
-			<SheetContent side="right" className="w-full sm:w-80 gap-0">
+			<SheetContent side="right" className="w-full sm:w-80 gap-0 z-[999]">
 				<SheetHeader>
 					<SheetTitle className="text-left">{APP_CONFIG.name}</SheetTitle>
 				</SheetHeader>

@@ -1,7 +1,6 @@
 import React from 'react'
 
 import MainLayout from '@/components/layouts/main-layout'
-import VectorField from '@/components/navigation/vector-field'
 
 function MarketingLayout({ children }: { children: React.ReactNode }) {
 	return (
@@ -12,7 +11,6 @@ function MarketingLayout({ children }: { children: React.ReactNode }) {
 
 			<div className="absolute inset-0 h-[170vh] bg-linear-to-b from-transparent from-0% via-transparent via-80% to-background to-100% -z-10" />
 			{children}
-			<VectorField />
 		</MainLayout>
 	)
 }

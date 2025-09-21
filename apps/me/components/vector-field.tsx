@@ -469,7 +469,7 @@ export default function VectorField() {
 		// [mask-image:linear-gradient(to_bottom,red,transparent_55%)]
 		<canvas
 			ref={canvasRef}
-			className="absolute animate-fade-in inset-0 w-full h-[72vh] -z-10 pointer-events-none [mask-size:100%_100%] [mask-repeat:no-repeat] [mask-position:center_top] [mask-composite:exclude] [mask-mode:alpha] [mask-origin:content-box] [mask-clip:content-box] [mask-border-mode:match-source] [mask-image:radial-gradient(red,transparent_80%)]"
+			className="absolute animate-fade-in top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-[calc(100vw-20px)] h-[screen] -z-10 pointer-events-none [mask-size:100%_100%] [mask-repeat:no-repeat] [mask-position:center_top] [mask-composite:exclude] [mask-mode:alpha] [mask-origin:content-box] [mask-clip:content-box] [mask-border-mode:match-source] [mask-image:radial-gradient(red,transparent_80%)]"
 		/>
 	)
 }
