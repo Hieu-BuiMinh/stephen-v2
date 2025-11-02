@@ -8,7 +8,7 @@ import NewsletterSignUp from '@/components/sections/newsletter-signup'
 function DocumentDetailLayout({ children }: { children: ReactNode }) {
 	return (
 		<main className="flex flex-1 flex-col border-muted-foreground/10">
-			<DocNavbar className="w-full h-16 sticky top-0 border-b bg-background z-30" />
+			<DocNavbar className="w-full h-16 sticky top-0 border-b border-dashed bg-background z-30" />
 			<div className="flex">
 				<DocSidebar />
 				<div className="p-3 flex-1">{children}</div>
