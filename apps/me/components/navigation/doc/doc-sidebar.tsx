@@ -57,7 +57,7 @@ function DocSidebar() {
 	if (!tableOfContent) return null
 
 	return (
-		<div className="w-70 h-[calc(100vh-4rem)] sticky top-16 border-r p-3 overflow-y-auto">
+		<div className="w-70 h-[calc(100vh-4rem)] sticky top-16 border-r border-dashed p-3 overflow-y-auto">
 			<TocTree nodes={tableOfContent} />
 		</div>
 	)

@@ -1,43 +1,14 @@
-'use client'
-
 import { AnimatedBlock } from '@repo/stephen-v2-ui/motion'
-import { Button } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
-import { ChevronLeft, House } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
 
 import LightRaysClient from '@/components/effects/light-rays-client'
 import MainLayout from '@/components/layouts/main-layout'
 import { RetroGrid } from '@/components/retro-grid'
 
 export default function NotFound() {
-	const [loaded, setLoaded] = useState(false)
-	const router = useRouter()
-
-	const handleRedirect = (type: 'BACK' | 'HOME') => {
-		if (type === 'BACK') router.back()
-		else router.push('/')
-	}
-
-	useEffect(() => {
-		setLoaded(true)
-	}, [])
-
-	if (!loaded) return null
-
 	return (
 		<MainLayout>
 			<div className="w-full h-screen flex items-center justify-center">
-				{/* <Noise
-					patternSize={200}
-					patternScaleX={1}
-					patternScaleY={1}
-					patternRefreshInterval={3}
-					patternAlpha={20}
-					className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full hidden dark:block"
-				/> */}
-
 				<LightRaysClient />
 
 				<div className="capitalize text-center flex items-center justify-center flex-col gap-5 text-5xl sm:text-6xl lg:text-8xl font-black z-10">
@@ -55,28 +26,6 @@ export default function NotFound() {
 						)}
 					>
 						Page not found
-					</AnimatedBlock>
-
-					<AnimatedBlock
-						type="FADE_IN"
-						delay={0.4}
-						className="flex items-center justify-center w-full gap-3 flex-col mt-10 md:flex-row sm:mt-0"
-					>
-						<Button
-							onClick={() => handleRedirect('BACK')}
-							variant="primary-matter"
-							className="w-full sm:flex-1"
-						>
-							<ChevronLeft /> Back
-						</Button>
-
-						<Button
-							onClick={() => handleRedirect('HOME')}
-							variant="secondary-matter"
-							className="w-full sm:flex-1"
-						>
-							<House /> Home
-						</Button>
 					</AnimatedBlock>
 				</div>
 

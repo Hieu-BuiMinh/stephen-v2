@@ -32,7 +32,7 @@ function LightRaysClient() {
 					noiseAmount={0.1}
 					distortion={0}
 					pulsating={false}
-					className="absolute inset-0 hidden md:block"
+					className="absolute inset-0 hidden md:block top-16"
 				/>
 			)}
 		</Suspense>

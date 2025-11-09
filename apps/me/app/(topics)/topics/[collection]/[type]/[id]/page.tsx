@@ -3,6 +3,7 @@ import React from 'react'
 
 import TopicBookTypeDetailPage from '@/view/topics/pages/book/topic-book-type-detail.page'
 import TopicDevTypeDetailPage from '@/view/topics/pages/dev/topic-dev-type-detail.page'
+import TopicShortWritingTypeDetailPage from '@/view/topics/pages/short-writing/topic-dev-type-detail.page'
 
 interface IPostDetailProps {
 	params: Promise<{ collection: keyof typeof ARTICLES; type: DEV_POST_TYPE & BOOKS_POST_TYPE; id: string }>
@@ -16,6 +17,8 @@ async function PostDetailPage({ params }: IPostDetailProps) {
 			return <TopicDevTypeDetailPage params={params} />
 		case 'books':
 			return <TopicBookTypeDetailPage params={params} />
+		case 'others':
+			return <TopicShortWritingTypeDetailPage params={params} />
 
 		default:
 			return null
