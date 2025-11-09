@@ -80,7 +80,7 @@ export const navbarItems: TNavbarItems = {
 		},
 		{
 			title: 'Other Topics',
-			href: '/other-topics',
+			href: '/topics/others',
 			description: `Explore articles on topics beyond development`,
 			icon: Tags,
 		},

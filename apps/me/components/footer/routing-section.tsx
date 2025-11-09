@@ -13,7 +13,7 @@ function FooterRoutingSection() {
 		{
 			name: 'Blog',
 			links: [
-				{ lable: 'Dev blog', href: '/dev-blog' },
+				{ lable: 'Dev blog', href: '/topics/dev' },
 				{ lable: 'Documentation', href: '/docs' },
 				{ lable: 'Guestbook', href: '/guestbook' },
 			],

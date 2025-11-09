@@ -6,4 +6,5 @@ export enum ARTICLES {
 	'buddhism' = 'BUDDHISM',
 	'writing' = 'WRITING',
 	'doc' = 'DOC',
+	'others' = 'OTHERS',
 }
