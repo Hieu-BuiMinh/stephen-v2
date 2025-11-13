@@ -8,6 +8,7 @@
 			"types": "./dist/index.d.ts"
 		},
 		"./shadcn": "./src/shadcn/index.ts",
+		"./i-ching": "./src/i-ching/index.ts",
 		"./motion": "./src/motion/index.ts",
 		"./hooks": "./hooks/index.ts",
 		"./styles/shadcn-preset": "./styles/shadcn-preset.css"
