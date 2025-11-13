@@ -48,7 +48,7 @@
         "items": []
       }
     ],
-    "updatedAt": "11/9/2025, 7:58:48 PM",
+    "updatedAt": "11/13/2025, 10:28:53 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -74,7 +74,7 @@
     "type": "bat-tu",
     "body": "const{Fragment:n,jsx:T,jsxs:h}=arguments[0];function _createMdxContent(i){const{Table:u}=i.components||{};return u||function(n,T){throw new Error(\"Expected \"+(T?\"component\":\"object\")+\" `\"+n+\"` to be defined: you likely forgot to import, pass, or provide it.\")}(\"Table\",!0),h(n,{children:[T(u,{rows:[[\"Ngũ hành - Can (dương)\",\"Trường sinh\",\"Mộc dục\",\"Quan đới\",\"Lâm quan\",\"Đế vượng\",\"Suy\",\"Bệnh\",\"Tử\",\"Mộ\",\"Tuyệt\",\"Thai\",\"Dưỡng\"],[\"Thủy dương (Nhâm)\",\"Thân\",\"Dậu\",\"Tuất\",\"Hợi\",\"Tí\",\"Sửu\",\"Dần\",\"Mão\",\"Thìn\",\"Tỵ\",\"Ngọ\",\"Mùi\"],[\"Mộc dương (Giáp)\",\"Hợi\",\"Tí\",\"Sửu\",\"Dần\",\"Mão\",\"Thìn\",\"Tỵ\",\"Ngọ\",\"Mùi\",\"Thân\",\"Dậu\",\"Tuất\"],[\"Hỏa dương (Bính)\",\"Dần\",\"Mão\",\"Thìn\",\"Tỵ\",\"Ngọ\",\"Mùi\",\"Thân\",\"Dậu\",\"Tuất\",\"Hợi\",\"Tí\",\"Sửu\"],[\"Kim dương (Canh)\",\"Tỵ\",\"Ngọ\",\"Mùi\",\"Thân\",\"Dậu\",\"Tuất\",\"Hợi\",\"Tí\",\"Sửu\",\"Dần\",\"Mão\",\"Thìn\"]]}),\"\\n\",T(u,{rows:[[\"Ngũ hành - Can (âm)\",\"Trường sinh\",\"Mộc dục\",\"Quan đới\",\"Lâm quan\",\"Đế vượng\",\"Suy\",\"Bệnh\",\"Tử\",\"Mộ\",\"Tuyệt\",\"Thai\",\"Dưỡng\"],[\"Thủy âm (Quý)\",\"Mão\",\"Dần\",\"Sửu\",\"Tí\",\"Hợi\",\"Tuất\",\"Dậu\",\"Thân\",\"Mùi\",\"Ngọ\",\"Tỵ\",\"Thìn\"],[\"Mộc âm (Ất)\",\"Ngọ\",\"Tỵ\",\"Thìn\",\"Mão\",\"Dần\",\"Sửu\",\"Tí\",\"Hợi\",\"Tuất\",\"Dậu\",\"Thân\",\"Mùi\"],[\"Hỏa âm (Đinh)\",\"Dậu\",\"Thân\",\"Mùi\",\"Ngọ\",\"Tỵ\",\"Thìn\",\"Mão\",\"Dần\",\"Sửu\",\"Tí\",\"Hợi\",\"Tuất\"],[\"Kim âm (Tân)\",\"Tí\",\"Hợi\",\"Tuất\",\"Dậu\",\"Thân\",\"Mùi\",\"Ngọ\",\"Tỵ\",\"Thìn\",\"Mão\",\"Dần\",\"Sửu\"]]}),\"\\n\",T(u,{rows:[[\"Nhóm\",\"Địa chi\",\"Ngũ hành chi\",\"Khí 1\",\"Khí 2\",\"Khí 3\"],[\"Tứ sinh\",\"Dần\",\"Mộc (+)\",\"Giáp Mộc (+)\",\"Bính Hỏa (+)\",\"Mậu Thổ (+)\"],[\"Tứ sinh\",\"Thân\",\"Kim (+)\",\"Canh Kim (+)\",\"Nhâm Thủy (+)\",\"Mậu Thổ (+)\"],[\"Tứ sinh\",\"Tỵ\",\"Hỏa (-)\",\"Bính Hỏa (+)\",\"Canh Kim (+)\",\"Mậu Thổ (+)\"],[\"Tứ sinh\",\"Hợi\",\"Thủy (-)\",\"Nhâm Thủy (+)\",\"Giáp Mộc (+)\",\"-/-\"],[\"Tứ chính\",\"Tí\",\"Thủy (+)\",\"Quý Thủy (-)\",\"-/-\",\"-/-\"],[\"Tứ chính\",\"Ngọ\",\"Hỏa (+)\",\"Đinh Hỏa (-)\",\"Kỷ Thổ (-)\",\"-/-\"],[\"Tứ chính\",\"Mão\",\"Mộc (-)\",\"Ất Mộc (-)\",\"-/-\",\"-/-\"],[\"Tứ chính\",\"Dậu\",\"Kim (-)\",\"Tân Kim (-)\",\"-/-\",\"-/-\"],[\"Tứ mộ\",\"Thìn\",\"Thổ (+)\",\"Mậu Thổ (+)\",\"Ất Mộc (-)\",\"Quý Thủy (-)\"],[\"Tứ mộ\",\"Tuất\",\"Thổ (+)\",\"Mậu Thổ (+)\",\"Tân Kim (-)\",\"Đinh Hỏa (-)\"],[\"Tứ mộ\",\"Sửu\",\"Thổ (-)\",\"Kỷ Thổ (-)\",\"Quý Thủy (-)\",\"Tân Kim (-)\"],[\"Tứ mộ\",\"Mùi\",\"Thổ (-)\",\"Kỷ Thổ (-)\",\"Đinh Hỏa (-)\",\"Ất Mộc (-)\"]]})]})}return{default:function(n={}){const{wrapper:h}=n.components||{};return h?T(h,{...n,children:T(_createMdxContent,{...n})}):_createMdxContent(n)}};",
     "toc": [],
-    "updatedAt": "11/9/2025, 11:41:01 PM",
+    "updatedAt": "11/13/2025, 10:28:53 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",

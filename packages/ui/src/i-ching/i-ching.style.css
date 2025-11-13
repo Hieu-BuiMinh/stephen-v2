@@ -1,0 +1,76 @@
+/* .bg-stripes {
+	background-color: #4263e694;
+	background-image: linear-gradient(
+		135deg,
+		#d946ef80 10%,
+		#0000 0,
+		#0000 50%,
+		#d946ef80 0,
+		#d946ef80 60%,
+		#0000 0,
+		#0000
+	);
+	background-size: 7.07px 7.07px;
+} */
+
+.bg-stripes {
+	background-color: #ef444480; /* Đổi sang đỏ Tailwind 500 với độ trong suốt 50% */
+	background-image: linear-gradient(
+		135deg,
+		#ef444480 10%,
+		/* Màu đỏ Tailwind 500 cho sọc, với độ trong suốt 50% */ #0000 0,
+		#0000 50%,
+		#ef444480 0,
+		#ef444480 60%,
+		#0000 0,
+		#0000
+	);
+	background-size: 7.07px 7.07px;
+}
+
+.dark .yin-yang {
+	box-shadow:
+		rgba(0, 0, 0, 0.4) 0px 2px 4px,
+		rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+		rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.yin-yang {
+	box-shadow:
+		rgba(0, 0, 0, 0.4) 0px 2px 4px,
+		rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+		rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.yin-yang--active {
+	@apply relative overflow-hidden;
+
+	&::before {
+		@apply opacity-0 rounded-full absolute size-full -skew-x-[20deg];
+
+		content: '';
+		background: linear-gradient(120deg, transparent 20%, #f1f5f9c2 50%, transparent 80%);
+		animation: Badge_shine 5s ease-in-out infinite;
+	}
+}
+
+@keyframes Badge_shine {
+	0% {
+		left: -100%;
+	}
+	1% {
+		left: -100%;
+		opacity: 1;
+	}
+	15% {
+		left: 100%;
+		opacity: 1;
+	}
+
+	16% {
+		opacity: 0;
+	}
+	100% {
+		left: -100%;
+	}
+}
