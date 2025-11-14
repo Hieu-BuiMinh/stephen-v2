@@ -6,7 +6,7 @@ type TSVGIconsProps = React.HtmlHTMLAttributes<SVGElement>
 export type SVGIcon = keyof typeof SVGIcons
 export type SVGIconComponent = (props: TSVGIconsProps) => React.ReactElement
 
-export const SVGIcons = {
+const SVGIcons = {
 	// brands
 	logo: (props: TSVGIconsProps) => (
 		<svg
@@ -1009,3 +1009,4 @@ export const SVGIcons = {
 		</svg>
 	),
 }
+export { SVGIcons }

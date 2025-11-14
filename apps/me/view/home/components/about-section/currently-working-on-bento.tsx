@@ -1,7 +1,7 @@
 import { TextEffect } from '@repo/stephen-v2-ui/motion'
 import Link from 'next/link'
 
-import { SVGIcons } from '@/components/icons/svg-icons'
+import { SVGIcons } from '@repo/stephen-v2-ui/shadcn'
 import {
 	GlowingStarsBackgroundCard,
 	GlowingStarsDescription,

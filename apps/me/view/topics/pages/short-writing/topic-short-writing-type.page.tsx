@@ -19,7 +19,7 @@ const sortedPostsByType = ({ type }: { type: OTHERS_POST_TYPE }) => {
 async function TopicShortWritingTypePage({ params }: ITopicShortWritingTypePageProps) {
 	const { type } = await params
 
-	const headertitle: Record<OTHERS_POST_TYPE, { title: string; description: string }> = {
+	const headertitle: Partial<Record<OTHERS_POST_TYPE, { title: string; description: string }>> = {
 		'kinh-dich': {
 			title: 'Kinh Dịch',
 			description: `Thoughts, mental models about front-end development.`,

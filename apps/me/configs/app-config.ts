@@ -1,5 +1,5 @@
-import type { SVGIconComponent } from '@/components/icons/svg-icons'
-import { SVGIcons } from '@/components/icons/svg-icons'
+import type { SVGIconComponent } from '@repo/stephen-v2-ui/shadcn'
+import { SVGIcons } from '@repo/stephen-v2-ui/shadcn'
 
 export const isProduction = process.env.NODE_ENV === 'production'
 
