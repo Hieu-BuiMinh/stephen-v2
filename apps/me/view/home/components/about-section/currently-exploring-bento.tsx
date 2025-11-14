@@ -1,6 +1,6 @@
 import { cn } from '@repo/stephen-v2-utils'
 
-import { SVGIcons } from '@/components/icons/svg-icons'
+import { SVGIcons } from '@repo/stephen-v2-ui/shadcn'
 import BentoCard from '@/view/home/components/bento-card'
 
 const defaultCards = [

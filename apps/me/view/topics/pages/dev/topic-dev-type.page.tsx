@@ -20,7 +20,7 @@ const sortedPostsByType = ({ type }: { type: DEV_POST_TYPE }) => {
 async function TopicDevTypePage({ params }: ITopicDevTypePageProps) {
 	const { type } = await params
 
-	const headertitle: Record<DEV_POST_TYPE, { title: string; description: string }> = {
+	const headertitle: Partial<Record<DEV_POST_TYPE, { title: string; description: string }>> = {
 		post: {
 			title: 'Dev Post',
 			description: `Thoughts, mental models about front-end development.`,

@@ -1,8 +1,8 @@
+import { SVGIcons } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { SVGIcons } from '@/components/icons/svg-icons'
 import { ModeToggle } from '@/components/mode-toggle'
 import { APP_CONFIG } from '@/configs/app-config'
 

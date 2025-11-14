@@ -21,7 +21,7 @@ const sortedPostsByType = ({ type }: { type: BOOKS_POST_TYPE }) => {
 async function TopicBookTypePage({ params }: ITopicBookTypePageProps) {
 	const { type } = await params
 
-	const headertitle: Record<BOOKS_POST_TYPE, { title: string; description: string }> = {
+	const headertitle: Partial<Record<BOOKS_POST_TYPE, { title: string; description: string }>> = {
 		'life-habits': {
 			title: 'Life Habits',
 			description: `Chill tips & fresh mindsets to keep your life on point`,

@@ -49,7 +49,7 @@ const photos = [
 		direction: 'right' as Direction,
 		src: '/assets/images/avt/me_03.png',
 		name: 'Ben Tre',
-		date: '07/30/2024',
+		date: '04/28/2024',
 	},
 	{
 		id: 5,

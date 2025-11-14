@@ -8,7 +8,9 @@ import Link from 'next/link'
 import * as runtime from 'react/jsx-runtime'
 
 import { AnimatedBlock } from '../../../motion/components/animate-block'
+import { SVGIcons } from '../icons'
 import { ImageZoom } from '../image/image-zoom'
+import { AvatarCardStack, CardStack } from '../image-card-stack'
 import CodeBlockTabs from './custom-components/code-block-tabs'
 import Heading from './custom-components/heading'
 import { Table } from './custom-components/table'
@@ -66,11 +68,14 @@ const components = {
 	},
 	code: (props: React.ComponentPropsWithoutRef<'code'>) => {
 		const { children } = props
-		console.log('props', props)
+		// console.log('props', props)
 		return <code>{children}</code>
 	},
 	CodeBlockTabs,
 	Table,
+	SVGIcons,
+	CardStack,
+	AvatarCardStack,
 
 	// effect
 	AnimatedBlock,
