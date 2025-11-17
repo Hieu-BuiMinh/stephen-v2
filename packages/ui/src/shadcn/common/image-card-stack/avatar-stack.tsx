@@ -35,15 +35,15 @@ export function AvatarCardStack() {
 	]
 
 	return (
-		<CardStack items={items} containerClassName="size-[250px]">
+		<CardStack items={items} containerClassName="size-[300px]">
 			{(card) => (
-				<div className="flex flex-col gap-3 justify-between pointer-events-none p-2 h-[270px] bg-white shadow-lg">
-					<div className="flex items-center justify-center w-full h-[200px] overflow-hidden">
+				<div className="flex flex-col gap-3 justify-between pointer-events-none p-2 h-[270px] bg-white shadow-lg rounded-sm border dark:border-none">
+					<div className="flex items-center justify-center w-full h-[200px] overflow-hidden rounded-sm">
 						<Image src={card.img as string} alt="card" className="object-cover" width={800} height={800} />
 					</div>
 					<div className="flex flex-col">
-						{card.name && <span className="text-background/70">{card.name}</span>}
-						{card.date && <span className="text-background/70">{card.date}</span>}
+						{card.name && <span className="text-neutral-900/70">{card.name}</span>}
+						{card.date && <span className="text-neutral-900/70">{card.date}</span>}
 					</div>
 				</div>
 			)}

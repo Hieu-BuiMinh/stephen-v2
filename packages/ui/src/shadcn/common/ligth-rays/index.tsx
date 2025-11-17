@@ -344,10 +344,10 @@ void main() {
 				if (renderer) {
 					try {
 						const canvas = renderer.gl.canvas
-						const loseContextExt = renderer.gl.getExtension('WEBGL_lose_context')
-						if (loseContextExt) {
-							loseContextExt.loseContext()
-						}
+						// const loseContextExt = renderer.gl.getExtension('WEBGL_lose_context')
+						// if (loseContextExt) {
+						// 	loseContextExt.loseContext()
+						// }
 
 						if (canvas && canvas.parentNode) {
 							canvas.parentNode.removeChild(canvas)
