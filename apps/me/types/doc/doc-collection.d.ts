@@ -25,3 +25,9 @@ export interface IDocCollection {
 	collections: ICollections[]
 	status: 'draft' | 'published'
 }
+export interface IOtherTopicsCollection {
+	title: string
+	description: string
+	collectionName: string
+	collections: ICollections[]
+}

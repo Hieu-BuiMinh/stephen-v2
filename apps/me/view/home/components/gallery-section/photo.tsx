@@ -57,15 +57,15 @@ export const Photo = ({
 		<motion.div
 			drag
 			dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-			whileTap={{ scale: 1.2, zIndex: 50 }}
+			whileTap={{ scale: 1.2, zIndex: 90 }}
 			whileHover={{
 				scale: 1.1,
 				rotateZ: 2 * (direction === 'start' ? -1 : 1),
-				zIndex: 50,
+				zIndex: 90,
 			}}
 			whileDrag={{
 				scale: 1.1,
-				zIndex: 50,
+				zIndex: 90,
 			}}
 			initial={{ rotate: 0 }}
 			animate={{ rotate: rotation }}

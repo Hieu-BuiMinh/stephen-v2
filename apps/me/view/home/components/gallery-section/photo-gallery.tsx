@@ -9,8 +9,21 @@ import { Photo } from '@/view/home/components/gallery-section/photo'
 const photos = [
 	{
 		id: 1,
-		order: 0,
-		x: '-350px',
+		order: 1,
+		x: '-400px',
+		y: '4px',
+		zIndex: 60,
+		direction: 'left' as Direction,
+		src: '/assets/images/avt/me_10.png',
+		name: 'Da Lat City',
+		date: '10/15/2025',
+		width: 220,
+		height: 260,
+	},
+	{
+		id: 2,
+		order: 2,
+		x: '-250px',
 		y: '15px',
 		zIndex: 50,
 		direction: 'left' as Direction,
@@ -19,9 +32,9 @@ const photos = [
 		date: '05/18/2025',
 	},
 	{
-		id: 2,
-		order: 1,
-		x: '-190px',
+		id: 3,
+		order: 3,
+		x: '-100px',
 		y: '32px',
 		zIndex: 40,
 		direction: 'left' as Direction,
@@ -30,9 +43,9 @@ const photos = [
 		date: '07/30/2024',
 	},
 	{
-		id: 3,
-		order: 2,
-		x: '0px',
+		id: 4,
+		order: 4,
+		x: '70px',
 		y: '8px',
 		zIndex: 30,
 		direction: 'right' as Direction,
@@ -41,9 +54,9 @@ const photos = [
 		date: '09/02/2025',
 	},
 	{
-		id: 4,
-		order: 3,
-		x: '190px',
+		id: 5,
+		order: 5,
+		x: '250px',
 		y: '22px',
 		zIndex: 20,
 		direction: 'right' as Direction,
@@ -52,9 +65,9 @@ const photos = [
 		date: '04/28/2024',
 	},
 	{
-		id: 5,
-		order: 4,
-		x: '350px',
+		id: 6,
+		order: 6,
+		x: '400px',
 		y: '44px',
 		zIndex: 10,
 		direction: 'left' as Direction,
@@ -177,7 +190,7 @@ function PhotoGallery({ animationDelay = 0.5 }: { animationDelay?: number }) {
 									y: photo.y,
 									order: photo.order,
 								}}
-								whileHover={{ zIndex: 60 }}
+								whileHover={{ zIndex: 90 }}
 							>
 								<div
 									className="group relative"
@@ -218,8 +231,8 @@ function PhotoGallery({ animationDelay = 0.5 }: { animationDelay?: number }) {
 										)}
 									</AnimatePresence>
 									<Photo
-										width={220}
-										height={220}
+										width={photo?.width || 220}
+										height={photo?.height || 220}
 										src={photo.src}
 										alt="Family photo"
 										direction={photo.direction}
