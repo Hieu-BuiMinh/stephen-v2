@@ -28,7 +28,7 @@ function TopicBookPageView() {
 	return (
 		<>
 			<LightRaysClient />
-			<div className="flex flex-col gap-36 py-36">
+			<div className="flex flex-col gap-36 py-36 px-6">
 				{Object.entries(bookRecaps).map(([key, value]) => (
 					<div key={key} className="group relative flex flex-col overflow-visible">
 						<AnimatedBlock type="FADE_IN_FROM_BOTTOM" className="group/post-card relative">

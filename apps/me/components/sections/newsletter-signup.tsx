@@ -124,8 +124,8 @@ function NewsletterSignUp() {
 
 			<div
 				className={cn(
-					'before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2 before:h-px before:w-[calc(100vw-1.5rem)] before:bg-muted-foreground/20',
-					'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-px after:w-[calc(100vw-1.5rem)] after:bg-muted-foreground/20'
+					'before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2 before:h-px before:w-screen before:bg-muted-foreground/20',
+					'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-px after:w-screen after:bg-muted-foreground/20'
 				)}
 			/>
 		</div>

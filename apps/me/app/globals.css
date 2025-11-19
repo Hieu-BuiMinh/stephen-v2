@@ -9,7 +9,7 @@ html {
 }
 
 body {
-	@apply text-sm;
+	@apply text-sm relative;
 	font-family: var(--font-roboto), sans-serif;
 	overflow-x: hidden;
 }

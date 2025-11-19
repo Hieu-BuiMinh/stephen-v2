@@ -24,7 +24,7 @@ function TopicDevPage() {
 	return (
 		<>
 			<LightRaysClient />
-			<div className="flex flex-col gap-36 py-36">
+			<div className="flex flex-col gap-36 py-36 px-6">
 				{Object.entries(devPosts).map(([key, posts]) => (
 					<div key={key} className="group relative flex flex-col overflow-visible">
 						<AnimatedBlock type="FADE_IN_FROM_BOTTOM" className="group/post-card relative">

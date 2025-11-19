@@ -16,7 +16,7 @@ const photos = [
 		direction: 'left' as Direction,
 		src: '/assets/images/avt/me_10.png',
 		name: 'Da Lat City',
-		date: '10/15/2025',
+		date: '11/15/2025',
 		width: 220,
 		height: 260,
 	},
