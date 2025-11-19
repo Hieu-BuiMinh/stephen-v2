@@ -1,14 +1,19 @@
 import './globals.css'
 
 import type { Metadata, Viewport } from 'next'
-import { Roboto } from 'next/font/google'
+// import { Roboto } from 'next/font/google'
+import localFont from 'next/font/local'
 
 import AppProvider from '@/components/providers/app-provider'
 import { APP_CONFIG } from '@/configs/app-config'
 
-const roboto = Roboto({
-	variable: '--font-roboto',
-	subsets: ['latin'],
+// const roboto = Roboto({
+// 	variable: '--font-roboto',
+// 	subsets: ['latin'],
+// })
+
+const writerFont = localFont({
+	src: './iAWriterQuattroS-Regular.woff2',
 })
 
 export const viewport: Viewport = {
@@ -129,12 +134,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${roboto.variable} antialiased`} suppressHydrationWarning>
-				<AppProvider>
-					{/* <SiteHeader /> */}
-					{children}
-					{/* <SiteFooter /> */}
-				</AppProvider>
+			{/* <body className={`${roboto.variable} antialiased`} suppressHydrationWarning> */}
+			<body className={writerFont.className} suppressHydrationWarning>
+				<AppProvider>{children}</AppProvider>
 			</body>
 		</html>
 	)

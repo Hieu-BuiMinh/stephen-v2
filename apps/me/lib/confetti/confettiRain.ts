@@ -11,10 +11,10 @@ const PALETTE = ['#ff4081', '#ff80ab', '#ffab40', '#ffd740', '#69f0ae', '#40c4ff
 
 /**
  * Starts a "paper snow" effect with multi-colored confetti.
- * @param duration      Total duration of the effect in milliseconds (default: 50_000).
+ * @param duration      Total duration of the effect in milliseconds (default: 20_000).
  * @param spawnChance   Probability of spawning a particle on each animation frame (0–1).
  */
-export const startPaperSnow = (duration = 50_000, spawnChance = 0.25) => {
+export const startPaperSnow = (duration = 20_000, spawnChance = 0.25) => {
 	if (typeof window === 'undefined') return
 
 	// Prevent starting a second animation if one is already running

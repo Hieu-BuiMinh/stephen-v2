@@ -20,7 +20,7 @@ function ConnectionsPageView() {
 	})
 
 	return (
-		<div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-9 max-[280px]:grid-cols-1 gap-3 pb-24">
+		<div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-9 max-[280px]:grid-cols-1 gap-3 py-12">
 			{connections.map((item, i) => (
 				<AnimatedBlock type="FADE_IN" delay={0.1 * i} className="col-span-1" key={i}>
 					<ConnectionBlock data={item} />
