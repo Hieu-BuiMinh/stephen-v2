@@ -12,7 +12,7 @@ import TechsTackBento from '@/view/home/components/about-section/techs-tack-bent
 
 function AboutSection() {
 	return (
-		<div className="flex flex-col gap-10 items-center justify-center my-32 min-h-screen">
+		<div className="flex flex-col gap-10 items-center justify-center my-32 min-h-screen px-3">
 			<TextGradient as="div" className="text-center font-semibold text-3xl md:text-4xl max-w-xl">
 				<TextEffect preset="slide" per="char">
 					Here's what sets me apart and makes me unique

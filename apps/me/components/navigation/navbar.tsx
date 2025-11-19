@@ -39,7 +39,8 @@ function Navbar({ className }: { className?: string }) {
 				y: { duration: 0.3, ease: 'easeInOut' },
 			}}
 			className={cn(
-				'fixed hidden h-16 w-full items-center justify-between px-4 bg-background/50 backdrop-blur-md left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:border-b lg:border-x md:border-primary/10 z-[99]',
+				'fixed hidden h-16 w-full items-center justify-between px-4 bg-background/50 backdrop-blur-md left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:__border-b lg:border-x md:border-primary/10 z-[99]',
+				'before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:h-px before:w-[calc(100vw-1.5rem)] before:bg-muted-foreground/20 dark:before:bg-muted-foreground/20',
 				className
 			)}
 		>
@@ -92,6 +93,14 @@ function Navbar({ className }: { className?: string }) {
 				})}
 				<div className="absolute inset-0 -z-10 w-full h-full cursed bg-fd-background/40 backdrop-blur-xs" />
 			</div>
+			<div
+				style={{ bottom: '-3.5px', left: '-4.5px' }}
+				className="absolute z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background"
+			/>
+			<div
+				style={{ bottom: '-3.5px', right: '-4.5px' }}
+				className="absolute z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background"
+			/>
 			<ModeToggle />
 		</motion.nav>
 	)

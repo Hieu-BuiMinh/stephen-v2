@@ -52,7 +52,7 @@ function AboutPage() {
 	}
 
 	return (
-		<div className="pb-44">
+		<div className="pb-44 px-3">
 			<LightRaysClient />
 			<PostPageTitle title={post.title} description={post.description} />
 			<MDXContentComponent code={post.body} className="min-w-full" />

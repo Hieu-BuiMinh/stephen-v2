@@ -23,11 +23,11 @@ export default async function ProjectDetailPageView({ params }: PostPageProps) {
 	return (
 		<>
 			<PostDetailHeader post={post} />
-			<div className="flex gap-3 pt-4">
+			<div className="flex gap-3 pt-4 px-3">
 				<ProjectLink title="Demo" url={post?.links?.demoUrl} />
 				<ProjectLink title="Repo" url={post?.links?.repoUrl} />
 			</div>
-			<div className="grid col-span-1 lg:grid-cols-[1fr_250px] gap-10 mt-5">
+			<div className="grid col-span-1 lg:grid-cols-[1fr_250px] gap-10 mt-5 px-3">
 				<MDXContentComponent code={post.body} className="col-span-1 min-w-full" />
 
 				<aside className="hidden lg:block lg:w-[250px]">

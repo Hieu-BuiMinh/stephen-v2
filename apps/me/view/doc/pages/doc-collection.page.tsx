@@ -25,7 +25,7 @@ function DocumentCollectionPageView({ collectionName }: { collectionName: string
 
 			<PostPageTitle title={collection.title} description={collection.description} />
 
-			<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+			<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-3">
 				{collection?.collections.map((doc, index) => {
 					const docSlug = doc?.slug
 					const firstPostId = doc?.tableOfContent?.[index]?.id || ''

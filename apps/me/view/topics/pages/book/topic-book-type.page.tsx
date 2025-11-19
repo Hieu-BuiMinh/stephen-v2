@@ -61,7 +61,7 @@ async function TopicBookTypePage({ params }: ITopicBookTypePageProps) {
 			<div className="flex flex-col gap-5">
 				<PostPageTitle title={headerTitleByType.title} description={headerTitleByType.description} />
 
-				<div className="w-full min-h-52 flex">
+				<div className="w-full min-h-52 flex px-6 py-12">
 					{postList?.length > 0 ? (
 						<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 pb-20">
 							{postList?.map((post) => {

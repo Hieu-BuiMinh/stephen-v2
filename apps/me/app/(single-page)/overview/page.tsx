@@ -56,14 +56,14 @@ function OverviewPage() {
 	}
 
 	return (
-		<div className="pb-44">
+		<div className="pb-44 px-3">
 			<LightRaysClient />
 			<ConfettiRain />
 			<PostPageTitle
 				title="Welcome to Version 2.0"
 				description="A fresh new look, better performance, and more to explore."
 			/>
-			<MDXContentComponent code={post.body} className="min-w-full" />
+			<MDXContentComponent code={post.body} className="min-w-full py-12" />
 
 			<div className="flex flex-col items-end justify-center gap-4 mt-10 ml-auto max-w-[226px]">
 				<p className="w-full text-base text-center">All the best,</p>

@@ -8,6 +8,7 @@ import Link from 'next/link'
 import * as runtime from 'react/jsx-runtime'
 
 import { AnimatedBlock } from '../../../motion/components/animate-block'
+import { DividerSlash } from '../divider'
 import { SVGIcons } from '../icons'
 import { ImageZoom } from '../image/image-zoom'
 import { AvatarCardStack, CardStack } from '../image-card-stack'
@@ -76,6 +77,7 @@ const components = {
 	SVGIcons,
 	CardStack,
 	AvatarCardStack,
+	DividerSlash,
 
 	// effect
 	AnimatedBlock,

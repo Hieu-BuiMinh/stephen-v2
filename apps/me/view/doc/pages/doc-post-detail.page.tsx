@@ -17,7 +17,7 @@ async function DocumentPostDetailPageView({ id }: { id: string }) {
 	return (
 		<div className=" max-w-7xl m-auto">
 			<DocDetailHeader post={post} />
-			<div className="grid col-span-1 lg:grid-cols-[1fr_250px] gap-10 mt-5">
+			<div className="grid col-span-1 lg:grid-cols-[1fr_250px] gap-10 mt-5 px-3">
 				<MDXContentComponent code={post.body} className="col-span-1 min-w-full" />
 
 				<aside className="hidden lg:block lg:w-[250px]">
