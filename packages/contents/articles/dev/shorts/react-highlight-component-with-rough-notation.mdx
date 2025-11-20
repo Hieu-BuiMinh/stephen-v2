@@ -1,0 +1,275 @@
+---
+id: 'f3a2f550-7cb2-4c9b-97c6-6a132b5dd731'
+title: 'React Highlight Component with Rough Notation'
+cover: '/assets/articles/dev/post/roughnotation.png'
+createdAt: '2025-11-20T04:08:09.450Z'
+description: 'Build a reusable React + TypeScript component on top of react-rough-notation to add hand-drawn underlines, highlights, boxes, circles, and brackets to your text. Perfect for landing pages, blog posts, and product UIs.'
+published: true
+hashTags: ['dev', 'react', 'component', 'typescript']
+type: 'short'
+---
+
+Build a reusable React + TypeScript component on top of react-rough-notation to add hand-drawn underlines, highlights, boxes, circles, and brackets to your text. Perfect for landing pages, blog posts, and product UIs.
+
+## Install the libraries
+
+<CodeBlockTabs fileName={"bash"}>
+
+```bash
+npm install rough-notation react-rough-notation
+```
+
+</CodeBlockTabs>
+
+We'll create a small reusable “mini-library” on top of react-rough-notation, using React + TypeScript.
+
+## `RoughMark.tsx` - Reusable Component
+
+<CodeBlockTabs fileName={"RoughMark.tsx"}>
+
+```tsx
+// RoughMark.tsx
+import React from 'react'
+import { RoughNotation, RoughNotationGroup } from 'react-rough-notation'
+
+export type RoughMarkType = 'underline' | 'box' | 'circle' | 'highlight' | 'strike-through' | 'crossed-off' | 'bracket'
+
+export type RoughMarkProps = {
+	children: React.ReactNode
+
+	// annotation type
+	type?: RoughMarkType
+
+	// control visibility
+	show?: boolean
+
+	// style
+	color?: string
+	strokeWidth?: number
+	padding?: number | [number, number]
+	iterations?: number
+	multiline?: boolean
+
+	// for bracket type
+	brackets?: 'left' | 'right' | 'top' | 'bottom'
+
+	// animation
+	animationDelay?: number
+	animationDuration?: number
+
+	// used in group to control order
+	order?: number
+
+	// wrapper element
+	as?: keyof JSX.IntrinsicElements | React.ComponentType<any>
+	className?: string
+}
+
+/**
+ * RoughMark: wraps text and draws a rough-notation effect around it.
+ * Works for underline, highlight, box, circle, strike-through, etc.
+ */
+export const RoughMark: React.FC<RoughMarkProps> = ({
+	children,
+	type = 'underline',
+	show = true,
+	color,
+	strokeWidth,
+	padding,
+	iterations,
+	multiline,
+	brackets,
+	animationDelay,
+	animationDuration,
+	order,
+	as: Comp = 'span',
+	className,
+}) => {
+	return (
+		<RoughNotation
+			type={type}
+			show={show}
+			color={color}
+			strokeWidth={strokeWidth}
+			padding={padding}
+			iterations={iterations}
+			multiline={multiline}
+			brackets={brackets}
+			animationDelay={animationDelay}
+			animationDuration={animationDuration}
+			order={order}
+		>
+			<Comp className={className}>{children}</Comp>
+		</RoughNotation>
+	)
+}
+
+export type RoughMarkGroupProps = {
+	children: React.ReactNode
+	show?: boolean
+}
+
+/**
+ * RoughMarkGroup: groups multiple RoughMark components
+ * to animate them together or in sequence (via `order`).
+ */
+export const RoughMarkGroup: React.FC<RoughMarkGroupProps> = ({ children, show = true }) => {
+	return <RoughNotationGroup show={show}>{children}</RoughNotationGroup>
+}
+```
+
+</CodeBlockTabs>
+
+## Usage Examples
+
+### a) Simple underline / highlight
+
+<CodeBlockTabs fileName={"index.tsx"}>
+
+```tsx
+import { RoughMark } from './RoughMark'
+
+export function HeroTitle() {
+	return (
+		<h1 style={{ fontSize: '32px', fontWeight: 'bold' }}>
+			Welcome to{' '}
+			<RoughMark type="highlight" color="#ffe066" padding={4}>
+				Our scribbly log system
+			</RoughMark>
+		</h1>
+	)
+}
+```
+
+</CodeBlockTabs>
+
+<br/>
+
+<RoughMark as="span" type="highlight" color="#ffe066" padding={4}>
+	<span style={{ color: '#000' }}>Our scribbly log system</span>
+</RoughMark>
+
+### b) Multiple annotated segments with sequential animation
+
+<CodeBlockTabs fileName={"index.tsx"}>
+
+```tsx
+import { RoughMark, RoughMarkGroup } from './RoughMark'
+
+export function Intro() {
+	return (
+		<RoughMarkGroup show={true}>
+			<p style={{ fontSize: 18, lineHeight: 1.6 }}>
+				This is{' '}
+				<RoughMark type="underline" color="#ff6b6b" animationDuration={600} order={1}>
+					the first highlighted phrase
+				</RoughMark>
+				, underlined in a hand-drawn style.
+			</p>
+
+			<p style={{ fontSize: 18, lineHeight: 1.6 }}>
+				This is{' '}
+				<RoughMark type="box" color="#4dabf7" padding={6} animationDuration={600} order={2}>
+					the second segment
+				</RoughMark>
+				, wrapped in a rough box.
+			</p>
+
+			<p style={{ fontSize: 18, lineHeight: 1.6 }}>
+				And this is{' '}
+				<RoughMark type="highlight" color="#ffe066" padding={4} animationDuration={600} order={3}>
+					the third important part
+				</RoughMark>
+				, highlighted like a marker.
+			</p>
+		</RoughMarkGroup>
+	)
+}
+```
+
+</CodeBlockTabs>
+
+<br />
+
+<RoughMarkGroup show={true}>
+	<div className='flex gap-5 flex-wrap mt-5'>
+		<RoughMark type="underline" color="#ff6b6b" animationDuration={600} order={1}>
+			<span>the first highlighted phrase</span>
+		</RoughMark>
+
+    	<RoughMark type="box" color="#4dabf7" padding={6} animationDuration={600} order={2}>
+    			<span>the second segment</span>
+    	</RoughMark>
+
+    	<RoughMark type="highlight" color="#ffe066" padding={4} animationDuration={600} order={3}>
+    			<span style={{color: '#000'}}>the third important part</span>
+    	</RoughMark>
+    </div>
+
+</RoughMarkGroup>
+
+- RoughMarkGroup + order → animations play one after another.
+- If you omit order, they animate together.
+
+### c. Brackets, circles, crossed-off
+
+<CodeBlockTabs fileName={"index.tsx"}>
+
+```tsx
+<RoughMark type="circle" color="#ff922b">
+  Critical content
+</RoughMark>
+
+<RoughMark type="bracket" brackets="left" color="#40c057">
+  This options group
+</RoughMark>
+
+<RoughMark type="crossed-off" color="#fa5252">
+  Deprecated feature
+</RoughMark>
+
+```
+
+</CodeBlockTabs>
+
+<br/>
+
+<div className='flex gap-5 flex-wrap mt-5'>
+	<RoughMark type="circle" color="#ff922b">
+		<span>Critical content</span>
+	</RoughMark>
+
+    <RoughMark type="bracket" brackets={['left', 'right']} color="#40c057">
+    	<span>This options group</span>
+    </RoughMark>
+
+    <RoughMark type="crossed-off" color="#fa5252">
+    	<span>Deprecated feature</span>
+    </RoughMark>
+
+</div>
+
+## Optional: Export as part of your design system
+
+Create a folder like components/rough/:
+
+- RoughMark.tsx (the file above)
+- index.ts:
+
+<CodeBlockTabs fileName={"index.ts"}>
+
+```ts
+export * from './RoughMark'
+```
+
+</CodeBlockTabs>
+
+Then you can import it cleanly across your app:
+
+<CodeBlockTabs fileName={"index.tsx"}>
+
+```tsx
+import { RoughMark, RoughMarkGroup } from '@/components/rough'
+```
+
+</CodeBlockTabs>

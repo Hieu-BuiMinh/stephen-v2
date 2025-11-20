@@ -35,7 +35,7 @@
         "items": []
       }
     ],
-    "updatedAt": "11/17/2025, 11:19:13 PM",
+    "updatedAt": "11/20/2025, 11:19:27 AM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -92,7 +92,7 @@
         "items": []
       }
     ],
-    "updatedAt": "11/17/2025, 11:19:13 PM",
+    "updatedAt": "11/20/2025, 11:19:27 AM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -118,7 +118,7 @@
     "type": "bat-tu",
     "body": "const{Fragment:n,jsx:T,jsxs:h}=arguments[0];function _createMdxContent(i){const{Table:u}=i.components||{};return u||function(n,T){throw new Error(\"Expected \"+(T?\"component\":\"object\")+\" `\"+n+\"` to be defined: you likely forgot to import, pass, or provide it.\")}(\"Table\",!0),h(n,{children:[T(u,{rows:[[\"Ngũ hành - Can (dương)\",\"Trường sinh\",\"Mộc dục\",\"Quan đới\",\"Lâm quan\",\"Đế vượng\",\"Suy\",\"Bệnh\",\"Tử\",\"Mộ\",\"Tuyệt\",\"Thai\",\"Dưỡng\"],[\"Thủy dương (Nhâm)\",\"Thân\",\"Dậu\",\"Tuất\",\"Hợi\",\"Tí\",\"Sửu\",\"Dần\",\"Mão\",\"Thìn\",\"Tỵ\",\"Ngọ\",\"Mùi\"],[\"Mộc dương (Giáp)\",\"Hợi\",\"Tí\",\"Sửu\",\"Dần\",\"Mão\",\"Thìn\",\"Tỵ\",\"Ngọ\",\"Mùi\",\"Thân\",\"Dậu\",\"Tuất\"],[\"Hỏa dương (Bính)\",\"Dần\",\"Mão\",\"Thìn\",\"Tỵ\",\"Ngọ\",\"Mùi\",\"Thân\",\"Dậu\",\"Tuất\",\"Hợi\",\"Tí\",\"Sửu\"],[\"Kim dương (Canh)\",\"Tỵ\",\"Ngọ\",\"Mùi\",\"Thân\",\"Dậu\",\"Tuất\",\"Hợi\",\"Tí\",\"Sửu\",\"Dần\",\"Mão\",\"Thìn\"]]}),\"\\n\",T(u,{rows:[[\"Ngũ hành - Can (âm)\",\"Trường sinh\",\"Mộc dục\",\"Quan đới\",\"Lâm quan\",\"Đế vượng\",\"Suy\",\"Bệnh\",\"Tử\",\"Mộ\",\"Tuyệt\",\"Thai\",\"Dưỡng\"],[\"Thủy âm (Quý)\",\"Mão\",\"Dần\",\"Sửu\",\"Tí\",\"Hợi\",\"Tuất\",\"Dậu\",\"Thân\",\"Mùi\",\"Ngọ\",\"Tỵ\",\"Thìn\"],[\"Mộc âm (Ất)\",\"Ngọ\",\"Tỵ\",\"Thìn\",\"Mão\",\"Dần\",\"Sửu\",\"Tí\",\"Hợi\",\"Tuất\",\"Dậu\",\"Thân\",\"Mùi\"],[\"Hỏa âm (Đinh)\",\"Dậu\",\"Thân\",\"Mùi\",\"Ngọ\",\"Tỵ\",\"Thìn\",\"Mão\",\"Dần\",\"Sửu\",\"Tí\",\"Hợi\",\"Tuất\"],[\"Kim âm (Tân)\",\"Tí\",\"Hợi\",\"Tuất\",\"Dậu\",\"Thân\",\"Mùi\",\"Ngọ\",\"Tỵ\",\"Thìn\",\"Mão\",\"Dần\",\"Sửu\"]]}),\"\\n\",T(u,{rows:[[\"Nhóm\",\"Địa chi\",\"Ngũ hành chi\",\"Khí 1\",\"Khí 2\",\"Khí 3\"],[\"Tứ sinh\",\"Dần\",\"Mộc (+)\",\"Giáp Mộc (+)\",\"Bính Hỏa (+)\",\"Mậu Thổ (+)\"],[\"Tứ sinh\",\"Thân\",\"Kim (+)\",\"Canh Kim (+)\",\"Nhâm Thủy (+)\",\"Mậu Thổ (+)\"],[\"Tứ sinh\",\"Tỵ\",\"Hỏa (-)\",\"Bính Hỏa (+)\",\"Canh Kim (+)\",\"Mậu Thổ (+)\"],[\"Tứ sinh\",\"Hợi\",\"Thủy (-)\",\"Nhâm Thủy (+)\",\"Giáp Mộc (+)\",\"-/-\"],[\"Tứ chính\",\"Tí\",\"Thủy (+)\",\"Quý Thủy (-)\",\"-/-\",\"-/-\"],[\"Tứ chính\",\"Ngọ\",\"Hỏa (+)\",\"Đinh Hỏa (-)\",\"Kỷ Thổ (-)\",\"-/-\"],[\"Tứ chính\",\"Mão\",\"Mộc (-)\",\"Ất Mộc (-)\",\"-/-\",\"-/-\"],[\"Tứ chính\",\"Dậu\",\"Kim (-)\",\"Tân Kim (-)\",\"-/-\",\"-/-\"],[\"Tứ mộ\",\"Thìn\",\"Thổ (+)\",\"Mậu Thổ (+)\",\"Ất Mộc (-)\",\"Quý Thủy (-)\"],[\"Tứ mộ\",\"Tuất\",\"Thổ (+)\",\"Mậu Thổ (+)\",\"Tân Kim (-)\",\"Đinh Hỏa (-)\"],[\"Tứ mộ\",\"Sửu\",\"Thổ (-)\",\"Kỷ Thổ (-)\",\"Quý Thủy (-)\",\"Tân Kim (-)\"],[\"Tứ mộ\",\"Mùi\",\"Thổ (-)\",\"Kỷ Thổ (-)\",\"Đinh Hỏa (-)\",\"Ất Mộc (-)\"]]})]})}return{default:function(n={}){const{wrapper:h}=n.components||{};return h?T(h,{...n,children:T(_createMdxContent,{...n})}):_createMdxContent(n)}};",
     "toc": [],
-    "updatedAt": "11/17/2025, 11:19:13 PM",
+    "updatedAt": "11/20/2025, 11:19:27 AM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -146,7 +146,7 @@
     "type": "single",
     "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(r){const t={a:\"a\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...r.components};return i(e,{children:[n(t.p,{children:n(t.strong,{children:\"👋 Hello! Welcome to my website\"})}),\"\\n\",i(t.p,{children:[\"This is the second version of my personal website, launched in 2025 after lots of learning, experimenting, and refining. Compared to the very \",n(t.a,{href:\"https://github.com/Hieu-BuiMinh/portfolio-blog-webapp\",children:\"first version\"}),\" (built in 2024), this upgrade brings:\"]}),\"\\n\",i(t.ul,{children:[\"\\n\",n(t.li,{children:\"Built with Next.js 15, Tailwind CSS 4, and Turborepo 🚀.\"}),\"\\n\",n(t.li,{children:\"A cleaner, modern design with improved aesthetics.\"}),\"\\n\",n(t.li,{children:\"Subtle animations for a smoother, more engaging experience.\"}),\"\\n\",n(t.li,{children:\"Better performance and responsiveness, making the site faster on any device.\"}),\"\\n\"]}),\"\\n\",i(t.p,{children:[\"My goal with this revamp is to turn this website into a personal space where \",n(t.a,{href:\"https://github.com/Hieu-BuiMinh\",children:\"I\"}),\" can share projects, blog posts, and my journey as a developer.\"]}),\"\\n\",n(t.p,{children:n(t.strong,{children:\"💡 Inspiration & Credits\"})}),\"\\n\",n(t.p,{children:\"This version was inspired by many amazing developers and designers in the community. A special thanks goes out to:\"}),\"\\n\",i(t.ul,{children:[\"\\n\",i(t.li,{children:[\"tszhong0411: \",n(t.a,{href:\"https://nelsonlai.me/\",children:\"nelsonlai.me\"})]}),\"\\n\",i(t.li,{children:[\"braydoncoyer: \",n(t.a,{href:\"https://www.braydoncoyer.dev/\",children:\"braydoncoyer.dev\"})]}),\"\\n\",i(t.li,{children:[\"theodorusclarence: \",n(t.a,{href:\"https://theodorusclarence.com/\",children:\"theodorusclarence.com\"})]}),\"\\n\",i(t.li,{children:[\"Cuberto: \",n(t.a,{href:\"https://cuberto.com/\",children:\"cuberto.com\"})]}),\"\\n\",i(t.li,{children:[\"Fuma-Nama: \",n(t.a,{href:\"https://fuma-nama.vercel.app/\",children:\"fuma-nama.vercel.app\"})]}),\"\\n\",i(t.li,{children:[\"Fellipe-Utaka: \",n(t.a,{href:\"https://fellipeutaka.vercel.app\",children:\"fellipeutaka.vercel.app\"})]}),\"\\n\",i(t.li,{children:[\"Refer to this \",n(t.a,{href:\"https://github.com/techwithanirudh/shadcn-portfolio\",children:\"README\"})]}),\"\\n\"]}),\"\\n\",n(t.p,{children:n(t.strong,{children:\"🙌 Closing\"})}),\"\\n\",n(t.p,{children:\"Thank you for visiting! ✨\"}),\"\\n\",n(t.p,{children:\"I hope you'll enjoy exploring this space and maybe even find something inspiring along the way.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};",
     "toc": [],
-    "updatedAt": "11/17/2025, 11:19:13 PM",
+    "updatedAt": "11/20/2025, 11:19:27 AM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
