@@ -14,13 +14,22 @@ import {
 } from '@repo/stephen-v2-ui/shadcn'
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { APP_CONFIG, SOCIAL_LINKS } from '@/configs/app-config'
 import { navbarItems } from '@/constants/components/navbar.const'
 
 function MobileNavbar() {
+	const [loaded, setLoaded] = useState(false)
 	const [isOpen, setIsOpen] = useState(false)
+
+	useEffect(() => {
+		setLoaded(true)
+	}, [])
+
+	if (!loaded) {
+		return null
+	}
 
 	return (
 		<Sheet open={isOpen} onOpenChange={setIsOpen}>

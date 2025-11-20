@@ -30,7 +30,7 @@ function TopicShortWritingPage() {
 	return (
 		<>
 			<LightRaysClient />
-			<div className="flex flex-col gap-3 py-36">
+			<div className="flex flex-col gap-3 py-36 px-6">
 				{Object.entries(shortWritingPosts).map(([key, value]) => (
 					<div key={key} className="group relative flex flex-col gap-3 overflow-visible">
 						<div className="flex flex-col gap-3">

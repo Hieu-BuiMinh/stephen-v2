@@ -12,6 +12,7 @@ import { DividerSlash } from '../divider'
 import { SVGIcons } from '../icons'
 import { ImageZoom } from '../image/image-zoom'
 import { AvatarCardStack, CardStack } from '../image-card-stack'
+import { RoughMark, RoughMarkGroup } from '../rough'
 import CodeBlockTabs from './custom-components/code-block-tabs'
 import Heading from './custom-components/heading'
 import { Table } from './custom-components/table'
@@ -78,6 +79,10 @@ const components = {
 	CardStack,
 	AvatarCardStack,
 	DividerSlash,
+
+	// rough mark
+	RoughMark,
+	RoughMarkGroup,
 
 	// effect
 	AnimatedBlock,

@@ -4,7 +4,7 @@ import { cn } from '@repo/stephen-v2-utils'
 import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { ModeToggle } from '@/components/mode-toggle'
 import NavMenuDropdown from '@/components/navigation/menu-dropdown'
@@ -12,6 +12,7 @@ import type { TNavbarItem } from '@/constants/components/navbar.const'
 import { navbarItems } from '@/constants/components/navbar.const'
 
 function Navbar({ className }: { className?: string }) {
+	const [loaded, setLoaded] = useState(false)
 	const navKeys = Object.keys(navbarItems)
 	const { scrollY } = useScroll()
 
@@ -25,6 +26,14 @@ function Navbar({ className }: { className?: string }) {
 			setIsVisible(true)
 		}
 	})
+
+	useEffect(() => {
+		setLoaded(true)
+	}, [])
+
+	if (!loaded) {
+		return null
+	}
 
 	return (
 		<motion.nav
@@ -40,7 +49,7 @@ function Navbar({ className }: { className?: string }) {
 			}}
 			className={cn(
 				'fixed hidden h-16 w-full items-center justify-between px-4 bg-background/50 backdrop-blur-md left-1/2 -translate-x-1/2 md:max-w-7xl lg:mx-auto md:flex md:__border-b lg:border-x md:border-primary/10 z-[99]',
-				'before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:h-px before:w-[calc(100vw-1.5rem)] before:bg-muted-foreground/20 dark:before:bg-muted-foreground/20',
+				'before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:h-px before:w-[calc(100vw+1.5rem)] before:bg-muted-foreground/20 dark:before:bg-muted-foreground/20',
 				className
 			)}
 		>
