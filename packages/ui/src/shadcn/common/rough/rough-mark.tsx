@@ -1,5 +1,7 @@
 'use client'
 
+// https://www.npmjs.com/package/react-rough-notation
+
 import { cn } from '@repo/stephen-v2-utils'
 import React, { useEffect } from 'react'
 import { RoughNotation, RoughNotationGroup } from 'react-rough-notation'

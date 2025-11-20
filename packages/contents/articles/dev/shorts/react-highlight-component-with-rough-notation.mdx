@@ -9,7 +9,41 @@ hashTags: ['dev', 'react', 'component', 'typescript']
 type: 'short'
 ---
 
-Build a reusable React + TypeScript component on top of react-rough-notation to add hand-drawn underlines, highlights, boxes, circles, and brackets to your text. Perfect for landing pages, blog posts, and product UIs.
+Build a reusable React + TypeScript component on top of react-rough-notation to add <RoughMark type="highlight" multiline color="#facc15"><span style={{color: '#000'}}>hand-drawn underlines, highlights, boxes, circles, and brackets to your text. Perfect for landing pages, blog posts, and product UIs.</span></RoughMark>
+
+<div className='flex flex-wrap mt-5' style={{gap: '35px'}} >
+    <RoughMark type="box" color="#a3e635">
+    	<span>Box content</span>
+    </RoughMark>
+
+    <RoughMark type="underline" color="#0ea5e9">
+    	<span>Underline content</span>
+    </RoughMark>
+
+    <RoughMark type="highlight" color="var(--foreground)">
+    	<span style={{color: 'var(--background)'}}>Highlight content</span>
+    </RoughMark>
+
+    <RoughMark type="circle" color="#ff922b">
+    	<span>Critical content</span>
+    </RoughMark>
+
+    <RoughMark type="bracket" brackets={['left', 'right']} strokeWidth={2} color="#40c057">
+    	<span>This options group</span>
+    </RoughMark>
+    <RoughMark type="bracket" brackets={['top', 'bottom']} strokeWidth={2} color="#40c057">
+    	<span>This options group</span>
+    </RoughMark>
+
+    <RoughMark type="strike-through" color="var(--foreground)">
+    	<span>Deprecated feature</span>
+    </RoughMark>
+
+    <RoughMark type="crossed-off" strokeWidth={2} color="#fa5252">
+    	<span>Deprecated feature</span>
+    </RoughMark>
+
+</div>
 
 ## Install the libraries
 
@@ -143,7 +177,7 @@ export function HeroTitle() {
 
 </CodeBlockTabs>
 
-<br/>
+<br />
 
 <RoughMark as="span" type="highlight" color="#ffe066" padding={4}>
 	<span style={{ color: '#000' }}>Our scribbly log system</span>
@@ -232,7 +266,7 @@ export function Intro() {
 
 </CodeBlockTabs>
 
-<br/>
+<br />
 
 <div className='flex gap-5 flex-wrap mt-5'>
 	<RoughMark type="circle" color="#ff922b">
