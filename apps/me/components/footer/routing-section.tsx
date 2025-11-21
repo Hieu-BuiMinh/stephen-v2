@@ -1,3 +1,5 @@
+'use client'
+
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@repo/stephen-v2-ui/shadcn'
 import Link from 'next/link'
 

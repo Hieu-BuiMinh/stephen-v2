@@ -80,6 +80,7 @@
 		"react-dom": "^19.1.0",
 		"react-fast-marquee": "^1.6.5",
 		"react-hook-form": "^7.60.0",
+		"react-medium-image-zoom": "^5.4.0",
 		"react-resizable-panels": "^3.0.3",
 		"react-rough-notation": "^1.0.8",
 		"recharts": "2.15.4",
