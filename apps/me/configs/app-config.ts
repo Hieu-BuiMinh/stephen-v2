@@ -53,7 +53,7 @@ export const SOCIAL_LINKS: {
 		href: APP_CONFIG.links.github,
 	},
 	{
-		label: 'Twitter',
+		label: 'X',
 		icon: SVGIcons.X,
 		href: APP_CONFIG.links.twitter,
 	},

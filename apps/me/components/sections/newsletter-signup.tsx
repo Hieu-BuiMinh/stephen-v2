@@ -45,12 +45,12 @@ function NewsletterSignUp() {
 	return (
 		<div className="relative">
 			<div className="relative">
-				<div className="relative overflow-x-clip">
+				<div className="relative">
 					<div className="drama-shadow rounded-2xl bg-dark-primary p-14 md:p-[100px]">
 						{/* Lines */}
 						<div className="absolute left-0 right-0 top-0 z-10 h-px w-full" />
-						<div className="absolute bottom-0 right-0 top-0 z-10 h-full w-8 bg-dashed dark:opacity-10" />
-						<div className="absolute bottom-0 left-0 top-0 z-10 h-full w-8 bg-dashed dark:opacity-10" />
+						{/* <div className="absolute bottom-0 right-0 top-0 z-10 h-full w-8 bg-dashed dark:opacity-10" />
+						<div className="absolute bottom-0 left-0 top-0 z-10 h-full w-8 bg-dashed dark:opacity-10" /> */}
 						{/* <div className="absolute bottom-0 left-0 right-0 z-10 h-px w-full border-b border-dashed" /> */}
 
 						{/* Top Right Cross */}
@@ -63,13 +63,13 @@ function NewsletterSignUp() {
 						{/* <CrossIcon className="absolute -bottom-[calc(0.52rem)] right-[calc(2rem-0.5rem)]" /> */}
 
 						{/* top left */}
-						<div className="absolute -top-1 left-[1.7rem] z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
+						<div className="absolute -top-1 -left-1 z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
 						{/* top right */}
-						<div className="absolute -top-1 right-[1.7rem] z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
+						<div className="absolute -top-1 -right-1 z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
 						{/* bottom left */}
-						<div className="absolute -bottom-1 left-[1.7rem] z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
+						<div className="absolute -bottom-1 -left-1 z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
 						{/* bottom right */}
-						<div className="absolute -bottom-1 right-[1.7rem] z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
+						<div className="absolute -bottom-1 -right-1 z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
 
 						{theme === 'dark' ? (
 							<Image

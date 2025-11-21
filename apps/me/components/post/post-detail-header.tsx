@@ -1,7 +1,7 @@
 'use client'
 
 import type { TPost } from '@repo/stephen-v2-contents'
-import { BlurImage, DividerSlash, ImageZoom } from '@repo/stephen-v2-ui/shadcn'
+import { BlurImage, DividerSlash, ImageZoom, ImageZoomV2 } from '@repo/stephen-v2-ui/shadcn'
 import { cn, formatDate } from '@repo/stephen-v2-utils'
 import { AlarmClock, Eye, Heart, Sigma } from 'lucide-react'
 import Link from 'next/link'
@@ -23,14 +23,24 @@ function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
 			<div className={cn('relative flex flex-col gap-5 px-3', className)}>
 				<div className="min-h-[230px] md:min-h-[630px] flex flex-col gap-4">
 					<ViewTransition name={`cover-${id}`}>
-						<ImageZoom
+						{/* <ImageZoom
 							alt="cover"
 							src={cover || ''}
 							width={1300}
 							height={630}
 							unoptimized={false}
 							className="relative h-[230px] md:h-[630px] w-full !rounded-lg hidden md:block"
-						/>
+						/> */}
+						<ImageZoomV2>
+							<BlurImage
+								alt="cover"
+								src={cover || ''}
+								width={1300}
+								height={630}
+								unoptimized={false}
+								className="relative h-[230px] md:h-[630px] w-full !rounded-lg hidden md:block"
+							/>
+						</ImageZoomV2>
 					</ViewTransition>
 					<ViewTransition name={`title-${id}`}>
 						<h1 className="z-10 bg-gradient-to-b from-black via-black/90 to-black/70 to-90% bg-clip-text text-center text-4xl font-bold text-transparent dark:from-white dark:via-white/90 dark:to-white/70 md:text-5xl md:leading-[64px]">
@@ -44,13 +54,15 @@ function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
 						</ViewTransition>
 					)}
 
-					<ImageZoom
-						alt="cover"
-						src={cover || ''}
-						width={1200}
-						height={630}
-						className="relative h-[230px] md:h-[630px] w-full rounded-lg block md:hidden"
-					/>
+					<ImageZoomV2>
+						<BlurImage
+							alt="cover"
+							src={cover || ''}
+							width={1200}
+							height={630}
+							className="relative h-[230px] md:h-[630px] w-full rounded-lg block md:hidden"
+						/>
+					</ImageZoomV2>
 
 					<div className="flex items-end justify-center flex-wrap gap-6 md:justify-start">
 						<ViewTransition name={`auth-${id}`}>

@@ -8,21 +8,30 @@ import NewsletterSignUp from '@/components/sections/newsletter-signup'
 
 function MainLayout({ children, className }: { children: React.ReactNode; className?: string }) {
 	return (
-		<div className={cn('flex min-h-screen flex-col md:max-w-7xl lg:mx-auto lg:flex-row', className)}>
-			<main className="flex flex-1 flex-col lg:border-x border-muted-foreground/10">
-				<Navbar />
-				<MobileNavbar />
+		<div className="overflow-x-hidden">
+			<div className={cn('flex min-h-screen flex-col md:max-w-7xl lg:mx-auto lg:flex-row', className)}>
+				<main className="flex flex-1 flex-col lg:border-x border-muted-foreground/10">
+					<Navbar />
 
-				<div className="relative grid flex-1 grid-cols-1 lg:grid-cols-[32px_1fr_32px] pt-0">
-					<div className="sticky top-0 h-[calc(100vh)] hidden w-full border-r dark:opacity-10 bg-dashed lg:block" />
-					<div className="relative col-span-1 sm:pt-10 md:pt-[calc(4rem+0.75rem)]">{children}</div>
-					<div className="sticky top-0 h-[calc(100vh)] hidden w-full border-l dark:opacity-10 bg-dashed lg:block" />
-				</div>
+					<div className="grid flex-1 min-h-screen grid-cols-1 lg:grid-cols-[32px_1fr_32px] pt-0">
+						{/* MOBILE NAVBAR STICKY */}
+						<MobileNavbar />
+						{/* LEFT RAIL */}
+						<div className="hidden lg:block lg:sticky lg:top-0 lg:self-stretch border-r dark:opacity-10 bg-dashed z-0" />
 
-				<NewsletterSignUp />
+						{/* CONTENT + NEWSLETTER */}
+						<div className="relative col-span-1 sm:pt-10 md:pt-[calc(4rem+0.75rem)]">
+							{children}
+							<NewsletterSignUp />
+						</div>
 
-				<SiteFooter />
-			</main>
+						{/* RIGHT RAIL */}
+						<div className="hidden lg:block lg:sticky lg:top-0 lg:self-stretch border-l dark:opacity-10 bg-dashed z-0" />
+					</div>
+				</main>
+			</div>
+			{/* FOOTER */}
+			<SiteFooter />
 		</div>
 	)
 }
