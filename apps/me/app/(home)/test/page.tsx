@@ -1,4 +1,4 @@
-import { Bagua } from '@repo/stephen-v2-ui/i-ching'
+import { Bagua, FiveElementsDiagram } from '@repo/stephen-v2-ui/i-ching'
 
 function TestPage() {
 	return (
@@ -13,6 +13,10 @@ function TestPage() {
 				<Bagua index={7} showLabel />
 				<Bagua index={8} showLabel actives={[1]} />
 			</div>
+
+			<br />
+
+			<FiveElementsDiagram />
 		</div>
 	)
 }

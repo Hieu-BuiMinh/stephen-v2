@@ -8,6 +8,7 @@
  */
 import Image from 'next/image'
 
+import dayjs from '../../../../../utils/src/common/dayjs'
 import { CardStack } from './core/card-stack'
 
 interface StackableItem {
@@ -31,6 +32,7 @@ export function AvatarCardStack() {
 		{ id: 7, img: '/assets/images/avt/me_07.png', name: 'Binh Hung Island', date: '05/18/2025' },
 		{ id: 8, img: '/assets/images/avt/me_08.png', name: 'Binh Hung Island', date: '05/18/2025' },
 		{ id: 9, img: '/assets/images/avt/me_09.png', name: 'Binh Hung Island', date: '05/18/2025' },
+		{ id: 10, img: '/assets/images/avt/me_10.png', name: 'Da Lat City', date: '11/15/2025' },
 		{ id: 4, img: '/assets/images/avt/me_04.png', name: 'Home Land', date: '09/02/2025' },
 	]
 
@@ -43,7 +45,9 @@ export function AvatarCardStack() {
 					</div>
 					<div className="flex flex-col">
 						{card.name && <span className="text-neutral-900/70">{card.name}</span>}
-						{card.date && <span className="text-neutral-900/70">{card.date}</span>}
+						{card.date && (
+							<span className="text-neutral-900/70">{dayjs(card.date).format('MMMM D, YYYY')}</span>
+						)}
 					</div>
 				</div>
 			)}

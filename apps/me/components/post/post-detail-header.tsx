@@ -1,7 +1,7 @@
 'use client'
 
 import type { TPost } from '@repo/stephen-v2-contents'
-import { BlurImage, DividerSlash, ImageZoom, ImageZoomV2 } from '@repo/stephen-v2-ui/shadcn'
+import { BlurImage, DividerSlash, ImageZoomV2 } from '@repo/stephen-v2-ui/shadcn'
 import { cn, formatDate } from '@repo/stephen-v2-utils'
 import { AlarmClock, Eye, Heart, Sigma } from 'lucide-react'
 import Link from 'next/link'
@@ -38,7 +38,7 @@ function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
 								width={1300}
 								height={630}
 								unoptimized={false}
-								className="relative h-[230px] md:h-[630px] w-full !rounded-lg hidden md:block"
+								className="relative h-[230px] md:h-[530px] w-full !rounded-lg hidden md:block"
 							/>
 						</ImageZoomV2>
 					</ViewTransition>
@@ -60,7 +60,7 @@ function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
 							src={cover || ''}
 							width={1200}
 							height={630}
-							className="relative h-[230px] md:h-[630px] w-full rounded-lg block md:hidden"
+							className="relative h-[230px] md:h-[530px] w-full rounded-lg block md:hidden"
 						/>
 					</ImageZoomV2>
 
