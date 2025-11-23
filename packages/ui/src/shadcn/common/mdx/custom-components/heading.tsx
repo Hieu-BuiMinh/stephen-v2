@@ -15,7 +15,8 @@ const Heading = <T extends Types = 'h1'>(props: HeadingProps<T>) => {
 
 	return (
 		<Component className={cn('scroll-m-32', className)} id={children?.toString()} {...rest}>
-			<span className="not-prose group">
+			<span className="not-prose group flex items-center gap-2">
+				{as === 'h2' && <HashTag className="size-4 opacity-80" />}
 				{children}
 				<LinkIcon
 					aria-label="Link to section"
@@ -27,3 +28,16 @@ const Heading = <T extends Types = 'h1'>(props: HeadingProps<T>) => {
 }
 
 export default Heading
+
+const HashTag = (props: React.SVGProps<SVGSVGElement>) => {
+	return (
+		<svg {...props} width="41" height="38" viewBox="0 0 41 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path
+				d="M16.8694 2.52136L9.30717 35.2912M6.0108 11.344H37.5205M30.7339 2.52136L23.1716 35.2912M2.52051 26.4686H34.0303"
+				stroke="currentColor"
+				strokeWidth="5.04152"
+				strokeLinecap="round"
+			/>
+		</svg>
+	)
+}
