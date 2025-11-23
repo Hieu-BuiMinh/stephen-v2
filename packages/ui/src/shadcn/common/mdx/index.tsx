@@ -7,6 +7,7 @@ import { nanoid } from 'nanoid'
 import Link from 'next/link'
 import * as runtime from 'react/jsx-runtime'
 
+import { FiveElementsDiagram } from '../../../i-ching'
 import { AnimatedBlock } from '../../../motion/components/animate-block'
 import { DividerSlash } from '../divider'
 import { SVGIcons } from '../icons'
@@ -83,6 +84,9 @@ const components = {
 	// rough mark
 	RoughMark,
 	RoughMarkGroup,
+
+	// i-ching
+	FiveElementsDiagram,
 
 	// effect
 	AnimatedBlock,

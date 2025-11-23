@@ -9,7 +9,7 @@ import { APP_CONFIG } from '@/configs/app-config'
 function DocNavbar({ className }: { className?: string }) {
 	return (
 		<div className={cn('flex items-center justify-between bg-background', className)}>
-			<Link href="/" className="w-70 h-full border-r border-dashed flex items-center p-3 gap-3">
+			<Link href="/" className="w-70 h-full border-r flex items-center p-3 gap-3">
 				<div className="size-[35px]">
 					<Image
 						src="/assets/images/logo/logo-dark.svg"
@@ -31,13 +31,13 @@ function DocNavbar({ className }: { className?: string }) {
 
 			<div className="h-full flex items-center">
 				<Link
-					className="h-full px-5 flex items-center justify-center border-l border-dashed"
+					className="h-full px-5 flex items-center justify-center border-l"
 					href={APP_CONFIG.links.github}
 					target="_blank"
 				>
 					<SVGIcons.gitHub className="size-5 m-2" />
 				</Link>
-				<div className="h-full px-5 flex items-center justify-center border-l border-dashed">
+				<div className="h-full px-5 flex items-center justify-center border-l">
 					<ModeToggle />
 				</div>
 			</div>

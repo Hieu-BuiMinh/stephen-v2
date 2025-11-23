@@ -26,9 +26,9 @@ function DocumentCollectionPageView({ collectionName }: { collectionName: string
 			<PostPageTitle title={collection.title} description={collection.description} />
 
 			<div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-3">
-				{collection?.collections.map((doc, index) => {
+				{collection?.collections.map((doc) => {
 					const docSlug = doc?.slug
-					const firstPostId = doc?.tableOfContent?.[index]?.id || ''
+					const firstPostId = doc?.tableOfContent?.[0]?.id || ''
 					const url = `/doc/${collection.collectionName}/${docSlug}/${firstPostId}`
 					return (
 						<Link href={url} className="z-10 flex" key={doc.title}>
