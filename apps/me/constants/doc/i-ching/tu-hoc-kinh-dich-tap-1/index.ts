@@ -1,7 +1,5 @@
-import { docPost } from '@repo/stephen-v2-contents'
-import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
-
 import type { IDocCollection } from '@/types/doc/doc-collection'
+import { processTableOfContents } from '@/utils/document-process-content-table-extract'
 
 const tuHocKinhdichTap1TableOfContentsOrder: IDocCollection['collections'][number]['tableOfContent'] = [
 	{
@@ -62,30 +60,5 @@ const tuHocKinhdichTap1TableOfContentsOrder: IDocCollection['collections'][numbe
 		title: 'Upading...',
 	},
 ]
-
-const processTableOfContents = (items: typeof tuHocKinhdichTap1TableOfContentsOrder) => {
-	return items.map((item) => {
-		if (!item.id) {
-			if (item.children) {
-				item.children = processTableOfContents(item.children)
-			}
-			return item
-		}
-
-		const post = getVelitePostById({ id: item.id, postsList: docPost })
-
-		const updatedItem = {
-			...item,
-			title: post?.title || item.title || 'Updating...',
-			description: post?.description || item.description,
-		}
-
-		if (updatedItem.children) {
-			updatedItem.children = processTableOfContents(updatedItem.children)
-		}
-
-		return updatedItem
-	})
-}
 
 export const tuHocKinhdichTap1TableOfContents = processTableOfContents(tuHocKinhdichTap1TableOfContentsOrder)
