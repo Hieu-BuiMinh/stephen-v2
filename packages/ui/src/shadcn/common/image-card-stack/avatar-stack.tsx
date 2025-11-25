@@ -26,7 +26,7 @@ export function AvatarCardStack() {
 	const items: ImageCard[] = [
 		{ id: 1, img: '/assets/images/avt/me_01.png', name: 'Vung Tau', date: '07/30/2024' },
 		{ id: 2, img: '/assets/images/avt/me_02.png', name: 'Vung Tau', date: '07/30/2024' },
-		{ id: 3, img: '/assets/images/avt/me_03.png', name: 'Ben Tre', date: '04/28/2024' },
+		{ id: 3, img: '/assets/images/avt/me_03.png', name: 'Ben Tre', date: '06/02/2024' },
 		{ id: 5, img: '/assets/images/avt/me_05.png', name: 'Binh Hung Island', date: '05/18/2025' },
 		{ id: 6, img: '/assets/images/avt/me_06.png', name: 'Binh Hung Island', date: '05/18/2025' },
 		{ id: 7, img: '/assets/images/avt/me_07.png', name: 'Binh Hung Island', date: '05/18/2025' },
