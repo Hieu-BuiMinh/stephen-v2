@@ -11,7 +11,9 @@ import { FiveElementsDiagram } from '../../../i-ching'
 import { AnimatedBlock } from '../../../motion/components/animate-block'
 import { DividerSlash } from '../divider'
 import { SVGIcons } from '../icons'
-import { ImageZoom } from '../image/image-zoom'
+import { BlurImage } from '../image/blur-image'
+import type { ImageZoom } from '../image/image-zoom'
+import { ImageZoomV2 } from '../image/image-zoom-v2'
 import { AvatarCardStack, CardStack } from '../image-card-stack'
 import { RoughMark, RoughMarkGroup } from '../rough'
 import CodeBlockTabs from './custom-components/code-block-tabs'
@@ -58,13 +60,22 @@ const components = {
 
 		return (
 			<>
-				<ImageZoom
+				{/* <ImageZoom
 					className={cn('h-[350px] cursor-pointer', className)}
 					alt={alt || ''}
 					width={1200}
 					height={630}
 					{...rest}
-				/>
+				/> */}
+				<ImageZoomV2>
+					<BlurImage
+						className={cn('h-[350px] cursor-pointer rounded-md', className)}
+						alt={alt || ''}
+						width={1200}
+						height={630}
+						{...rest}
+					/>
+				</ImageZoomV2>
 				{alt && <figcaption className="mt-4 text-center">{alt}</figcaption>}
 			</>
 		)
