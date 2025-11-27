@@ -2,7 +2,7 @@
 import 'dayjs/locale/vi'
 import 'dayjs/locale/en'
 
-import dayjs, { type Dayjs, type OpUnitType } from 'dayjs'
+import dayjs, { type Dayjs as DJS, type OpUnitType } from 'dayjs'
 import advancedFormat from 'dayjs/plugin/advancedFormat' // Do, Q, k, X...
 import customParseFormat from 'dayjs/plugin/customParseFormat' // strict parsing by format
 import duration from 'dayjs/plugin/duration'
@@ -33,7 +33,8 @@ dayjs.locale('en')
 dayjs.tz.setDefault('Asia/Ho_Chi_Minh')
 
 // Types
-type DateInput = string | number | Date | Dayjs | null | undefined
+type DateInput = string | number | Date | DJS | null | undefined
+type Dayjs = DJS
 
 // Helpers (no export here)
 const d = dayjs
@@ -64,19 +65,19 @@ const toISO = (input: DateInput): string => {
 	return inst.isValid() ? inst.toDate().toISOString() : ''
 }
 
-const clampTo = (input: DateInput, unit: OpUnitType, edge: 'start' | 'end' = 'start', tz?: string): Dayjs | null => {
+const clampTo = (input: DateInput, unit: OpUnitType, edge: 'start' | 'end' = 'start', tz?: string): DJS | null => {
 	if (input == null) return null
 	const base = tz ? dayjs(input).tz(tz) : dayjs(input)
 	if (!base.isValid()) return null
 	return edge === 'start' ? base.startOf(unit) : base.endOf(unit)
 }
 
-const parse = (input: string, parseFmt?: string, tz?: string): Dayjs | null => {
+const parse = (input: string, parseFmt?: string, tz?: string): DJS | null => {
 	const base = parseFmt ? dayjs(input, parseFmt, true) : dayjs(input)
 	if (!base.isValid()) return null
 	return tz ? base.tz(tz) : base
 }
 
 export { clampTo, d, formatDate, fromNow, parse, parseAndFormat, setLocale, toISO }
-export type { DateInput }
+export type { DateInput, Dayjs }
 export default dayjs
