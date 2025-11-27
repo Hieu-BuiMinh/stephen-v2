@@ -23,6 +23,7 @@ export const APP_CONFIG = {
 		avatar: '/assets/images/avt/avt_001.jpg',
 		name: 'Stephen',
 		resume: 'https://hieu-buiminh-resume.io.vn/',
+		githubUserName: 'Hieu-BuiMinh',
 	},
 	links: {
 		instagram: 'https://www.instagram.com/stephen.02.12/',
