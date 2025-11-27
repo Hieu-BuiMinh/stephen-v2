@@ -40,7 +40,8 @@ export function GitHubContributionGraph({ contributions }: { contributions: Prom
 							<TooltipTrigger asChild>
 								<motion.g
 									initial={{ opacity: 0, y: 20 }}
-									animate={{ opacity: 1, y: 0 }}
+									whileInView={{ opacity: 1, y: 0 }}
+									viewport={{ once: true }}
 									transition={{
 										duration: 0.25,
 										delay: index * 0.01,

@@ -3,6 +3,7 @@ import React from 'react'
 
 import { GitHubContributions } from '@/components/github-contributions'
 import TextGradient from '@/components/texts/text-gradient'
+import ShortIntroSection from '@/view/home/components/short-intro-section'
 
 function GithubContributionsSection() {
 	return (
@@ -14,6 +15,8 @@ function GithubContributionsSection() {
 			</TextGradient>
 
 			<GitHubContributions />
+
+			<ShortIntroSection />
 		</div>
 	)
 }
