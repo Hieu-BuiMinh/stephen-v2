@@ -8,7 +8,7 @@ import NewsletterSignUp from '@/components/sections/newsletter-signup'
 
 function MainLayout({ children, className }: { children: React.ReactNode; className?: string }) {
 	return (
-		<div className="overflow-x-hidden">
+		<>
 			<div className={cn('flex min-h-screen flex-col md:max-w-7xl lg:mx-auto lg:flex-row', className)}>
 				<main className="flex flex-1 flex-col lg:border-x border-muted-foreground/10">
 					<Navbar />
@@ -20,7 +20,7 @@ function MainLayout({ children, className }: { children: React.ReactNode; classN
 						<div className="hidden lg:block lg:sticky lg:top-0 lg:self-stretch border-r dark:opacity-10 bg-dashed z-0" />
 
 						{/* CONTENT + NEWSLETTER */}
-						<div className="relative col-span-1 sm:pt-10 md:pt-[calc(4rem+0.75rem)]">
+						<div className="relative col-span-1 sm:pt-10 md:pt-[calc(4rem)]">
 							{children}
 							<NewsletterSignUp />
 						</div>
@@ -32,7 +32,7 @@ function MainLayout({ children, className }: { children: React.ReactNode; classN
 			</div>
 			{/* FOOTER */}
 			<SiteFooter />
-		</div>
+		</>
 	)
 }
 

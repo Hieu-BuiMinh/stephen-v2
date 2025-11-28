@@ -18,3 +18,6 @@ export declare const projectPost: ProjectPost[]
 
 export type DocBlogPost = Collections['docPost']['schema']['_output']
 export declare const docPost: DocBlogPost[]
+
+export type retroPost = Collections['retroPost']['schema']['_output']
+export declare const retroPost: retroPost[]

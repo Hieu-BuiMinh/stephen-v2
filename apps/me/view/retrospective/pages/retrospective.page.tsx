@@ -3,14 +3,15 @@ import { formatDate } from '@repo/stephen-v2-utils'
 import React, { useId } from 'react'
 
 import TextGradient from '@/components/texts/text-gradient'
+import RetroRightSection from '@/view/retrospective/components/retro-right-section'
 
 function RetrospectivePageView() {
 	return (
 		<div className="grid grid-cols-1 lg:grid-cols-2 px-3">
-			<div className="relative col-span-1 py-4 px-0 border-b bg-gradient-to-tr from-transparent dark:via-stone-950/5 via-stone-100/30 to-stone-200/20 dark:to-transparent/10 h-auto lg:h-[calc(100vh-4rem)] lg:pr-20 lg:border-none">
+			<div className="relative col-span-1 py-4 px-0 border-b bg-gradient-to-tr from-transparent dark:via-stone-950/5 via-stone-100/30 to-stone-200/20 dark:to-transparent/10 h-auto lg:h-full lg:pr-20 lg:border-none">
 				<Glow />
 
-				<div className="z-20 flex flex-col mt-4 md:mt-40 gap-3.5 md:justify-center max-w-xl mx-auto md:sticky md:top-1/2 md:-translate-y-1/2">
+				<div className="z-20 flex flex-col mt-4 md:mt-40 gap-3.5 md:justify-center max-w-xl md:mx-auto md:sticky md:top-1/2 md:-translate-y-1/2">
 					<div className="text-muted-foreground flex items-center gap-x-1">
 						<p className="text-xs">{formatDate(new Date(), 'MMMM D, YYYY')}</p>
 					</div>
@@ -28,9 +29,9 @@ function RetrospectivePageView() {
 				</div>
 			</div>
 
-			<div className="relative min-h-screen col-span-1 py-4">
-				<div className="absolute hidden -top-3 left-0 mb-2 w-2 h-[calc(100vh+1rem)] -translate-x-full bg-gradient-to-b from-black/10 dark:from-white/20 from-50% to-50% to-transparent bg-[length:100%_5px] bg-repeat-y lg:block" />
-				right
+			<div className="relative min-h-screen col-span-1 py-32">
+				<div className="absolute hidden -top-3 left-0 mb-2 w-2 h-[calc(100%+1rem)] -translate-x-full bg-gradient-to-b from-black/10 dark:from-white/20 from-50% to-50% to-transparent bg-[length:100%_5px] bg-repeat-y lg:block" />
+				<RetroRightSection />
 			</div>
 		</div>
 	)
