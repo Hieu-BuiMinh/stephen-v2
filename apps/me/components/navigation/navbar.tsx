@@ -104,11 +104,11 @@ function Navbar({ className }: { className?: string }) {
 			</div>
 			<div
 				style={{ bottom: '-3.5px', left: '-4.5px' }}
-				className="absolute z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background"
+				className="hidden lg:block absolute z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background"
 			/>
 			<div
 				style={{ bottom: '-3.5px', right: '-4.5px' }}
-				className="absolute z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background"
+				className="hidden lg:block absolute z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background"
 			/>
 			<ModeToggle />
 		</motion.nav>

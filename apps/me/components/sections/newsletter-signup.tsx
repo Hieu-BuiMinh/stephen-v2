@@ -63,13 +63,13 @@ function NewsletterSignUp() {
 						{/* <CrossIcon className="absolute -bottom-[calc(0.52rem)] right-[calc(2rem-0.5rem)]" /> */}
 
 						{/* top left */}
-						<div className="absolute -top-1 -left-1 z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
+						<div className="hidden lg:block absolute -top-1 -left-1 z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
 						{/* top right */}
-						<div className="absolute -top-1 -right-1 z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
+						<div className="hidden lg:block absolute -top-1 -right-1 z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
 						{/* bottom left */}
-						<div className="absolute -bottom-1 -left-1 z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
+						<div className="hidden lg:block absolute -bottom-1 -left-1 z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
 						{/* bottom right */}
-						<div className="absolute -bottom-1 -right-1 z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
+						<div className="hidden lg:block absolute -bottom-1 -right-1 z-10 size-2 rotate-45 rounded-[1px] border border-muted-foreground/20 bg-background" />
 
 						{theme === 'dark' ? (
 							<Image
@@ -124,8 +124,8 @@ function NewsletterSignUp() {
 
 			<div
 				className={cn(
-					'before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2 before:h-px before:w-screen before:bg-muted-foreground/20',
-					'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-px after:w-screen after:bg-muted-foreground/20'
+					'before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2 before:h-px before:w-[calc(100vw-1.5rem)] before:bg-muted-foreground/20',
+					'after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:h-px after:w-[calc(100vw-1.5rem)] after:bg-muted-foreground/20'
 				)}
 			/>
 		</div>

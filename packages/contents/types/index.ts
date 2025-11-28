@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { BOOKS_POST_TYPE, DEV_POST_TYPE } from './post'
+import type { BOOKS_POST_TYPE, DEV_POST_TYPE, OTHERS_POST_TYPE } from './post'
 
 export * from './articles'
 export * from './post'
@@ -10,6 +10,8 @@ export type TPost = {
 	title: string
 	createdAt: string // ISO date
 	updatedAt?: string // ISO date
+	milestone?: string // ISO date
+	relatedPostUrl?: string
 	cover?: string
 	metadata?: {
 		wordCount: number
@@ -18,7 +20,7 @@ export type TPost = {
 	description?: string
 	published: boolean
 	hashTags?: string[]
-	type: DEV_POST_TYPE | BOOKS_POST_TYPE
+	type: DEV_POST_TYPE | BOOKS_POST_TYPE | OTHERS_POST_TYPE
 	body: any // s.mdx() | string
 	author: {
 		avatar: string
