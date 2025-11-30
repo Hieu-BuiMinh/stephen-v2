@@ -7,7 +7,7 @@ const intros = [
 	{
 		title: 'Retrospective',
 		description: `Every year, I share my progress both in career and personal life. Here's how it's going`,
-		linkTo: '/retro',
+		linkTo: '/retrospective',
 		img: '/assets/images/bg/intro-retro-card.png',
 	},
 	{

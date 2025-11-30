@@ -1,32 +1,5 @@
 [
   {
-    "id": "fb8d15a2-b7da-4b49-a07a-8033c391952b",
-    "slug": "articles/retro/2025/2.blog-v1-launch",
-    "title": "Blog v2 - Rebuilding My Online Home 🌟",
-    "milestone": "2025-08-10T08:00:00.000Z",
-    "metadata": {
-      "readingTime": 1,
-      "wordCount": 78
-    },
-    "description": "The year I rebuilt my blog to match who I had grown into, not who I used to be.",
-    "published": true,
-    "hashTags": [
-      "retro",
-      "2025",
-      "blog",
-      "personal-growth"
-    ],
-    "body": "const{Fragment:e,jsx:t,jsxs:n}=arguments[0];function _createMdxContent(r){const o={p:\"p\",...r.components};return n(e,{children:[t(o.p,{children:\"By August 2025, it felt like I had outgrown my first blog, so I decided to rebuild it from the ground up. Blog v2 wasn’t just a redesign; it was a reset of tone, structure, and intention—a place that felt closer to who I had become and where I wanted to go next. This version is where all the threads meet: past lessons, current projects, and the stories I’m still in the middle of writing.\"}),\"\\n\",t(\"a\",{href:\"https://stephen-v2-me.vercel.app/\",target:\"_blank\",children:t(o.p,{children:\"#Personal Blog V2\"})})]})}return{default:function(e={}){const{wrapper:n}=e.components||{};return n?t(n,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
-    "toc": [],
-    "updatedAt": "11/28/2025, 3:47:24 PM",
-    "author": {
-      "avatar": "/assets/images/avt/me_04.png",
-      "name": "Stephen",
-      "github": "https://github.com/Hieu-BuiMinh"
-    },
-    "slugAsParams": "retro/2025/2.blog-v1-launch"
-  },
-  {
     "id": "fd029a60-9a9b-475d-978d-4972874ca36c",
     "slug": "articles/retro/2000/1.born-in",
     "title": "Born into a New Millennium",
@@ -45,13 +18,40 @@
     ],
     "body": "const{Fragment:t,jsx:e,jsxs:n}=arguments[0];function _createMdxContent(o){const r={p:\"p\",...o.components};return n(t,{children:[e(r.p,{children:'In 2000, I officially crash-landed on Earth - my own little \"Day Of Arrival\" at the edge of a new millennium. It didn\\'t look special from the outside, but for me it was Day Zero - the year my version 0.0 quietly booted into the world.'}),\"\\n\",e(\"img\",{src:\"/assets/articles/retro/i-arrive.gif\",alt:\"this-is-how-it-looks\"}),\"\\n\",e(\"u\",{children:\"This is pretty much how it looked in my mind 👀\"})]})}return{default:function(t={}){const{wrapper:n}=t.components||{};return n?e(n,{...t,children:e(_createMdxContent,{...t})}):_createMdxContent(t)}};",
     "toc": [],
-    "updatedAt": "11/28/2025, 3:50:11 PM",
+    "updatedAt": "11/30/2025, 4:45:22 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
       "github": "https://github.com/Hieu-BuiMinh"
     },
     "slugAsParams": "retro/2000/1.born-in"
+  },
+  {
+    "id": "fb8d15a2-b7da-4b49-a07a-8033c391952b",
+    "slug": "articles/retro/2025/2.blog-v1-launch",
+    "title": "Blog v2 - Rebuilding My Online Home 🌟",
+    "milestone": "2025-08-10T08:00:00.000Z",
+    "metadata": {
+      "readingTime": 1,
+      "wordCount": 78
+    },
+    "description": "The year I rebuilt my blog to match who I had grown into, not who I used to be.",
+    "published": true,
+    "hashTags": [
+      "retro",
+      "2025",
+      "blog",
+      "personal-growth"
+    ],
+    "body": "const{Fragment:e,jsx:t,jsxs:n}=arguments[0];function _createMdxContent(r){const o={p:\"p\",...r.components};return n(e,{children:[t(o.p,{children:\"By August 2025, it felt like I had outgrown my first blog, so I decided to rebuild it from the ground up. Blog v2 wasn’t just a redesign; it was a reset of tone, structure, and intention—a place that felt closer to who I had become and where I wanted to go next. This version is where all the threads meet: past lessons, current projects, and the stories I’m still in the middle of writing.\"}),\"\\n\",t(\"a\",{href:\"https://stephen-v2-me.vercel.app/\",target:\"_blank\",children:t(o.p,{children:\"#Personal Blog V2\"})})]})}return{default:function(e={}){const{wrapper:n}=e.components||{};return n?t(n,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
+    "toc": [],
+    "updatedAt": "11/30/2025, 4:45:22 PM",
+    "author": {
+      "avatar": "/assets/images/avt/me_04.png",
+      "name": "Stephen",
+      "github": "https://github.com/Hieu-BuiMinh"
+    },
+    "slugAsParams": "retro/2025/2.blog-v1-launch"
   },
   {
     "id": "6c78631a-26b5-45a2-a976-bed50157299d",
@@ -72,7 +72,7 @@
     ],
     "body": "const{Fragment:e,jsx:t,jsxs:o}=arguments[0];function _createMdxContent(n){const r={p:\"p\",...n.components},{RoughMark:a}=r;return a||function(e,t){throw new Error(\"Expected \"+(t?\"component\":\"object\")+\" `\"+e+\"` to be defined: you likely forgot to import, pass, or provide it.\")}(\"RoughMark\",!0),o(e,{children:[t(r.p,{children:\"In 2024, Jim Rohn's line finally hit me for real:\"}),\"\\n\",t(a,{type:\"highlight\",multiline:!0,color:\"#ffe066\",children:t(\"span\",{style:{color:\"#000\"},children:\"Learn to work harder on yourself than you do on your job. If you work hard on your job you can make a living, but if you work hard on yourself you'll make a fortune.\"})}),\"\\n\",t(r.p,{children:'Until then, I mostly treated \"self-improvement\" like a nice-to-have, something I\\'d do when I had time. This was the year I started to see my mind, my skills, and my habits as the real assets — not the job title on my profile. It changed how I spent my evenings, what I paid attention to, and what I expected from my future self.'})]})}return{default:function(e={}){const{wrapper:o}=e.components||{};return o?t(o,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
     "toc": [],
-    "updatedAt": "11/28/2025, 3:40:59 PM",
+    "updatedAt": "11/30/2025, 4:45:22 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -100,7 +100,7 @@
     ],
     "body": "const{Fragment:e,jsx:t,jsxs:n}=arguments[0];function _createMdxContent(o){const r={p:\"p\",...o.components};return n(e,{children:[t(r.p,{children:\"2024 was the year I finally admitted it to myself: my old company wasn't the problem, it just wasn't the right fit for who I was becoming. I had outgrown the role, the pace, and the way things were done there.\"}),\"\\n\",t(r.p,{children:\"Instead of complaining, I decided to shift my focus inward — to study properly, to stop half-learning, and to pour my energy into personal projects. The first real result of that decision was my original personal blog, a tiny website that somehow opened the door to my current job and eventually evolved into this version 2 you're reading now. It wasn't a clean break or a heroic moment, just a quiet decision to take myself more seriously.\"})]})}return{default:function(e={}){const{wrapper:n}=e.components||{};return n?t(n,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
     "toc": [],
-    "updatedAt": "11/28/2025, 3:33:45 PM",
+    "updatedAt": "11/30/2025, 4:45:22 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -127,7 +127,7 @@
     ],
     "body": "const{Fragment:e,jsx:t,jsxs:n}=arguments[0];function _createMdxContent(a){const r={p:\"p\",...a.components};return n(e,{children:[t(r.p,{children:\"In 2024, I launched my first personal blog. It wasn't perfect, the design was a bit rough, and the content didn't always know what it wanted to be—but it was real and it was mine. That small, imperfect site became the first place where my thoughts, experiments, and projects had a home outside my head.\"}),\"\\n\",t(\"a\",{href:\"https://hieu-buiminh.io.vn/\",target:\"_blank\",children:t(r.p,{children:\"#Personal Blog V1\"})}),\"\\n\",t(\"a\",{href:\"https://hieu-buiminh-resume.io.vn/\",target:\"_blank\",children:t(r.p,{children:\"#Personal Resume\"})})]})}return{default:function(e={}){const{wrapper:n}=e.components||{};return n?t(n,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
     "toc": [],
-    "updatedAt": "11/28/2025, 3:46:58 PM",
+    "updatedAt": "11/30/2025, 4:45:22 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",

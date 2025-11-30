@@ -25,7 +25,7 @@ function FooterRoutingSection() {
 			links: [
 				{ lable: 'About me', href: '/about' },
 				{ lable: 'My journey', href: '/retrospective' },
-				{ lable: 'Me & my crew', href: '/' },
+				// { lable: 'Me & my crew', href: '/' },
 			],
 		},
 		{
@@ -33,10 +33,10 @@ function FooterRoutingSection() {
 			links: [
 				{ lable: 'Tags', href: '/tags' },
 				{ lable: 'Quotes', href: '/quotes' },
-				{ lable: 'Other Topics', href: '/interests' },
+				{ lable: 'Other Topics', href: '/other-topics' },
 				{
 					lable: 'Analytics',
-					href: 'https://cloud.umami.is/share/JEvvDKOMKBwOFYWE/hieu-buiminh.io.vn',
+					href: 'https://cloud.umami.is/share/4cPVGaK1H86C9y5K',
 					target: '_blank',
 				},
 			],

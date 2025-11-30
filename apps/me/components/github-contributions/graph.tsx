@@ -13,7 +13,7 @@
 import { Skeleton, Spinner, Tooltip, TooltipContent, TooltipTrigger } from '@repo/stephen-v2-ui/shadcn'
 import { d } from '@repo/stephen-v2-utils'
 import { motion } from 'motion/react'
-import { use } from 'react'
+import { use, useEffect, useState } from 'react'
 
 import type { Activity } from '@/components/kibo-ui/contribution-graph'
 import {
@@ -27,7 +27,21 @@ import {
 import { APP_CONFIG } from '@/configs/app-config'
 
 export function GitHubContributionGraph({ contributions }: { contributions: Promise<Activity[]> }) {
+	const [loaded, setLoaded] = useState(false)
+
 	const data = use(contributions)
+
+	useEffect(() => {
+		setLoaded(true)
+	}, [])
+
+	if (!loaded) {
+		return (
+			<Skeleton className="mx-auto py-2">
+				<Spinner />
+			</Skeleton>
+		)
+	}
 
 	return (
 		<ContributionGraph className="mx-auto py-2" data={data} blockSize={11} blockMargin={3} blockRadius={0}>
