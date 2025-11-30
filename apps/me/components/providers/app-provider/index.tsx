@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import React from 'react'
 
 import Hello from '@/components/hello'
@@ -19,11 +20,11 @@ function AppProvider({ children }: { children: React.ReactNode }) {
 				<LoginModal />
 			</ConvexClientProvider> */}
 
-				{/* <Script
-				defer
-				src="https://cloud.umami.is/script.js"
-				data-website-id="e33a48b3-c890-4ba6-9430-947be1127fc0"
-			/> */}
+				<Script
+					defer
+					src="https://cloud.umami.is/script.js"
+					data-website-id="ad21eae3-e27c-491b-bf26-217b9c3f4d9b"
+				/>
 				<Toaster />
 			</ThemeProvider>
 		</>
