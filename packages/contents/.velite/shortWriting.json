@@ -1,49 +1,5 @@
 [
   {
-    "id": "b13a7efd-de2a-4353-9433-5c216584939a",
-    "slug": "articles/short-writing/about/about",
-    "title": "About Me",
-    "createdAt": "2025-08-09T09:11:42.444Z",
-    "cover": "/assets/articles/dev/post/conventional-commits.png",
-    "metadata": {
-      "readingTime": 2,
-      "wordCount": 566
-    },
-    "description": "A story of growth and discovery",
-    "published": true,
-    "hashTags": [
-      "single",
-      "others",
-      "about"
-    ],
-    "type": "single",
-    "body": "const{Fragment:e,jsx:n,jsxs:t}=arguments[0];function _createMdxContent(r){const i={a:\"a\",code:\"code\",h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...r.components},{AvatarCardStack:a,RoughMark:l,SVGIcons:c}=i;return a||_missingMdxReference(\"AvatarCardStack\",!0),l||_missingMdxReference(\"RoughMark\",!0),c||_missingMdxReference(\"SVGIcons\",!1),c.Figma||_missingMdxReference(\"SVGIcons.Figma\",!0),c.NextJS||_missingMdxReference(\"SVGIcons.NextJS\",!0),c.React||_missingMdxReference(\"SVGIcons.React\",!0),c.TailwindCSS||_missingMdxReference(\"SVGIcons.TailwindCSS\",!0),c.Tanstack||_missingMdxReference(\"SVGIcons.Tanstack\",!0),c.Turborepo||_missingMdxReference(\"SVGIcons.Turborepo\",!0),c.TypeScript||_missingMdxReference(\"SVGIcons.TypeScript\",!0),c.Vercel||_missingMdxReference(\"SVGIcons.Vercel\",!0),t(e,{children:[n(\"div\",{className:\"text-2xl text-center font-bold pt-3 md:text-4xl md:text-left\",children:\"Stephen\"}),\"\\n\",n(\"div\",{className:\"text-sm text-center text-muted-foreground md:text-left\",children:\"-Hieu-BuiMinh ⟁-\"}),\"\\n\",n(\"div\",{className:\"not-prose text-center text-sm text-muted-foreground my-3 md:text-left md:m-0 md:mt-3\",children:n(i.p,{children:\"A self-taught Front-End Engineer in Vietnam\"})}),\"\\n\",t(\"div\",{className:\"relative pb-12 flex items-center gap-5 flex-col md:flex-row mt-2\",children:[n(\"div\",{className:\"w-[50%] shrink-0 flex items-center justify-center\",children:n(a,{})}),t(\"div\",{children:[t(\"p\",{className:\"not-prose\",children:[\"Hello there 👋 You can call me \",n(l,{type:\"highlight\",color:\"#ffe066\",padding:4,animationDuration:600,order:3,children:n(\"b\",{className:\"underline\",style:{color:\"#000\"},children:\"Stephen\"})}),\". I am a 25-year-old \",n(l,{type:\"box\",color:\"#22c55e\",animationDuration:600,order:1,children:\"Front-End Engineer\"}),\" from Vietnam, born in 2000. I specialize in the React ecosystem and have experience working with \",n(l,{multiline:!0,type:\"highlight\",color:\"#ABE847\",children:n(\"span\",{style:{color:\"#000\"},children:\"TypeScript, Next.js, React.js\"})}),\", Node.js, and database management. Currently, I am passionate about learning UI/UX design.\"]}),t(i.p,{children:[\"I started learning web development on December 5, 2020 (I was 20 years old then). It's a big challenge because it's just one of my hobbies, and I have yet to take any courses. I am self-learning on YouTube. Some of my favorite YouTube channels are \",n(i.a,{href:\"https://www.youtube.com/@NetNinja\",children:\"The Net Ninja\"}),\", \",n(i.a,{href:\"https://www.youtube.com/@codewithantonio\",children:\"Code With Antonio\"}),\", \",n(i.a,{href:\"https://www.youtube.com/@cosdensolutions\",children:\"Cosden Solutions\"}),\". I learned a lot of web development skills from them.\"]}),t(i.p,{children:[\"I love using \",n(i.a,{href:\"https://nextjs.org/\",children:\"Next.js\"}),\" to create a website. Then use \",n(i.a,{href:\"https://github.com\",children:\"GitHub\"}),\" to host my codebase. After that, I use \",n(i.a,{href:\"https://vercel.com\",children:\"Vercel\"}),\" to deploy it. Here are my current favorite tech stack\"]}),t(\"div\",{className:\"mt-6 flex gap-4 flex-wrap\",children:[n(\"a\",{href:\"https://nextjs.org/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.NextJS,{className:\"border border-foreground/50 rounded-full\"})})}),n(\"a\",{href:\"https://reactjs.org/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.React,{})})}),n(\"a\",{href:\"https://www.typescriptlang.org/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.TypeScript,{})})}),n(\"a\",{href:\"https://turborepo.org/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.Turborepo,{})})}),n(\"a\",{href:\"https://tanstack.com/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.Tanstack,{})})}),n(\"a\",{href:\"https://zustand-demo.pmnd.rs/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(\"img\",{src:\"/assets/images/logo/zustand.svg\"})})})}),n(\"a\",{href:\"https://tailwindcss.com/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.TailwindCSS,{})})}),n(\"a\",{href:\"https://vercel.com/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.Vercel,{})})}),n(\"a\",{href:\"https://www.figma.com/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.Figma,{})})})]})]})]}),\"\\n\",t(i.p,{children:[\"The advice and motivation I've found from \",n(i.code,{children:\"Jim Rohn\"}),\" have been a big help in keeping me focused and pushing forward, even when things get tough 💪.\"]}),\"\\n\",n(i.h2,{id:\"about-this-site\",children:n(i.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#about-this-site\",children:\"About this site\"})}),\"\\n\",t(i.ul,{children:[\"\\n\",t(i.li,{children:[\"Framework: \",n(\"a\",{href:\"https://nextjs.org/\",target:\"_blank\",children:\"Next.js\"})]}),\"\\n\",t(i.li,{children:[\"Authentication: \",n(\"a\",{href:\"https://clerk.com/\",target:\"_blank\",children:\"Clerk\"})]}),\"\\n\",t(i.li,{children:[\"Deployment: \",n(\"a\",{href:\"https://vercel.com/\",target:\"_blank\",children:\"Vercel\"})]}),\"\\n\",t(i.li,{children:[\"Content: \",n(\"a\",{href:\"https://velite.js.org/\",target:\"_blank\",children:\"Velite + MDX\"})]}),\"\\n\",t(i.li,{children:[\"Styling: \",n(\"a\",{href:\"https://tailwindcss.com/\",target:\"_blank\",children:\"Tailwindcss\"})]}),\"\\n\",t(i.li,{children:[\"Code syntax highlighting: \",n(\"a\",{href:\"https://github.com/shikijs/shiki/\",target:\"_blank\",children:\"Shiki\"})]}),\"\\n\"]}),\"\\n\",t(i.p,{children:[\"Thanks to \",n(i.strong,{children:\"Timothy Lin\"}),\" for the\\r\\n\",n(i.a,{href:\"https://github.com/timlrx/tailwind-nextjs-starter-blog\",children:\"tailwind-nextjs-starter-blog\"}),\". It helped me when I haven't any idea how to create a blog from scratch. My code isn't like the starter code because I changed a lot of code (●ˇ∀ˇ●)\"]}),\"\\n\",n(i.h2,{id:\"inspiration\",children:n(i.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#inspiration\",children:\"Inspiration\"})}),\"\\n\",n(i.p,{children:\"Here are some websites that inspired me a lot to build a fantastic website.\"}),\"\\n\",t(i.ul,{children:[\"\\n\",t(i.li,{children:[\"tszhong0411: \",n(\"a\",{href:\"https://nelsonlai.me/\",target:\"_blank\",children:\"nelsonlai.me\"})]}),\"\\n\",t(i.li,{children:[\"braydoncoyer: \",n(\"a\",{href:\"https://www.braydoncoyer.dev/\",target:\"_blank\",children:\"braydoncoyer.dev\"})]}),\"\\n\",t(i.li,{children:[\"theodorusclarence: \",n(\"a\",{href:\"https://theodorusclarence.com/\",target:\"_blank\",children:\"theodorusclarence.com\"})]}),\"\\n\",t(i.li,{children:[\"Cuberto: \",n(\"a\",{href:\"https://cuberto.com/\",target:\"_blank\",children:\"cuberto.com\"})]}),\"\\n\",t(i.li,{children:[\"Fuma-Nama: \",n(\"a\",{href:\"https://fuma-nama.vercel.app/\",target:\"_blank\",children:\"fuma-nama.vercel.app\"})]}),\"\\n\",t(i.li,{children:[\"Fellipe-Utaka: \",n(\"a\",{href:\"https://fellipeutaka.vercel.app/\",target:\"_blank\",children:\"fellipeutaka.vercel.app\"})]}),\"\\n\"]}),\"\\n\",t(i.p,{children:[\"Refer to this \",n(i.a,{href:\"https://github.com/techwithanirudh/shadcn-portfolio\",children:\"README\"})]}),\"\\n\",n(i.h2,{id:\"social-links\",children:n(i.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#social-links\",children:\"Social links\"})}),\"\\n\",t(i.ul,{children:[\"\\n\",t(i.li,{children:[\"\\n\",n(\"a\",{href:\"https://github.com/Hieu-BuiMinh\",target:\"_blank\",children:n(i.p,{children:\"Github\"})}),\"\\n\"]}),\"\\n\",t(i.li,{children:[\"\\n\",n(\"a\",{href:\"https://www.facebook.com/hieu.buiminh.37\",target:\"_blank\",children:n(i.p,{children:\"Facebook\"})}),\"\\n\"]}),\"\\n\",t(i.li,{children:[\"\\n\",n(\"a\",{href:\"https://www.instagram.com/stephen.02.12/\",target:\"_blank\",children:n(i.p,{children:\"Instagram\"})}),\"\\n\"]}),\"\\n\",t(i.li,{children:[\"\\n\",n(\"a\",{href:\"https://x.com/Stephen_b591\",target:\"_blank\",children:n(i.p,{children:\"X\"})}),\"\\n\"]}),\"\\n\",t(i.li,{children:[\"\\n\",n(\"a\",{href:\"https://www.youtube.com/@stephen-dev-cool\",target:\"_blank\",children:n(i.p,{children:\"YouTube\"})}),\"\\n\"]}),\"\\n\"]}),\"\\n\",n(i.p,{children:\"Thank you for visiting! ✨\"}),\"\\n\",n(i.p,{children:\"I hope you'll enjoy exploring this space and maybe even find something inspiring along the way.\"})]})}return{default:function(e={}){const{wrapper:t}=e.components||{};return t?n(t,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};function _missingMdxReference(e,n){throw new Error(\"Expected \"+(n?\"component\":\"object\")+\" `\"+e+\"` to be defined: you likely forgot to import, pass, or provide it.\")}",
-    "toc": [
-      {
-        "title": "About this site",
-        "url": "#about-this-site",
-        "items": []
-      },
-      {
-        "title": "Inspiration",
-        "url": "#inspiration",
-        "items": []
-      },
-      {
-        "title": "Social links",
-        "url": "#social-links",
-        "items": []
-      }
-    ],
-    "updatedAt": "11/30/2025, 4:45:22 PM",
-    "author": {
-      "avatar": "/assets/images/avt/me_04.png",
-      "name": "Stephen",
-      "github": "https://github.com/Hieu-BuiMinh"
-    },
-    "slugAsParams": "short-writing/about/about"
-  },
-  {
     "id": "96b829c5-8115-4643-b323-b0846454abd4",
     "slug": "articles/short-writing/bat-tu/bat-tu-roadmap",
     "title": "Lộ trình học Bát Tự",
@@ -92,7 +48,7 @@
         "items": []
       }
     ],
-    "updatedAt": "11/30/2025, 4:45:22 PM",
+    "updatedAt": "12/4/2025, 9:43:40 AM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -118,7 +74,7 @@
     "type": "bat-tu",
     "body": "const{Fragment:n,jsx:T,jsxs:h}=arguments[0];function _createMdxContent(i){const{Table:u}=i.components||{};return u||function(n,T){throw new Error(\"Expected \"+(T?\"component\":\"object\")+\" `\"+n+\"` to be defined: you likely forgot to import, pass, or provide it.\")}(\"Table\",!0),h(n,{children:[T(u,{rows:[[\"Ngũ hành - Can (dương)\",\"Trường sinh\",\"Mộc dục\",\"Quan đới\",\"Lâm quan\",\"Đế vượng\",\"Suy\",\"Bệnh\",\"Tử\",\"Mộ\",\"Tuyệt\",\"Thai\",\"Dưỡng\"],[\"Thủy dương (Nhâm)\",\"Thân\",\"Dậu\",\"Tuất\",\"Hợi\",\"Tí\",\"Sửu\",\"Dần\",\"Mão\",\"Thìn\",\"Tỵ\",\"Ngọ\",\"Mùi\"],[\"Mộc dương (Giáp)\",\"Hợi\",\"Tí\",\"Sửu\",\"Dần\",\"Mão\",\"Thìn\",\"Tỵ\",\"Ngọ\",\"Mùi\",\"Thân\",\"Dậu\",\"Tuất\"],[\"Hỏa dương (Bính)\",\"Dần\",\"Mão\",\"Thìn\",\"Tỵ\",\"Ngọ\",\"Mùi\",\"Thân\",\"Dậu\",\"Tuất\",\"Hợi\",\"Tí\",\"Sửu\"],[\"Kim dương (Canh)\",\"Tỵ\",\"Ngọ\",\"Mùi\",\"Thân\",\"Dậu\",\"Tuất\",\"Hợi\",\"Tí\",\"Sửu\",\"Dần\",\"Mão\",\"Thìn\"]]}),\"\\n\",T(u,{rows:[[\"Ngũ hành - Can (âm)\",\"Trường sinh\",\"Mộc dục\",\"Quan đới\",\"Lâm quan\",\"Đế vượng\",\"Suy\",\"Bệnh\",\"Tử\",\"Mộ\",\"Tuyệt\",\"Thai\",\"Dưỡng\"],[\"Thủy âm (Quý)\",\"Mão\",\"Dần\",\"Sửu\",\"Tí\",\"Hợi\",\"Tuất\",\"Dậu\",\"Thân\",\"Mùi\",\"Ngọ\",\"Tỵ\",\"Thìn\"],[\"Mộc âm (Ất)\",\"Ngọ\",\"Tỵ\",\"Thìn\",\"Mão\",\"Dần\",\"Sửu\",\"Tí\",\"Hợi\",\"Tuất\",\"Dậu\",\"Thân\",\"Mùi\"],[\"Hỏa âm (Đinh)\",\"Dậu\",\"Thân\",\"Mùi\",\"Ngọ\",\"Tỵ\",\"Thìn\",\"Mão\",\"Dần\",\"Sửu\",\"Tí\",\"Hợi\",\"Tuất\"],[\"Kim âm (Tân)\",\"Tí\",\"Hợi\",\"Tuất\",\"Dậu\",\"Thân\",\"Mùi\",\"Ngọ\",\"Tỵ\",\"Thìn\",\"Mão\",\"Dần\",\"Sửu\"]]}),\"\\n\",T(u,{rows:[[\"Nhóm\",\"Địa chi\",\"Ngũ hành chi\",\"Khí 1\",\"Khí 2\",\"Khí 3\"],[\"Tứ sinh\",\"Dần\",\"Mộc (+)\",\"Giáp Mộc (+)\",\"Bính Hỏa (+)\",\"Mậu Thổ (+)\"],[\"Tứ sinh\",\"Thân\",\"Kim (+)\",\"Canh Kim (+)\",\"Nhâm Thủy (+)\",\"Mậu Thổ (+)\"],[\"Tứ sinh\",\"Tỵ\",\"Hỏa (-)\",\"Bính Hỏa (+)\",\"Canh Kim (+)\",\"Mậu Thổ (+)\"],[\"Tứ sinh\",\"Hợi\",\"Thủy (-)\",\"Nhâm Thủy (+)\",\"Giáp Mộc (+)\",\"-/-\"],[\"Tứ chính\",\"Tí\",\"Thủy (+)\",\"Quý Thủy (-)\",\"-/-\",\"-/-\"],[\"Tứ chính\",\"Ngọ\",\"Hỏa (+)\",\"Đinh Hỏa (-)\",\"Kỷ Thổ (-)\",\"-/-\"],[\"Tứ chính\",\"Mão\",\"Mộc (-)\",\"Ất Mộc (-)\",\"-/-\",\"-/-\"],[\"Tứ chính\",\"Dậu\",\"Kim (-)\",\"Tân Kim (-)\",\"-/-\",\"-/-\"],[\"Tứ mộ\",\"Thìn\",\"Thổ (+)\",\"Mậu Thổ (+)\",\"Ất Mộc (-)\",\"Quý Thủy (-)\"],[\"Tứ mộ\",\"Tuất\",\"Thổ (+)\",\"Mậu Thổ (+)\",\"Tân Kim (-)\",\"Đinh Hỏa (-)\"],[\"Tứ mộ\",\"Sửu\",\"Thổ (-)\",\"Kỷ Thổ (-)\",\"Quý Thủy (-)\",\"Tân Kim (-)\"],[\"Tứ mộ\",\"Mùi\",\"Thổ (-)\",\"Kỷ Thổ (-)\",\"Đinh Hỏa (-)\",\"Ất Mộc (-)\"]]})]})}return{default:function(n={}){const{wrapper:h}=n.components||{};return h?T(h,{...n,children:T(_createMdxContent,{...n})}):_createMdxContent(n)}};",
     "toc": [],
-    "updatedAt": "11/30/2025, 4:45:22 PM",
+    "updatedAt": "12/4/2025, 9:43:40 AM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -127,16 +83,16 @@
     "slugAsParams": "short-writing/bat-tu/vong-truong-sinh-dia-chi-tang-can"
   },
   {
-    "id": "a71f3d38-48db-4d6f-873e-531ac25f3c54",
-    "slug": "articles/short-writing/overview/overview",
-    "title": "Welcome to My Website",
+    "id": "b13a7efd-de2a-4353-9433-5c216584939a",
+    "slug": "articles/short-writing/about/about",
+    "title": "About Me",
     "createdAt": "2025-08-09T09:11:42.444Z",
     "cover": "/assets/articles/dev/post/conventional-commits.png",
     "metadata": {
-      "readingTime": 1,
-      "wordCount": 174
+      "readingTime": 2,
+      "wordCount": 566
     },
-    "description": "A fresh new look, better performance, and more to explore.",
+    "description": "A story of growth and discovery",
     "published": true,
     "hashTags": [
       "single",
@@ -144,15 +100,31 @@
       "about"
     ],
     "type": "single",
-    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(r){const t={a:\"a\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...r.components};return i(e,{children:[n(\"b\",{className:\"text-xl md:text-2xl\",style:{textAlign:\"center\"},children:n(t.p,{children:\"👋 Hello! Welcome to my website\"})}),\"\\n\",i(t.p,{children:[\"This is the second version of my personal website, launched in 2025 after lots of learning, experimenting, and refining. Compared to the very \",n(t.a,{href:\"https://github.com/Hieu-BuiMinh/portfolio-blog-webapp\",children:\"first version\"}),\" (built in 2024), this upgrade brings:\"]}),\"\\n\",i(t.ul,{children:[\"\\n\",n(t.li,{children:\"Built with Next.js 15, Tailwind CSS 4, and Turborepo 🚀.\"}),\"\\n\",n(t.li,{children:\"A cleaner, modern design with improved aesthetics.\"}),\"\\n\",n(t.li,{children:\"Subtle animations for a smoother, more engaging experience.\"}),\"\\n\",n(t.li,{children:\"Better performance and responsiveness, making the site faster on any device.\"}),\"\\n\"]}),\"\\n\",i(t.p,{children:[\"My goal with this revamp is to turn this website into a personal space where \",n(t.a,{href:\"https://github.com/Hieu-BuiMinh\",children:\"I\"}),\" can share projects, blog posts, and my journey as a developer.\"]}),\"\\n\",n(t.p,{children:n(t.strong,{children:\"💡 Inspiration & Credits\"})}),\"\\n\",n(t.p,{children:\"This version was inspired by many amazing developers and designers in the community. A special thanks goes out to:\"}),\"\\n\",i(t.ul,{children:[\"\\n\",i(t.li,{children:[\"tszhong0411: \",n(t.a,{href:\"https://nelsonlai.me/\",children:\"nelsonlai.me\"})]}),\"\\n\",i(t.li,{children:[\"braydoncoyer: \",n(t.a,{href:\"https://www.braydoncoyer.dev/\",children:\"braydoncoyer.dev\"})]}),\"\\n\",i(t.li,{children:[\"theodorusclarence: \",n(t.a,{href:\"https://theodorusclarence.com/\",children:\"theodorusclarence.com\"})]}),\"\\n\",i(t.li,{children:[\"Cuberto: \",n(t.a,{href:\"https://cuberto.com/\",children:\"cuberto.com\"})]}),\"\\n\",i(t.li,{children:[\"Fuma-Nama: \",n(t.a,{href:\"https://fuma-nama.vercel.app/\",children:\"fuma-nama.vercel.app\"})]}),\"\\n\",i(t.li,{children:[\"Fellipe-Utaka: \",n(t.a,{href:\"https://fellipeutaka.vercel.app\",children:\"fellipeutaka.vercel.app\"})]}),\"\\n\",i(t.li,{children:[\"Refer to this \",n(t.a,{href:\"https://github.com/techwithanirudh/shadcn-portfolio\",children:\"README\"})]}),\"\\n\"]}),\"\\n\",n(t.p,{children:n(t.strong,{children:\"🙌 Closing\"})}),\"\\n\",n(t.p,{children:\"Thank you for visiting! ✨\"}),\"\\n\",n(t.p,{children:\"I hope you'll enjoy exploring this space and maybe even find something inspiring along the way.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};",
-    "toc": [],
-    "updatedAt": "11/30/2025, 4:45:22 PM",
+    "body": "const{Fragment:e,jsx:n,jsxs:t}=arguments[0];function _createMdxContent(r){const i={a:\"a\",code:\"code\",h2:\"h2\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...r.components},{AvatarCardStack:a,RoughMark:l,SVGIcons:c}=i;return a||_missingMdxReference(\"AvatarCardStack\",!0),l||_missingMdxReference(\"RoughMark\",!0),c||_missingMdxReference(\"SVGIcons\",!1),c.Figma||_missingMdxReference(\"SVGIcons.Figma\",!0),c.NextJS||_missingMdxReference(\"SVGIcons.NextJS\",!0),c.React||_missingMdxReference(\"SVGIcons.React\",!0),c.TailwindCSS||_missingMdxReference(\"SVGIcons.TailwindCSS\",!0),c.Tanstack||_missingMdxReference(\"SVGIcons.Tanstack\",!0),c.Turborepo||_missingMdxReference(\"SVGIcons.Turborepo\",!0),c.TypeScript||_missingMdxReference(\"SVGIcons.TypeScript\",!0),c.Vercel||_missingMdxReference(\"SVGIcons.Vercel\",!0),t(e,{children:[n(\"div\",{className:\"text-2xl text-center font-bold pt-3 md:text-4xl md:text-left\",children:\"Stephen\"}),\"\\n\",n(\"div\",{className:\"text-sm text-center text-muted-foreground md:text-left\",children:\"-Hieu-BuiMinh ⟁-\"}),\"\\n\",n(\"div\",{className:\"not-prose text-center text-sm text-muted-foreground my-3 md:text-left md:m-0 md:mt-3\",children:n(i.p,{children:\"A self-taught Front-End Engineer in Vietnam\"})}),\"\\n\",t(\"div\",{className:\"relative pb-12 flex items-center gap-5 flex-col md:flex-row mt-2\",children:[n(\"div\",{className:\"w-[50%] shrink-0 flex items-center justify-center\",children:n(a,{})}),t(\"div\",{children:[t(\"p\",{className:\"not-prose\",children:[\"Hello there 👋 You can call me \",n(l,{type:\"highlight\",color:\"#ffe066\",padding:4,animationDuration:600,order:3,children:n(\"b\",{className:\"underline\",style:{color:\"#000\"},children:\"Stephen\"})}),\". I am a 25-year-old \",n(l,{type:\"box\",color:\"#22c55e\",animationDuration:600,order:1,children:\"Front-End Engineer\"}),\" from Vietnam, born in 2000. I specialize in the React ecosystem and have experience working with \",n(l,{multiline:!0,type:\"highlight\",color:\"#ABE847\",children:n(\"span\",{style:{color:\"#000\"},children:\"TypeScript, Next.js, React.js\"})}),\", Node.js, and database management. Currently, I am passionate about learning UI/UX design.\"]}),t(i.p,{children:[\"I started learning web development on December 5, 2020 (I was 20 years old then). It's a big challenge because it's just one of my hobbies, and I have yet to take any courses. I am self-learning on YouTube. Some of my favorite YouTube channels are \",n(i.a,{href:\"https://www.youtube.com/@NetNinja\",children:\"The Net Ninja\"}),\", \",n(i.a,{href:\"https://www.youtube.com/@codewithantonio\",children:\"Code With Antonio\"}),\", \",n(i.a,{href:\"https://www.youtube.com/@cosdensolutions\",children:\"Cosden Solutions\"}),\". I learned a lot of web development skills from them.\"]}),t(i.p,{children:[\"I love using \",n(i.a,{href:\"https://nextjs.org/\",children:\"Next.js\"}),\" to create a website. Then use \",n(i.a,{href:\"https://github.com\",children:\"GitHub\"}),\" to host my codebase. After that, I use \",n(i.a,{href:\"https://vercel.com\",children:\"Vercel\"}),\" to deploy it. Here are my current favorite tech stack\"]}),t(\"div\",{className:\"mt-6 flex gap-4 flex-wrap\",children:[n(\"a\",{href:\"https://nextjs.org/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.NextJS,{className:\"border border-foreground/50 rounded-full\"})})}),n(\"a\",{href:\"https://reactjs.org/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.React,{})})}),n(\"a\",{href:\"https://www.typescriptlang.org/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.TypeScript,{})})}),n(\"a\",{href:\"https://turborepo.org/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.Turborepo,{})})}),n(\"a\",{href:\"https://tanstack.com/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.Tanstack,{})})}),n(\"a\",{href:\"https://zustand-demo.pmnd.rs/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(\"img\",{src:\"/assets/images/logo/zustand.svg\"})})})}),n(\"a\",{href:\"https://tailwindcss.com/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.TailwindCSS,{})})}),n(\"a\",{href:\"https://vercel.com/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.Vercel,{})})}),n(\"a\",{href:\"https://www.figma.com/\",target:\"_blank\",children:n(\"span\",{className:\"flex items-center size-8\",children:n(c.Figma,{})})})]})]})]}),\"\\n\",t(i.p,{children:[\"The advice and motivation I've found from \",n(i.code,{children:\"Jim Rohn\"}),\" have been a big help in keeping me focused and pushing forward, even when things get tough 💪.\"]}),\"\\n\",n(i.h2,{id:\"about-this-site\",children:n(i.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#about-this-site\",children:\"About this site\"})}),\"\\n\",t(i.ul,{children:[\"\\n\",t(i.li,{children:[\"Framework: \",n(\"a\",{href:\"https://nextjs.org/\",target:\"_blank\",children:\"Next.js\"})]}),\"\\n\",t(i.li,{children:[\"Authentication: \",n(\"a\",{href:\"https://clerk.com/\",target:\"_blank\",children:\"Clerk\"})]}),\"\\n\",t(i.li,{children:[\"Deployment: \",n(\"a\",{href:\"https://vercel.com/\",target:\"_blank\",children:\"Vercel\"})]}),\"\\n\",t(i.li,{children:[\"Content: \",n(\"a\",{href:\"https://velite.js.org/\",target:\"_blank\",children:\"Velite + MDX\"})]}),\"\\n\",t(i.li,{children:[\"Styling: \",n(\"a\",{href:\"https://tailwindcss.com/\",target:\"_blank\",children:\"Tailwindcss\"})]}),\"\\n\",t(i.li,{children:[\"Code syntax highlighting: \",n(\"a\",{href:\"https://github.com/shikijs/shiki/\",target:\"_blank\",children:\"Shiki\"})]}),\"\\n\"]}),\"\\n\",t(i.p,{children:[\"Thanks to \",n(i.strong,{children:\"Timothy Lin\"}),\" for the\\r\\n\",n(i.a,{href:\"https://github.com/timlrx/tailwind-nextjs-starter-blog\",children:\"tailwind-nextjs-starter-blog\"}),\". It helped me when I haven't any idea how to create a blog from scratch. My code isn't like the starter code because I changed a lot of code (●ˇ∀ˇ●)\"]}),\"\\n\",n(i.h2,{id:\"inspiration\",children:n(i.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#inspiration\",children:\"Inspiration\"})}),\"\\n\",n(i.p,{children:\"Here are some websites that inspired me a lot to build a fantastic website.\"}),\"\\n\",t(i.ul,{children:[\"\\n\",t(i.li,{children:[\"tszhong0411: \",n(\"a\",{href:\"https://nelsonlai.me/\",target:\"_blank\",children:\"nelsonlai.me\"})]}),\"\\n\",t(i.li,{children:[\"braydoncoyer: \",n(\"a\",{href:\"https://www.braydoncoyer.dev/\",target:\"_blank\",children:\"braydoncoyer.dev\"})]}),\"\\n\",t(i.li,{children:[\"theodorusclarence: \",n(\"a\",{href:\"https://theodorusclarence.com/\",target:\"_blank\",children:\"theodorusclarence.com\"})]}),\"\\n\",t(i.li,{children:[\"Cuberto: \",n(\"a\",{href:\"https://cuberto.com/\",target:\"_blank\",children:\"cuberto.com\"})]}),\"\\n\",t(i.li,{children:[\"Fuma-Nama: \",n(\"a\",{href:\"https://fuma-nama.vercel.app/\",target:\"_blank\",children:\"fuma-nama.vercel.app\"})]}),\"\\n\",t(i.li,{children:[\"Fellipe-Utaka: \",n(\"a\",{href:\"https://fellipeutaka.vercel.app/\",target:\"_blank\",children:\"fellipeutaka.vercel.app\"})]}),\"\\n\"]}),\"\\n\",t(i.p,{children:[\"Refer to this \",n(i.a,{href:\"https://github.com/techwithanirudh/shadcn-portfolio\",children:\"README\"})]}),\"\\n\",n(i.h2,{id:\"social-links\",children:n(i.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#social-links\",children:\"Social links\"})}),\"\\n\",t(i.ul,{children:[\"\\n\",t(i.li,{children:[\"\\n\",n(\"a\",{href:\"https://github.com/Hieu-BuiMinh\",target:\"_blank\",children:n(i.p,{children:\"Github\"})}),\"\\n\"]}),\"\\n\",t(i.li,{children:[\"\\n\",n(\"a\",{href:\"https://www.facebook.com/hieu.buiminh.37\",target:\"_blank\",children:n(i.p,{children:\"Facebook\"})}),\"\\n\"]}),\"\\n\",t(i.li,{children:[\"\\n\",n(\"a\",{href:\"https://www.instagram.com/stephen.02.12/\",target:\"_blank\",children:n(i.p,{children:\"Instagram\"})}),\"\\n\"]}),\"\\n\",t(i.li,{children:[\"\\n\",n(\"a\",{href:\"https://x.com/Stephen_b591\",target:\"_blank\",children:n(i.p,{children:\"X\"})}),\"\\n\"]}),\"\\n\",t(i.li,{children:[\"\\n\",n(\"a\",{href:\"https://www.youtube.com/@stephen-dev-cool\",target:\"_blank\",children:n(i.p,{children:\"YouTube\"})}),\"\\n\"]}),\"\\n\"]}),\"\\n\",n(i.p,{children:\"Thank you for visiting! ✨\"}),\"\\n\",n(i.p,{children:\"I hope you'll enjoy exploring this space and maybe even find something inspiring along the way.\"})]})}return{default:function(e={}){const{wrapper:t}=e.components||{};return t?n(t,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};function _missingMdxReference(e,n){throw new Error(\"Expected \"+(n?\"component\":\"object\")+\" `\"+e+\"` to be defined: you likely forgot to import, pass, or provide it.\")}",
+    "toc": [
+      {
+        "title": "About this site",
+        "url": "#about-this-site",
+        "items": []
+      },
+      {
+        "title": "Inspiration",
+        "url": "#inspiration",
+        "items": []
+      },
+      {
+        "title": "Social links",
+        "url": "#social-links",
+        "items": []
+      }
+    ],
+    "updatedAt": "12/4/2025, 9:43:40 AM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
       "github": "https://github.com/Hieu-BuiMinh"
     },
-    "slugAsParams": "short-writing/overview/overview"
+    "slugAsParams": "short-writing/about/about"
   },
   {
     "id": "74c4d921-cec2-4d77-82d8-49d722a3f9b6",
@@ -290,12 +262,40 @@
         ]
       }
     ],
-    "updatedAt": "11/30/2025, 4:45:22 PM",
+    "updatedAt": "12/4/2025, 9:43:40 AM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
       "github": "https://github.com/Hieu-BuiMinh"
     },
     "slugAsParams": "short-writing/kinh-dich/luc-than"
+  },
+  {
+    "id": "a71f3d38-48db-4d6f-873e-531ac25f3c54",
+    "slug": "articles/short-writing/overview/overview",
+    "title": "Welcome to My Website",
+    "createdAt": "2025-08-09T09:11:42.444Z",
+    "cover": "/assets/articles/dev/post/conventional-commits.png",
+    "metadata": {
+      "readingTime": 1,
+      "wordCount": 174
+    },
+    "description": "A fresh new look, better performance, and more to explore.",
+    "published": true,
+    "hashTags": [
+      "single",
+      "others",
+      "about"
+    ],
+    "type": "single",
+    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(r){const t={a:\"a\",li:\"li\",p:\"p\",strong:\"strong\",ul:\"ul\",...r.components};return i(e,{children:[n(\"b\",{className:\"text-xl md:text-2xl\",style:{textAlign:\"center\"},children:n(t.p,{children:\"👋 Hello! Welcome to my website\"})}),\"\\n\",i(t.p,{children:[\"This is the second version of my personal website, launched in 2025 after lots of learning, experimenting, and refining. Compared to the very \",n(t.a,{href:\"https://github.com/Hieu-BuiMinh/portfolio-blog-webapp\",children:\"first version\"}),\" (built in 2024), this upgrade brings:\"]}),\"\\n\",i(t.ul,{children:[\"\\n\",n(t.li,{children:\"Built with Next.js 15, Tailwind CSS 4, and Turborepo 🚀.\"}),\"\\n\",n(t.li,{children:\"A cleaner, modern design with improved aesthetics.\"}),\"\\n\",n(t.li,{children:\"Subtle animations for a smoother, more engaging experience.\"}),\"\\n\",n(t.li,{children:\"Better performance and responsiveness, making the site faster on any device.\"}),\"\\n\"]}),\"\\n\",i(t.p,{children:[\"My goal with this revamp is to turn this website into a personal space where \",n(t.a,{href:\"https://github.com/Hieu-BuiMinh\",children:\"I\"}),\" can share projects, blog posts, and my journey as a developer.\"]}),\"\\n\",n(t.p,{children:n(t.strong,{children:\"💡 Inspiration & Credits\"})}),\"\\n\",n(t.p,{children:\"This version was inspired by many amazing developers and designers in the community. A special thanks goes out to:\"}),\"\\n\",i(t.ul,{children:[\"\\n\",i(t.li,{children:[\"tszhong0411: \",n(t.a,{href:\"https://nelsonlai.me/\",children:\"nelsonlai.me\"})]}),\"\\n\",i(t.li,{children:[\"braydoncoyer: \",n(t.a,{href:\"https://www.braydoncoyer.dev/\",children:\"braydoncoyer.dev\"})]}),\"\\n\",i(t.li,{children:[\"theodorusclarence: \",n(t.a,{href:\"https://theodorusclarence.com/\",children:\"theodorusclarence.com\"})]}),\"\\n\",i(t.li,{children:[\"Cuberto: \",n(t.a,{href:\"https://cuberto.com/\",children:\"cuberto.com\"})]}),\"\\n\",i(t.li,{children:[\"Fuma-Nama: \",n(t.a,{href:\"https://fuma-nama.vercel.app/\",children:\"fuma-nama.vercel.app\"})]}),\"\\n\",i(t.li,{children:[\"Fellipe-Utaka: \",n(t.a,{href:\"https://fellipeutaka.vercel.app\",children:\"fellipeutaka.vercel.app\"})]}),\"\\n\",i(t.li,{children:[\"Refer to this \",n(t.a,{href:\"https://github.com/techwithanirudh/shadcn-portfolio\",children:\"README\"})]}),\"\\n\"]}),\"\\n\",n(t.p,{children:n(t.strong,{children:\"🙌 Closing\"})}),\"\\n\",n(t.p,{children:\"Thank you for visiting! ✨\"}),\"\\n\",n(t.p,{children:\"I hope you'll enjoy exploring this space and maybe even find something inspiring along the way.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};",
+    "toc": [],
+    "updatedAt": "12/4/2025, 9:43:40 AM",
+    "author": {
+      "avatar": "/assets/images/avt/me_04.png",
+      "name": "Stephen",
+      "github": "https://github.com/Hieu-BuiMinh"
+    },
+    "slugAsParams": "short-writing/overview/overview"
   }
 ]
