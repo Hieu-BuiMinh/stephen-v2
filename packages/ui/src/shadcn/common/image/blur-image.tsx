@@ -44,7 +44,7 @@ const BlurImage = forwardRef<HTMLImageElement, ImageProps>((props, ref) => {
 				unoptimized
 				ref={ref}
 				className={cn(
-					'size-full object-cover',
+					'size-auto object-cover',
 					isLoading && 'scale-[1.02] object-cover blur-xl grayscale',
 					imageClassName
 				)}

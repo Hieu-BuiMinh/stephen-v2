@@ -18,95 +18,13 @@
     ],
     "body": "const{Fragment:t,jsx:e,jsxs:n}=arguments[0];function _createMdxContent(o){const r={p:\"p\",...o.components};return n(t,{children:[e(r.p,{children:'In 2000, I officially crash-landed on Earth - my own little \"Day Of Arrival\" at the edge of a new millennium. It didn\\'t look special from the outside, but for me it was Day Zero - the year my version 0.0 quietly booted into the world.'}),\"\\n\",e(\"img\",{src:\"/assets/articles/retro/2000/i-arrive.gif\",alt:\"this-is-how-it-looks\"}),\"\\n\",e(\"u\",{children:\"This is pretty much how it looked in my mind 👀\"})]})}return{default:function(t={}){const{wrapper:n}=t.components||{};return n?e(n,{...t,children:e(_createMdxContent,{...t})}):_createMdxContent(t)}};",
     "toc": [],
-    "updatedAt": "12/4/2025, 10:19:56 AM",
+    "updatedAt": "12/7/2025, 8:32:27 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
       "github": "https://github.com/Hieu-BuiMinh"
     },
     "slugAsParams": "retro/2000/1.born-in"
-  },
-  {
-    "id": "6c78631a-26b5-45a2-a976-bed50157299d",
-    "slug": "articles/retro/2024/1.leason-from-jim-rohn",
-    "title": "When Self-Work Became the Real Work",
-    "milestone": "2024-03-23T08:00:00.000Z",
-    "metadata": {
-      "readingTime": 1,
-      "wordCount": 112
-    },
-    "description": "The year I finally understood why working on myself matters more than working on my job.",
-    "published": true,
-    "hashTags": [
-      "retro",
-      "2024",
-      "self-growth",
-      "jim-rohn"
-    ],
-    "body": "const{Fragment:e,jsx:t,jsxs:o}=arguments[0];function _createMdxContent(n){const r={p:\"p\",...n.components},{RoughMark:a}=r;return a||function(e,t){throw new Error(\"Expected \"+(t?\"component\":\"object\")+\" `\"+e+\"` to be defined: you likely forgot to import, pass, or provide it.\")}(\"RoughMark\",!0),o(e,{children:[t(r.p,{children:\"In 2024, Jim Rohn's line finally hit me for real:\"}),\"\\n\",t(a,{type:\"highlight\",multiline:!0,color:\"#ffe066\",children:t(\"span\",{style:{color:\"#000\"},children:\"Learn to work harder on yourself than you do on your job. If you work hard on your job you can make a living, but if you work hard on yourself you'll make a fortune.\"})}),\"\\n\",t(r.p,{children:'Until then, I mostly treated \"self-improvement\" like a nice-to-have, something I\\'d do when I had time. This was the year I started to see my mind, my skills, and my habits as the real assets — not the job title on my profile. It changed how I spent my evenings, what I paid attention to, and what I expected from my future self.'})]})}return{default:function(e={}){const{wrapper:o}=e.components||{};return o?t(o,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
-    "toc": [],
-    "updatedAt": "12/4/2025, 9:43:40 AM",
-    "author": {
-      "avatar": "/assets/images/avt/me_04.png",
-      "name": "Stephen",
-      "github": "https://github.com/Hieu-BuiMinh"
-    },
-    "slugAsParams": "retro/2024/1.leason-from-jim-rohn"
-  },
-  {
-    "id": "5515efbf-97c0-4354-899b-fb164514d405",
-    "slug": "articles/retro/2024/2.outgrowing-my-old-job",
-    "title": "Outgrowing My Old Job",
-    "milestone": "2024-07-15T08:00:00.000Z",
-    "metadata": {
-      "readingTime": 1,
-      "wordCount": 116
-    },
-    "description": "The year I admitted my old company no longer fit and bet on my own growth instead.",
-    "published": true,
-    "hashTags": [
-      "retro",
-      "2024",
-      "career",
-      "personal-projects",
-      "blog"
-    ],
-    "body": "const{Fragment:e,jsx:t,jsxs:n}=arguments[0];function _createMdxContent(o){const r={p:\"p\",...o.components};return n(e,{children:[t(r.p,{children:\"2024 was the year I finally admitted it to myself: my old company wasn't the problem, it just wasn't the right fit for who I was becoming. I had outgrown the role, the pace, and the way things were done there.\"}),\"\\n\",t(r.p,{children:\"Instead of complaining, I decided to shift my focus inward — to study properly, to stop half-learning, and to pour my energy into personal projects. The first real result of that decision was my original personal blog, a tiny website that somehow opened the door to my current job and eventually evolved into this version 2 you're reading now. It wasn't a clean break or a heroic moment, just a quiet decision to take myself more seriously.\"})]})}return{default:function(e={}){const{wrapper:n}=e.components||{};return n?t(n,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
-    "toc": [],
-    "updatedAt": "12/4/2025, 9:43:40 AM",
-    "author": {
-      "avatar": "/assets/images/avt/me_04.png",
-      "name": "Stephen",
-      "github": "https://github.com/Hieu-BuiMinh"
-    },
-    "slugAsParams": "retro/2024/2.outgrowing-my-old-job"
-  },
-  {
-    "id": "3be6f5a0-89ee-4d9b-8c1d-b3aac4dabbba",
-    "slug": "articles/retro/2024/3.blog-v1-launch",
-    "title": "Launching My First Personal Blog 🗿",
-    "milestone": "2024-08-01T08:00:00.000Z",
-    "metadata": {
-      "readingTime": 1,
-      "wordCount": 60
-    },
-    "description": "The year I finally moved my thoughts from drafts into a real home online.",
-    "published": true,
-    "hashTags": [
-      "retro",
-      "2024",
-      "blog",
-      "personal-projects"
-    ],
-    "body": "const{Fragment:e,jsx:t,jsxs:n}=arguments[0];function _createMdxContent(a){const r={p:\"p\",...a.components};return n(e,{children:[t(r.p,{children:\"In 2024, I launched my first personal blog. It wasn't perfect, the design was a bit rough, and the content didn't always know what it wanted to be—but it was real and it was mine. That small, imperfect site became the first place where my thoughts, experiments, and projects had a home outside my head.\"}),\"\\n\",t(\"a\",{href:\"https://hieu-buiminh.io.vn/\",target:\"_blank\",children:t(r.p,{children:\"#Personal Blog V1\"})}),\"\\n\",t(\"a\",{href:\"https://hieu-buiminh-resume.io.vn/\",target:\"_blank\",children:t(r.p,{children:\"#Personal Resume\"})})]})}return{default:function(e={}){const{wrapper:n}=e.components||{};return n?t(n,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
-    "toc": [],
-    "updatedAt": "12/4/2025, 9:43:40 AM",
-    "author": {
-      "avatar": "/assets/images/avt/me_04.png",
-      "name": "Stephen",
-      "github": "https://github.com/Hieu-BuiMinh"
-    },
-    "slugAsParams": "retro/2024/3.blog-v1-launch"
   },
   {
     "id": "8f828eac-0d80-4c6d-a97e-ad13f0e0919f",
@@ -128,7 +46,7 @@
     ],
     "body": "const{jsx:e}=arguments[0];function _createMdxContent(n){const t={p:\"p\",...n.components};return e(t.p,{children:\"In 2022, I landed my first real job. It was a huge step forward in my career journey, marking the transition from student life to the professional world. The challenges I faced helped me develop critical skills and understand the direction I wanted to pursue.\"})}return{default:function(n={}){const{wrapper:t}=n.components||{};return t?e(t,{...n,children:e(_createMdxContent,{...n})}):_createMdxContent(n)}};",
     "toc": [],
-    "updatedAt": "12/4/2025, 10:16:52 AM",
+    "updatedAt": "12/7/2025, 8:32:27 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -156,13 +74,95 @@
     ],
     "body": "const{Fragment:e,jsx:t,jsxs:o}=arguments[0];function _createMdxContent(n){const r={p:\"p\",...n.components},{Image:i}=r;return i||function(e,t){throw new Error(\"Expected \"+(t?\"component\":\"object\")+\" `\"+e+\"` to be defined: you likely forgot to import, pass, or provide it.\")}(\"Image\",!0),o(e,{children:[t(r.p,{children:\"A pivotal moment in my life: I entered the University of Economics in Ho Chi Minh City (UEH). It was a time of growth, challenges, and new friendships. The excitement and uncertainty of university life shaped who I am today.\"}),\"\\n\",o(\"div\",{className:\"flex flex-col gap-3\",children:[t(i,{width:1200,height:630,style:{height:\"100%\"},alt:\"Father took me to school\",src:\"/assets/articles/retro/2018/father-took-me-to-school.png\"}),t(i,{width:1200,height:630,alt:\"My school\",style:{height:\"100%\"},src:\"/assets/articles/retro/2018/ueh.png\"})]})]})}return{default:function(e={}){const{wrapper:o}=e.components||{};return o?t(o,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
     "toc": [],
-    "updatedAt": "12/4/2025, 10:40:58 AM",
+    "updatedAt": "12/7/2025, 8:32:27 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
       "github": "https://github.com/Hieu-BuiMinh"
     },
     "slugAsParams": "retro/2018/1.entered-ueh"
+  },
+  {
+    "id": "6c78631a-26b5-45a2-a976-bed50157299d",
+    "slug": "articles/retro/2024/1.leason-from-jim-rohn",
+    "title": "When Self-Work Became the Real Work",
+    "milestone": "2024-03-23T08:00:00.000Z",
+    "metadata": {
+      "readingTime": 1,
+      "wordCount": 112
+    },
+    "description": "The year I finally understood why working on myself matters more than working on my job.",
+    "published": true,
+    "hashTags": [
+      "retro",
+      "2024",
+      "self-growth",
+      "jim-rohn"
+    ],
+    "body": "const{Fragment:e,jsx:t,jsxs:o}=arguments[0];function _createMdxContent(n){const r={p:\"p\",...n.components},{RoughMark:a}=r;return a||function(e,t){throw new Error(\"Expected \"+(t?\"component\":\"object\")+\" `\"+e+\"` to be defined: you likely forgot to import, pass, or provide it.\")}(\"RoughMark\",!0),o(e,{children:[t(r.p,{children:\"In 2024, Jim Rohn's line finally hit me for real:\"}),\"\\n\",t(a,{type:\"highlight\",multiline:!0,color:\"#ffe066\",children:t(\"span\",{style:{color:\"#000\"},children:\"Learn to work harder on yourself than you do on your job. If you work hard on your job you can make a living, but if you work hard on yourself you'll make a fortune.\"})}),\"\\n\",t(r.p,{children:'Until then, I mostly treated \"self-improvement\" like a nice-to-have, something I\\'d do when I had time. This was the year I started to see my mind, my skills, and my habits as the real assets — not the job title on my profile. It changed how I spent my evenings, what I paid attention to, and what I expected from my future self.'})]})}return{default:function(e={}){const{wrapper:o}=e.components||{};return o?t(o,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
+    "toc": [],
+    "updatedAt": "12/7/2025, 8:32:27 PM",
+    "author": {
+      "avatar": "/assets/images/avt/me_04.png",
+      "name": "Stephen",
+      "github": "https://github.com/Hieu-BuiMinh"
+    },
+    "slugAsParams": "retro/2024/1.leason-from-jim-rohn"
+  },
+  {
+    "id": "5515efbf-97c0-4354-899b-fb164514d405",
+    "slug": "articles/retro/2024/2.outgrowing-my-old-job",
+    "title": "Outgrowing My Old Job",
+    "milestone": "2024-07-15T08:00:00.000Z",
+    "metadata": {
+      "readingTime": 1,
+      "wordCount": 116
+    },
+    "description": "The year I admitted my old company no longer fit and bet on my own growth instead.",
+    "published": true,
+    "hashTags": [
+      "retro",
+      "2024",
+      "career",
+      "personal-projects",
+      "blog"
+    ],
+    "body": "const{Fragment:e,jsx:t,jsxs:n}=arguments[0];function _createMdxContent(o){const r={p:\"p\",...o.components};return n(e,{children:[t(r.p,{children:\"2024 was the year I finally admitted it to myself: my old company wasn't the problem, it just wasn't the right fit for who I was becoming. I had outgrown the role, the pace, and the way things were done there.\"}),\"\\n\",t(r.p,{children:\"Instead of complaining, I decided to shift my focus inward — to study properly, to stop half-learning, and to pour my energy into personal projects. The first real result of that decision was my original personal blog, a tiny website that somehow opened the door to my current job and eventually evolved into this version 2 you're reading now. It wasn't a clean break or a heroic moment, just a quiet decision to take myself more seriously.\"})]})}return{default:function(e={}){const{wrapper:n}=e.components||{};return n?t(n,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
+    "toc": [],
+    "updatedAt": "12/7/2025, 8:32:27 PM",
+    "author": {
+      "avatar": "/assets/images/avt/me_04.png",
+      "name": "Stephen",
+      "github": "https://github.com/Hieu-BuiMinh"
+    },
+    "slugAsParams": "retro/2024/2.outgrowing-my-old-job"
+  },
+  {
+    "id": "3be6f5a0-89ee-4d9b-8c1d-b3aac4dabbba",
+    "slug": "articles/retro/2024/3.blog-v1-launch",
+    "title": "Launching My First Personal Blog 🗿",
+    "milestone": "2024-08-01T08:00:00.000Z",
+    "metadata": {
+      "readingTime": 1,
+      "wordCount": 60
+    },
+    "description": "The year I finally moved my thoughts from drafts into a real home online.",
+    "published": true,
+    "hashTags": [
+      "retro",
+      "2024",
+      "blog",
+      "personal-projects"
+    ],
+    "body": "const{Fragment:e,jsx:t,jsxs:n}=arguments[0];function _createMdxContent(a){const r={p:\"p\",...a.components};return n(e,{children:[t(r.p,{children:\"In 2024, I launched my first personal blog. It wasn't perfect, the design was a bit rough, and the content didn't always know what it wanted to be—but it was real and it was mine. That small, imperfect site became the first place where my thoughts, experiments, and projects had a home outside my head.\"}),\"\\n\",t(\"a\",{href:\"https://hieu-buiminh.io.vn/\",target:\"_blank\",children:t(r.p,{children:\"#Personal Blog V1\"})}),\"\\n\",t(\"a\",{href:\"https://hieu-buiminh-resume.io.vn/\",target:\"_blank\",children:t(r.p,{children:\"#Personal Resume\"})})]})}return{default:function(e={}){const{wrapper:n}=e.components||{};return n?t(n,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
+    "toc": [],
+    "updatedAt": "12/7/2025, 8:32:27 PM",
+    "author": {
+      "avatar": "/assets/images/avt/me_04.png",
+      "name": "Stephen",
+      "github": "https://github.com/Hieu-BuiMinh"
+    },
+    "slugAsParams": "retro/2024/3.blog-v1-launch"
   },
   {
     "id": "fb8d15a2-b7da-4b49-a07a-8033c391952b",
@@ -183,7 +183,7 @@
     ],
     "body": "const{Fragment:e,jsx:t,jsxs:n}=arguments[0];function _createMdxContent(r){const o={p:\"p\",...r.components};return n(e,{children:[t(o.p,{children:\"By August 2025, it felt like I had outgrown my first blog, so I decided to rebuild it from the ground up. Blog v2 wasn’t just a redesign; it was a reset of tone, structure, and intention—a place that felt closer to who I had become and where I wanted to go next. This version is where all the threads meet: past lessons, current projects, and the stories I’m still in the middle of writing.\"}),\"\\n\",t(\"a\",{href:\"https://stephen-v2-me.vercel.app/\",target:\"_blank\",children:t(o.p,{children:\"#Personal Blog V2\"})})]})}return{default:function(e={}){const{wrapper:n}=e.components||{};return n?t(n,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
     "toc": [],
-    "updatedAt": "12/4/2025, 9:43:40 AM",
+    "updatedAt": "12/7/2025, 8:32:27 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",
@@ -212,7 +212,7 @@
     ],
     "body": "const{Fragment:e,jsx:t,jsxs:n}=arguments[0];function _createMdxContent(r){const o={p:\"p\",...r.components},{Image:i}=o;return i||function(e,t){throw new Error(\"Expected \"+(t?\"component\":\"object\")+\" `\"+e+\"` to be defined: you likely forgot to import, pass, or provide it.\")}(\"Image\",!0),n(e,{children:[t(o.p,{children:\"The city greeted me with a cool 10-degree breeze, which was a refreshing change from the usual warmth. The trip was filled with scenic views, fresh air, and moments of reflection. It was an unforgettable experience that made me fall in love with this charming city.\"}),\"\\n\",t(i,{width:1200,height:630,style:{width:300},src:\"/assets/images/avt/me_10.png\"})]})}return{default:function(e={}){const{wrapper:n}=e.components||{};return n?t(n,{...e,children:t(_createMdxContent,{...e})}):_createMdxContent(e)}};",
     "toc": [],
-    "updatedAt": "12/4/2025, 10:44:24 AM",
+    "updatedAt": "12/7/2025, 8:32:27 PM",
     "author": {
       "avatar": "/assets/images/avt/me_04.png",
       "name": "Stephen",

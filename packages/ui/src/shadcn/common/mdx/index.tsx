@@ -16,6 +16,7 @@ import type { ImageZoom } from '../image/image-zoom'
 import { ImageZoomV2 } from '../image/image-zoom-v2'
 import { AvatarCardStack, CardStack } from '../image-card-stack'
 import { RoughMark, RoughMarkGroup } from '../rough'
+import { VideoZoom } from '../video'
 import CodeBlockTabs from './custom-components/code-block-tabs'
 import Heading from './custom-components/heading'
 import { Table } from './custom-components/table'
@@ -90,6 +91,7 @@ const components = {
 	SVGIcons,
 	CardStack,
 	AvatarCardStack,
+	VideoZoom,
 	DividerSlash,
 
 	// rough mark
