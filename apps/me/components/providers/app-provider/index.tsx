@@ -1,4 +1,5 @@
 import Script from 'next/script'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import React from 'react'
 
 import Hello from '@/components/hello'
@@ -10,7 +11,9 @@ function AppProvider({ children }: { children: React.ReactNode }) {
 	return (
 		<>
 			<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-				<BProgressProvider>{children}</BProgressProvider>
+				<NuqsAdapter>
+					<BProgressProvider>{children}</BProgressProvider>
+				</NuqsAdapter>
 				<Hello />
 				{/* <ConvexClientProvider>
 				<NuqsAdapter>
