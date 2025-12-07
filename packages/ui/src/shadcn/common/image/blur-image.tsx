@@ -34,7 +34,7 @@ const BlurImage = forwardRef<HTMLImageElement, ImageProps>((props, ref) => {
 	return (
 		<div
 			className={cn(
-				'group relative flex items-center justify-center overflow-hidden',
+				'group relative flex flex-row items-center justify-center overflow-hidden',
 				isLoading && 'animate-pulse',
 				className
 			)}
