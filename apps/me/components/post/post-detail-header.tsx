@@ -20,7 +20,7 @@ function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
 
 	return (
 		<>
-			<div className={cn('relative flex flex-col gap-5 px-3', className)}>
+			<div className={cn('relative flex flex-col gap-5 px-3 mt-3', className)}>
 				<div className="min-h-[230px] md:min-h-[630px] flex flex-col gap-4">
 					<ViewTransition name={`cover-${id}`}>
 						{/* <ImageZoom

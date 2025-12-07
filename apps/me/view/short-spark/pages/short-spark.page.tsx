@@ -3,12 +3,14 @@
 import './style.css'
 
 import { VideoZoom } from '@repo/stephen-v2-ui/shadcn'
+import { Loader } from 'lucide-react'
 import { useQueryState } from 'nuqs'
+import { useEffect, useState } from 'react'
 
 import { shortSparksList } from '@/view/short-spark/data/short-sparks.data'
 
 function ShortSparkPageView() {
-	// const searchParams = useSearchParams()
+	const [loaded, setLoaded] = useState(false)
 
 	const [spark, setSpark] = useQueryState('spark', { defaultValue: '' })
 
@@ -20,6 +22,17 @@ function ShortSparkPageView() {
 			setSpark('')
 		}
 	}
+
+	useEffect(() => {
+		setLoaded(true)
+	}, [])
+
+	if (!loaded)
+		return (
+			<div className="h-screen w-full flex items-center justify-center">
+				<Loader size={20} className="animate-spin" />
+			</div>
+		)
 
 	return (
 		<div className="not-prose short-sparks-masonry p-3">

@@ -11,7 +11,7 @@ const photos = [
 		id: 1,
 		order: 1,
 		x: '-400px',
-		y: '4px',
+		y: '-10px',
 		zIndex: 60,
 		direction: 'left' as Direction,
 		src: '/assets/images/avt/me_10.png',
