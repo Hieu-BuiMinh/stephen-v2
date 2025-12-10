@@ -1,4 +1,5 @@
 import { Bagua, FiveElementsDiagram } from '@repo/stephen-v2-ui/i-ching'
+import { StickyAudio } from '@repo/stephen-v2-ui/shadcn'
 
 function TestPage() {
 	return (
@@ -17,6 +18,15 @@ function TestPage() {
 			<br />
 
 			<FiveElementsDiagram />
+
+			<StickyAudio
+				audioTrack={{
+					id: '1',
+					name: 'Kinh tăng chi - bài 95 chương bốn pháp , phẩm Kesi (tt) sư giác nguyên giảng 24/07/2018',
+					artist: 'Sư Giác Nguyên',
+					url: 'https://res.cloudinary.com/hieu-buiminh/video/upload/v1739693470/kinh-tang-chi-bai-95-chuong-bon-phap_pcsbao.mp3',
+				}}
+			/>
 		</div>
 	)
 }
