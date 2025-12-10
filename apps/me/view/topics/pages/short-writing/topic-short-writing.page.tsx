@@ -9,21 +9,29 @@ import { PostCard } from '@/components/post/post-card'
 
 function TopicShortWritingPage() {
 	const shortWritingPosts: { [key: string]: { name: string; posts: TPost[]; description?: string } } = {
-		'kinh-dich': {
-			name: 'Kinh Dịch',
+		buddhism: {
+			name: 'Buddhism',
 			posts: sortPostsByDate(
-				shortWriting?.filter((post) => post.type === 'kinh-dich'),
+				shortWriting?.filter((post) => post.type === 'buddhism'),
 				'desc'
 			),
-			description: `Thoughts, mental models about front-end development.`,
+			description: `Exploring philosophical ideas and life principles.`,
 		},
-		'bat-tu': {
-			name: 'Bát Tự',
+		'i-ching': {
+			name: 'I Ching',
 			posts: sortPostsByDate(
-				shortWriting?.filter((post) => post.type === 'bat-tu'),
+				shortWriting?.filter((post) => post.type === 'i-ching'),
 				'desc'
 			),
-			description: `These are a collection of code snippets I have used in the past and want to share with you.`,
+			description: `Insights and wisdom from the ancient Chinese text to guide decision-making.`,
+		},
+		'ba-zi': {
+			name: 'Ba Zi (Eight Characters)',
+			posts: sortPostsByDate(
+				shortWriting?.filter((post) => post.type === 'ba-zi'),
+				'desc'
+			),
+			description: `A collection of life insights and practices to help understand oneself.`,
 		},
 	}
 

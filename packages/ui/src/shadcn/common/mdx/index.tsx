@@ -9,6 +9,7 @@ import * as runtime from 'react/jsx-runtime'
 
 import { FiveElementsDiagram } from '../../../i-ching'
 import { AnimatedBlock } from '../../../motion/components/animate-block'
+import { StickyAudio } from '../audio'
 import { DividerSlash } from '../divider'
 import { SVGIcons } from '../icons'
 import { BlurImage } from '../image/blur-image'
@@ -61,19 +62,13 @@ const components = {
 
 		return (
 			<>
-				{/* <ImageZoom
-					className={cn('h-[350px] cursor-pointer', className)}
-					alt={alt || ''}
-					width={1200}
-					height={630}
-					{...rest}
-				/> */}
-				<ImageZoomV2>
+				<ImageZoomV2 className={cn('not-prose m-auto rounded-md flex items-center justify-center', className)}>
 					<BlurImage
-						className={cn('h-[350px] cursor-pointer rounded-md', className)}
+						imageClassName="size-auto"
+						className={cn('size-full cursor-pointer rounded-md not-prose')}
 						alt={alt || ''}
-						width={1200}
-						height={630}
+						width={props.width || 0}
+						height={props.height || 0}
 						{...rest}
 					/>
 				</ImageZoomV2>
@@ -92,6 +87,12 @@ const components = {
 	CardStack,
 	AvatarCardStack,
 	VideoZoom,
+	StickyAudio: (props: {
+		className?: string
+		audioTrack: { id: string; name: string; url: string; artist: string }
+	}) => {
+		return <StickyAudio {...props} className={cn('not-prose sticky top-17 z-10 w-full', props.className)} />
+	},
 	DividerSlash,
 
 	// rough mark

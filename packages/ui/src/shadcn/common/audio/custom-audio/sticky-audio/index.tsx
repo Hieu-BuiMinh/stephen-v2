@@ -3,6 +3,7 @@
 
 import { cn } from '@repo/stephen-v2-utils'
 import { Volume, Volume1, Volume2, VolumeX } from 'lucide-react'
+import { AnimatePresence, motion } from 'motion/react'
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import {
@@ -19,7 +20,7 @@ import { Waveform } from '../../elevent-labs/waveform'
 
 const globalAudioState = {
 	isPlaying: false,
-	volume: 0.7,
+	volume: 0.5,
 	isDark: false,
 }
 
@@ -191,7 +192,7 @@ const VolumeSlider = memo(
 		return (
 			<div className="flex items-center justify-center gap-2">
 				<button
-					onClick={() => setVolume((prev: number) => (prev > 0 ? 0 : 0.7))}
+					onClick={() => setVolume((prev: number) => (prev > 0 ? 0 : 0.5))}
 					className="text-muted-foreground hover:text-foreground transition-colors"
 				>
 					<VolumeIcon className={cn('h-4 w-4 transition-all', volume === 0 && 'text-muted-foreground/50')} />
@@ -250,10 +251,11 @@ function SpeakerControls({
 	playerRef: React.RefObject<ReturnType<typeof useAudioPlayer>>
 	audioTrack: { id: string; name: string; url: string; artist: string }
 }) {
+	const [isVisible, setIsVisible] = useState(true)
 	const playerApiRef = playerRef
 	const isPlayingRef = useRef(false)
 
-	const [volume, setVolume] = useState(0.7)
+	const [volume, setVolume] = useState(0.5)
 	const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
 	const [showTrackList, setShowTrackList] = useState(false)
 	const audioDataRef = useRef<number[]>([])
@@ -662,354 +664,375 @@ function SpeakerControls({
 	const currentTrack = audioTrack
 
 	return (
-		<div className={cn('relative space-y-6 p-4', className)}>
-			<div className="border-border rounded-lg border bg-black/5 p-4 backdrop-blur-sm dark:bg-black/50">
-				<div className="space-y-2">
-					<div className="flex items-center justify-between">
-						<div className="min-w-0 flex-1">
-							<h3 className="text-foreground truncate text-sm font-medium">{currentTrack?.name}</h3>
-							<span className="text-muted-foreground truncate text-xs">{currentTrack?.artist}</span>
+		<>
+			<div className={cn('relative space-y-6 group', className)}>
+				<motion.div
+					onMouseEnter={() => setIsVisible(true)}
+					onMouseLeave={() => setIsVisible(false)}
+					animate={{ height: 'auto' }} // Điều chỉnh chiều cao mượt mà
+					transition={{ duration: 0.3 }} // Thêm thời gian chuyển động
+					className="border-border transition-all duration-300 rounded-lg border bg-black/5 p-4 backdrop-blur-lg dark:bg-black/50"
+				>
+					<div className="space-y-2">
+						<div className="flex items-center justify-between">
+							<div className="min-w-0 flex-1">
+								<h3 className="text-foreground truncate text-sm font-medium">{currentTrack?.name}</h3>
+								<span className="text-muted-foreground truncate text-xs">{currentTrack?.artist}</span>
+							</div>
 						</div>
-					</div>
 
-					<div className="flex items-center gap-3">
-						<SpeakerOrbsSection isDark={isDark} audioDataRef={audioDataRef} />
-						<div
-							className="waveform-container border flex-1 bg-foreground/10 relative h-12 cursor-grab overflow-hidden rounded-lg p-2 active:cursor-grabbing dark:bg-black/80"
-							onTouchStart={(e) => {
-								e.preventDefault()
-								setIsScrubbing(true)
+						<div className="flex items-center gap-3">
+							<SpeakerOrbsSection isDark={isDark} audioDataRef={audioDataRef} />
+							<div
+								className="waveform-container border flex-1 bg-foreground/10 relative h-12 cursor-grab overflow-hidden rounded-lg p-2 active:cursor-grabbing dark:bg-black/10"
+								onTouchStart={(e) => {
+									e.preventDefault()
+									setIsScrubbing(true)
 
-								const wasPlaying = isPlayingRef.current
+									const wasPlaying = isPlayingRef.current
 
-								if (isPlayingRef.current) {
-									playerApiRef.current.pause()
-								}
-
-								const rect = e.currentTarget.getBoundingClientRect()
-								const startX = e.touches[0] ? e.touches[0].clientX : 0
-								const containerWidth = rect.width
-								containerWidthRef.current = containerWidth
-								const totalWidth = totalBarsRef.current * 5
-								const currentOffset = waveformOffset.current
-								let lastTouchX = startX
-								let lastScratchTime = 0
-								const scratchThrottle = 10
-
-								let velocity = 0
-								let lastTime = Date.now()
-								let lastClientX = e.touches[0] ? e.touches[0].clientX : 0
-
-								const handleMove = (e: TouchEvent) => {
-									const touch = e.touches[0]
-									const deltaX = touch ? touch.clientX - startX : 0
-									const newOffset = currentOffset + deltaX
-
-									const minOffset = containerWidth - totalWidth
-									const maxOffset = containerWidth
-									const clampedOffset = Math.max(minOffset, Math.min(maxOffset, newOffset))
-									waveformOffset.current = clampedOffset
-									if (waveformElementRef.current) {
-										waveformElementRef.current.style.transform = `translateX(${clampedOffset}px)`
+									if (isPlayingRef.current) {
+										playerApiRef.current.pause()
 									}
 
-									const position = Math.max(
-										0,
-										Math.min(1, (containerWidth - clampedOffset) / totalWidth)
-									)
+									const rect = e.currentTarget.getBoundingClientRect()
+									const startX = e.touches[0] ? e.touches[0].clientX : 0
+									const containerWidth = rect.width
+									containerWidthRef.current = containerWidth
+									const totalWidth = totalBarsRef.current * 5
+									const currentOffset = waveformOffset.current
+									let lastTouchX = startX
+									let lastScratchTime = 0
+									const scratchThrottle = 10
 
-									const audioEl = playerApiRef.current.ref.current
-									if (audioEl && !isNaN(audioEl.duration)) {
-										audioEl.currentTime = position * audioEl.duration
-									}
+									let velocity = 0
+									let lastTime = Date.now()
+									let lastClientX = e.touches[0] ? e.touches[0].clientX : 0
 
-									const now = Date.now()
-									const touchDelta = touch ? touch.clientX - lastTouchX : 0
+									const handleMove = (e: TouchEvent) => {
+										const touch = e.touches[0]
+										const deltaX = touch ? touch.clientX - startX : 0
+										const newOffset = currentOffset + deltaX
 
-									const timeDelta = now - lastTime
-									if (timeDelta > 0) {
-										const instantVelocity = (touch ? touch.clientX : 0 - lastClientX) / timeDelta
-										velocity = velocity * 0.6 + instantVelocity * 0.4
-									}
-									lastTime = now
-									lastClientX = touch ? touch.clientX : 0
-
-									if (Math.abs(touchDelta) > 0) {
-										if (now - lastScratchTime >= scratchThrottle) {
-											const speed = Math.min(3, Math.abs(touchDelta) / 3)
-											playScratchSound(position, speed)
-											lastScratchTime = now
+										const minOffset = containerWidth - totalWidth
+										const maxOffset = containerWidth
+										const clampedOffset = Math.max(minOffset, Math.min(maxOffset, newOffset))
+										waveformOffset.current = clampedOffset
+										if (waveformElementRef.current) {
+											waveformElementRef.current.style.transform = `translateX(${clampedOffset}px)`
 										}
+
+										const position = Math.max(
+											0,
+											Math.min(1, (containerWidth - clampedOffset) / totalWidth)
+										)
+
+										const audioEl = playerApiRef.current.ref.current
+										if (audioEl && !isNaN(audioEl.duration)) {
+											audioEl.currentTime = position * audioEl.duration
+										}
+
+										const now = Date.now()
+										const touchDelta = touch ? touch.clientX - lastTouchX : 0
+
+										const timeDelta = now - lastTime
+										if (timeDelta > 0) {
+											const instantVelocity =
+												(touch ? touch.clientX : 0 - lastClientX) / timeDelta
+											velocity = velocity * 0.6 + instantVelocity * 0.4
+										}
+										lastTime = now
+										lastClientX = touch ? touch.clientX : 0
+
+										if (Math.abs(touchDelta) > 0) {
+											if (now - lastScratchTime >= scratchThrottle) {
+												const speed = Math.min(3, Math.abs(touchDelta) / 3)
+												playScratchSound(position, speed)
+												lastScratchTime = now
+											}
+										}
+										lastTouchX = touch ? touch.clientX : 0
 									}
-									lastTouchX = touch ? touch.clientX : 0
-								}
 
-								const handleEnd = () => {
-									setIsScrubbing(false)
-									stopScratchSound()
+									const handleEnd = () => {
+										setIsScrubbing(false)
+										stopScratchSound()
 
-									if (Math.abs(velocity) > 0.1) {
-										setIsMomentumActive(true)
-										let momentumOffset = waveformOffset.current
-										let currentVelocity = velocity * 15
-										const friction = 0.92
-										const minVelocity = 0.5
-										let lastScratchFrame = 0
-										const scratchFrameInterval = 50
+										if (Math.abs(velocity) > 0.1) {
+											setIsMomentumActive(true)
+											let momentumOffset = waveformOffset.current
+											let currentVelocity = velocity * 15
+											const friction = 0.92
+											const minVelocity = 0.5
+											let lastScratchFrame = 0
+											const scratchFrameInterval = 50
 
-										const animateMomentum = () => {
-											if (Math.abs(currentVelocity) > minVelocity) {
-												momentumOffset += currentVelocity
-												currentVelocity *= friction
+											const animateMomentum = () => {
+												if (Math.abs(currentVelocity) > minVelocity) {
+													momentumOffset += currentVelocity
+													currentVelocity *= friction
 
-												const minOffset = containerWidth - totalWidth
-												const maxOffset = containerWidth
-												const clampedOffset = Math.max(
-													minOffset,
-													Math.min(maxOffset, momentumOffset)
-												)
+													const minOffset = containerWidth - totalWidth
+													const maxOffset = containerWidth
+													const clampedOffset = Math.max(
+														minOffset,
+														Math.min(maxOffset, momentumOffset)
+													)
 
-												if (clampedOffset !== momentumOffset) {
-													currentVelocity = 0
-												}
-
-												momentumOffset = clampedOffset
-												waveformOffset.current = clampedOffset
-												if (waveformElementRef.current) {
-													waveformElementRef.current.style.transform = `translateX(${clampedOffset}px)`
-												}
-
-												const position = Math.max(
-													0,
-													Math.min(1, (containerWidth - clampedOffset) / totalWidth)
-												)
-
-												const audioEl2 = playerApiRef.current.ref.current
-												if (audioEl2 && !isNaN(audioEl2.duration)) {
-													audioEl2.currentTime = position * audioEl2.duration
-												}
-
-												const now = Date.now()
-												if (now - lastScratchFrame >= scratchFrameInterval) {
-													const speed = Math.min(2.5, Math.abs(currentVelocity) / 10)
-													if (speed > 0.1) {
-														playScratchSound(position, speed)
+													if (clampedOffset !== momentumOffset) {
+														currentVelocity = 0
 													}
-													lastScratchFrame = now
-												}
 
-												requestAnimationFrame(animateMomentum)
-											} else {
-												stopScratchSound()
-												setIsMomentumActive(false)
-												if (wasPlaying) {
-													setTimeout(() => {
-														playerApiRef.current.play()
-													}, 10)
+													momentumOffset = clampedOffset
+													waveformOffset.current = clampedOffset
+													if (waveformElementRef.current) {
+														waveformElementRef.current.style.transform = `translateX(${clampedOffset}px)`
+													}
+
+													const position = Math.max(
+														0,
+														Math.min(1, (containerWidth - clampedOffset) / totalWidth)
+													)
+
+													const audioEl2 = playerApiRef.current.ref.current
+													if (audioEl2 && !isNaN(audioEl2.duration)) {
+														audioEl2.currentTime = position * audioEl2.duration
+													}
+
+													const now = Date.now()
+													if (now - lastScratchFrame >= scratchFrameInterval) {
+														const speed = Math.min(2.5, Math.abs(currentVelocity) / 10)
+														if (speed > 0.1) {
+															playScratchSound(position, speed)
+														}
+														lastScratchFrame = now
+													}
+
+													requestAnimationFrame(animateMomentum)
+												} else {
+													stopScratchSound()
+													setIsMomentumActive(false)
+													if (wasPlaying) {
+														setTimeout(() => {
+															playerApiRef.current.play()
+														}, 10)
+													}
 												}
+											}
+
+											requestAnimationFrame(animateMomentum)
+										} else {
+											if (wasPlaying) {
+												playerApiRef.current.play()
 											}
 										}
 
-										requestAnimationFrame(animateMomentum)
-									} else {
-										if (wasPlaying) {
-											playerApiRef.current.play()
+										document.removeEventListener('touchmove', handleMove)
+										document.removeEventListener('touchend', handleEnd)
+									}
+
+									document.addEventListener('touchmove', handleMove)
+									document.addEventListener('touchend', handleEnd)
+								}}
+								onMouseDown={(e) => {
+									e.preventDefault()
+									setIsScrubbing(true)
+
+									const wasPlaying = isPlayingRef.current
+
+									if (isPlayingRef.current) {
+										playerApiRef.current.pause()
+									}
+
+									const rect = e.currentTarget.getBoundingClientRect()
+									const startX = e.clientX
+									const containerWidth = rect.width
+									containerWidthRef.current = containerWidth
+									const totalWidth = totalBarsRef.current * 5
+									const currentOffset = waveformOffset.current
+									let lastMouseX = startX
+									let lastScratchTime = 0
+									const scratchThrottle = 10
+
+									let velocity = 0
+									let lastTime = Date.now()
+									let lastClientX = e.clientX
+
+									const handleMove = (e: MouseEvent) => {
+										const deltaX = e.clientX - startX
+										const newOffset = currentOffset + deltaX
+
+										const minOffset = containerWidth - totalWidth
+										const maxOffset = containerWidth
+										const clampedOffset = Math.max(minOffset, Math.min(maxOffset, newOffset))
+										waveformOffset.current = clampedOffset
+										if (waveformElementRef.current) {
+											waveformElementRef.current.style.transform = `translateX(${clampedOffset}px)`
 										}
-									}
 
-									document.removeEventListener('touchmove', handleMove)
-									document.removeEventListener('touchend', handleEnd)
-								}
+										const position = Math.max(
+											0,
+											Math.min(1, (containerWidth - clampedOffset) / totalWidth)
+										)
 
-								document.addEventListener('touchmove', handleMove)
-								document.addEventListener('touchend', handleEnd)
-							}}
-							onMouseDown={(e) => {
-								e.preventDefault()
-								setIsScrubbing(true)
-
-								const wasPlaying = isPlayingRef.current
-
-								if (isPlayingRef.current) {
-									playerApiRef.current.pause()
-								}
-
-								const rect = e.currentTarget.getBoundingClientRect()
-								const startX = e.clientX
-								const containerWidth = rect.width
-								containerWidthRef.current = containerWidth
-								const totalWidth = totalBarsRef.current * 5
-								const currentOffset = waveformOffset.current
-								let lastMouseX = startX
-								let lastScratchTime = 0
-								const scratchThrottle = 10
-
-								let velocity = 0
-								let lastTime = Date.now()
-								let lastClientX = e.clientX
-
-								const handleMove = (e: MouseEvent) => {
-									const deltaX = e.clientX - startX
-									const newOffset = currentOffset + deltaX
-
-									const minOffset = containerWidth - totalWidth
-									const maxOffset = containerWidth
-									const clampedOffset = Math.max(minOffset, Math.min(maxOffset, newOffset))
-									waveformOffset.current = clampedOffset
-									if (waveformElementRef.current) {
-										waveformElementRef.current.style.transform = `translateX(${clampedOffset}px)`
-									}
-
-									const position = Math.max(
-										0,
-										Math.min(1, (containerWidth - clampedOffset) / totalWidth)
-									)
-
-									const audioEl = playerApiRef.current.ref.current
-									if (audioEl && !isNaN(audioEl.duration)) {
-										audioEl.currentTime = position * audioEl.duration
-									}
-
-									const now = Date.now()
-									const mouseDelta = e.clientX - lastMouseX
-
-									const timeDelta = now - lastTime
-									if (timeDelta > 0) {
-										const instantVelocity = (e.clientX - lastClientX) / timeDelta
-										velocity = velocity * 0.6 + instantVelocity * 0.4
-									}
-									lastTime = now
-									lastClientX = e.clientX
-
-									if (Math.abs(mouseDelta) > 0) {
-										if (now - lastScratchTime >= scratchThrottle) {
-											const speed = Math.min(3, Math.abs(mouseDelta) / 3)
-											playScratchSound(position, speed)
-											lastScratchTime = now
+										const audioEl = playerApiRef.current.ref.current
+										if (audioEl && !isNaN(audioEl.duration)) {
+											audioEl.currentTime = position * audioEl.duration
 										}
+
+										const now = Date.now()
+										const mouseDelta = e.clientX - lastMouseX
+
+										const timeDelta = now - lastTime
+										if (timeDelta > 0) {
+											const instantVelocity = (e.clientX - lastClientX) / timeDelta
+											velocity = velocity * 0.6 + instantVelocity * 0.4
+										}
+										lastTime = now
+										lastClientX = e.clientX
+
+										if (Math.abs(mouseDelta) > 0) {
+											if (now - lastScratchTime >= scratchThrottle) {
+												const speed = Math.min(3, Math.abs(mouseDelta) / 3)
+												playScratchSound(position, speed)
+												lastScratchTime = now
+											}
+										}
+										lastMouseX = e.clientX
 									}
-									lastMouseX = e.clientX
-								}
 
-								const handleUp = () => {
-									setIsScrubbing(false)
-									stopScratchSound()
+									const handleUp = () => {
+										setIsScrubbing(false)
+										stopScratchSound()
 
-									if (Math.abs(velocity) > 0.1) {
-										setIsMomentumActive(true)
-										let momentumOffset = waveformOffset.current
-										let currentVelocity = velocity * 15
-										const friction = 0.92
-										const minVelocity = 0.5
-										let lastScratchFrame = 0
-										const scratchFrameInterval = 50
+										if (Math.abs(velocity) > 0.1) {
+											setIsMomentumActive(true)
+											let momentumOffset = waveformOffset.current
+											let currentVelocity = velocity * 15
+											const friction = 0.92
+											const minVelocity = 0.5
+											let lastScratchFrame = 0
+											const scratchFrameInterval = 50
 
-										const animateMomentum = () => {
-											if (Math.abs(currentVelocity) > minVelocity) {
-												momentumOffset += currentVelocity
-												currentVelocity *= friction
+											const animateMomentum = () => {
+												if (Math.abs(currentVelocity) > minVelocity) {
+													momentumOffset += currentVelocity
+													currentVelocity *= friction
 
-												const minOffset = containerWidth - totalWidth
-												const maxOffset = containerWidth
-												const clampedOffset = Math.max(
-													minOffset,
-													Math.min(maxOffset, momentumOffset)
-												)
+													const minOffset = containerWidth - totalWidth
+													const maxOffset = containerWidth
+													const clampedOffset = Math.max(
+														minOffset,
+														Math.min(maxOffset, momentumOffset)
+													)
 
-												if (clampedOffset !== momentumOffset) {
-													currentVelocity = 0
-												}
-
-												momentumOffset = clampedOffset
-												waveformOffset.current = clampedOffset
-												if (waveformElementRef.current) {
-													waveformElementRef.current.style.transform = `translateX(${clampedOffset}px)`
-												}
-
-												const position = Math.max(
-													0,
-													Math.min(1, (containerWidth - clampedOffset) / totalWidth)
-												)
-
-												const audioEl2 = playerApiRef.current.ref.current
-												if (audioEl2 && !isNaN(audioEl2.duration)) {
-													audioEl2.currentTime = position * audioEl2.duration
-												}
-
-												const now = Date.now()
-												if (now - lastScratchFrame >= scratchFrameInterval) {
-													const speed = Math.min(2.5, Math.abs(currentVelocity) / 10)
-													if (speed > 0.1) {
-														playScratchSound(position, speed)
+													if (clampedOffset !== momentumOffset) {
+														currentVelocity = 0
 													}
-													lastScratchFrame = now
-												}
 
-												requestAnimationFrame(animateMomentum)
-											} else {
-												stopScratchSound()
-												setIsMomentumActive(false)
-												if (wasPlaying) {
-													setTimeout(() => {
-														playerApiRef.current.play()
-													}, 10)
+													momentumOffset = clampedOffset
+													waveformOffset.current = clampedOffset
+													if (waveformElementRef.current) {
+														waveformElementRef.current.style.transform = `translateX(${clampedOffset}px)`
+													}
+
+													const position = Math.max(
+														0,
+														Math.min(1, (containerWidth - clampedOffset) / totalWidth)
+													)
+
+													const audioEl2 = playerApiRef.current.ref.current
+													if (audioEl2 && !isNaN(audioEl2.duration)) {
+														audioEl2.currentTime = position * audioEl2.duration
+													}
+
+													const now = Date.now()
+													if (now - lastScratchFrame >= scratchFrameInterval) {
+														const speed = Math.min(2.5, Math.abs(currentVelocity) / 10)
+														if (speed > 0.1) {
+															playScratchSound(position, speed)
+														}
+														lastScratchFrame = now
+													}
+
+													requestAnimationFrame(animateMomentum)
+												} else {
+													stopScratchSound()
+													setIsMomentumActive(false)
+													if (wasPlaying) {
+														setTimeout(() => {
+															playerApiRef.current.play()
+														}, 10)
+													}
 												}
+											}
+
+											requestAnimationFrame(animateMomentum)
+										} else {
+											if (wasPlaying) {
+												playerApiRef.current.play()
 											}
 										}
 
-										requestAnimationFrame(animateMomentum)
-									} else {
-										if (wasPlaying) {
-											playerApiRef.current.play()
-										}
+										document.removeEventListener('mousemove', handleMove)
+										document.removeEventListener('mouseup', handleUp)
 									}
 
-									document.removeEventListener('mousemove', handleMove)
-									document.removeEventListener('mouseup', handleUp)
-								}
-
-								document.addEventListener('mousemove', handleMove)
-								document.addEventListener('mouseup', handleUp)
-							}}
-						>
-							<div className="relative h-full w-full overflow-hidden">
-								<div
-									ref={waveformElementRef}
-									style={{
-										transform: `translateX(${waveformOffset.current}px)`,
-										transition:
-											isScrubbing || isMomentumActive ? 'none' : 'transform 0.016s linear',
-										width: `${totalBarsRef.current * 5}px`,
-										position: 'absolute',
-										left: 0,
-									}}
-								>
-									<Waveform
-										key={isDark ? 'dark' : 'light'}
-										data={
-											precomputedWaveform.length > 0 ? precomputedWaveform : audioDataRef.current
-										}
-										height={32}
-										barWidth={3}
-										barGap={2}
-										fadeEdges={true}
-										fadeWidth={24}
-										barRadius={1}
-										barColor={isDark ? '#a1a1aa' : '#71717a'}
-									/>
+									document.addEventListener('mousemove', handleMove)
+									document.addEventListener('mouseup', handleUp)
+								}}
+							>
+								<div className="relative h-full w-full overflow-hidden">
+									<div
+										ref={waveformElementRef}
+										style={{
+											transform: `translateX(${waveformOffset.current}px)`,
+											transition:
+												isScrubbing || isMomentumActive ? 'none' : 'transform 0.016s linear',
+											width: `${totalBarsRef.current * 5}px`,
+											position: 'absolute',
+											left: 0,
+										}}
+									>
+										<Waveform
+											key={isDark ? 'dark' : 'light'}
+											data={
+												precomputedWaveform.length > 0
+													? precomputedWaveform
+													: audioDataRef.current
+											}
+											height={32}
+											barWidth={3}
+											barGap={2}
+											fadeEdges={true}
+											fadeWidth={24}
+											barRadius={1}
+											barColor={isDark ? '#a1a1aa' : '#71717a'}
+										/>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<div className="flex items-center gap-3">
-						<PlayButton audioTrack={audioTrack} />
-						<TimeDisplay />
-						<VolumeSlider volume={volume} setVolume={setVolume} />
+						<AnimatePresence initial={false}>
+							{isVisible ? (
+								<motion.div
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									exit={{ opacity: 0 }}
+									key="box"
+									className="flex items-center gap-3"
+								>
+									<PlayButton audioTrack={audioTrack} />
+									<TimeDisplay />
+									<VolumeSlider volume={volume} setVolume={setVolume} />
+								</motion.div>
+							) : null}
+						</AnimatePresence>
 					</div>
-				</div>
+				</motion.div>
 			</div>
-		</div>
+		</>
 	)
 }
 
