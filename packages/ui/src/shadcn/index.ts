@@ -45,6 +45,7 @@ export * from './toggle-group'
 export * from './tooltip'
 
 // common components
+export * from './common/audio'
 export * from './common/badges/badge-shine'
 export * from './common/book'
 export * from './common/buttons/rainbow-button'

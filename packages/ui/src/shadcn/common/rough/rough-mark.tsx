@@ -43,7 +43,7 @@ export type RoughMarkProps = {
 	viewportThreshold?: number
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	as?: keyof React.JSX.IntrinsicElements | React.ComponentType<any>
+	as?: keyof React.JSX.IntrinsicElements | React.ComponentType<any> | any
 	className?: string
 }
 
