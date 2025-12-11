@@ -100,7 +100,7 @@ function Navbar({ className }: { className?: string }) {
 						</div>
 					)
 				})}
-				<div className="absolute inset-0 -z-10 w-full h-full cursed bg-fd-background/40 backdrop-blur-xs" />
+				<div className="absolute inset-0 -z-10 w-full h-full cursed bg-background/40 backdrop-blur-xs" />
 			</div>
 			<div
 				style={{ bottom: '-3.5px', left: '-4.5px' }}

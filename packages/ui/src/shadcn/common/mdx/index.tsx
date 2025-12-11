@@ -91,7 +91,7 @@ const components = {
 		className?: string
 		audioTrack: { id: string; name: string; url: string; artist: string }
 	}) => {
-		return <StickyAudio {...props} className={cn('not-prose sticky top-17 z-10 w-full', props.className)} />
+		return <StickyAudio {...props} className={cn('not-prose sticky top-18 z-10 w-full', props.className)} />
 	},
 	DividerSlash,
 
