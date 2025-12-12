@@ -33,18 +33,14 @@ const BlurImage = forwardRef<HTMLImageElement, ImageProps>((props, ref) => {
 
 	return (
 		<div
-			className={cn(
-				'group relative flex flex-row items-center justify-center overflow-hidden',
-				isLoading && 'animate-pulse',
-				className
-			)}
+			className={cn('group relative overflow-hidden', isLoading && 'animate-pulse', className)}
 			data-description={props.description}
 		>
 			<Image
 				unoptimized
 				ref={ref}
 				className={cn(
-					'size-auto object-cover',
+					'size-full object-cover',
 					isLoading && 'scale-[1.02] object-cover blur-xl grayscale',
 					imageClassName
 				)}
@@ -55,7 +51,7 @@ const BlurImage = forwardRef<HTMLImageElement, ImageProps>((props, ref) => {
 				alt={alt}
 				loading={lazy ? 'lazy' : undefined}
 				priority={!lazy}
-				quality={100}
+				// quality={100}
 				onLoad={() => {
 					setIsLoading(false)
 				}}

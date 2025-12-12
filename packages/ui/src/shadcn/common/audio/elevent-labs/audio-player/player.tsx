@@ -304,7 +304,7 @@ export const AudioPlayerProgress = ({
 				player.duration === undefined || !Number.isFinite(player.duration) || Number.isNaN(player.duration)
 			}
 		>
-			<SliderPrimitive.Track className="bg-muted relative h-[4px] w-full grow overflow-hidden rounded-full">
+			<SliderPrimitive.Track className="bg-foreground/10 relative h-[4px] w-full grow overflow-hidden rounded-full">
 				<SliderPrimitive.Range className="bg-primary absolute h-full" />
 			</SliderPrimitive.Track>
 			<SliderPrimitive.Thumb

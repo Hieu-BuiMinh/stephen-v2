@@ -20,13 +20,17 @@ async function TopicShortWritingTypePage({ params }: ITopicShortWritingTypePageP
 	const { type } = await params
 
 	const headertitle: Partial<Record<OTHERS_POST_TYPE, { title: string; description: string }>> = {
-		'kinh-dich': {
-			title: 'Kinh Dịch',
-			description: `Thoughts, mental models about front-end development.`,
+		buddhism: {
+			title: 'Buddhism',
+			description: `Exploring philosophical ideas and life principles.`,
 		},
-		'bat-tu': {
-			title: 'Bát Tự',
-			description: `These are a collection of code snippets I have used in the past and want to share with you.`,
+		'i-ching': {
+			title: 'I Ching',
+			description: `Insights and wisdom from the ancient Chinese text to guide decision-making.`,
+		},
+		'ba-zi': {
+			title: 'Ba Zi (Eight Characters)',
+			description: `A collection of life insights and practices to help understand oneself.`,
 		},
 	}
 
