@@ -43,7 +43,7 @@ function RetroRightSection() {
 							<Link
 								id={`year-${year}`}
 								href={`#year-${year}`}
-								className="flex gap-2 items-center text-muted-foreground text-xl font-bold sticky top-[4rem]"
+								className="flex gap-2 items-center text-muted-foreground text-xl font-bold sticky top-[5rem]"
 							>
 								{year}
 								<Minus className="text-muted-foreground/50" />

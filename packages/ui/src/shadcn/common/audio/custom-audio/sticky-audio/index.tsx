@@ -1126,7 +1126,7 @@ function SpeakerControls({
 															: 'transform 0.016s linear',
 													width: `${totalBarsRef.current * 5}px`,
 													position: 'absolute',
-													right: 0,
+													left: 0,
 												}}
 											>
 												<Waveform
