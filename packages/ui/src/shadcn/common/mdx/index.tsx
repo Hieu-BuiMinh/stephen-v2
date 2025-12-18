@@ -62,10 +62,15 @@ const components = {
 
 		return (
 			<>
-				<ImageZoomV2 className={cn('not-prose m-auto rounded-md flex items-center justify-center', className)}>
+				<ImageZoomV2
+					className={cn(
+						'not-prose m-auto rounded-md flex items-center justify-center p-1 bg-dots-sm',
+						className
+					)}
+				>
 					<BlurImage
 						imageClassName="size-auto"
-						className={cn('size-full cursor-pointer rounded-md not-prose')}
+						className={cn('size-full cursor-pointer not-prose')}
 						alt={alt || ''}
 						width={props.width || 0}
 						height={props.height || 0}
