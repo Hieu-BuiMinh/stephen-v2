@@ -71,8 +71,8 @@ export function GitHubContributionGraph({ contributions }: { contributions: Prom
 
 							<TooltipContent className="font-sans" sideOffset={0}>
 								<p>
-									{activity.count} contribution{activity.count > 1 ? 's' : null} on{' '}
-									{d(activity.date).format('DD.MM.YYYY')}
+									{activity?.count} contribution{(activity?.count || 0) > 1 ? 's' : null} on{' '}
+									{activity?.date && d(activity.date).format('DD.MM.YYYY')}
 								</p>
 							</TooltipContent>
 						</Tooltip>

@@ -215,6 +215,11 @@ const groupByWeeks = (activities: Activity[], weekStart: WeekDay = 0): Week[] =>
 		...normalizedActivities,
 	]
 
+	const remainder = paddedActivities.length % 7
+	if (remainder !== 0) {
+		paddedActivities.push(...new Array(7 - remainder).fill(undefined))
+	}
+
 	const numberOfWeeks = Math.ceil(paddedActivities.length / 7)
 
 	return new Array(numberOfWeeks)
@@ -340,7 +345,7 @@ export const ContributionGraph = ({
 }
 
 export type ContributionGraphBlockProps = HTMLAttributes<SVGRectElement> & {
-	activity: Activity
+	activity?: Activity
 	dayIndex: number
 	weekIndex: number
 }
@@ -354,18 +359,18 @@ export const ContributionGraphBlock = ({
 }: ContributionGraphBlockProps) => {
 	const { blockSize, blockMargin, blockRadius, labelHeight, maxLevel } = useContributionGraph()
 
-	if (activity.level < 0 || activity.level > maxLevel) {
+	if ((activity?.level || 0) < 0 || (activity?.level || 0) > maxLevel) {
 		throw new RangeError(
-			`Provided activity level ${activity.level} for ${activity.date} is out of range. It must be between 0 and ${maxLevel}.`
+			`Provided activity level ${activity?.level || 0} for ${activity?.date || '-'} is out of range. It must be between 0 and ${maxLevel}.`
 		)
 	}
 
 	return (
 		<rect
 			className={cn(THEME, className)}
-			data-count={activity.count}
-			data-date={activity.date}
-			data-level={activity.level}
+			data-count={activity?.count}
+			data-date={activity?.date}
+			data-level={activity?.level}
 			height={blockSize}
 			rx={blockRadius || 2}
 			ry={blockRadius || 2}
@@ -380,7 +385,7 @@ export const ContributionGraphBlock = ({
 export type ContributionGraphCalendarProps = Omit<HTMLAttributes<HTMLDivElement>, 'children'> & {
 	hideMonthLabels?: boolean
 	className?: string
-	children: (props: { activity: Activity; dayIndex: number; weekIndex: number }) => ReactNode
+	children: (props: { activity?: Activity; dayIndex: number; weekIndex: number }) => ReactNode
 }
 
 export const ContributionGraphCalendar = ({
@@ -395,7 +400,7 @@ export const ContributionGraphCalendar = ({
 	const monthLabels = useMemo(() => getMonthLabels(weeks, labels.months), [weeks, labels.months])
 
 	return (
-		<div className={cn('max-w-full overflow-x-auto overflow-y-hidden', className)} {...props}>
+		<div className={cn('max-w-full h-auto', className)} {...props}>
 			<svg className="block overflow-visible" height={height} viewBox={`0 0 ${width} ${height}`} width={width}>
 				<title>{title}</title>
 				{!hideMonthLabels && (
@@ -407,12 +412,9 @@ export const ContributionGraphCalendar = ({
 						))}
 					</g>
 				)}
+
 				{weeks.map((week, weekIndex) =>
 					week.map((activity, dayIndex) => {
-						if (!activity) {
-							return null
-						}
-
 						return (
 							<Fragment key={`${weekIndex}-${dayIndex}`}>
 								{children({ activity, dayIndex, weekIndex })}
