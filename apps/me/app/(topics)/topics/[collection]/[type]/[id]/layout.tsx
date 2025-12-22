@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: GenerateMetaProps): Promise<M
 	}
 
 	return {
-		title: post.title,
+		title: `${post.title} | by Stephen 🪶`,
 		description: post.description,
 		authors: { name: APP_CONFIG.author.name },
 		openGraph: {

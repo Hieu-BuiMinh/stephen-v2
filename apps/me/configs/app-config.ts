@@ -5,7 +5,7 @@ export const isProduction = process.env.NODE_ENV === 'production'
 
 export const APP_CONFIG = {
 	name: `Stephen's Corner`,
-	shortName: 'by Stephen',
+	shortName: 'Stephen Blog 🛸',
 	url: isProduction ? 'https://stephen-v2-me.vercel.app' : 'http://localhost:3001',
 	description: 'Next js 15 blog using Turborepo, velite, tailwind and shadcn',
 	siteKeywords: [
