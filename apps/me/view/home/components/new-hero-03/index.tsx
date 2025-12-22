@@ -8,7 +8,7 @@ import { motion } from 'motion/react'
 import Link from 'next/link'
 
 import DownLoadResumeButton from '@/components/buttons/resume-button'
-import VectorField from '@/components/vector-field'
+import FlickeringGrid from '@/components/flickering-grid'
 import { APP_CONFIG } from '@/configs/app-config'
 import { ProfilePicture } from '@/view/home/components/hero-section/profile-picture'
 
@@ -18,11 +18,17 @@ function HeroSection03() {
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.7, ease: 'easeOut' }}
-			className="w-full min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center gap-6 z-10"
+			className="relative w-full min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center gap-6 z-10"
 		>
+			<FlickeringGrid
+				squareSize={5}
+				gridGap={4}
+				color="#60A5FA"
+				className="absolute size-full inset-0 z-0 [mask-image:radial-gradient(650px_circle_at_center,white,transparent)] hidden md:block"
+			/>
 			<div className="relative">
 				<ProfilePicture />
-				<VectorField />
+				{/* <VectorField /> */}
 			</div>
 			<p className="text-center text-3xl font-bold tracking-tight sm:text-4xl">{APP_CONFIG.name}</p>
 
