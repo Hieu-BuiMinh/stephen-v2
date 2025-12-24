@@ -53,13 +53,21 @@ export function GitHubContributionGraph({ contributions }: { contributions: Prom
 						<Tooltip>
 							<TooltipTrigger asChild>
 								<motion.g
-									initial={{ opacity: 0, y: 20 }}
-									whileInView={{ opacity: 1, y: 0 }}
+									// initial={{ opacity: 0, y: 20 }}
+									// whileInView={{ opacity: 1, y: 0 }}
+									initial={{ scale: 0 }}
+									whileInView={{
+										scale: 1,
+									}}
 									viewport={{ once: true }}
 									transition={{
-										duration: 0.25,
+										duration: 0.1,
 										delay: index * 0.01,
+										type: 'spring',
+										stiffness: 300,
+										damping: 10,
 									}}
+									// stroke={'#fff'}
 								>
 									<ContributionGraphBlock
 										activity={activity}
