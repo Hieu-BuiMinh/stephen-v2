@@ -8,13 +8,13 @@ import { useMemo } from 'react'
 
 import { ScrollArea } from '../../../../../shadcn'
 
-type Header = {
+export type Header = {
 	title: string
 	url: string
 	items?: Header[]
 }
 
-type TTOC = {
+export type TTOC = {
 	title: string
 	url: string
 	items: TTOC[]

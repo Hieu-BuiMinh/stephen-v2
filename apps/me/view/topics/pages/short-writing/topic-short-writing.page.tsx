@@ -9,6 +9,14 @@ import { PostCard } from '@/components/post/post-card'
 
 function TopicShortWritingPage() {
 	const shortWritingPosts: { [key: string]: { name: string; posts: TPost[]; description?: string } } = {
+		journaling: {
+			name: 'Journaling',
+			posts: sortPostsByDate(
+				shortWriting?.filter((post) => post.type === 'journaling'),
+				'desc'
+			),
+			description: `A record of experiences, reflections, and gradual personal growth over time.`,
+		},
 		buddhism: {
 			name: 'Buddhism',
 			posts: sortPostsByDate(

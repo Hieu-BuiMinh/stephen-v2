@@ -10,7 +10,7 @@ function PostLastUpdated({ date }: IPostLastUpdated) {
 	return (
 		<>
 			{date && (
-				<div className="py-10 text-xs text-muted-foreground underline">
+				<div className="py-10 px-3 text-xs text-muted-foreground underline">
 					Last updated:&nbsp;{formatDate(date, 'MMMM D, YYYY')}
 				</div>
 			)}
