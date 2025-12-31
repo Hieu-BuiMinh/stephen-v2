@@ -14,18 +14,24 @@ async function DocumentPostDetailPageView({ id }: { id: string }) {
 		notFound()
 	}
 
+	const hadToc = post.toc && post.toc.length > 0
+
 	return (
 		<div className=" max-w-7xl m-auto">
 			<DocDetailHeader post={post} />
-			<div className="grid col-span-1 lg:grid-cols-[1fr_250px] gap-10 mt-5 px-3">
+			<div className={`grid col-span-1 lg:grid-cols-[1fr_${hadToc ? 250 : 0}px] gap-10 mt-5 px-3`}>
 				<MDXContentComponent code={post.body} className="col-span-1 min-w-full" />
 
-				<aside className="hidden lg:block lg:w-[250px]">
-					<div className="sticky top-20 z-10 flex flex-col gap-4">
-						<TableOfContentDesktop post={post} />
-						{/* <PostLikeButton post={post} /> */}
-					</div>
-				</aside>
+				{hadToc && (
+					<>
+						<aside className="hidden lg:block lg:w-[250px]">
+							<div className="sticky top-20 z-10 flex flex-col gap-4">
+								<TableOfContentDesktop post={post} />
+								{/* <PostLikeButton post={post} /> */}
+							</div>
+						</aside>
+					</>
+				)}
 			</div>
 
 			<div className="pb-12 hidden md:block">{post.updatedAt && <PostLastUpdated date={post.updatedAt} />}</div>

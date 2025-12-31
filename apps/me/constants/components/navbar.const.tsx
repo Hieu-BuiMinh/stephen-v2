@@ -7,6 +7,7 @@ import {
 	Notebook,
 	// NotebookPen,
 	Pen,
+	Pencil,
 	Sparkles,
 	Tags,
 	TextSelect,
@@ -95,6 +96,12 @@ export const navbarItems: TNavbarItems = {
 			href: '/overview',
 			description: `How this website came to be`,
 			icon: Clover,
+		},
+		{
+			title: 'Year Recap',
+			href: '/year-recap',
+			description: 'A personal recap of the past year',
+			icon: Pencil,
 		},
 		{
 			title: 'Short Spark',

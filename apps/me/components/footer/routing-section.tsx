@@ -41,13 +41,13 @@ function FooterRoutingSection() {
 				},
 			],
 		},
-		// {
-		// 	name: 'Tools',
-		// 	links: [
-		// 		{ lable: 'I-Ching divination', href: '/', disable: true },
-		// 		{ lable: 'BaZi natal chart', href: '/', disable: true },
-		// 	],
-		// },
+		{
+			name: 'Tools',
+			links: [
+				// { lable: 'I-Ching divination', href: '/', disable: true },
+				{ lable: 'Lunar date time', href: '/tools/lunar-time-chart' },
+			],
+		},
 	]
 
 	return (

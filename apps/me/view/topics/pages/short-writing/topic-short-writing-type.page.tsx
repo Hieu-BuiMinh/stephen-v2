@@ -20,6 +20,11 @@ async function TopicShortWritingTypePage({ params }: ITopicShortWritingTypePageP
 	const { type } = await params
 
 	const headertitle: Partial<Record<OTHERS_POST_TYPE, { title: string; description: string }>> = {
+		journaling: {
+			title: 'Journaling',
+			description: 'A record of experiences, reflections, and gradual personal growth over time.',
+		},
+
 		buddhism: {
 			title: 'Buddhism',
 			description: `Exploring philosophical ideas and life principles.`,
