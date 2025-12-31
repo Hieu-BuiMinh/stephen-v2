@@ -1,7 +1,7 @@
-import React from 'react'
+import YearRecapPageView from '@/view/year-recap/pages/year-recap.page'
 
 function RecapListPage() {
-	return <div>RecapListPage</div>
+	return <YearRecapPageView />
 }
 
 export default RecapListPage
