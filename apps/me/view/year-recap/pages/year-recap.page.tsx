@@ -25,14 +25,16 @@ const recapData: RecapGridItemProps[] = [
 
 function YearRecapPageView() {
 	return (
-		<div className="grid grid-cols-1 pt-6 pb-28 md:grid-cols-3">
+		<div className="grid grid-cols-1 pt-6 px-6 pb-28 md:grid-cols-3">
 			<div className="col-span-1 h-[350px] border md:col-span-2">
 				<RecapGridItem {...recapData[0]} />
 			</div>
 
-			<div className="col-span-1 h-[350px] border border-l-0">
-				<RecapGridItem {...recapData[1]} />
-			</div>
+			{recapData.slice(1).map((data) => (
+				<div key={data.year} className="col-span-1 h-[350px] border">
+					<RecapGridItem {...data} />
+				</div>
+			))}
 		</div>
 	)
 }

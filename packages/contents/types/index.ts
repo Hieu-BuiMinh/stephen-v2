@@ -21,6 +21,7 @@ export type TPost = {
 	published: boolean
 	hashTags?: string[]
 	type: DEV_POST_TYPE | BOOKS_POST_TYPE | OTHERS_POST_TYPE
+	retroType?: 'MILESTONE' | 'RECAP'
 	body: any // s.mdx() | string
 	author: {
 		avatar: string

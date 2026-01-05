@@ -3,9 +3,9 @@ import { retroPost } from '@repo/stephen-v2-contents'
 import { sortPostsByDate } from '@repo/stephen-v2-contents/utils'
 import { d } from '@repo/stephen-v2-utils'
 import { Minus } from 'lucide-react'
+import Link from 'next/link'
 
 import RetroPostItem from '@/view/retrospective/components/retro-post-item'
-import Link from 'next/link'
 
 type PostsByYear = Record<string, TPost[]>
 
@@ -27,7 +27,10 @@ export function groupPostsByYear(posts: TPost[]): PostsByYear {
 }
 
 function RetroRightSection() {
-	const postList = sortPostsByDate(retroPost, 'desc')
+	const postList = sortPostsByDate(
+		retroPost.filter((post: TPost) => post.retroType === 'MILESTONE'),
+		'desc'
+	)
 	const postsByYear = groupPostsByYear(postList)
 
 	const years = Object.keys(postsByYear)
