@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
 		if (dev) config.devtool = 'inline-source-map'
 		return config
 	},
+	reactStrictMode: true,
+	swcMinify: true,
+	distDir: 'build',
 }
 
 export default nextConfig
