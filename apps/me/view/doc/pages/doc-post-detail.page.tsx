@@ -1,6 +1,7 @@
 import { docPost } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import { TableOfContentDesktop } from '@repo/stephen-v2-ui/shadcn'
+import { cn } from '@repo/stephen-v2-utils'
 import { notFound } from 'next/navigation'
 
 import MDXContentComponent from '@/components/mdx-content'
@@ -19,7 +20,12 @@ async function DocumentPostDetailPageView({ id }: { id: string }) {
 	return (
 		<div className=" max-w-7xl m-auto">
 			<DocDetailHeader post={post} />
-			<div className={`grid col-span-1 lg:grid-cols-[1fr_${hadToc ? 250 : 0}px] gap-10 mt-5 px-3`}>
+			<div
+				className={cn(
+					`grid col-span-1 lg:grid-cols-[1fr_0px] gap-10 mt-5 px-3`,
+					hadToc && 'lg:grid-cols-[1fr_250px]'
+				)}
+			>
 				<MDXContentComponent code={post.body} className="col-span-1 min-w-full" />
 
 				{hadToc && (

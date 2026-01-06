@@ -64,10 +64,7 @@ async function RecapByYearPage({ params }: IRecapByYearPageProps) {
 		<>
 			<LightRaysClient />
 			<div className="flex flex-col gap-5">
-				<PostPageTitle
-					title="Year Recap"
-					description="Explore the milestones, achievements, and unforgettable moments from each year."
-				/>
+				<PostPageTitle title={post.title} description={post.description || ''} />
 				<YearRecapDetail post={post} />
 			</div>
 		</>

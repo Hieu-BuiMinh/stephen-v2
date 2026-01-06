@@ -61,7 +61,7 @@ const components = {
 		const { alt, className, ...rest } = props
 
 		return (
-			<>
+			<div className="flex flex-col gap-1">
 				<ImageZoomV2
 					className={cn(
 						'not-prose m-auto rounded-md flex items-center justify-center p-1 bg-dots-sm',
@@ -77,8 +77,8 @@ const components = {
 						{...rest}
 					/>
 				</ImageZoomV2>
-				{alt && <figcaption className="mt-4 text-center">{alt}</figcaption>}
-			</>
+				{alt && <figcaption className="text-center">{alt}</figcaption>}
+			</div>
 		)
 	},
 	code: (props: React.ComponentPropsWithoutRef<'code'>) => {

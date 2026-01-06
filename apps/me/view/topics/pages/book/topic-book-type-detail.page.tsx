@@ -2,8 +2,8 @@ import type { ARTICLES, BOOKS_POST_TYPE } from '@repo/stephen-v2-contents'
 import { bookRecap } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import { TableOfContentDesktop } from '@repo/stephen-v2-ui/shadcn'
+import { cn } from '@repo/stephen-v2-utils'
 import { notFound } from 'next/navigation'
-import React from 'react'
 
 import MDXContentComponent from '@/components/mdx-content'
 import PostDetailHeader from '@/components/post/post-detail-header'
@@ -26,7 +26,12 @@ async function TopicBookTypeDetailPage({ params }: IBookTypeDetailProps) {
 	return (
 		<>
 			<PostDetailHeader post={post} />
-			<div className={`relative grid col-span-1 lg:grid-cols-[1fr_${hadToc ? 250 : 0}px] gap-10 mt-5 px-3`}>
+			<div
+				className={cn(
+					`grid col-span-1 lg:grid-cols-[1fr_0px] gap-10 mt-5 px-3`,
+					hadToc && 'lg:grid-cols-[1fr_250px]'
+				)}
+			>
 				<MDXContentComponent code={post.body} className="col-span-1 min-w-full" />
 
 				{hadToc && (

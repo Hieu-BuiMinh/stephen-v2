@@ -411,7 +411,8 @@ export function lunarLeap(year: number): 0 | 1 {
 }
 
 /** Lấy meta Tiết khí + Nguyệt lệnh thành 1 object */
-export function getTietKhiInfo(dd: number, mm: number, yy: number, timeZone = 7): TietKhiMeta {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function getTietKhiInfo(dd: number, mm: number, yy: number, _timeZone = 7): TietKhiMeta {
 	const jd = julianDayFromDate(dd, mm, yy)
 	const longRad = sunLongitude(jd + 1) // giữ nguyên như bản gốc
 	const index = toInt(longRad / (Math.PI / 12)) // 0..23
