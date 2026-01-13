@@ -1,6 +1,7 @@
 import type { LucideIcon } from 'lucide-react'
 import {
 	Book,
+	Bookmark,
 	Clover,
 	Library,
 	MessageCircleHeart,
@@ -10,7 +11,6 @@ import {
 	Pencil,
 	Sparkles,
 	Tags,
-	TextSelect,
 } from 'lucide-react'
 
 export type TNavbarItem = {
@@ -49,15 +49,15 @@ export const navbarItems: TNavbarItems = {
 	blog: [
 		{
 			title: 'Posts',
-			href: '/topics/dev/post',
+			href: '/topics/dev',
 			description: 'Thoughts, mental models, and tutorials about development',
 			icon: Pen,
 		},
 		{
-			title: 'Shorts',
-			href: '/topics/dev/short',
-			description: `My personal notes that's not long enough to be a blog post`,
-			icon: TextSelect,
+			title: 'Tags',
+			href: '/tags',
+			description: `Find your favorite topics here`,
+			icon: Bookmark,
 		},
 		{
 			title: 'Documents',
