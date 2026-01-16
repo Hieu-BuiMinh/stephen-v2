@@ -8,7 +8,7 @@ interface ITopicTypeProps {
 	params: Promise<{ collection: keyof typeof ARTICLES; type: DEV_POST_TYPE & BOOKS_POST_TYPE & OTHERS_POST_TYPE }>
 }
 
-async function TopicTypePage({ params }: ITopicTypeProps) {
+async function TopicTypePage({ params }: Readonly<ITopicTypeProps>) {
 	const { collection } = await params
 
 	switch (collection) {

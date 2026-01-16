@@ -12,12 +12,12 @@ interface ITopicDevTypePageProps {
 }
 
 const sortedPostsByType = ({ type }: { type: DEV_POST_TYPE }) => {
-	const posts = devPost?.filter((post) => post?.type?.toLocaleLowerCase() === type)
+	const posts = devPost?.filter((post) => post?.type?.toLocaleLowerCase() === type)?.slice(0, 4)
 
 	return sortPostsByDate(posts, 'desc')
 }
 
-async function TopicDevTypePage({ params }: ITopicDevTypePageProps) {
+async function TopicDevTypePage({ params }: Readonly<ITopicDevTypePageProps>) {
 	const { type } = await params
 
 	const headertitle: Partial<Record<DEV_POST_TYPE, { title: string; description: string }>> = {
@@ -35,7 +35,7 @@ async function TopicDevTypePage({ params }: ITopicDevTypePageProps) {
 		},
 	}
 
-	const headerTitleByType = headertitle[type as keyof typeof headertitle]
+	const headerTitleByType = headertitle[type]
 
 	if (!headerTitleByType) {
 		return (

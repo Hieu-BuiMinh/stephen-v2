@@ -13,12 +13,12 @@ interface ITopicBookTypePageProps {
 }
 
 const sortedPostsByType = ({ type }: { type: BOOKS_POST_TYPE }) => {
-	const posts = bookRecap?.filter((post) => post?.type?.toLocaleLowerCase() === type)
+	const posts = bookRecap?.filter((post) => post?.type?.toLocaleLowerCase() === type)?.slice(0, 4)
 
 	return sortPostsByDate(posts, 'desc')
 }
 
-async function TopicBookTypePage({ params }: ITopicBookTypePageProps) {
+async function TopicBookTypePage({ params }: Readonly<ITopicBookTypePageProps>) {
 	const { type } = await params
 
 	const headertitle: Partial<Record<BOOKS_POST_TYPE, { title: string; description: string }>> = {
