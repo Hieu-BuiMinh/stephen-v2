@@ -48,13 +48,7 @@ export async function generateMetadata({ params }: GenerateMetaProps): Promise<M
 	}
 }
 
-async function TopicCollectionTypeDetailLayout({
-	children,
-	// params,
-}: {
-	children: React.ReactNode
-	// params: Promise<{ id: string }>
-}) {
+async function TopicCollectionTypeDetailLayout({ children }: { children: React.ReactNode }) {
 	return <>{children}</>
 }
 
