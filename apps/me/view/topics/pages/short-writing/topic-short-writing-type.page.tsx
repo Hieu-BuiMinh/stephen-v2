@@ -1,3 +1,4 @@
+import type { BOOKS_POST_TYPE, DEV_POST_TYPE } from '@repo/stephen-v2-contents'
 import { type ARTICLES, type OTHERS_POST_TYPE, shortWriting } from '@repo/stephen-v2-contents'
 import { sortPostsByDate } from '@repo/stephen-v2-contents/utils'
 import { TextEffect } from '@repo/stephen-v2-ui/motion'
@@ -6,11 +7,12 @@ import LightRaysClient from '@/components/effects/light-rays-client'
 import PostPageTitle from '@/components/post/post-page-title'
 import { ShortCard } from '@/components/post/short-card'
 
+type TType = DEV_POST_TYPE | BOOKS_POST_TYPE | OTHERS_POST_TYPE
 interface ITopicShortWritingTypePageProps {
-	params: Promise<{ collection: keyof typeof ARTICLES; type: OTHERS_POST_TYPE }>
+	params: Promise<{ collection: keyof typeof ARTICLES; type: TType }>
 }
 
-const sortedPostsByType = ({ type }: { type: OTHERS_POST_TYPE }) => {
+const sortedPostsByType = ({ type }: { type: TType }) => {
 	const posts = shortWriting?.filter((post) => post?.type?.toLocaleLowerCase() === type)?.slice(0, 4)
 
 	return sortPostsByDate(posts, 'desc')
@@ -19,7 +21,7 @@ const sortedPostsByType = ({ type }: { type: OTHERS_POST_TYPE }) => {
 async function TopicShortWritingTypePage({ params }: ITopicShortWritingTypePageProps) {
 	const { type } = await params
 
-	const headertitle: Partial<Record<OTHERS_POST_TYPE, { title: string; description: string }>> = {
+	const headertitle: Partial<Record<TType, { title: string; description: string }>> = {
 		journaling: {
 			title: 'Journaling',
 			description: 'A record of experiences, reflections, and gradual personal growth over time.',

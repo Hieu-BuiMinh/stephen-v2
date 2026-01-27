@@ -8,16 +8,32 @@ import PostPageTitle from '@/components/post/post-page-title'
 import { APP_CONFIG } from '@/configs/app-config'
 import YearRecapDetail from '@/view/year-recap/pages/year-recap-detail.page'
 
+export const dynamic = 'force-static'
+
 interface IRecapByYearPageProps {
-	params: Promise<{ year: string }>
+	params: Promise<{ year: string | undefined }>
 }
 
 const findpostByYear = (year: string): TPost | undefined => {
 	return (retroPost as TPost[]).find((post: TPost) => post?.hashTags?.includes(year) && post.retroType === 'RECAP')
 }
 
+export const generateStaticParams = async (): Promise<{ year: string | undefined }[]> => {
+	const years = retroPost.filter((post: TPost) => post.retroType === 'RECAP').map((post: TPost) => post.hashTags)
+
+	const uniqueYears = [...new Set(years.flat())]
+
+	uniqueYears.sort((a, b) => Number(b) - Number(a))
+
+	return uniqueYears?.map((y) => ({ year: y }))
+}
+
 export async function generateMetadata({ params }: IRecapByYearPageProps): Promise<Metadata> {
 	const { year } = await params
+	if (!year) {
+		notFound()
+	}
+
 	const post = findpostByYear(year)
 
 	if (!post) {
@@ -53,6 +69,10 @@ export async function generateMetadata({ params }: IRecapByYearPageProps): Promi
 
 async function RecapByYearPage({ params }: IRecapByYearPageProps) {
 	const { year } = await params
+
+	if (!year) {
+		notFound()
+	}
 
 	const post = findpostByYear(year)
 

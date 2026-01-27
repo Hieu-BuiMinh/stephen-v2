@@ -6,15 +6,14 @@ import { notFound } from 'next/navigation'
 import MDXContentComponent from '@/components/mdx-content'
 import PostDetailHeader from '@/components/post/post-detail-header'
 import PostLastUpdated from '@/components/post/post-last-updated'
-import ProjectLink from '@/components/post/project-link'
+// import ProjectLink from '@/components/post/project-link'
 import { allPostByTag } from '@/constants/post/post.constant'
 
 interface PostPageProps {
-	params: Promise<{ id: string }>
+	id: string | undefined
 }
 
-export default async function PostByTagDetailPageView({ params }: PostPageProps) {
-	const { id } = await params
+export default async function PostByTagDetailPageView({ id }: PostPageProps) {
 	const post = await getVelitePostById({ id, postsList: allPostByTag })
 
 	if (!post || !post.published) {

@@ -1,4 +1,4 @@
-import type { ARTICLES, DEV_POST_TYPE } from '@repo/stephen-v2-contents'
+import type { ARTICLES, BOOKS_POST_TYPE, DEV_POST_TYPE, OTHERS_POST_TYPE } from '@repo/stephen-v2-contents'
 import { devPost } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import { TableOfContentDesktop } from '@repo/stephen-v2-ui/shadcn'
@@ -9,8 +9,9 @@ import MDXContentComponent from '@/components/mdx-content'
 import PostDetailHeader from '@/components/post/post-detail-header'
 import PostLastUpdated from '@/components/post/post-last-updated'
 
+type TType = DEV_POST_TYPE | BOOKS_POST_TYPE | OTHERS_POST_TYPE
 interface PostPageProps {
-	params: Promise<{ collection: keyof typeof ARTICLES; type: DEV_POST_TYPE; id: string }>
+	params: { collection: keyof typeof ARTICLES; type: TType; id: string }
 }
 
 export default async function TopicDevTypeDetailPage({ params }: PostPageProps) {

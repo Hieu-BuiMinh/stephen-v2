@@ -1,4 +1,4 @@
-import type { TPost } from '@repo/stephen-v2-contents'
+import type { DEV_POST_TYPE, OTHERS_POST_TYPE, TPost } from '@repo/stephen-v2-contents'
 import { type ARTICLES, bookRecap, type BOOKS_POST_TYPE } from '@repo/stephen-v2-contents'
 import { sortPostsByDate } from '@repo/stephen-v2-contents/utils'
 import { TextEffect } from '@repo/stephen-v2-ui/motion'
@@ -8,11 +8,12 @@ import { BookCard } from '@/components/post/book-card'
 import PostPageTitle from '@/components/post/post-page-title'
 
 type T = TPost & { bookCover: string }
+type TType = DEV_POST_TYPE | BOOKS_POST_TYPE | OTHERS_POST_TYPE
 interface ITopicBookTypePageProps {
-	params: Promise<{ collection: keyof typeof ARTICLES; type: BOOKS_POST_TYPE }>
+	params: Promise<{ collection: keyof typeof ARTICLES; type: TType }>
 }
 
-const sortedPostsByType = ({ type }: { type: BOOKS_POST_TYPE }) => {
+const sortedPostsByType = ({ type }: { type: TType }) => {
 	const posts = bookRecap?.filter((post) => post?.type?.toLocaleLowerCase() === type)?.slice(0, 4)
 
 	return sortPostsByDate(posts, 'desc')
@@ -21,7 +22,7 @@ const sortedPostsByType = ({ type }: { type: BOOKS_POST_TYPE }) => {
 async function TopicBookTypePage({ params }: Readonly<ITopicBookTypePageProps>) {
 	const { type } = await params
 
-	const headertitle: Partial<Record<BOOKS_POST_TYPE, { title: string; description: string }>> = {
+	const headertitle: Partial<Record<TType, { title: string; description: string }>> = {
 		'life-habits': {
 			title: 'Life Habits',
 			description: `Chill tips & fresh mindsets to keep your life on point`,

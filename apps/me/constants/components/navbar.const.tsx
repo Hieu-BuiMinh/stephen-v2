@@ -61,7 +61,7 @@ export const navbarItems: TNavbarItems = {
 		},
 		{
 			title: 'Documents',
-			href: '/doc',
+			href: '/document',
 			description: 'Welcome to my corner of the internet',
 			icon: Library,
 		},
