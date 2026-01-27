@@ -8,7 +8,7 @@ import MDXContentComponent from '@/components/mdx-content'
 import DocDetailHeader from '@/components/post/doc-detail-header'
 import PostLastUpdated from '@/components/post/post-last-updated'
 
-async function DocumentPostDetailPageView({ id }: { id: string }) {
+async function DocumentDetailPageView({ id }: { id: string }) {
 	const post = await getVelitePostById({ id, postsList: docPost })
 
 	if (!post) {
@@ -16,7 +16,6 @@ async function DocumentPostDetailPageView({ id }: { id: string }) {
 	}
 
 	const hadToc = post.toc && post.toc.length > 0
-
 	return (
 		<div className=" max-w-7xl m-auto">
 			<DocDetailHeader post={post} />
@@ -45,4 +44,4 @@ async function DocumentPostDetailPageView({ id }: { id: string }) {
 	)
 }
 
-export default DocumentPostDetailPageView
+export default DocumentDetailPageView

@@ -10,7 +10,6 @@
 import './style.css'
 
 import { cn } from '@repo/stephen-v2-utils'
-import { FireExtinguisher } from 'lucide-react'
 import type { ComponentProps } from 'react'
 import { tv } from 'tailwind-variants'
 
@@ -79,7 +78,7 @@ function Book({ color, depth, illustration, icon, textColor, texture, variant, w
 									<h1 className="font-semibold text-[calc(var(--book-width)/12)] text-[var(--text-color)]">
 										{title}
 									</h1>
-									{Icon ? Icon : <FireExtinguisher size={24} />}
+									{Icon ? Icon : null}
 								</div>
 							</div>
 						</Stack>
