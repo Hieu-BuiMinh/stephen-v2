@@ -2,6 +2,7 @@
 
 import { docPost } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
+import { ScrollArea } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
 import { Link as LinkIcon } from 'lucide-react'
 import Link from 'next/link'
@@ -44,7 +45,9 @@ function TocTree({ nodes, docId, baseHref }: { nodes?: TocNode[]; docId: string;
 
 				return (
 					<div key={key} className="flex flex-col">
-						<div className="p-1.5 text-muted-foreground">{n.title || post?.title}</div>
+						<div className="p-1.5 text-muted-foreground">
+							<p className="line-clamp-1 pr-1.5">{n.title || post?.title}</p>
+						</div>
 						{!!n.children?.length && <TocTree nodes={n.children} docId={docId} baseHref={baseHref} />}
 					</div>
 				)
@@ -65,8 +68,10 @@ function DocSidebarStatic({
 	if (!tableOfContent?.length) return null
 
 	return (
-		<div className="w-70 h-[calc(100vh-4rem)] sticky top-16 border-r p-3 overflow-y-auto">
-			<TocTree nodes={tableOfContent} docId={docId} baseHref={baseHref} />
+		<div className="w-70 h-[calc(100vh-4rem)] sticky top-16 border-r pr-2 pt-2  overflow-y-auto">
+			<ScrollArea className="h-full">
+				<TocTree nodes={tableOfContent} docId={docId} baseHref={baseHref} />
+			</ScrollArea>
 		</div>
 	)
 }
