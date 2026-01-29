@@ -1,4 +1,4 @@
-import { Bagua, FiveElementsDiagram } from '@repo/stephen-v2-ui/i-ching'
+import { Bagua, FiveElementsDiagram, Hexagram } from '@repo/stephen-v2-ui/i-ching'
 import { StickyAudio } from '@repo/stephen-v2-ui/shadcn'
 
 function TestPage() {
@@ -16,6 +16,8 @@ function TestPage() {
 			</div>
 
 			<br />
+
+			<Hexagram upper={1} lower={5} actives={[1, 5]} />
 
 			<FiveElementsDiagram />
 
