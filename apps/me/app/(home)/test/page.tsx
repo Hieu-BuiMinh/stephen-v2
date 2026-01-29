@@ -3,7 +3,7 @@ import { StickyAudio } from '@repo/stephen-v2-ui/shadcn'
 
 function TestPage() {
 	return (
-		<div>
+		<div className="pb-32">
 			<div className="flex items-center gap-3">
 				<Bagua index={1} showLabel />
 				<Bagua index={2} showLabel />
@@ -16,10 +16,12 @@ function TestPage() {
 			</div>
 
 			<br />
+			<br />
+			<br />
 
 			<Hexagram upper={1} lower={5} actives={[1, 5]} />
 
-			<FiveElementsDiagram />
+			{/* <FiveElementsDiagram />
 
 			<StickyAudio
 				audioTrack={{
@@ -28,7 +30,7 @@ function TestPage() {
 					artist: 'Sư Giác Nguyên',
 					url: 'https://res.cloudinary.com/hieu-buiminh/video/upload/v1739693470/kinh-tang-chi-bai-95-chuong-bon-phap_pcsbao.mp3',
 				}}
-			/>
+			/> */}
 		</div>
 	)
 }

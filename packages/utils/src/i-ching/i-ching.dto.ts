@@ -13,15 +13,23 @@ export enum TBagua {
 
 export type TBaguaFamily = 'Càn' | 'Đoài' | 'Ly' | 'Chấn' | 'Tốn' | 'Khảm' | 'Cấn' | 'Khôn'
 
-export type TElementType = 'Mental' | 'Wood' | 'Water' | 'Fire' | 'Earth'
+export type TElementType = 'Metal' | 'Wood' | 'Water' | 'Fire' | 'Earth'
 export enum ElementType {
 	'Water' = 1,
 	'Fire' = 2,
 	'Wood' = 3,
-	'Mental' = 4,
+	'Metal' = 4,
 	'Earth' = 5,
 }
+export type TElementIndex = 1 | 2 | 3 | 4 | 5
 export type TElemVi = 'Kim' | 'Mộc' | 'Thủy' | 'Hỏa' | 'Thổ'
+export enum ElemVi {
+	'Kim' = 1,
+	'Mộc' = 2,
+	'Thủy' = 3,
+	'Hỏa' = 4,
+	'Thổ' = 5,
+}
 
 // 6 hào: 0 = âm, 1 = dương
 export type TYinYang = 0 | 1
@@ -51,8 +59,8 @@ export enum EarthlyBranchElementVi {
 	'Tỵ' = ElementType.Fire,
 	'Ngọ' = ElementType.Fire,
 	'Mùi' = ElementType.Earth,
-	'Thân' = ElementType.Mental,
-	'Dậu' = ElementType.Mental,
+	'Thân' = ElementType.Metal,
+	'Dậu' = ElementType.Metal,
 	'Tuất' = ElementType.Earth,
 	'Hợi' = ElementType.Water,
 }
@@ -113,6 +121,7 @@ export interface IHexagramMember {
 		TEarthlyBranchIndex | null,
 		TEarthlyBranchIndex | null,
 	]
+	indexesElements?: [TElementIndex, TElementIndex, TElementIndex, TElementIndex, TElementIndex, TElementIndex]
 }
 
 // ===== family =====
@@ -123,5 +132,4 @@ export interface IHexagramFamily {
 	vietnameseElementName?: TElemVi // (một số item của bạn chưa có field này)
 	members: IHexagramMember[]
 	originRelatives: [string, string, string, string, string, string]
-	indexesElements?: [ElementType, ElementType, ElementType, ElementType, ElementType, ElementType]
 }
