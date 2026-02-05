@@ -9,7 +9,8 @@
   "exports": {
     ".": "./src/common/index.ts",
     "./axios": "./src/axios/index.ts",
-    "./hooks": "./src/hooks/index.ts"
+    "./hooks": "./src/hooks/index.ts",
+    "./i-ching": "./src/i-ching/index.ts"
   },
   "keywords": [],
   "author": "",

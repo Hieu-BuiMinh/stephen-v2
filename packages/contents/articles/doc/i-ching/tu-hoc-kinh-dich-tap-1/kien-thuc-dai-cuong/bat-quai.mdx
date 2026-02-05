@@ -1,5 +1,5 @@
 ---
-id: "6a10122d-e603-4fa7-a830-ccf23946239e"
+id: '6a10122d-e603-4fa7-a830-ccf23946239e'
 title: 'Bát Quái'
 createdAt: '2025-09-02T00:00:00Z'
 description: 'Kinh dịch là một triết lý cổ xưa, nhưng để hiểu được nó một cách chính xác, chúng ta cần làm quen với khái niệm cốt lõi của nó. Hiện này từ Kinh Dịch thường được sử dụng rộng rãi, nhưng không phải ai cũng hiểu đúng về ý nghĩa sâu sắc của nó.'
@@ -7,4 +7,66 @@ published: true
 hashTags: ['doc', 'i-ching']
 ---
 
-...
+<div className="flex items-center justify-center gap-3">
+	<YinYang type={1} />
+	<YinYang type={0} />
+</div>
+<br/>
+<div className="flex items-center justify-center gap-3">
+	<Tetragram index={1} />
+	<Tetragram index={2} />
+	<Tetragram index={3} />
+	<Tetragram index={4} />
+</div>
+<br/>
+<div className="flex items-center justify-center gap-3">
+	<Bagua index={1} showLabel />
+	<Bagua index={2} showLabel />
+	<Bagua index={3} showLabel />
+	<Bagua index={4} showLabel />
+	<Bagua index={5} showLabel />
+	<Bagua index={6} showLabel />
+	<Bagua index={7} showLabel />
+	<Bagua index={8} showLabel />
+</div>
+
+Vạch quẻ gồm vạch liền và vạch đứt.
+
+- Vạch liền là dương ghi là: `⚊`
+- Vạch âm ký hiệu làm: `⚋`
+
+Bàn về hình tượng thì:
+
+- Càn tam liên (Càn có ba vạch liền) `☰`
+- Khôn lục đoạn (Khôn có sáu vạch đứt) `☷`
+- Chấn ngưỡng bồn (Chấn như chậu để ngửa) `☳`
+- Cấn phúc uyển (Cấn như cái chén úp) `☶`
+- Li trung hư (Li rỗng bên trong) `☲`
+- Khảm trung mãn (Khảm ở giữa đặc) `☵`
+- Đoài thượng khuyết (Đoài khuyết bên trên) `☱`
+- Tốn hạ đoạn (Tốn đứt phía dưới) `☴`
+
+Định về số thứ tự thì: `1 Càn`, `2 Đoài`, `3 Li`, `4 Chấn`, `5 Tốn`, `6 Khảm`, `7 Cấn`, `8 Khôn`.
+
+Những số này có được do khi chồng ba vạch âm vạch dương lần lượt lên nhau.
+
+1. Khi chồng vạch, thì chồng lên phía trên mà dương rồi đến âm. Ban đầu chỉ có hai vạch âm và dương gọi là Lưỡng Nghi.
+
+`⚊` `⚋`
+
+2. Rồi trên vạch dương chồng vạch dương khác, trên vạch âm chồng thêm một vạch âm nữa, từ đó tạo thành Tứ Tượng.
+
+`⚌` `⚍` `⚎` `⚏`
+
+3. Đến giai đoạn cuối trở thành 8 bấy giờ là Bát Quái. Rồi đánh số từ 1 đến 8 ta có kết quả như trên. Các số này được sử dụng nhiều khi ta dùng thẻ tre để bói thay vì dùng đồng tiền.
+
+`☰` `☱` `☲` `☳` `☴` `☵` `☶` `☷`
+
+䷁䷗䷆䷒䷎䷣䷭䷊
+䷏䷲䷧䷵䷽䷶䷟䷡
+䷇䷂䷜䷻䷦䷾䷯䷄
+䷬䷐䷮䷹䷞䷰䷛䷪
+䷖䷚䷃䷨䷳䷕䷑䷙
+䷢䷔䷿䷥䷷䷝䷱䷍
+䷓䷩䷺䷼䷴䷤䷸䷈
+䷋䷘䷅䷉䷠䷌䷫䷀
