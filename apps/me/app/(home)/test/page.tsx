@@ -1,5 +1,4 @@
-import { Bagua, FiveElementsDiagram, Hexagram } from '@repo/stephen-v2-ui/i-ching'
-import { StickyAudio } from '@repo/stephen-v2-ui/shadcn'
+import { Bagua, Hexagram, HexagramToImage } from '@repo/stephen-v2-ui/i-ching'
 
 function TestPage() {
 	return (
@@ -19,7 +18,41 @@ function TestPage() {
 			<br />
 			<br />
 
-			<Hexagram upper={1} lower={5} actives={[1, 5]} />
+			<Hexagram
+				upper={1}
+				lower={5}
+				actives={[1, 5]}
+				showResultHexagram
+				showBranches
+				showElements
+				showHexagramName
+				showHiddenRelative
+				showIndex
+				showLabel
+				showOriginFamily
+				showQuestionerAndQuestion
+				showSixCreatures
+				showSixRelatives
+			/>
+			<br />
+			<br />
+			<br />
+			<HexagramToImage
+				upper={1}
+				lower={5}
+				actives={[1, 5]}
+				showResultHexagram
+				showBranches
+				showElements
+				showHexagramName
+				showHiddenRelative
+				showIndex
+				showLabel
+				showOriginFamily
+				showQuestionerAndQuestion
+				showSixCreatures
+				showSixRelatives
+			/>
 
 			{/* <FiveElementsDiagram />
 

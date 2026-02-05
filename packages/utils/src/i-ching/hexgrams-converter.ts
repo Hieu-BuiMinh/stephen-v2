@@ -1,5 +1,5 @@
 import { hexagramFamily } from './constants/64-hexagrams'
-import type { TRelativeIndex } from './i-ching.dto'
+import type { TEarthlyBranchIndex, TElementIndex, TRelativeIndex } from './i-ching.dto'
 import {
 	ElementType,
 	type IHexagramFamily,
@@ -13,6 +13,7 @@ type HexagramConverted = {
 	fammily?: IHexagramFamily
 	member?: IHexagramMember
 	memberIndex?: number
+	indexesElements?: [TElementIndex, TElementIndex, TElementIndex, TElementIndex, TElementIndex, TElementIndex]
 }
 
 export const converToHexagrams = ({
@@ -30,6 +31,9 @@ export const converToHexagrams = ({
 }): HexagramConverted => {
 	let member: IHexagramMember | undefined
 	let memberIndex: number | undefined
+	let indexesElements:
+		| [TElementIndex, TElementIndex, TElementIndex, TElementIndex, TElementIndex, TElementIndex]
+		| undefined
 
 	const hexagramValue = [upper, lower]
 	const fammily: IHexagramFamily | undefined = hexagramFamily.find((f) =>
@@ -45,6 +49,7 @@ export const converToHexagrams = ({
 			) {
 				member = m
 				memberIndex = index
+				indexesElements = m.indexesElements
 				return true
 			}
 			return false
@@ -70,7 +75,7 @@ export const converToHexagrams = ({
 		member.hexagramRelatives = [a, b, c, d, e, f]
 	}
 
-	return { fammily, member, memberIndex }
+	return { fammily, member, memberIndex, indexesElements }
 }
 
 const handleCompareRelationsWithElement = (
@@ -198,7 +203,30 @@ const handleCompareRelationsWithElement = (
 		default:
 			break
 	}
-	console.log('🥰 relative', relative)
 
 	return relative
+}
+
+export const converEarthlyBranchIndexToElement = (index?: TEarthlyBranchIndex): ElementType => {
+	switch (index) {
+		case 12:
+		case 1:
+			return ElementType.Water
+		case 6:
+		case 7:
+			return ElementType.Fire
+		case 3:
+		case 4:
+			return ElementType.Wood
+		case 9:
+		case 10:
+			return ElementType.Metal
+		case 2:
+		case 5:
+		case 8:
+		case 11:
+			return ElementType.Earth
+		default:
+			return ElementType.Water
+	}
 }
