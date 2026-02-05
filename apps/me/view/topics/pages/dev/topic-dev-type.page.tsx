@@ -1,3 +1,4 @@
+import type { BOOKS_POST_TYPE, OTHERS_POST_TYPE } from '@repo/stephen-v2-contents'
 import { type ARTICLES, type DEV_POST_TYPE, devPost } from '@repo/stephen-v2-contents'
 import { sortPostsByDate } from '@repo/stephen-v2-contents/utils'
 import { TextEffect } from '@repo/stephen-v2-ui/motion'
@@ -7,20 +8,21 @@ import { PostCard } from '@/components/post/post-card'
 import PostPageTitle from '@/components/post/post-page-title'
 import { ShortCard } from '@/components/post/short-card'
 
+type TType = DEV_POST_TYPE | BOOKS_POST_TYPE | OTHERS_POST_TYPE
 interface ITopicDevTypePageProps {
-	params: Promise<{ collection: keyof typeof ARTICLES; type: DEV_POST_TYPE }>
+	params: Promise<{ collection: keyof typeof ARTICLES; type: TType }>
 }
 
-const sortedPostsByType = ({ type }: { type: DEV_POST_TYPE }) => {
-	const posts = devPost?.filter((post) => post?.type?.toLocaleLowerCase() === type)
+const sortedPostsByType = ({ type }: { type: TType }) => {
+	const posts = devPost?.filter((post) => post?.type?.toLocaleLowerCase() === type)?.slice(0, 4)
 
 	return sortPostsByDate(posts, 'desc')
 }
 
-async function TopicDevTypePage({ params }: ITopicDevTypePageProps) {
+async function TopicDevTypePage({ params }: Readonly<ITopicDevTypePageProps>) {
 	const { type } = await params
 
-	const headertitle: Partial<Record<DEV_POST_TYPE, { title: string; description: string }>> = {
+	const headertitle: Partial<Record<TType, { title: string; description: string }>> = {
 		post: {
 			title: 'Dev Post',
 			description: `Thoughts, mental models about front-end development.`,
@@ -35,7 +37,7 @@ async function TopicDevTypePage({ params }: ITopicDevTypePageProps) {
 		},
 	}
 
-	const headerTitleByType = headertitle[type as keyof typeof headertitle]
+	const headerTitleByType = headertitle[type]
 
 	if (!headerTitleByType) {
 		return (

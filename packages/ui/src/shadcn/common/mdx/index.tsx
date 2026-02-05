@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid'
 import Link from 'next/link'
 import * as runtime from 'react/jsx-runtime'
 
-import { FiveElementsDiagram } from '../../../i-ching'
+import { Bagua, FiveElementsDiagram, Tetragram, YinYang } from '../../../i-ching'
 import { AnimatedBlock } from '../../../motion/components/animate-block'
 import { StickyAudio } from '../audio'
 import { DividerSlash } from '../divider'
@@ -61,7 +61,7 @@ const components = {
 		const { alt, className, ...rest } = props
 
 		return (
-			<>
+			<div className="flex flex-col gap-1">
 				<ImageZoomV2
 					className={cn(
 						'not-prose m-auto rounded-md flex items-center justify-center p-1 bg-dots-sm',
@@ -77,8 +77,8 @@ const components = {
 						{...rest}
 					/>
 				</ImageZoomV2>
-				{alt && <figcaption className="mt-4 text-center">{alt}</figcaption>}
-			</>
+				{alt && <figcaption className="text-center">{alt}</figcaption>}
+			</div>
 		)
 	},
 	code: (props: React.ComponentPropsWithoutRef<'code'>) => {
@@ -106,6 +106,9 @@ const components = {
 
 	// i-ching
 	FiveElementsDiagram,
+	YinYang,
+	Tetragram,
+	Bagua,
 
 	// effect
 	AnimatedBlock,

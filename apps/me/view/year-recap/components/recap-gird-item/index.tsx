@@ -44,7 +44,7 @@ function RecapGridItem({ year, title, backgroundImage, url, highlights }: RecapG
 				{/* Top */}
 				<div className="flex justify-between">
 					<span className={cn('flex flex-col gap-4', backgroundImage ? 'text-white' : 'text-foreground')}>
-						<span className="text-5xl lg:text-6xl">Year {year}</span>
+						<span className="text-5xl lg:text-6xl">{year}</span>
 
 						{title && (
 							<span className={cn('text-lg text-right', !backgroundImage && 'text-muted-foreground')}>

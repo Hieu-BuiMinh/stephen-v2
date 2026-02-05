@@ -1,0 +1,14 @@
+{
+  "provider": { "type": "gemini" },
+  "commit": {
+    "commitFormat": "conventional",
+    "onlyStagedChanges": true,
+    "autoCommit": false,
+    "autoPush": false,
+    "promptForRefs": true,
+    "useCustomInstructions": true,
+    "customInstructions": "Output exactly ONE commit message line in this format: '<emoji> <type>[<scope>]?: <subject>'. Use one emoji only. Types: feat fix docs style refactor perf test build ci chore. Emoji map: feat✨ fix🐞 docs📚 style💎 refactor💊 perf🚀 test🧪 build📦 ci👷 chore🔮. Scope optional, lowercase. Subject imperative, no period, max 120 chars (subject only). Output only the final line."
+  },
+  "gemini": { "model": "auto" },
+  "telemetry": { "enabled": false }
+}

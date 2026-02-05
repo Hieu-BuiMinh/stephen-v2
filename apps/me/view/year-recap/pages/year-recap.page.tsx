@@ -4,35 +4,37 @@ import RecapGridItem from '@/view/year-recap/components/recap-gird-item'
 const recapData: RecapGridItemProps[] = [
 	{
 		year: 2025,
-		title: 'Focus on myself',
+		title: 'Discipline & focus',
 		backgroundImage: '/assets/images/bg/retro-bg.png',
 		url: '/year-recap/2025',
 		highlights: {
 			primary: 'A year of rebuilding',
-			secondary: ['Foundations before scale', 'Quiet progress'],
+			secondary: ['Discipline over mood', 'Quiet progress'],
 		},
 	},
 	{
 		year: 2024,
-		title: 'Build and ship',
+		title: 'Grow in silence',
 		url: '/year-recap/2024',
 		highlights: {
-			primary: 'Depth over noise',
-			secondary: ['Consistency > motivation', 'Systems > willpower'],
+			primary: 'Clarity over noise',
+			secondary: ['Foundations before scale', 'Systems > willpower'],
 		},
 	},
 ] as const
 
 function YearRecapPageView() {
 	return (
-		<div className="grid grid-cols-1 pt-6 pb-28 md:grid-cols-3">
+		<div className="grid grid-cols-1 pt-6 px-6 pb-28 md:grid-cols-3">
 			<div className="col-span-1 h-[350px] border md:col-span-2">
 				<RecapGridItem {...recapData[0]} />
 			</div>
 
-			<div className="col-span-1 h-[350px] border border-l-0">
-				<RecapGridItem {...recapData[1]} />
-			</div>
+			{recapData.slice(1).map((data) => (
+				<div key={data.year} className="col-span-1 h-[350px] border">
+					<RecapGridItem {...data} />
+				</div>
+			))}
 		</div>
 	)
 }

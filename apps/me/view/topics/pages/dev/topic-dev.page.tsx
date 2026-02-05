@@ -14,11 +14,11 @@ function TopicDevPage() {
 		post: sortPostsByDate(
 			devPost?.filter((post) => post.type === 'post'),
 			'desc'
-		),
+		)?.slice(0, 4),
 		short: sortPostsByDate(
 			devPost?.filter((post) => post.type === 'short'),
 			'desc'
-		),
+		)?.slice(0, 4),
 	}
 
 	return (

@@ -8,34 +8,32 @@ import { useMemo } from 'react'
 
 import { ScrollArea } from '../../../../../shadcn'
 
-export type Header = {
+interface TocItem {
 	title: string
 	url: string
-	items?: Header[]
+	items: TocItem[]
 }
 
-export type TTOC = {
-	title: string
-	url: string
-	items: TTOC[]
+type TTocExtend<T> = T & {
+	toc: TocItem[]
 }
 
-function TableOfContentDesktop<T>({ post }: { post: T & { toc: TTOC[] } }) {
+function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
 	const TOC = post.toc
 
-	function extractUrls(Toc?: TTOC[]): string[] {
+	const extractUrls = (toc: TocItem[]): string[] => {
 		const urls: string[] = []
 
-		function traverse(items?: TTOC[]) {
-			items?.forEach((item) => {
-				urls.push(item.url.slice(1)) // remove the "#" from the URL
+		const traverse = (items: TocItem[] = []) => {
+			items.forEach((item) => {
+				urls.push(item.url.slice(1)) // Remove the "#" from the URL
 				if (item.items && item.items.length > 0) {
 					traverse(item.items)
 				}
 			})
 		}
 
-		traverse(Toc)
+		traverse(toc)
 		return urls
 	}
 
@@ -43,8 +41,8 @@ function TableOfContentDesktop<T>({ post }: { post: T & { toc: TTOC[] } }) {
 
 	const flatTocArray = useMemo(() => {
 		const flat: { url: string; title: string; level: number }[] = []
-		const flatten = (headers: Header[], level: number = 0) => {
-			headers?.forEach((header) => {
+		const flatten = (headers: TocItem[], level: number = 0) => {
+			headers.forEach((header) => {
 				flat.push({ url: header.url, title: header.title, level })
 				if (header.items && header.items.length > 0) {
 					flatten(header.items, level + 1)

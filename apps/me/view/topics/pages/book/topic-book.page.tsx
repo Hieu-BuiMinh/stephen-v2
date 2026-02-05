@@ -13,15 +13,15 @@ function TopicBookPageView() {
 	const bookRecaps: { [key: string]: { name: string; posts: T[] } } = {
 		'life-habits': {
 			name: 'Life Habits',
-			posts: bookRecap?.filter((post) => post.type === 'life-habits'),
+			posts: bookRecap?.filter((post) => post.type === 'life-habits')?.slice(0, 4),
 		},
 		productivity: {
 			name: 'Productivity',
-			posts: bookRecap?.filter((post) => post.type === 'productivity'),
+			posts: bookRecap?.filter((post) => post.type === 'productivity')?.slice(0, 4),
 		},
 		others: {
 			name: 'Others',
-			posts: bookRecap?.filter((post) => post.type === 'others'),
+			posts: bookRecap?.filter((post) => post.type === 'others')?.slice(0, 4),
 		},
 	}
 

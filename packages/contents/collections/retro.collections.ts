@@ -20,6 +20,7 @@ const retroPost = defineCollection({
 			published: s.boolean().default(true),
 			hashTags: s.array(s.string()).optional(),
 			body: s.mdx(),
+			retroType: s.enum(['MILESTONE', 'RECAP']).default('MILESTONE'),
 			author: s
 				.object({
 					avatar: s.string(),

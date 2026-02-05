@@ -24,7 +24,7 @@ function HeroSection03() {
 				squareSize={5}
 				gridGap={4}
 				color="#60A5FA"
-				className="absolute size-full inset-0 z-0 [mask-image:radial-gradient(650px_circle_at_center,white,transparent)] hidden md:block"
+				className="absolute pointer-events-none size-full inset-0 z-0 [mask-image:radial-gradient(650px_circle_at_center,white,transparent)] hidden md:block"
 			/>
 			<div className="relative">
 				<ProfilePicture />

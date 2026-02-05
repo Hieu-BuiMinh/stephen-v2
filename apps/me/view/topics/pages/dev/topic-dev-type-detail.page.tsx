@@ -1,15 +1,17 @@
-import type { ARTICLES, DEV_POST_TYPE } from '@repo/stephen-v2-contents'
+import type { ARTICLES, BOOKS_POST_TYPE, DEV_POST_TYPE, OTHERS_POST_TYPE } from '@repo/stephen-v2-contents'
 import { devPost } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import { TableOfContentDesktop } from '@repo/stephen-v2-ui/shadcn'
+import { cn } from '@repo/stephen-v2-utils'
 import { notFound } from 'next/navigation'
 
 import MDXContentComponent from '@/components/mdx-content'
 import PostDetailHeader from '@/components/post/post-detail-header'
 import PostLastUpdated from '@/components/post/post-last-updated'
 
+type TType = DEV_POST_TYPE | BOOKS_POST_TYPE | OTHERS_POST_TYPE
 interface PostPageProps {
-	params: Promise<{ collection: keyof typeof ARTICLES; type: DEV_POST_TYPE; id: string }>
+	params: { collection: keyof typeof ARTICLES; type: TType; id: string }
 }
 
 export default async function TopicDevTypeDetailPage({ params }: PostPageProps) {
@@ -25,7 +27,12 @@ export default async function TopicDevTypeDetailPage({ params }: PostPageProps) 
 	return (
 		<>
 			<PostDetailHeader post={post} />
-			<div className={`relative grid col-span-1 lg:grid-cols-[1fr_${hadToc ? 250 : 0}px] gap-10 mt-5 px-3`}>
+			<div
+				className={cn(
+					`grid col-span-1 lg:grid-cols-[1fr_0px] gap-10 mt-5 px-3`,
+					hadToc && 'lg:grid-cols-[1fr_250px]'
+				)}
+			>
 				<MDXContentComponent code={post.body} className="col-span-1 min-w-full" />
 
 				{hadToc && (

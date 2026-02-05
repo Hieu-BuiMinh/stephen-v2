@@ -11,34 +11,22 @@ function TopicShortWritingPage() {
 	const shortWritingPosts: { [key: string]: { name: string; posts: TPost[]; description?: string } } = {
 		journaling: {
 			name: 'Journaling',
-			posts: sortPostsByDate(
-				shortWriting?.filter((post) => post.type === 'journaling'),
-				'desc'
-			),
+			posts: sortPostsByDate(shortWriting?.filter((post) => post.type === 'journaling')?.slice(0, 4), 'desc'),
 			description: `A record of experiences, reflections, and gradual personal growth over time.`,
 		},
 		buddhism: {
 			name: 'Buddhism',
-			posts: sortPostsByDate(
-				shortWriting?.filter((post) => post.type === 'buddhism'),
-				'desc'
-			),
+			posts: sortPostsByDate(shortWriting?.filter((post) => post.type === 'buddhism')?.slice(0, 4), 'desc'),
 			description: `Exploring philosophical ideas and life principles.`,
 		},
 		'i-ching': {
 			name: 'I Ching',
-			posts: sortPostsByDate(
-				shortWriting?.filter((post) => post.type === 'i-ching'),
-				'desc'
-			),
+			posts: sortPostsByDate(shortWriting?.filter((post) => post.type === 'i-ching')?.slice(0, 4), 'desc'),
 			description: `Insights and wisdom from the ancient Chinese text to guide decision-making.`,
 		},
 		'ba-zi': {
 			name: 'Ba Zi (Eight Characters)',
-			posts: sortPostsByDate(
-				shortWriting?.filter((post) => post.type === 'ba-zi'),
-				'desc'
-			),
+			posts: sortPostsByDate(shortWriting?.filter((post) => post.type === 'ba-zi')?.slice(0, 4), 'desc'),
 			description: `A collection of life insights and practices to help understand oneself.`,
 		},
 	}

@@ -1,14 +1,15 @@
-import type { ARTICLES, BOOKS_POST_TYPE, DEV_POST_TYPE, OTHERS_POST_TYPE } from '@repo/stephen-v2-contents'
+import type { BOOKS_POST_TYPE, DEV_POST_TYPE, OTHERS_POST_TYPE } from '@repo/stephen-v2-contents'
+import type { ARTICLES } from '@repo/stephen-v2-contents'
 
 import TopicBookTypePage from '@/view/topics/pages/book/topic-book-type.page'
 import TopicDevTypePage from '@/view/topics/pages/dev/topic-dev-type.page'
 import TopicShortWritingTypePage from '@/view/topics/pages/short-writing/topic-short-writing-type.page'
+export const dynamic = 'force-static'
 
-interface ITopicTypeProps {
-	params: Promise<{ collection: keyof typeof ARTICLES; type: DEV_POST_TYPE & BOOKS_POST_TYPE & OTHERS_POST_TYPE }>
-}
+type TType = DEV_POST_TYPE | BOOKS_POST_TYPE | OTHERS_POST_TYPE
+type TParams = Promise<{ collection: keyof typeof ARTICLES; type: TType }>
 
-async function TopicTypePage({ params }: ITopicTypeProps) {
+export default async function TopicTypePage({ params }: { params: TParams }) {
 	const { collection } = await params
 
 	switch (collection) {
@@ -18,10 +19,7 @@ async function TopicTypePage({ params }: ITopicTypeProps) {
 			return <TopicBookTypePage params={params} />
 		case 'others':
 			return <TopicShortWritingTypePage params={params} />
-
 		default:
 			return null
 	}
 }
-
-export default TopicTypePage
