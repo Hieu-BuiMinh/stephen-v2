@@ -129,7 +129,8 @@ export interface IHexagramFamily {
 	id: TBaguaId
 	baguaFamily: TBaguaFamily
 	originElement: TOriginElement
-	vietnameseElementName?: TElemVi // (một số item của bạn chưa có field này)
+	vietnameseElementName?: TElemVi
 	members: IHexagramMember[]
 	originRelatives: [string, string, string, string, string, string]
+	indexesElements?: [TElementIndex, TElementIndex, TElementIndex, TElementIndex, TElementIndex, TElementIndex]
 }

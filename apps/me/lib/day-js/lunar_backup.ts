@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 // ====================================================
 // 1) HẰNG SỐ & KIỂU DỮ LIỆU CÔNG KHAI
 // ====================================================
@@ -389,45 +388,9 @@ export function solarToLunar(solarDay: number, solarMonth: number, solarYear: nu
 // ====================================================
 // 5) CAN–CHI & TIẾT KHÍ
 // ====================================================
-
-/**
- * Tìm ngày Lập Xuân chính xác của năm dương lịch
- * Lập xuân có index = 21 trong TIETKHI (kinh độ mặt trời 315°)
- */
-function findLapXuanDate(year: number): number {
-	// Lập xuân thường rơi vào 3-5 tháng 2
-	for (let day = 1; day <= 28; day++) {
-		const jd = julianDayFromDate(day, 2, year)
-		const longRad = sunLongitude(jd + 1)
-		const index = toInt(longRad / (Math.PI / 12))
-		if (index === 21) {
-			return jd
-		}
-	}
-	// Nếu không tìm thấy trong tháng 2, thử đầu tháng 3
-	for (let day = 1; day <= 10; day++) {
-		const jd = julianDayFromDate(day, 3, year)
-		const longRad = sunLongitude(jd + 1)
-		const index = toInt(longRad / (Math.PI / 12))
-		if (index === 21) {
-			return jd
-		}
-	}
-	// Fallback: Lập xuân khoảng 4/2
-	return julianDayFromDate(4, 2, year)
-}
-
-export function zodiacYear(dd: number, mm: number, yy: number, timeZone = 7): string {
-	const currentJd = julianDayFromDate(dd, mm, yy)
-
-	// Tìm ngày Lập Xuân của năm hiện tại
-	const lapXuanJd = findLapXuanDate(yy)
-
-	// Nếu chưa qua Lập xuân, dùng năm trước
-	const actualYear = currentJd < lapXuanJd ? yy - 1 : yy
-
-	const canIndex = (actualYear + 6) % 10
-	const chiIndex = (actualYear + 8) % 12
+export function zodiacYear(year: number): string {
+	const canIndex = (year + 6) % 10
+	const chiIndex = (year + 8) % 12
 	return `${CAN[canIndex]} ${CHI[chiIndex]}`
 }
 
@@ -448,9 +411,10 @@ export function lunarLeap(year: number): 0 | 1 {
 }
 
 /** Lấy meta Tiết khí + Nguyệt lệnh thành 1 object */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function getTietKhiInfo(dd: number, mm: number, yy: number, timeZone = 7): TietKhiMeta {
 	const jd = julianDayFromDate(dd, mm, yy)
-	const longRad = sunLongitude(jd + 1)
+	const longRad = sunLongitude(jd + 1) // giữ nguyên như bản gốc
 	const index = toInt(longRad / (Math.PI / 12)) // 0..23
 	const solarLongitudeDeg = index * 15
 
@@ -480,10 +444,10 @@ export function dayStemIndex(dd: number, mm: number, yy: number): number {
 // 5.1) TUẦN ÂM LỊCH "GIÁP …" & KHÔNG VONG THEO TUẦN
 // ====================================================
 
-// 6 neo chi của chu kỳ tuần "Giáp …" theo quy ước bạn đưa
+// 6 neo chi của chu kỳ tuần “Giáp …” theo quy ước bạn đưa
 const WEEK_ANCHOR_CHI = ['Tý', 'Tuất', 'Thân', 'Ngọ', 'Thìn', 'Dần'] as const
 
-// Bản đồ "Tuần Giáp X" → cặp Không Vong
+// Bản đồ “Tuần Giáp X” → cặp Không Vong
 const KHONG_VONG_BY_WEEK_NAME: Record<string, string[]> = {
 	'Giáp Tý': ['Tuất', 'Hợi'],
 	'Giáp Tuất': ['Thân', 'Dậu'],
@@ -494,7 +458,7 @@ const KHONG_VONG_BY_WEEK_NAME: Record<string, string[]> = {
 }
 
 /**
- * Tính "Tuần Giáp …" theo quy ước 6 tuần.
+ * Tính “Tuần Giáp …” theo quy ước 6 tuần.
  * Ý tưởng:
  *  - Lùi từ hôm nay về quá khứ tới ngày có Thiên Can = "Giáp".
  *  - Lấy Địa Chi của ngày đó để đặt tên tuần: "Giáp <Chi>".
@@ -533,7 +497,7 @@ export function getLunarWeekInfo(
 	return { name: weekName, none, todayIsNone }
 }
 
-/** Hôm nay có rơi vào 2 chi "Không Vong" của tuần không? (tiện ích) */
+/** Hôm nay có rơi vào 2 chi “Không Vong” của tuần không? (tiện ích) */
 export function isKhongVongTodayByWeek(dd: number, mm: number, yy: number): boolean {
 	return getLunarWeekInfo(dd, mm, yy).todayIsNone
 }
@@ -541,7 +505,7 @@ export function isKhongVongTodayByWeek(dd: number, mm: number, yy: number): bool
 // ====================================================
 // 6) THIÊN ĐỈNH (SOLAR NOON) & GIỜ ÂM THEO THIÊN ĐỈNH
 // ====================================================
-/** Offset phút giữa "đồng hồ thiên văn" & đồng hồ địa phương */
+/** Offset phút giữa “đồng hồ thiên văn” & đồng hồ địa phương */
 function solarOffsetMinutes(date: Date, timeZone = 7, longitudeDeg: number = LONGITUDE_HCM): number {
 	const n = dayOfYearLocal(date, timeZone)
 	const eot = equationOfTimeMinutes(n)
@@ -661,7 +625,7 @@ export function getHolidayString(
  * - tietKhi: object meta (tên, nguyệt lệnh, kinh độ mặt trời,…)
  * - solarNoon: phút từ 00:00 và chuỗi "HH:MM GMT±X"
  * - hours: danh sách 12 khung giờ hôm nay (theo thiên đỉnh)
- * - week: Tuần "Giáp …" & cặp Không Vong của tuần + todayIsNone
+ * - week: Tuần “Giáp …” & cặp Không Vong của tuần + todayIsNone
  * - longitude mặc định: TP.HCM (106.7°E)
  */
 export function getLunarSnapshotSolar(
@@ -674,7 +638,7 @@ export function getLunarSnapshotSolar(
 	const lunar = solarToLunar(dd, mm, yy, timeZone)
 	const hourIdx = hourBranchIndexSolar(local, timeZone, longitudeDeg)
 
-	const zYear = zodiacYear(dd, mm, yy, timeZone)
+	const zYear = zodiacYear(yy)
 	const zMonth = zodiacMonth(lunar.month, lunar.year)
 	const zDay = zodiacDay(dd, mm, yy)
 	const { canChi: zHour } = zodiacHourSolar(local, timeZone, longitudeDeg)

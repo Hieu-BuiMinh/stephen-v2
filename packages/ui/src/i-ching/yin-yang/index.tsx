@@ -6,23 +6,26 @@ interface YinYangProps {
 	type?: 1 | 0 // 1: yang, 0: yin
 	activated?: boolean
 	className?: string
+	animated?: boolean
 }
 
-function YinYang({ type = 1, activated = false, className }: YinYangProps) {
+function YinYang({ type = 1, activated = false, className, animated = true }: YinYangProps) {
 	if (type === 0) {
 		return (
 			<div className="w-16 h-4 flex items-center gap-2.5">
 				<span
 					className={cn(
 						'yin-yang size-full rounded-xs dark:border dark:bg-white bg-neutral-50',
-						activated && 'yin-yang--active bg-stripes border border-red-400 bg-[length:7.07px_7.07px]',
+						activated && 'bg-stripes border border-red-400 bg-[length:7.07px_7.07px]',
+						animated && activated && 'yin-yang--active',
 						className
 					)}
 				/>
 				<span
 					className={cn(
 						'yin-yang size-full rounded-xs dark:border dark:bg-white bg-neutral-50',
-						activated && 'yin-yang--active bg-stripes border border-red-400 bg-[length:7.07px_7.07px]',
+						activated && 'bg-stripes border border-red-400 bg-[length:7.07px_7.07px]',
+						animated && activated && 'yin-yang--active',
 						className
 					)}
 				/>
@@ -34,7 +37,8 @@ function YinYang({ type = 1, activated = false, className }: YinYangProps) {
 		<div
 			className={cn(
 				'yin-yang w-16 h-4 rounded-xs dark:border dark:bg-white bg-neutral-50',
-				activated && 'yin-yang--active bg-stripes border border-red-400 bg-[length:7.07px_7.07px]',
+				activated && 'bg-stripes border border-red-400 bg-[length:7.07px_7.07px]',
+				animated && activated && 'yin-yang--active',
 				className
 			)}
 		/>

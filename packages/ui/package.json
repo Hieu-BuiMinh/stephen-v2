@@ -72,6 +72,7 @@
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.525.0",
+    "modern-screenshot": "^4.6.8",
     "motion": "^11.18.2",
     "nanoid": "^5.1.5",
     "next": "15.3.8",
