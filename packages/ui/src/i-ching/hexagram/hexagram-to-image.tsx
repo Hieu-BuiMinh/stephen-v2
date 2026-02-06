@@ -1,10 +1,10 @@
 'use client'
 
+import { Download } from 'lucide-react'
 import { domToPng } from 'modern-screenshot'
 import { useTheme } from 'next-themes'
 import { useEffect, useRef, useState } from 'react'
 
-import { Download } from 'lucide-react'
 import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../shadcn'
 import type { IHexagram } from './hexagram-origin'
 import { Hexagram } from './hexagram-origin'
@@ -117,7 +117,7 @@ export function HexagramToImage({
 
 			{/* Preview Image */}
 			{exportedImage && (
-				<div className="flex flex-col gap-3 border rounded-lg p-3 bg-muted/30">
+				<div className="flex flex-col items-end gap-3 border rounded-lg p-3 bg-muted/30">
 					<img
 						src={exportedImage}
 						alt="Hexagram Preview"
@@ -140,12 +140,7 @@ export function HexagramToImage({
 							</SelectContent>
 						</Select>
 
-						<Button
-							onClick={handleDownload}
-							disabled={!exportedImage}
-							// className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80 disabled:opacity-50 disabled:cursor-not-allowed"
-							variant="primary-matter"
-						>
+						<Button onClick={handleDownload} disabled={!exportedImage} variant="primary-matter">
 							<Download className="size-4 shrink-0" />
 						</Button>
 					</div>
