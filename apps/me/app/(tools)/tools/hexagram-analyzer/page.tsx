@@ -1,11 +1,11 @@
 import { shortWriting } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import { notFound } from 'next/navigation'
+import React from 'react'
 
-import MDXContentComponent from '@/components/mdx-content'
 import PostPageTitle from '@/components/post/post-page-title'
 import { APP_CONFIG } from '@/configs/app-config'
-import LunarTimeChartPageView from '@/view/tools/pages/lunar-time-chart/lunar-time-chart.page'
+import HexagramAnalyzerPageView from '@/view/tools/pages/hexagram-analyzer/hexagram-analyzer.page'
 
 const getShortWritingPost = () => {
 	const id = 'b6371c36-fb1e-4cc1-96bc-63e776ee54f8'
@@ -46,20 +46,17 @@ export async function generateMetadata() {
 	}
 }
 
-function LunarDateChart() {
-	const post = getShortWritingPost()
-
+function HexagramAnalyzer() {
 	return (
 		<div className="pb-44">
 			<PostPageTitle
-				title="Lunar Day Conversion Chart"
-				description="Explore how to convert between the Lunar and Gregorian calendars with this intuitive and easy-to-use tool."
+				title="I Ching Hexagram Tool"
+				description="Explore and interpret I Ching hexagrams with an intuitive six-line hexagram analysis tool."
 			/>
 
-			<LunarTimeChartPageView />
-			{post.body && <MDXContentComponent code={post.body} className="min-w-full px-3 pt-8" />}
+			<HexagramAnalyzerPageView />
 		</div>
 	)
 }
 
-export default LunarDateChart
+export default HexagramAnalyzer

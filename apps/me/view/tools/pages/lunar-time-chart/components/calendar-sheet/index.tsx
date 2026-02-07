@@ -1,13 +1,9 @@
 import { Button, Calendar, ScrollArea, ScrollBar } from '@repo/stephen-v2-ui/shadcn'
 
-import { getLunarSnapshotSolar } from '@/lib/day-js/lunar'
-
 function CalendarSheet({ day, onchange }: { day: Date; onchange?: (day: Date) => void }) {
 	const baseDay = day || new Date()
 
-	const snap = getLunarSnapshotSolar(day || new Date())
-
-	console.log(snap)
+	// const snap = getLunarSnapshotSolar(day || new Date())
 
 	const hours = Array.from({ length: 24 }, (_, i) => i)
 	const handleDateSelect = (selectedDate: Date | undefined) => {

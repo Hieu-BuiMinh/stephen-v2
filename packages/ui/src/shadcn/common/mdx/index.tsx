@@ -83,7 +83,6 @@ const components = {
 	},
 	code: (props: React.ComponentPropsWithoutRef<'code'>) => {
 		const { children } = props
-		// console.log('props', props)
 		return <code>{children}</code>
 	},
 	CodeBlockTabs,

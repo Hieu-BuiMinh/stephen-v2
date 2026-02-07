@@ -1,9 +1,16 @@
 import { hexagramFamily } from './constants/64-hexagrams'
-import type { TEarthlyBranchIndex, TElementIndex, TRelativeIndex } from './i-ching.dto'
+import type {
+	TEarthlyBranchIndex,
+	TElementIndex,
+	THeavenlyStems,
+	TRelativeIndex,
+	TSixSymbolicAminals,
+} from './i-ching.dto'
 import {
 	ElementType,
 	type IHexagramFamily,
 	type IHexagramMember,
+	SixSymbolicAminals,
 	type TBaguaId,
 	type TElementType,
 	type TYinYang,
@@ -228,5 +235,77 @@ export const converEarthlyBranchIndexToElement = (index?: TEarthlyBranchIndex): 
 			return ElementType.Earth
 		default:
 			return ElementType.Water
+	}
+}
+
+export const converTodayHeavenlySixSymbolicAnimals = (dayHevenly: THeavenlyStems): TSixSymbolicAminals[] => {
+	switch (dayHevenly) {
+		case 'Giáp':
+		case 'Ất':
+			return [
+				SixSymbolicAminals[0],
+				SixSymbolicAminals[1],
+				SixSymbolicAminals[2],
+				SixSymbolicAminals[3],
+				SixSymbolicAminals[4],
+				SixSymbolicAminals[5],
+			]
+		case 'Bính':
+		case 'Đinh':
+			return [
+				SixSymbolicAminals[1],
+				SixSymbolicAminals[2],
+				SixSymbolicAminals[3],
+				SixSymbolicAminals[4],
+				SixSymbolicAminals[5],
+				SixSymbolicAminals[0],
+			]
+		case 'Mậu':
+			return [
+				SixSymbolicAminals[2],
+				SixSymbolicAminals[3],
+				SixSymbolicAminals[4],
+				SixSymbolicAminals[5],
+				SixSymbolicAminals[0],
+				SixSymbolicAminals[1],
+			]
+		case 'Kỷ':
+			return [
+				SixSymbolicAminals[3],
+				SixSymbolicAminals[4],
+				SixSymbolicAminals[5],
+				SixSymbolicAminals[0],
+				SixSymbolicAminals[1],
+				SixSymbolicAminals[2],
+			]
+		case 'Canh':
+		case 'Tân':
+			return [
+				SixSymbolicAminals[4],
+				SixSymbolicAminals[5],
+				SixSymbolicAminals[0],
+				SixSymbolicAminals[1],
+				SixSymbolicAminals[2],
+				SixSymbolicAminals[3],
+			]
+		case 'Nhâm':
+		case 'Quý':
+			return [
+				SixSymbolicAminals[5],
+				SixSymbolicAminals[0],
+				SixSymbolicAminals[1],
+				SixSymbolicAminals[2],
+				SixSymbolicAminals[3],
+				SixSymbolicAminals[4],
+			]
+		default:
+			return [
+				SixSymbolicAminals[0],
+				SixSymbolicAminals[1],
+				SixSymbolicAminals[2],
+				SixSymbolicAminals[3],
+				SixSymbolicAminals[4],
+				SixSymbolicAminals[5],
+			]
 	}
 }

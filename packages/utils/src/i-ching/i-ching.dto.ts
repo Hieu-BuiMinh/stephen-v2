@@ -1,3 +1,29 @@
+export const HeavenlyStems = ['Giáp', 'Ất', 'Bính', 'Đinh', 'Mậu', 'Kỷ', 'Canh', 'Tân', 'Nhâm', 'Quý'] as const
+export type THeavenlyStems = (typeof HeavenlyStems)[number]
+export enum EHeavenlyStems {
+	'Giáp' = 1,
+	'Ất' = 2,
+	'Bính' = 3,
+	'Đinh' = 4,
+	'Mậu' = 5,
+	'Kỷ' = 6,
+	'Canh' = 7,
+	'Tân' = 8,
+	'Nhâm' = 9,
+	'Quý' = 10,
+}
+
+export const SixSymbolicAminals = ['Thanh Long', 'Chu Tước', 'Câu Trần', 'Đằng Xà', 'Bạch Hổ', 'Huyển Vũ'] as const
+export type TSixSymbolicAminals = (typeof SixSymbolicAminals)[number]
+export enum ESixSymbolicAminals {
+	'Thanh Long' = 1,
+	'Chu Tước' = 2,
+	'Câu Trần' = 3,
+	'Đằng Xà' = 4,
+	'Bạch Hổ' = 5,
+	'Huyển Vũ' = 6,
+}
+
 // ===== enums / primitives =====
 export type TBaguaId = 9 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 0
 export enum TBagua {
@@ -24,10 +50,10 @@ export enum ElementType {
 export type TElementIndex = 1 | 2 | 3 | 4 | 5
 export type TElemVi = 'Kim' | 'Mộc' | 'Thủy' | 'Hỏa' | 'Thổ'
 export enum ElemVi {
-	'Kim' = 1,
-	'Mộc' = 2,
-	'Thủy' = 3,
-	'Hỏa' = 4,
+	'Thủy' = 1,
+	'Hỏa' = 2,
+	'Mộc' = 3,
+	'Kim' = 4,
 	'Thổ' = 5,
 }
 
@@ -133,4 +159,5 @@ export interface IHexagramFamily {
 	members: IHexagramMember[]
 	originRelatives: [string, string, string, string, string, string]
 	indexesElements?: [TElementIndex, TElementIndex, TElementIndex, TElementIndex, TElementIndex, TElementIndex]
+	indexesElement?: TElementIndex
 }

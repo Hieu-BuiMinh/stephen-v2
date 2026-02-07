@@ -1,15 +1,22 @@
-import { d } from '@/lib/day-js'
-import { getLunarSnapshotSolar } from '@/lib/day-js/lunar'
+import { cn } from '@repo/stephen-v2-utils'
+import { getLunarSnapshotSolar } from '@repo/stephen-v2-utils/i-ching'
 
-function LunarHeader({ day }: { day?: Date }) {
+import { d } from '@/lib/day-js'
+
+function LunarHeader({ day, className }: { day?: Date; className?: string }) {
 	const baseDate = day ? d(day) : d()
 
 	const snap = getLunarSnapshotSolar(baseDate.toDate())
 
-	const { lunar, zodiacDay, zodiacHour, zodiacMonth, zodiacYear, tietKhi } = snap
+	const { lunar, zodiacDay, zodiacHour, zodiacMonth, zodiacYear, week, tietKhi } = snap
 
 	return (
-		<div className="flex flex-col text-muted-foreground gap-2 items-center justify-center">
+		<div
+			className={cn(
+				'flex flex-col text-muted-foreground gap-2 items-center justify-center text-center',
+				className
+			)}
+		>
 			<p>
 				Giờ: {baseDate.format('HH:mm DD/MM/YYYY')} Dương Lịch ( {lunar.day}/{lunar.month}/{lunar.year} Âm Lịch)
 			</p>
@@ -22,6 +29,13 @@ function LunarHeader({ day }: { day?: Date }) {
 			<p>
 				Tiết <span className="text-foreground">{tietKhi.name}</span>, Nguyệt Lệnh{' '}
 				<span className="text-foreground">{tietKhi.nguyetLenh}</span>
+			</p>
+			<p>
+				Tuần: <span className="text-foreground">{week.name}</span> |{' '}
+				<span className="text-foreground underline decoration-wavy">
+					{week.none.map((n) => ` ${n}`).join(' - ')}
+				</span>{' '}
+				- không
 			</p>
 		</div>
 	)

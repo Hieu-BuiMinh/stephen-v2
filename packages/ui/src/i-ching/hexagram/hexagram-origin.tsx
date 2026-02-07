@@ -1,7 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { cn } from '@repo/stephen-v2-utils'
-import type { TBaguaId, TEarthlyBranchIndex } from '@repo/stephen-v2-utils/i-ching'
-import { converToHexagrams, EarthlyBranch, ElementType, ElemVi, Relative } from '@repo/stephen-v2-utils/i-ching'
+import { cn, d } from '@repo/stephen-v2-utils'
+import type { TBaguaId, TEarthlyBranchIndex, THeavenlyStems } from '@repo/stephen-v2-utils/i-ching'
+import {
+	converTodayHeavenlySixSymbolicAnimals,
+	converToHexagrams,
+	EarthlyBranch,
+	ElementType,
+	ElemVi,
+	getLunarSnapshotSolar,
+	Relative,
+} from '@repo/stephen-v2-utils/i-ching'
 import { nanoid } from 'nanoid'
 
 import { YinYang } from '../yin-yang'
@@ -25,6 +33,7 @@ export interface IHexagram {
 	showHexagramName?: boolean
 	yinYangClassName?: string
 	animated?: boolean
+	day?: Date // dùng ngày lập quẻ để an lục thú + thiên can
 }
 
 function Hexagram({
@@ -45,6 +54,7 @@ function Hexagram({
 	showHexagramName, // hiện tên quẻ
 	yinYangClassName,
 	animated = true,
+	day,
 }: IHexagram) {
 	// Quẻ Chủ
 	const {
@@ -77,7 +87,7 @@ function Hexagram({
 	// Quẻ Biến
 	const { member: memberAfter, indexesElements: indexesElementsAfter } = converToHexagrams({
 		hexagramYinyangIndexs: indexesAfterChange,
-		elementToCompareWith: ElementType[fammilyBefore?.id as ElementType],
+		elementToCompareWith: ElementType[fammilyBefore?.indexesElement as ElementType],
 	})
 
 	const upperAfterIndexes = [
@@ -91,10 +101,26 @@ function Hexagram({
 		memberAfter?.yinyangIndexs?.[5],
 	]
 
+	// tìm lục thú theo ngày
+
+	const baseDate = day ? d(day) : d()
+
+	const snap = getLunarSnapshotSolar(baseDate.toDate())
+
+	const sixCreatures = converTodayHeavenlySixSymbolicAnimals(snap.zodiacDay.split(' ')[0] as THeavenlyStems)
+
 	return (
-		<div className="flex items-center justify-between gap-5 px-4">
+		<div className={cn('flex items-center justify-between gap-5 px-4', className)}>
 			{/* Quẻ chủ */}
-			<div className={cn('flex flex-col gap-3 items-center flex-1 shrink-0', className)}>
+			<div className={cn('flex flex-col gap-3 items-center flex-1 shrink-0')}>
+				<div className="w-full grid grid-cols-12 text-[10px] text-muted-foreground">
+					<div className="col-span-1" />
+					<div className="col-span-2 line-clamp-1 truncate">Hào</div>
+					<div className="col-span-2 line-clamp-1 truncate">Lục Thân</div>
+					<div className="col-span-3 line-clamp-1 truncate">Phục Thần</div>
+					<div className="col-span-2 line-clamp-1 truncate">Địa Chi</div>
+					<div className="col-span-1 line-clamp-1 truncate">Ngũ Hành</div>
+				</div>
 				<div className="flex flex-col w-full gap-1.5">
 					{upperBeforeIndexes?.map((item, i) => (
 						<div className="grid grid-cols-12" key={nanoid()}>
@@ -237,7 +263,9 @@ function Hexagram({
 						{showOriginFamily && (
 							<>
 								{' - '}
-								<span className="font-bold underline">{ElemVi[fammilyBefore?.id as ElemVi]}</span>
+								<span className="font-bold underline">
+									{ElemVi[fammilyBefore?.indexesElement as ElemVi]}
+								</span>
 							</>
 						)}
 					</span>
@@ -247,6 +275,14 @@ function Hexagram({
 			{/* Quẻ biến */}
 			{showResultHexagram && (
 				<div className={cn('flex flex-col gap-3 items-center flex-1 shrink-0', className)}>
+					<div className="w-full grid grid-cols-12 text-[10px] text-muted-foreground">
+						<div className="col-span-1" />
+						<div className="col-span-2 line-clamp-1 truncate">Hào</div>
+						<div className="col-span-2 line-clamp-1 truncate">Lục Thân</div>
+						<div className="col-span-2 line-clamp-1 truncate">Địa Chi</div>
+						<div className="col-span-2 line-clamp-1 truncate">Lục Thú</div>
+						<div className="col-span-1 line-clamp-1 truncate">Ngũ Hành</div>
+					</div>
 					<div className="flex flex-col w-full gap-1.5">
 						{upperAfterIndexes?.map((item, i) => (
 							<div className="grid grid-cols-12" key={nanoid()}>
@@ -289,6 +325,7 @@ function Hexagram({
 								)}
 								{/* thiên can */}
 								{/* lục thú */}
+								<span className="col-span-2 text-xs">{sixCreatures[5 - i]}</span>
 								{/* Ngũ hành */}
 								{showElements && (
 									<span className="col-span-1">
@@ -342,6 +379,8 @@ function Hexagram({
 										{EarthlyBranch[memberAfter?.hexagramEarthlyBranches?.[3 + i] as Relative]}
 									</span>
 								)}
+								{/* lục thú */}
+								<span className="col-span-2 text-xs">{sixCreatures[2 - i]}</span>
 								{/* Ngũ hành */}
 								{showElements && (
 									<span className="col-span-1">

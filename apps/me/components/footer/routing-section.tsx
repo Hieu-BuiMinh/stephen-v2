@@ -44,7 +44,7 @@ function FooterRoutingSection() {
 		{
 			name: 'Tools',
 			links: [
-				// { lable: 'I-Ching divination', href: '/', disable: true },
+				{ lable: 'I-Ching divination', href: '/tools/hexagram-analyzer', disable: false },
 				{ lable: 'Lunar date time', href: '/tools/lunar-time-chart' },
 			],
 		},
@@ -68,8 +68,8 @@ function FooterRoutingSection() {
 												<TooltipTrigger className="cursor-pointer italic" asChild>
 													<span>{link.lable}</span>
 												</TooltipTrigger>
-												<TooltipContent className="bg-black text-white">
-													<p className="w-32">Comming soon 🧪</p>
+												<TooltipContent>
+													<p className="w-32">Comming soon</p>
 												</TooltipContent>
 											</Tooltip>
 										</TooltipProvider>

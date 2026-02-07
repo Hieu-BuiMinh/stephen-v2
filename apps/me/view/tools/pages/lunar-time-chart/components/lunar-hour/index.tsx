@@ -2,13 +2,13 @@
 
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
+import type { HourSlot } from '@repo/stephen-v2-utils/i-ching'
+import { getLunarSnapshotSolar } from '@repo/stephen-v2-utils/i-ching'
 import type { Dayjs } from 'dayjs'
 import { useEffect, useMemo, useState } from 'react'
 
 import type dayjs from '@/lib/day-js'
 import { d } from '@/lib/day-js'
-import type { HourSlot } from '@/lib/day-js/lunar'
-import { getLunarSnapshotSolar } from '@/lib/day-js/lunar'
 
 type Segment = {
 	chi: string

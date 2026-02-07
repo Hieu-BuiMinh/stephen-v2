@@ -5,6 +5,7 @@ const hexagramFamily: IHexagramFamily[] = [
 		id: 1,
 		baguaFamily: 'Càn',
 		originElement: { type: 'Metal', vi: 'Kim', en: 'Metal' },
+		indexesElement: 4,
 		members: [
 			{
 				value: [1, 1],
@@ -70,7 +71,7 @@ const hexagramFamily: IHexagramFamily[] = [
 				questionerIndex: 5,
 				questionIndex: 2,
 				hexagramName: 'Sơn Địa Bác',
-				yinyangIndexs: [0, 0, 1, 0, 0, 0],
+				yinyangIndexs: [1, 0, 0, 0, 0, 0],
 				hexagramRelatives: [4, 3, 1, 4, 5, 1], // Thê tài, Tử tôn, Phụ mẫu, Thê tài, Quan quỷ, Phụ mẫu
 				hexagramEarthlyBranches: [3, 1, 11, 4, 6, 8], // Dần, Tý, Tuất, Mão, Tỵ, Mùi
 				indexesElements: [3, 1, 5, 3, 2, 5],
@@ -110,6 +111,7 @@ const hexagramFamily: IHexagramFamily[] = [
 		baguaFamily: 'Đoài',
 		originElement: 'Metal',
 		vietnameseElementName: 'Kim',
+		indexesElement: 4,
 		members: [
 			{
 				value: [2, 2],
@@ -217,6 +219,7 @@ const hexagramFamily: IHexagramFamily[] = [
 		baguaFamily: 'Ly',
 		originElement: 'Fire',
 		vietnameseElementName: 'Hỏa',
+		indexesElement: 2,
 		members: [
 			{
 				value: [3, 3],
@@ -320,6 +323,7 @@ const hexagramFamily: IHexagramFamily[] = [
 		baguaFamily: 'Chấn',
 		originElement: 'Wood',
 		vietnameseElementName: 'Mộc',
+		indexesElement: 3,
 		members: [
 			{
 				value: [4, 4],
@@ -425,6 +429,7 @@ const hexagramFamily: IHexagramFamily[] = [
 		baguaFamily: 'Tốn',
 		originElement: 'Wood',
 		vietnameseElementName: 'Mộc',
+		indexesElement: 3,
 		members: [
 			{
 				value: [5, 5],
@@ -526,6 +531,7 @@ const hexagramFamily: IHexagramFamily[] = [
 		baguaFamily: 'Khảm',
 		originElement: 'Water',
 		vietnameseElementName: 'Thủy',
+		indexesElement: 1,
 		members: [
 			{
 				value: [6, 6],
@@ -632,6 +638,7 @@ const hexagramFamily: IHexagramFamily[] = [
 		baguaFamily: 'Cấn',
 		originElement: 'Earth',
 		vietnameseElementName: 'Thổ',
+		indexesElement: 5,
 		members: [
 			{
 				value: [7, 7],
@@ -737,6 +744,7 @@ const hexagramFamily: IHexagramFamily[] = [
 		baguaFamily: 'Khôn',
 		originElement: 'Earth',
 		vietnameseElementName: 'Thổ',
+		indexesElement: 5,
 		members: [
 			{
 				value: [8, 8],

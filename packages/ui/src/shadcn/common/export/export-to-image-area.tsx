@@ -3,39 +3,22 @@
 import { Download } from 'lucide-react'
 import { domToPng } from 'modern-screenshot'
 import { useTheme } from 'next-themes'
+import type { ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
 
-import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../shadcn'
-import type { IHexagram } from './hexagram-origin'
-import { Hexagram } from './hexagram-origin'
-
-interface HexagramToImageProps extends IHexagram {
-	width?: number
-	padding?: number
-}
+import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../index'
 
 type ExportFormat = 'png' | 'jpeg' | 'webp' | 'svg'
 
-export function HexagramToImage({
-	upper,
-	lower,
-	actives,
-	showResultHexagram,
-	showBranches,
-	showElements,
-	showHexagramName,
-	showHiddenRelative,
-	showIndex,
-	showLabel,
-	showOriginFamily,
-	showQuestionerAndQuestion,
-	showSixCreatures,
-	showSixRelatives,
+export function ExportToImageArea({
+	children,
 	width = 1200,
-	padding = 50,
-	animated = false,
-	...rest
-}: HexagramToImageProps) {
+	padding = 20,
+}: {
+	children: ReactNode
+	width?: number
+	padding?: number
+}) {
 	const { theme } = useTheme()
 	const containerRef = useRef<HTMLDivElement>(null)
 	const [selectedFormat, setSelectedFormat] = useState<ExportFormat>('png')
@@ -57,37 +40,22 @@ export function HexagramToImage({
 			}
 		}
 
+		// Delay to ensure DOM is ready
 		const timer = setTimeout(autoExport, 500)
 		return () => clearTimeout(timer)
-	}, [
-		upper,
-		lower,
-		actives,
-		showResultHexagram,
-		showBranches,
-		showElements,
-		showHexagramName,
-		showHiddenRelative,
-		showIndex,
-		showLabel,
-		showOriginFamily,
-		showQuestionerAndQuestion,
-		showSixCreatures,
-		showSixRelatives,
-		theme,
-	])
+	}, [containerRef, setExportedImage, theme, children])
 
 	const handleDownload = () => {
 		if (!exportedImage) return
 
 		const link = document.createElement('a')
-		link.download = `hexagram-${upper}-${lower}.${selectedFormat === 'jpeg' ? 'jpg' : selectedFormat}`
+		link.download = `export_${new Date().getTime()}.${selectedFormat === 'jpeg' ? 'jpg' : selectedFormat}`
 		link.href = exportedImage
 		link.click()
 	}
 
 	return (
-		<div className="">
+		<div className="px-4">
 			{/* Hidden container for rendering */}
 			<div className="absolute opacity-0 -left-[9999px]">
 				<div
@@ -95,31 +63,18 @@ export function HexagramToImage({
 					className="bg-background inline-block"
 					style={{ width: `${width}px`, padding: `${padding}px` }}
 				>
-					<Hexagram
-						upper={upper}
-						lower={lower}
-						actives={actives}
-						showResultHexagram={showResultHexagram}
-						showBranches={showBranches}
-						showElements={showElements}
-						showHexagramName={showHexagramName}
-						showHiddenRelative={showHiddenRelative}
-						showIndex={showIndex}
-						showLabel={showLabel}
-						showOriginFamily={showOriginFamily}
-						showQuestionerAndQuestion={showQuestionerAndQuestion}
-						showSixCreatures={showSixCreatures}
-						showSixRelatives={showSixRelatives}
-						animated={animated}
-						{...rest}
-					/>
+					{children}
 				</div>
 			</div>
 
 			{/* Preview Image */}
 			{exportedImage && (
-				<div className="flex flex-col items-end gap-3">
-					<img src={exportedImage} alt="Hexagram Preview" className="max-w-full h-auto" />
+				<div className="flex flex-col items-end gap-3 border rounded-lg p-3 bg-muted/30">
+					<img
+						src={exportedImage}
+						alt="Hexagram Preview"
+						className="max-w-full h-auto border bg-background rounded"
+					/>
 
 					{/* Controls */}
 					<div className="flex items-center gap-3 flex-wrap">
@@ -146,31 +101,3 @@ export function HexagramToImage({
 		</div>
 	)
 }
-
-/*
-USAGE:
-<HexagramToImage
-	upper={1}
-	lower={5}
-	actives={[1, 5]}
-	showResultHexagram
-	showElements
-	showHexagramName
-	showHiddenRelative
-	showIndex
-	showLabel
-	showOriginFamily
-	showQuestionerAndQuestion
-	showSixCreatures
-	showSixRelatives
-	width={1200}
-	padding={20}
-/>
-
-FEATURES:
-- Auto-generates PNG preview on mount
-- Select format: PNG, JPEG, WebP, SVG
-- Download button
-- Hidden render container (doesn't show Hexagram twice)
-- Responsive to theme changes
-*/
