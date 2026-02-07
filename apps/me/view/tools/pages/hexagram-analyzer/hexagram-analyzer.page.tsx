@@ -2,8 +2,7 @@
 
 import { Hexagram, HexagramToImage } from '@repo/stephen-v2-ui/i-ching'
 import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@repo/stephen-v2-ui/shadcn'
-import dayjs from 'dayjs'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import LunarHeader from '@/view/tools/components/lunar-header'
 import CalendarSheet from '@/view/tools/pages/lunar-time-chart/components/calendar-sheet'
@@ -20,14 +19,6 @@ function HexagramAnalyzerPageView() {
 	const hexagramData = useMemo(() => {
 		return handleCalcDateToHexagram(day)
 	}, [day])
-
-	const isToday = useMemo(() => {
-		return dayjs(day).isSame(dayjs(), 'day')
-	}, [day])
-
-	useEffect(() => {
-		handleOpenModal()
-	}, [])
 
 	return (
 		<div className="flex flex-col gap-14 p-3">
@@ -88,7 +79,7 @@ function HexagramAnalyzerPageView() {
 					<div className="mx-auto flex flex-col gap-5">
 						<CalendarSheet day={day} onchange={setDay} />
 						<div className="flex gap-3 items-center justify-end">
-							<Button variant="secondary-matter" disabled={isToday} onClick={handleReset}>
+							<Button variant="secondary-matter" onClick={handleReset}>
 								Đặt Lại
 							</Button>
 							<Button variant="primary-matter" onClick={handleCloseModal}>

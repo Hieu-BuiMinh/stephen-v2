@@ -173,9 +173,12 @@ function Hexagram({
 								</span>
 							)}
 							{/* địa chi */}
-							{showSixCreatures && (
+							{showSixCreatures && day && (
 								<span className="col-span-2 text-xs">
 									{EarthlyBranch[memberBefore?.hexagramEarthlyBranches?.[i] as Relative]}
+									{snap.week.none.includes(
+										EarthlyBranch[memberBefore?.hexagramEarthlyBranches?.[i] as Relative]!
+									) && <> - K</>}
 								</span>
 							)}
 							{/* Ngũ hành */}
@@ -246,6 +249,9 @@ function Hexagram({
 							{showSixCreatures && (
 								<span className="col-span-2 text-xs">
 									{EarthlyBranch[memberBefore?.hexagramEarthlyBranches?.[3 + i] as Relative]}
+									{snap.week.none.includes(
+										EarthlyBranch[memberBefore?.hexagramEarthlyBranches?.[3 + i] as Relative]!
+									) && <> - K</>}
 								</span>
 							)}
 							{/* Ngũ hành */}
@@ -321,6 +327,9 @@ function Hexagram({
 								{showSixCreatures && (
 									<span className="col-span-2 text-xs">
 										{EarthlyBranch[memberAfter?.hexagramEarthlyBranches?.[i] as Relative]}
+										{snap.week.none.includes(
+											EarthlyBranch[memberAfter?.hexagramEarthlyBranches?.[i] as Relative]!
+										) && <> - K</>}
 									</span>
 								)}
 								{/* thiên can */}
@@ -377,6 +386,9 @@ function Hexagram({
 								{showSixCreatures && (
 									<span className="col-span-2 text-xs">
 										{EarthlyBranch[memberAfter?.hexagramEarthlyBranches?.[3 + i] as Relative]}
+										{snap.week.none.includes(
+											EarthlyBranch[memberAfter?.hexagramEarthlyBranches?.[3 + i] as Relative]!
+										) && <> - K</>}
 									</span>
 								)}
 								{/* lục thú */}

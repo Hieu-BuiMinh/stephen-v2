@@ -34,7 +34,7 @@ const hexagramFamily: IHexagramFamily[] = [
 				questionerIndex: 2,
 				questionIndex: 5,
 				hexagramName: 'Thiên Sơn Độn',
-				yinyangIndexs: [1, 1, 1, 0, 0, 1],
+				yinyangIndexs: [1, 1, 1, 1, 0, 0],
 				hexagramRelatives: [1, 2, 5, 2, 5, 1], // Phụ mẫu, Huynh đệ, Quan quỷ, Huynh đệ, Quan quỷ, Phụ mẫu
 				hexagramEarthlyBranches: [11, 9, 7, 9, 7, 5], // Tuất, Thân, Ngọ, Thân, Ngọ, Thìn
 				indexesElements: [5, 4, 2, 4, 2, 5],
@@ -503,7 +503,7 @@ const hexagramFamily: IHexagramFamily[] = [
 				questionIndex: 1,
 				wanderer: true,
 				hexagramName: 'Sơn Lôi Di',
-				yinyangIndexs: [0, 0, 1, 0, 0, 1],
+				yinyangIndexs: [1, 0, 0, 0, 0, 1],
 				hexagramRelatives: [2, 1, 4, 4, 2, 1], // Huynh đệ, Phụ mẫu, Thê tài, Thê tài, Huynh đệ, Phụ mẫu
 				hexagramEarthlyBranches: [3, 1, 11, 5, 3, 1], // Dần, Tý, Tuất, Thìn, Dần, Tý
 				indexesElements: [3, 1, 5, 5, 3, 1],
@@ -516,7 +516,7 @@ const hexagramFamily: IHexagramFamily[] = [
 				questionIndex: 6,
 				returner: true,
 				hexagramName: 'Sơn Phong Cổ',
-				yinyangIndexs: [0, 0, 1, 1, 1, 0],
+				yinyangIndexs: [1, 0, 0, 1, 1, 0],
 				hexagramRelatives: [2, 1, 4, 5, 1, 4], // Huynh đệ, Phụ mẫu, Thê tài, Quan quỷ, Phụ mẫu, Thê tài
 				hexagramEarthlyBranches: [3, 1, 11, 10, 12, 2], // Dần, Tý, Tuất, Dậu, Hợi, Sửu
 				indexesElements: [3, 1, 5, 4, 1, 5],
