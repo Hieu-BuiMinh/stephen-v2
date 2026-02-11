@@ -1,6 +1,8 @@
+'use client'
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { cn, d } from '@repo/stephen-v2-utils'
-import type { TBaguaId, TEarthlyBranchIndex, THeavenlyStems } from '@repo/stephen-v2-utils/i-ching'
+import type { IHexagramMember, TBaguaId, TEarthlyBranchIndex, THeavenlyStems } from '@repo/stephen-v2-utils/i-ching'
 import {
 	converTodayHeavenlySixSymbolicAnimals,
 	converToHexagrams,
@@ -11,6 +13,7 @@ import {
 	Relative,
 } from '@repo/stephen-v2-utils/i-ching'
 import { nanoid } from 'nanoid'
+import { useEffect } from 'react'
 
 import { YinYang } from '../yin-yang'
 import { ElementDotByRelative } from './element-dot-by-relative'
@@ -34,6 +37,7 @@ export interface IHexagram {
 	yinYangClassName?: string
 	animated?: boolean
 	day?: Date // dùng ngày lập quẻ để an lục thú + thiên can
+	onReturnHexagrams?: (payload: { hexagramBefore?: IHexagramMember; hexagramAfter?: IHexagramMember }) => void
 }
 
 function Hexagram({
@@ -55,6 +59,7 @@ function Hexagram({
 	yinYangClassName,
 	animated = true,
 	day,
+	onReturnHexagrams,
 }: IHexagram) {
 	// Quẻ Chủ
 	const {
@@ -108,6 +113,15 @@ function Hexagram({
 	const snap = getLunarSnapshotSolar(baseDate.toDate())
 
 	const sixCreatures = converTodayHeavenlySixSymbolicAnimals(snap.zodiacDay.split(' ')[0] as THeavenlyStems)
+
+	useEffect(() => {
+		if (onReturnHexagrams) {
+			onReturnHexagrams({
+				hexagramBefore: memberBefore,
+				hexagramAfter: memberAfter,
+			})
+		}
+	}, [onReturnHexagrams, memberBefore, memberAfter])
 
 	return (
 		<div className={cn('flex items-center justify-between gap-5 px-4', className)}>

@@ -4,7 +4,7 @@ import type { TPost } from '../types'
 export const computedFields: any = <T extends { slug: string }>(data: T) => {
 	return {
 		...data,
-		updatedAt: new Date().toLocaleString(),
+		updatedAt: new Date().toISOString(),
 		author: {
 			avatar: '/assets/images/avt/me_04.png',
 			name: 'Stephen',

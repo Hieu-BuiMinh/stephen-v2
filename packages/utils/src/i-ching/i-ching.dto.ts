@@ -114,6 +114,7 @@ export interface IHexagramMember {
 	questionerIndex: number
 	questionIndex: number
 	hexagramName: string
+	postId?: string
 
 	yinyangIndexs: [TYinYang, TYinYang, TYinYang, TYinYang, TYinYang, TYinYang]
 	hexagramRelatives: [TRelativeIndex, TRelativeIndex, TRelativeIndex, TRelativeIndex, TRelativeIndex, TRelativeIndex]
