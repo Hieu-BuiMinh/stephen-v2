@@ -35,6 +35,7 @@ export interface IHexagram {
 	showHiddenRelative?: boolean
 	showHexagramName?: boolean
 	yinYangClassName?: string
+	showGridHeader?: boolean
 	animated?: boolean
 	day?: Date // dùng ngày lập quẻ để an lục thú + thiên can
 	onReturnHexagrams?: (payload: { hexagramBefore?: IHexagramMember; hexagramAfter?: IHexagramMember }) => void
@@ -58,6 +59,7 @@ function Hexagram({
 	showHexagramName, // hiện tên quẻ
 	yinYangClassName,
 	animated = true,
+	showGridHeader = false,
 	day,
 	onReturnHexagrams,
 }: IHexagram) {
@@ -127,14 +129,16 @@ function Hexagram({
 		<div className={cn('flex items-center justify-between gap-5 px-4', className)}>
 			{/* Quẻ chủ */}
 			<div className={cn('flex flex-col gap-3 items-center flex-1 shrink-0')}>
-				<div className="w-full grid grid-cols-12 text-[10px] text-muted-foreground">
-					<div className="col-span-1" />
-					<div className="col-span-2 line-clamp-1 truncate">Hào</div>
-					<div className="col-span-2 line-clamp-1 truncate">Lục Thân</div>
-					<div className="col-span-3 line-clamp-1 truncate">Phục Thần</div>
-					<div className="col-span-2 line-clamp-1 truncate">Địa Chi</div>
-					<div className="col-span-1 line-clamp-1 truncate">Ngũ Hành</div>
-				</div>
+				{showGridHeader && (
+					<div className="w-full grid grid-cols-12 text-[10px] text-muted-foreground">
+						<div className="col-span-1" />
+						<div className="col-span-2 line-clamp-1 truncate">Hào</div>
+						<div className="col-span-2 line-clamp-1 truncate">Lục Thân</div>
+						<div className="col-span-3 line-clamp-1 truncate">Phục Thần</div>
+						<div className="col-span-2 line-clamp-1 truncate">Địa Chi</div>
+						<div className="col-span-1 line-clamp-1 truncate">Ngũ Hành</div>
+					</div>
+				)}
 				<div className="flex flex-col w-full gap-1.5">
 					{upperBeforeIndexes?.map((item, i) => (
 						<div className="grid grid-cols-12" key={nanoid()}>
@@ -187,12 +191,13 @@ function Hexagram({
 								</span>
 							)}
 							{/* địa chi */}
-							{showSixCreatures && day && (
+							{showSixCreatures && (
 								<span className="col-span-2 text-xs">
 									{EarthlyBranch[memberBefore?.hexagramEarthlyBranches?.[i] as Relative]}
 									{snap.week.none.includes(
 										EarthlyBranch[memberBefore?.hexagramEarthlyBranches?.[i] as Relative]!
-									) && <> - K</>}
+									) &&
+										day && <> - K</>}
 								</span>
 							)}
 							{/* Ngũ hành */}
@@ -265,7 +270,8 @@ function Hexagram({
 									{EarthlyBranch[memberBefore?.hexagramEarthlyBranches?.[3 + i] as Relative]}
 									{snap.week.none.includes(
 										EarthlyBranch[memberBefore?.hexagramEarthlyBranches?.[3 + i] as Relative]!
-									) && <> - K</>}
+									) &&
+										day && <> - K</>}
 								</span>
 							)}
 							{/* Ngũ hành */}
@@ -295,14 +301,16 @@ function Hexagram({
 			{/* Quẻ biến */}
 			{showResultHexagram && (
 				<div className={cn('flex flex-col gap-3 items-center flex-1 shrink-0', className)}>
-					<div className="w-full grid grid-cols-12 text-[10px] text-muted-foreground">
-						<div className="col-span-1" />
-						<div className="col-span-2 line-clamp-1 truncate">Hào</div>
-						<div className="col-span-2 line-clamp-1 truncate">Lục Thân</div>
-						<div className="col-span-2 line-clamp-1 truncate">Địa Chi</div>
-						<div className="col-span-2 line-clamp-1 truncate">Lục Thú</div>
-						<div className="col-span-1 line-clamp-1 truncate">Ngũ Hành</div>
-					</div>
+					{showGridHeader && (
+						<div className="w-full grid grid-cols-12 text-[10px] text-muted-foreground">
+							<div className="col-span-1" />
+							<div className="col-span-2 line-clamp-1 truncate">Hào</div>
+							<div className="col-span-2 line-clamp-1 truncate">Lục Thân</div>
+							<div className="col-span-2 line-clamp-1 truncate">Địa Chi</div>
+							<div className="col-span-2 line-clamp-1 truncate">Lục Thú</div>
+							<div className="col-span-1 line-clamp-1 truncate">Ngũ Hành</div>
+						</div>
+					)}
 					<div className="flex flex-col w-full gap-1.5">
 						{upperAfterIndexes?.map((item, i) => (
 							<div className="grid grid-cols-12" key={nanoid()}>
@@ -343,7 +351,8 @@ function Hexagram({
 										{EarthlyBranch[memberAfter?.hexagramEarthlyBranches?.[i] as Relative]}
 										{snap.week.none.includes(
 											EarthlyBranch[memberAfter?.hexagramEarthlyBranches?.[i] as Relative]!
-										) && <> - K</>}
+										) &&
+											day && <> - K</>}
 									</span>
 								)}
 								{/* thiên can */}
@@ -402,7 +411,8 @@ function Hexagram({
 										{EarthlyBranch[memberAfter?.hexagramEarthlyBranches?.[3 + i] as Relative]}
 										{snap.week.none.includes(
 											EarthlyBranch[memberAfter?.hexagramEarthlyBranches?.[3 + i] as Relative]!
-										) && <> - K</>}
+										) &&
+											day && <> - K</>}
 									</span>
 								)}
 								{/* lục thú */}

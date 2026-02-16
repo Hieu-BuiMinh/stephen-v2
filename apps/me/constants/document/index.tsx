@@ -53,7 +53,7 @@ export const documentCollection: TDocumentCollection[] = [
 							},
 							{ id: '6a10122d-e603-4fa7-a830-ccf23946239e', title: 'Chương 1: Bát Quái' },
 							{ id: null, title: 'Chương 2: Quái Tượng Đồ' },
-							{ id: null, title: 'Chương 3: 8 Cung và 64 Quẻ Dịch' },
+							{ id: '85412c0a-f850-4f6d-b65d-611b529675ee', title: 'Chương 3: 8 Cung và 64 Quẻ Dịch' },
 							{ id: null, title: 'Chương 4: Hỗn Thiên Giáp Tý' },
 							{ id: null, title: 'Chương 5: Lục Thân Ca' },
 							{ id: null, title: 'Chương 6: Thế Ứng' },
