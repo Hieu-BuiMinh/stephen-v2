@@ -142,9 +142,9 @@ function Hexagram({
 				<div className="flex flex-col w-full gap-1.5">
 					{upperBeforeIndexes?.map((item, i) => (
 						<div className="grid grid-cols-12" key={nanoid()}>
-							{showIndex && (
+							{(showIndex || showQuestionerAndQuestion) && (
 								<span className="col-span-1 text-xs">
-									{6 - i}{' '}
+									{showIndex && `${6 - i} `}
 									{showQuestionerAndQuestion && memberBefore?.questionerIndex === 6 - i && '(T)'}
 									{showQuestionerAndQuestion && memberBefore?.questionIndex === 6 - i && '(U)'}
 								</span>
@@ -213,9 +213,9 @@ function Hexagram({
 				<div className="flex flex-col w-full gap-1.5">
 					{lowerBeforeIndexes?.map((item, i) => (
 						<div className="grid grid-cols-12" key={nanoid()}>
-							{showIndex && (
+							{(showIndex || showQuestionerAndQuestion) && (
 								<span className="col-span-1 text-xs">
-									{3 - i}{' '}
+									{showIndex && `${3 - i} `}
 									{showQuestionerAndQuestion && memberBefore?.questionerIndex === 3 - i && '(T)'}
 									{showQuestionerAndQuestion && memberBefore?.questionIndex === 3 - i && '(U)'}
 								</span>

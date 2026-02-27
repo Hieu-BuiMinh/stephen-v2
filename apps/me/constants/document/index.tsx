@@ -58,8 +58,11 @@ export const documentCollection: TDocumentCollection[] = [
 							{ id: null, title: 'Chương 5: Lục Thân Ca' },
 							{ id: null, title: 'Chương 6: Thế Ứng' },
 							{ id: null, title: 'Chương 7: Động Biến' },
-							{ id: null, title: 'Chương 8: Dụng Thần' },
-							{ id: null, title: 'Chương 9: Dụng Thần, Nguyên Thần, Kỵ Thần, Cừu Thần' },
+							{ id: 'c75034a5-de31-488b-a13b-a7207ea93a9a', title: 'Chương 8: Dụng Thần' },
+							{
+								id: 'c309d21d-5304-47f3-bef9-65c594fc14d1',
+								title: 'Chương 9: Nguyên Thần, Kỵ Thần, Cừu Thần',
+							},
 							{ id: null, title: 'Chương 10: Sự Vượng Suy của Nguyên Thần, Kỵ Thần' },
 							{ id: null, title: 'Chương 11: Ngũ Hành Tương Sinh' },
 							{ id: null, title: 'Chương 12: Ngũ Hành Tương Khắc' },
