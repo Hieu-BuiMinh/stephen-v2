@@ -13,7 +13,7 @@ interface ITopicShortWritingTypePageProps {
 }
 
 const sortedPostsByType = ({ type }: { type: TType }) => {
-	const posts = shortWriting?.filter((post) => post?.type?.toLocaleLowerCase() === type)?.slice(0, 4)
+	const posts = shortWriting?.filter((post) => post?.type?.toLocaleLowerCase() === type)
 
 	return sortPostsByDate(posts, 'desc')
 }
@@ -26,7 +26,6 @@ async function TopicShortWritingTypePage({ params }: ITopicShortWritingTypePageP
 			title: 'Journaling',
 			description: 'A record of experiences, reflections, and gradual personal growth over time.',
 		},
-
 		buddhism: {
 			title: 'Buddhism',
 			description: `Exploring philosophical ideas and life principles.`,
