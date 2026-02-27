@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid'
 import Link from 'next/link'
 import * as runtime from 'react/jsx-runtime'
 
-import { Bagua, FiveElementsDiagram, Tetragram, YinYang } from '../../../i-ching'
+import { Bagua, FiveElementsDiagram, Hexagram, Tetragram, YinYang } from '../../../i-ching'
 import { AnimatedBlock } from '../../../motion/components/animate-block'
 import { StickyAudio } from '../audio'
 import { DividerSlash } from '../divider'
@@ -83,7 +83,6 @@ const components = {
 	},
 	code: (props: React.ComponentPropsWithoutRef<'code'>) => {
 		const { children } = props
-		// console.log('props', props)
 		return <code>{children}</code>
 	},
 	CodeBlockTabs,
@@ -109,6 +108,7 @@ const components = {
 	YinYang,
 	Tetragram,
 	Bagua,
+	Hexagram,
 
 	// effect
 	AnimatedBlock,

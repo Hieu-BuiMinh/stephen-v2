@@ -34,6 +34,7 @@ export function HexagramToImage({
 	width = 1200,
 	padding = 50,
 	animated = false,
+	...rest
 }: HexagramToImageProps) {
 	const { theme } = useTheme()
 	const containerRef = useRef<HTMLDivElement>(null)
@@ -56,7 +57,6 @@ export function HexagramToImage({
 			}
 		}
 
-		// Delay to ensure DOM is ready
 		const timer = setTimeout(autoExport, 500)
 		return () => clearTimeout(timer)
 	}, [
@@ -87,7 +87,7 @@ export function HexagramToImage({
 	}
 
 	return (
-		<div className="px-4">
+		<div className="">
 			{/* Hidden container for rendering */}
 			<div className="absolute opacity-0 -left-[9999px]">
 				<div
@@ -111,18 +111,15 @@ export function HexagramToImage({
 						showSixCreatures={showSixCreatures}
 						showSixRelatives={showSixRelatives}
 						animated={animated}
+						{...rest}
 					/>
 				</div>
 			</div>
 
 			{/* Preview Image */}
 			{exportedImage && (
-				<div className="flex flex-col items-end gap-3 border rounded-lg p-3 bg-muted/30">
-					<img
-						src={exportedImage}
-						alt="Hexagram Preview"
-						className="max-w-full h-auto border bg-background rounded"
-					/>
+				<div className="flex flex-col items-end gap-3">
+					<img src={exportedImage} alt="Hexagram Preview" className="max-w-full h-auto" />
 
 					{/* Controls */}
 					<div className="flex items-center gap-3 flex-wrap">
