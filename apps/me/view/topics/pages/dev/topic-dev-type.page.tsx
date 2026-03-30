@@ -14,7 +14,7 @@ interface ITopicDevTypePageProps {
 }
 
 const sortedPostsByType = ({ type }: { type: TType }) => {
-	const posts = devPost?.filter((post) => post?.type?.toLocaleLowerCase() === type)?.slice(0, 4)
+	const posts = devPost?.filter((post) => post?.type?.toLocaleLowerCase() === type)
 
 	return sortPostsByDate(posts, 'desc')
 }
