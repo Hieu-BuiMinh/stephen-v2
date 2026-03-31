@@ -15,12 +15,12 @@ const Heading = <T extends Types = 'h1'>(props: HeadingProps<T>) => {
 
 	return (
 		<Component className={cn('scroll-m-32', className)} id={children?.toString()} {...rest}>
-			<span className="not-prose group flex items-center gap-2">
-				{as === 'h2' && <HashTag className="size-4 opacity-80" />}
+			<span className="not-prose group flex items-start gap-2">
+				{as === 'h2' && <HashTag className="size-4 mt-1.5 opacity-80 shrink-0" />}
 				{children}
 				<LinkIcon
 					aria-label="Link to section"
-					className="ml-2 inline size-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100"
+					className="ml-2 mt-1.5 inline size-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100 shrink-0"
 				/>
 			</span>
 		</Component>
