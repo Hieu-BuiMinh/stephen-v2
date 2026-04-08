@@ -3,6 +3,16 @@ import RecapGridItem from '@/view/year-recap/components/recap-gird-item'
 
 const recapData: RecapGridItemProps[] = [
 	{
+		year: 2026,
+		title: 'Finish what I started',
+		backgroundImage: '/assets/images/bg/retro-bg.png',
+		url: '/year-recap/2026',
+		highlights: {
+			primary: 'Finish what I started',
+			secondary: ['...', '...'],
+		},
+	},
+	{
 		year: 2025,
 		title: 'Discipline & focus',
 		backgroundImage: '/assets/images/bg/retro-bg.png',

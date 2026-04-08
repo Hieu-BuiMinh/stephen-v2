@@ -68,8 +68,11 @@ The rocky mountains, the endless blue sea, the warm sunlight—all of it came to
 		<source
 			src="/assets/articles/other-topic/journaling/2025/2.a-trip-to-binh-hung-island/dao-yen.mp4"
 			type="video/mp4"
+			controls
+			onLoadedMetadata={(e) => {
+				e.target.volume = 0.2
+			}}
 		/>
-		Your browser does not support the video tag.
 	</video>
 </div>
 
@@ -249,8 +252,11 @@ It added such a joyful and playful ending to the trip.
 		<source
 			src="/assets/articles/other-topic/journaling/2025/2.a-trip-to-binh-hung-island/chasing-sheep.mp4"
 			type="video/mp4"
+			controls
+			onLoadedMetadata={(e) => {
+				e.target.volume = 0.2
+			}}
 		/>
-		Your browser does not support the video tag.
 	</video>
 </div>
 
@@ -278,7 +284,6 @@ It felt like bringing a little piece of the journey back home.
 ## Ending: Goodbye Bình Hưng, Until We Meet Again
 
 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))' }}>
-	
 	<Image
 		style={{ width: 300, height: 300 }}
 		src="/assets/articles/other-topic/journaling/2025/2.a-trip-to-binh-hung-island/31.png"

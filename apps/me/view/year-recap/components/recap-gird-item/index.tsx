@@ -37,7 +37,7 @@ function RecapGridItem({ year, title, backgroundImage, url, highlights }: RecapG
 						width={1300}
 						height={630}
 						alt={`recap ${year}`}
-						className="absolute inset-0 object-cover size-full -z-10 brightness-80"
+						className="absolute inset-0 object-cover size-full -z-10 brightness-75"
 					/>
 				)}
 
