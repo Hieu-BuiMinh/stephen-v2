@@ -1,0 +1,211 @@
+---
+id: '913d91f9-0dce-4b9e-ae02-ecccbfde8927'
+title: 'Building a Secure Server-Side API Proxy with Next.js'
+cover: '/assets/articles/dev/post/scalable-OCR-BFF.png'
+createdAt: '2026-03-30T06:45:20.359Z'
+description: 'How to create a robust server-side API proxy using Next.js Route Handlers to securely communicate with external services while keeping your secrets safe.'
+published: true
+hashTags: ['dev', 'react', 'next-js', 'typescript', 'short']
+type: 'short'
+---
+
+## Introduction
+
+In modern web development, we often need to communicate with sensitive third-party APIs. While it's tempting to call them directly from the browser, creating a **Server-Side API Proxy** (often called a Backend-for-Frontend or BFF layer) is a much more robust approach.
+
+In our codebase, one of my favorite patterns is using a single Next.js Route Handler as a full proxy layer. 
+
+This creates a clear architectural boundary between the UI and external providers, offering significant wins for security and maintainability.
+
+---
+
+## Why call APIs from the Server-Side?
+
+Moving your API calls from the client to a server-side proxy provides three major advantages:
+
+1. **Hardened Security**: By calling external services from the server, your **API keys and secrets never leave your infrastructure**. They stay securely in your environment variables, invisible to the browser and safe from the network tab.
+2. **Bypass CORS and Domains**: You no longer have to worry about Cross-Origin Resource Sharing (CORS) configurations on third-party services. The browser only talks to your own domain, and your server handles the external requests.
+3. **Clean Abstraction**: The frontend doesn't need to know the specific structure of the external service. If you swap providers or the API version changes, you only update the proxy layer. The UI remains untouched.
+
+---
+
+## Implementation Case Study: OCR Service
+
+To see this in action, let's look at how we implemented a proxy for our OCR (Optical Character Recognition) service.
+
+### Full Route Handler Implementation
+
+Here's the full implementation of the proxy layer using Next.js Route Handlers:
+
+<CodeBlockTabs fileName='/app/api/ocr/[[...path]]/route.ts'>
+
+```ts
+import { NextRequest, NextResponse } from 'next/server'
+
+const OCR_API_URL = process.env.OCR_API_BASE_URL
+const OCR_API_KEY = process.env.OCR_API_KEY
+
+export async function proxyRequest(request: NextRequest, { params }: { params: { path: string[] } }) {
+	try {
+		const path = (params.path || []).join('/')
+		const url = new URL(`${OCR_API_URL}/${path}`)
+
+		request.nextUrl.searchParams.forEach((value, key) => {
+			url.searchParams.append(key, value)
+		})
+
+		const headers = new Headers(request.headers)
+		headers.set('X-API-KEY', OCR_API_KEY || '')
+		headers.delete('host')
+		headers.delete('connection')
+
+		const init: RequestInit = {
+			method: request.method,
+			headers,
+			body: request.method !== 'GET' && request.method !== 'HEAD' ? request.body : null,
+			// @ts-ignore
+			duplex: 'half',
+		}
+
+		const response = await fetch(url.toString(), init)
+
+		return new NextResponse(response.body, {
+			status: response.status,
+			headers: response.headers,
+		})
+	} catch (error: any) {
+		return NextResponse.json({ error: 'Failed to proxy OCR request' }, { status: 500 })
+	}
+}
+
+export const GET = proxyRequest
+export const POST = proxyRequest
+export const PUT = proxyRequest
+export const DELETE = proxyRequest
+```
+
+</CodeBlockTabs>
+
+## Frontend Service Layer
+
+Here's how I consume it from the frontend:
+
+<CodeBlockTabs fileName='/services/ocr/index.ts'>
+
+```ts
+export const ocrService = {
+	createJob: {
+		post: async (body) => {
+			return api.post('/ocr/v1/job', body)
+		},
+	},
+
+	uploadFile: {
+		put: async ({ jobId, file }) => {
+			const formData = new FormData()
+			formData.append('file', file)
+
+			return api.put(`/ocr/v1/job/${jobId}/file`, formData)
+		},
+	},
+
+	getJob: {
+		get: async ({ jobId }) => {
+			return api.get(`/ocr/v1/job/${jobId}`)
+		},
+	},
+}
+```
+
+</CodeBlockTabs>
+
+## Usage Example
+
+The usage becomes extremely clean:
+
+<CodeBlockTabs fileName='/client-side/index.ts'>
+
+```ts
+await ocrService.createJob.post(payload)
+await ocrService.uploadFile.put({ jobId, file })
+const job = await ocrService.getJob.get({ jobId })
+```
+
+</CodeBlockTabs>
+
+This is the part I really like.
+
+The UI layer no longer needs to know:
+
+- OCR base URL
+- API key
+- upload stream details
+- internal service structure
+
+Everything now flows through:
+
+`Frontend → /api/ocr/* → OCR Service`
+
+## Key Advantages
+
+### 1. Better Security
+
+- The API key stays on the server.
+- The client never touches secrets.
+- This is probably the biggest win.
+
+### 2. Cleaner Architecture
+
+- The frontend is fully decoupled from the OCR provider. If we switch OCR vendors later, most UI code remains unchanged.
+- Only the proxy layer needs to be updated. This significantly reduces coupling.
+
+### 3. Better Developer Experience
+
+Instead of scattering raw `fetch()` calls everywhere, everything is centralized inside `ocrService`.
+
+This makes the codebase:
+
+- easier to maintain
+- easier to reuse
+- easier to scale
+
+### 4. Better Upload Performance
+
+Because request bodies are forwarded directly, file uploads are streamed efficiently.
+
+This is especially useful for: large PDFs, images, multi-page documents,...
+
+## Trade-offs and Limitations
+
+### 1. Extra Network Hop
+
+- Every request now goes through Next.js before reaching the OCR service. This adds a small amount of latency.
+- For most enterprise applications, this is acceptable. But for high-throughput workloads, it should be considered carefully.
+
+### 2. Proxy Maintenance Cost
+
+This route becomes an important infrastructure layer. If the upstream OCR API changes, this file must stay in sync. That introduces some maintenance responsibility.
+
+### 3. Error Transparency
+
+Sometimes proxy layers can accidentally hide useful upstream errors if not handled properly.
+
+I usually try to preserve:
+
+- status codes
+- response body
+- error messages
+
+as much as possible.
+
+---
+
+## Final Thoughts
+
+While I used an OCR service for this example, the pattern is a **universal template** for any external integration. Whether you are building an AI-powered feature with OpenAI, processing payments with Stripe, or fetching content from a headless CMS, a server-side proxy quietly improves:
+
+- **Security**: Secrets stay on the server.
+- **Maintainability**: Clear boundaries between UI and Services.
+- **Performance**: Ability to stream and optimize payloads.
+
+Sometimes the smallest bridge in your architecture creates the biggest impact on the long-term health of your codebase.
