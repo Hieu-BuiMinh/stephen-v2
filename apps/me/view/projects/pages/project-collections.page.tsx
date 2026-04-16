@@ -5,7 +5,10 @@ import { TextEffect } from '@repo/stephen-v2-ui/motion'
 import { PostCard } from '@/components/post/post-card'
 
 function ProjectCollectionsPageView() {
-	const postList = sortPostsByDate(projectPost, 'desc')
+	const postList = sortPostsByDate(
+		projectPost.filter((post) => post.published),
+		'desc'
+	)
 
 	return (
 		<div className="w-full min-h-52 flex px-6 py-36">

@@ -12,11 +12,11 @@ import { ShortCard } from '@/components/post/short-card'
 function TopicDevPage() {
 	const devPosts: { [key: string]: TPost[] } = {
 		post: sortPostsByDate(
-			devPost?.filter((post) => post.type === 'post'),
+			devPost?.filter((post) => post.published && post.type === 'post'),
 			'desc'
 		)?.slice(0, 4),
 		short: sortPostsByDate(
-			devPost?.filter((post) => post.type === 'short'),
+			devPost?.filter((post) => post.published && post.type === 'short'),
 			'desc'
 		)?.slice(0, 4),
 	}

@@ -65,10 +65,10 @@ const VideoZoom = forwardRef<HTMLVideoElement, TVideoZoom>((props, ref) => {
 			>
 				<DialogTitle className="hidden" />
 				<DialogTrigger asChild role="button">
-					<div className={cn('not-prose group/trigger relative', className)}>
+					<div className={cn('not-prose group/trigger relative', className)} style={props.style}>
 						<BlurImage
-							className="rounded-md border"
-							imageClassName={cn('aspect-video object-contain', previewImageClassName)}
+							className="h-full rounded-md border"
+							imageClassName={cn('aspect-video h-full object-contain', previewImageClassName)}
 							quality={100}
 							alt=""
 							src={previewImage || ''}
@@ -79,7 +79,7 @@ const VideoZoom = forwardRef<HTMLVideoElement, TVideoZoom>((props, ref) => {
 						<PlayCircle className="absolute left-2 top-2 size-5 text-foreground/50 transition-colors group-hover/trigger:text-foreground" />
 					</div>
 				</DialogTrigger>
-				<DialogContent className="h-[75vh] max-w-screen-sm overflow-hidden p-1 md:max-w-screen-md md:p-0 lg:max-w-screen-xl">
+				<DialogContent className="flex h-[75vh] max-w-screen-sm overflow-hidden p-1 md:max-w-screen-md md:p-0 lg:max-w-screen-xl">
 					{allowSharing && (
 						<Button
 							onClick={() => {
@@ -95,7 +95,7 @@ const VideoZoom = forwardRef<HTMLVideoElement, TVideoZoom>((props, ref) => {
 						</Button>
 					)}
 
-					<Video ref={ref} className={cn('size-full', props.videoClassName)} {...rest} />
+					<Video ref={ref} className={cn('!size-full object-contain', props.videoClassName)} {...rest} />
 				</DialogContent>
 			</Dialog>
 		</>

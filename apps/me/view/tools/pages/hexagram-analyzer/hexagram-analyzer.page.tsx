@@ -14,7 +14,8 @@ import { handleCalcDateToHexagram } from '@/view/tools/utils/calc-date-to-hexagr
 
 const getShortWritingPost = ({ id }: { id: string }) => {
 	if (!id) return null
-	return getVelitePostById({ id, postsList: shortWriting })
+	const post = getVelitePostById({ id, postsList: shortWriting })
+	return post?.published ? post : null
 }
 
 function HexagramAnalyzerPageView() {

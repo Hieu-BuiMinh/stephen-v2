@@ -13,7 +13,7 @@ type: 'short'
 
 In modern web development, we often need to communicate with sensitive third-party APIs. While it's tempting to call them directly from the browser, creating a **Server-Side API Proxy** (often called a Backend-for-Frontend or BFF layer) is a much more robust approach.
 
-In our codebase, one of my favorite patterns is using a single Next.js Route Handler as a full proxy layer. 
+In our codebase, one of my favorite patterns is using a single Next.js Route Handler as a full proxy layer.
 
 This creates a clear architectural boundary between the UI and external providers, offering significant wins for security and maintainability.
 
@@ -45,7 +45,7 @@ import { NextRequest, NextResponse } from 'next/server'
 const OCR_API_URL = process.env.OCR_API_BASE_URL
 const OCR_API_KEY = process.env.OCR_API_KEY
 
-export async function proxyRequest(request: NextRequest, { params }: { params: { path: string[] } }) {
+async function proxyRequest(request: NextRequest, { params }: { params: { path: string[] } }) {
 	try {
 		const path = (params.path || []).join('/')
 		const url = new URL(`${OCR_API_URL}/${path}`)
@@ -61,20 +61,24 @@ export async function proxyRequest(request: NextRequest, { params }: { params: {
 
 		const init: RequestInit = {
 			method: request.method,
-			headers,
+			headers: headers,
 			body: request.method !== 'GET' && request.method !== 'HEAD' ? request.body : null,
-			// @ts-ignore
+			// @ts-ignore - this is needed for forward body in nextjs/node
 			duplex: 'half',
 		}
 
 		const response = await fetch(url.toString(), init)
 
+		const responseHeaders = new Headers(response.headers)
+		responseHeaders.delete('content-encoding')
+
 		return new NextResponse(response.body, {
 			status: response.status,
-			headers: response.headers,
+			headers: responseHeaders,
 		})
 	} catch (error: any) {
-		return NextResponse.json({ error: 'Failed to proxy OCR request' }, { status: 500 })
+		console.error('OCR Proxy Error:', error.message)
+		return NextResponse.json({ error: 'Failed to proxy OCR request', details: error.message }, { status: 500 })
 	}
 }
 

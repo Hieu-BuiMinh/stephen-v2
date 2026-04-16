@@ -23,7 +23,7 @@ function RecapGridItem({ year, title, backgroundImage, url, highlights }: RecapG
 	const href = url ?? pathname
 
 	return (
-		<Link href={href} className="block size-full focus:outline-none">
+		<Link href={href} className="block size-full rounded-sm overflow-hidden focus:outline-none">
 			<div
 				className={cn(
 					'size-full flex flex-col justify-between relative p-3 transition-all',

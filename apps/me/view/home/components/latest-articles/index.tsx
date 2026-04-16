@@ -8,7 +8,10 @@ import { PostCard } from '@/components/post/post-card'
 import { ShortCard } from '@/components/post/short-card'
 import TextGradient from '@/components/texts/text-gradient'
 function LatestArticles() {
-	const postList = sortPostsByDate([...devPost], 'desc').slice(0, 4)
+	const postList = sortPostsByDate(
+		devPost.filter((post) => post.published),
+		'desc'
+	).slice(0, 4)
 
 	return (
 		<div className="flex flex-col gap-10 items-center justify-center my-32 min-h-[50vh] px-3">

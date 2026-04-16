@@ -10,7 +10,7 @@ function RetrospectivePageView() {
 		<div className="grid grid-cols-1 lg:grid-cols-2 px-3">
 			<div className="inset-0 col-span-1 py-4 px-0 border-b h-auto flex lg:items-center lg:justify-center lg:sticky lg:h-screen lg:my-auto lg:pr-20 lg:border-none">
 				<Glow />
-				<div className="z-20 flex flex-col mt-4 lg:mt-40 gap-3.5 lg:justify-center max-w-xl lg:mx-auto lg:sticky lg:top-1/2 lg:-translate-y-1/2">
+				<div className="z-20 flex flex-col mt-4 lg:mt-0 gap-3.5 lg:justify-center max-w-xl lg:mx-auto lg:sticky lg:top-[calc(50%-32px)] lg:-translate-y-1/2">
 					<div className="text-muted-foreground flex items-center gap-x-1">
 						<p className="text-xs">{formatDate(new Date(), 'MMMM D, YYYY')}</p>
 					</div>
