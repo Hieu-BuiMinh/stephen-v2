@@ -3,13 +3,13 @@
 import './style.css'
 
 import { VideoZoom } from '@repo/stephen-v2-ui/shadcn'
+import { cn } from '@repo/stephen-v2-utils'
 import { Loader } from 'lucide-react'
 import { useQueryState } from 'nuqs'
 import { useEffect, useState } from 'react'
 
-import { shortSparksList } from '@/view/short-spark/data/short-sparks.data'
-import { cn } from '@repo/stephen-v2-utils'
 import { useVideoThumbnail } from '@/hooks/use-video-thumbnail'
+import { shortSparksList } from '@/view/short-spark/data/short-sparks.data'
 
 function ShortSparkPageView() {
 	const [loaded, setLoaded] = useState(false)

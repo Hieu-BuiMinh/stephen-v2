@@ -9,6 +9,7 @@ import {
 	// NotebookPen,
 	Pen,
 	Pencil,
+	Pin,
 	Sparkles,
 	Tags,
 } from 'lucide-react'
@@ -78,6 +79,12 @@ export const navbarItems: TNavbarItems = {
 			href: '/guestbook',
 			description: `Leave your say—message`,
 			icon: MessageCircleHeart,
+		},
+		{
+			title: 'Testimonial',
+			href: '/testimonial',
+			description: `Some words from people I've worked with`,
+			icon: Pin,
 		},
 		{
 			title: 'Other Topics',

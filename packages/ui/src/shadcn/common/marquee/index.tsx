@@ -18,13 +18,18 @@ export const MarqueeContent = ({ loop = 0, autoFill = true, pauseOnHover = true,
 	<FastMarquee autoFill={autoFill} loop={loop} pauseOnHover={pauseOnHover} {...props} />
 )
 export type MarqueeFadeProps = HTMLAttributes<HTMLDivElement> & {
-	side: 'left' | 'right'
+	side: 'left' | 'right' | 'top' | 'bottom'
 }
 export const MarqueeFade = ({ className, side, ...props }: MarqueeFadeProps) => (
 	<div
 		className={cn(
-			'absolute top-0 bottom-0 z-10 h-full w-24 from-background to-transparent',
-			side === 'left' ? 'left-0 bg-gradient-to-r' : 'right-0 bg-gradient-to-l',
+			'absolute z-10 from-background to-transparent',
+			(side === 'left' || side === 'right') && 'top-0 bottom-0 h-full w-24',
+			(side === 'top' || side === 'bottom') && 'left-0 right-0 w-full h-24',
+			side === 'left' && 'left-0 bg-gradient-to-r',
+			side === 'right' && 'right-0 bg-gradient-to-l',
+			side === 'top' && 'top-0 bg-gradient-to-b',
+			side === 'bottom' && 'bottom-0 bg-gradient-to-t',
 			className
 		)}
 		{...props}
