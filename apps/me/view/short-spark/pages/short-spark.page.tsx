@@ -36,10 +36,10 @@ function ShortSparkPageView() {
 			</div>
 		)
 
-	const heights = [280, 320, 340, 380, 420, 450, 480]
+	const heights = [280, 320, 340, 380, 420, 450, 480, 520]
 
 	const getCardHeight = (id: string, index: number) => {
-		if (index === 0) return 280
+		if (index === 0) return 520
 		let hash = 0
 		for (let i = 0; i < id.length; i++) {
 			hash = id.charCodeAt(i) + ((hash << 5) - hash)
