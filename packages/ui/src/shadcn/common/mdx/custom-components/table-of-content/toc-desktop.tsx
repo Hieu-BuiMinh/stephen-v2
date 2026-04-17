@@ -68,7 +68,7 @@ function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
 				{flatTocArray.map((toc, index) => (
 					<div
 						key={`${toc.title}-${index}`}
-						className={cn(`pt-5 first:pt-0`)}
+						className={cn(`pt-3 first:pt-0`)}
 						style={{ paddingLeft: toc.level * 10 }}
 					>
 						<Link

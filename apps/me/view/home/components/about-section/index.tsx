@@ -18,7 +18,7 @@ function AboutSection() {
 					Here's what sets me apart and makes me unique
 				</TextEffect>
 			</TextGradient>
-			<div className="size-full grid grid-cols-1 md:grid-cols-12 md:grid-rows-12 gap-4 md:h-[840px] md:col-start-1 md:row-start-1">
+			<div className="size-full grid grid-cols-1 md:grid-cols-12 auto-rows-[300px] md:auto-rows-[minmax(60px,auto)] gap-4 md:col-start-1 md:row-start-1">
 				{/* row 1 */}
 				<div className="col-span-1 md:col-span-6 lg:col-span-5 md:row-span-4 lg:row-span-3">
 					<AboutMeBento linkTo="/about" />

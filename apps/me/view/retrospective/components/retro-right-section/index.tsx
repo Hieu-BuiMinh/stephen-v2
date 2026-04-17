@@ -28,7 +28,7 @@ export function groupPostsByYear(posts: TPost[]): PostsByYear {
 
 function RetroRightSection() {
 	const postList = sortPostsByDate(
-		retroPost.filter((post: TPost) => post.retroType === 'MILESTONE'),
+		retroPost.filter((post: TPost) => post.published && post.retroType === 'MILESTONE'),
 		'desc'
 	)
 	const postsByYear = groupPostsByYear(postList)
@@ -40,11 +40,10 @@ function RetroRightSection() {
 	return (
 		<div className="relative flex flex-col gap-10">
 			{years.map((year) => (
-				<section key={year} className="flex flex-col gap-5 relative">
+				<section key={year} id={`year-${year}`} className="flex flex-col gap-5 relative scroll-mt-24">
 					<div className="absolute h-[calc(100%-1rem)] top-[1rem] -left-[6rem] hidden md:block">
 						<div className="h-full relative">
 							<Link
-								id={`year-${year}`}
 								href={`#year-${year}`}
 								className="flex gap-2 items-center text-muted-foreground text-xl font-bold sticky top-[5rem]"
 							>

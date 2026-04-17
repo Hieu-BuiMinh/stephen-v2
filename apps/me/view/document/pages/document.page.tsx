@@ -6,7 +6,7 @@ import { documentCollection } from '@/constants/document'
 
 function DocumentPageView() {
 	return (
-		<div className="inline-flex flex-col gap-8 px-6 py-12">
+		<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-8 px-6 py-12 w-full">
 			{documentCollection.map((doc) => {
 				const url = `/document/${doc.slug}/${doc?.toc?.[0]?.id}`
 

@@ -60,11 +60,11 @@ const GlareHover: React.FC<GlareHoverProps> = ({
 		if (!el) return
 
 		el.style.transition = 'none'
-		el.style.backgroundPosition = '-100% -100%, 0 0'
+		el.style.backgroundPosition = '100% 100%'
 		// Trigger reflow
 		void el.offsetHeight
 		el.style.transition = `${transitionDuration}ms ease`
-		el.style.backgroundPosition = '100% 100%, 0 0'
+		el.style.backgroundPosition = '0% 0%'
 	}
 
 	const animateOut = () => {
@@ -73,10 +73,10 @@ const GlareHover: React.FC<GlareHoverProps> = ({
 
 		if (playOnce) {
 			el.style.transition = 'none'
-			el.style.backgroundPosition = '-100% -100%, 0 0'
+			el.style.backgroundPosition = '100% 100%'
 		} else {
 			el.style.transition = `${transitionDuration}ms ease`
-			el.style.backgroundPosition = '-100% -100%, 0 0'
+			el.style.backgroundPosition = '100% 100%'
 		}
 	}
 
@@ -84,22 +84,22 @@ const GlareHover: React.FC<GlareHoverProps> = ({
 		position: 'absolute',
 		inset: 0,
 		background: `linear-gradient(${glareAngle}deg,
-			hsla(0,0%,0%,0) 60%,
-			${rgba} 70%,
-			hsla(0,0%,0%,0) 100%)`,
-		backgroundSize: `${glareSize}% ${glareSize}%, 100% 100%`,
+			transparent 40%,
+			${rgba} 50%,
+			transparent 60%)`,
+		backgroundSize: `${glareSize}% ${glareSize}%`,
 		backgroundRepeat: 'no-repeat',
-		backgroundPosition: '-100% -100%, 0 0',
+		backgroundPosition: '100% 100%',
 		pointerEvents: 'none',
 		zIndex: 99,
 	}
 
 	return (
 		<div
-			className={cn('relative size-full overflow-hidden cursor-pointer', className)}
+			className={cn('relative size-full overflow-hidden cursor-pointer isolation-auto', className)}
 			onMouseEnter={animateIn}
 			onMouseLeave={animateOut}
-			style={style}
+			style={{ ...style, isolation: 'isolate' }}
 		>
 			<div ref={overlayRef} style={overlayStyle} />
 			{children}

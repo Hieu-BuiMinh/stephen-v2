@@ -11,7 +11,7 @@ import PostLastUpdated from '@/components/post/post-last-updated'
 async function DocumentDetailPageView({ id }: { id: string }) {
 	const post = await getVelitePostById({ id, postsList: docPost })
 
-	if (!post) {
+	if (!post || !post.published) {
 		notFound()
 	}
 

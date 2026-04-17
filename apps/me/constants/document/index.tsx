@@ -15,7 +15,7 @@ export type TDocumentCollection = BookProps & { status: 'published' | 'draft'; s
 export const documentCollection: TDocumentCollection[] = [
 	{
 		// book props
-		title: 'Tự học kinh dịch',
+		title: 'Tự Học Kinh Dịch',
 		icon: <span className="text-2xl text-white">☯</span>,
 		texture: true,
 		color: '#1D1C1D',
@@ -118,6 +118,36 @@ export const documentCollection: TDocumentCollection[] = [
 			{
 				id: null,
 				title: 'Upading...',
+			},
+		],
+	},
+	{
+		// book props
+		title: 'Huyền Không Phi Tinh',
+		// icon: <span className="text-2xl text-[#DEC79D]">☯</span>,
+		texture: true,
+		color: '#374545',
+		textColor: '#DEC79D',
+		illustration: (
+			<Image
+				src="/assets/images/document/huyen-khong-phi-tinh/cover.png"
+				className="size-full object-cover ml-2"
+				width={220}
+				height={150}
+				alt="48-laws-of-power-cover.png"
+				sizes="(max-width: 768px) 100vw, 50vw"
+			/>
+		),
+
+		// other props
+		slug: 'huyen-khong-phi-tinh',
+		status: 'published',
+		toc: [
+			{
+				id: '6cdcabf1-184b-4902-b1b6-fe34a6f835c7',
+			},
+			{
+				id: 'b22307a5-ddcd-4eb6-9b6a-006f9f7f8bbb',
 			},
 		],
 	},

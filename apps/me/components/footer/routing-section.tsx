@@ -33,7 +33,8 @@ function FooterRoutingSection() {
 			links: [
 				{ lable: 'Tags', href: '/tags' },
 				{ lable: 'Quotes', href: '/quotes' },
-				{ lable: 'Other Topics', href: '/other-topics' },
+				// { lable: 'Photo Journal', href: '/photo-journal' },
+				{ lable: 'Other Topics', href: '/topics/others' },
 				{
 					lable: 'Analytics',
 					href: 'https://cloud.umami.is/share/4cPVGaK1H86C9y5K',
