@@ -6,10 +6,10 @@ import MDXContentComponent from '@/components/mdx-content'
 
 function RetroPostItem({ post }: { post: TPost }) {
 	return (
-		<div className="flex flex-col gap-3 md:pl-3">
+		<div id={`post-${post.id}`} className="flex flex-col gap-3 md:pl-3 scroll-mt-24">
 			<div className="flex flex-col gap-3">
 				<p className="text-xs text-muted-foreground">{d(post.milestone).format('MMM D, YYYY')}</p>
-				<Link id={post.id} href={`#post-${post.id}`} className="text-base font-bold sm:text-base md:text-xl">
+				<Link href={`#post-${post.id}`} className="text-base font-bold sm:text-base md:text-xl">
 					{post.title}
 				</Link>
 				<p className="text-xs font-light text-muted-foreground md:text-base">{post.description}</p>

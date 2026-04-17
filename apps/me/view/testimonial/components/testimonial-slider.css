@@ -1,0 +1,31 @@
+@keyframes marquee-vertical-up {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(-50%);
+	}
+}
+
+@keyframes marquee-vertical-down {
+	0% {
+		transform: translateY(-50%);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+.animate-marquee-vertical-up {
+	animation: marquee-vertical-up linear infinite;
+}
+
+.animate-marquee-vertical-down {
+	animation: marquee-vertical-down linear infinite;
+}
+
+/* Pause on hover logic */
+.marquee-group:hover .animate-marquee-vertical-up,
+.marquee-group:hover .animate-marquee-vertical-down {
+	animation-play-state: paused;
+}

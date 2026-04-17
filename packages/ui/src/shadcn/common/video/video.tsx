@@ -3,8 +3,6 @@
 import { cn } from '@repo/stephen-v2-utils'
 import { forwardRef, useEffect, useRef } from 'react'
 
-import { AspectRatio } from '../../aspect-ratio'
-
 type TVideoProps = {
 	src: string
 	width: number
@@ -26,18 +24,16 @@ const Video = forwardRef<HTMLVideoElement, TVideoProps>((props, ref) => {
 	}, [combinedRef, videoRef, ref])
 
 	return (
-		<AspectRatio ratio={16 / 9}>
-			<video
-				className={cn('rounded-lg shadow-lg', className)}
-				loop
-				ref={combinedRef}
-				src={src}
-				controls={controls}
-				width={width}
-				height={height}
-				{...rest}
-			/>
-		</AspectRatio>
+		<video
+			className={cn('rounded-lg shadow-lg', className)}
+			loop
+			ref={combinedRef}
+			src={src}
+			controls={controls}
+			width={width}
+			height={height}
+			{...rest}
+		/>
 	)
 })
 

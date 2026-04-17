@@ -3,9 +3,19 @@ import RecapGridItem from '@/view/year-recap/components/recap-gird-item'
 
 const recapData: RecapGridItemProps[] = [
 	{
+		year: 2026,
+		title: 'Finish what I started',
+		backgroundImage: '/assets/articles/year-recap/2026/retro-bg.png',
+		url: '/year-recap/2026',
+		highlights: {
+			primary: 'Finish what I started',
+			secondary: ['...', '...'],
+		},
+	},
+	{
 		year: 2025,
 		title: 'Discipline & focus',
-		backgroundImage: '/assets/images/bg/retro-bg.png',
+		backgroundImage: '/assets/articles/year-recap/2025/retro-bg.png',
 		url: '/year-recap/2025',
 		highlights: {
 			primary: 'A year of rebuilding',
@@ -15,6 +25,7 @@ const recapData: RecapGridItemProps[] = [
 	{
 		year: 2024,
 		title: 'Grow in silence',
+		backgroundImage: '/assets/articles/year-recap/2024/retro-bg.png',
 		url: '/year-recap/2024',
 		highlights: {
 			primary: 'Clarity over noise',
@@ -25,13 +36,13 @@ const recapData: RecapGridItemProps[] = [
 
 function YearRecapPageView() {
 	return (
-		<div className="grid grid-cols-1 pt-6 px-6 pb-28 md:grid-cols-3">
-			<div className="col-span-1 h-[350px] border md:col-span-2">
+		<div className="grid grid-cols-1 pt-6 px-6 pb-28 md:grid-cols-3 gap-1">
+			<div className="col-span-1 h-[350px] md:col-span-2">
 				<RecapGridItem {...recapData[0]} />
 			</div>
 
 			{recapData.slice(1).map((data) => (
-				<div key={data.year} className="col-span-1 h-[350px] border">
+				<div key={data.year} className="col-span-1 h-[350px]">
 					<RecapGridItem {...data} />
 				</div>
 			))}

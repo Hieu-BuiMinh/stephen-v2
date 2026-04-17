@@ -5,6 +5,7 @@ import PhotoGallery from '@/view/home/components/gallery-section/photo-gallery'
 import GithubContributionsSection from '@/view/home/components/github-contributions-section'
 import LatestArticles from '@/view/home/components/latest-articles'
 import HeroSection03 from '@/view/home/components/new-hero-03'
+import TestimonialSection from '@/view/home/components/testimonial-section'
 
 function HomePageView() {
 	return (
@@ -19,6 +20,9 @@ function HomePageView() {
 			<DividerSlash />
 
 			<LatestArticles />
+			<DividerSlash />
+
+			<TestimonialSection />
 			<DividerSlash />
 
 			<GithubContributionsSection />

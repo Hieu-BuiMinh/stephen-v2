@@ -6,7 +6,7 @@ import { GlareHover } from '@repo/stephen-v2-ui/motion'
 import { BlurImage } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
 import { AnimatePresence, motion } from 'motion/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // import FlyArounds from '@/view/home/components/hero-section/fly-arounds'
 
@@ -15,19 +15,27 @@ interface ProfilePictureProps {
 	className?: string
 }
 
+const images = [
+	'/assets/images/avt/me_01.png',
+	'/assets/images/avt/me_02.png',
+	'/assets/images/avt/me_03.png',
+	'/assets/images/avt/me_04.png',
+	'/assets/images/avt/me_05.png',
+	'/assets/images/avt/me_06.png',
+	'/assets/images/avt/me_07.png',
+	'/assets/images/avt/me_08.png',
+	'/assets/images/avt/me_09.png',
+]
+
 export function ProfilePicture({ className }: ProfilePictureProps) {
-	const images = [
-		'/assets/images/avt/me_01.png',
-		'/assets/images/avt/me_02.png',
-		'/assets/images/avt/me_03.png',
-		'/assets/images/avt/me_04.png',
-		'/assets/images/avt/me_05.png',
-		'/assets/images/avt/me_06.png',
-		'/assets/images/avt/me_07.png',
-		'/assets/images/avt/me_08.png',
-		'/assets/images/avt/me_09.png',
-	]
 	const [imageSrc, setImageSrc] = useState(images[3])
+
+	useEffect(() => {
+		images.forEach((src) => {
+			const img = new Image()
+			img.src = src
+		})
+	}, [])
 	// const [isChanging, setIsChanging] = useState(false)
 
 	const changeImage = () => {

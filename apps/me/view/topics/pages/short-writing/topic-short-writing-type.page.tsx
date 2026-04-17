@@ -13,7 +13,7 @@ interface ITopicShortWritingTypePageProps {
 }
 
 const sortedPostsByType = ({ type }: { type: TType }) => {
-	const posts = shortWriting?.filter((post) => post?.type?.toLocaleLowerCase() === type)
+	const posts = shortWriting?.filter((post) => post.published && post?.type?.toLocaleLowerCase() === type)
 
 	return sortPostsByDate(posts, 'desc')
 }

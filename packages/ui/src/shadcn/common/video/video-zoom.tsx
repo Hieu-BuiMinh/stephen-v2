@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
-import { CheckIcon, LinkIcon, PlayCircle } from 'lucide-react'
+import { CheckIcon, LinkIcon, Play } from 'lucide-react'
 import { forwardRef, useEffect, useState } from 'react'
 
 import { Button } from '../../button'
@@ -65,10 +65,10 @@ const VideoZoom = forwardRef<HTMLVideoElement, TVideoZoom>((props, ref) => {
 			>
 				<DialogTitle className="hidden" />
 				<DialogTrigger asChild role="button">
-					<div className={cn('not-prose group/trigger relative', className)}>
+					<div className={cn('not-prose group/trigger relative', className)} style={props.style}>
 						<BlurImage
-							className="rounded-md border"
-							imageClassName={cn('aspect-video object-contain', previewImageClassName)}
+							className="h-full rounded-md border"
+							imageClassName={cn('aspect-video h-full object-cover', previewImageClassName)}
 							quality={100}
 							alt=""
 							src={previewImage || ''}
@@ -76,26 +76,40 @@ const VideoZoom = forwardRef<HTMLVideoElement, TVideoZoom>((props, ref) => {
 							width={props.width || 100}
 							height={props.height || 100}
 						/>
-						<PlayCircle className="absolute left-2 top-2 size-5 text-foreground/50 transition-colors group-hover/trigger:text-foreground" />
+						<Play className="absolute left-1/2 top-1/2 size-10 -translate-x-1/2 -translate-y-1/2 fill-white/70 text-white opacity-0 transition-all duration-300 group-hover/trigger:opacity-100 group-hover/trigger:scale-110" />
 					</div>
 				</DialogTrigger>
-				<DialogContent className="h-[75vh] max-w-screen-sm overflow-hidden p-1 md:max-w-screen-md md:p-0 lg:max-w-screen-xl">
-					{allowSharing && (
-						<Button
-							onClick={() => {
-								onCopy()
-								setIsCopied(true)
+				<DialogContent showCloseButton={false} className="p-0 bg-transparent border-none">
+					<div className="group/modal bg-transparent shadow-none flex items-center justify-center max-h-[90vh] size-full max-w-[calc(100vw-2rem)] sm:max-w-none relative">
+						{allowSharing && (
+							<Button
+								onClick={() => {
+									onCopy()
+									setIsCopied(true)
+								}}
+								className="absolute left-4 top-4 z-10 flex gap-2 text-xs opacity-80 transition-opacity duration-300 group-hover/modal:opacity-100"
+								autoFocus={false}
+								variant="primary-matter"
+								size="icon"
+							>
+								{isCopied ? <CheckIcon className="size-4" /> : <LinkIcon className="size-4" />}
+							</Button>
+						)}
+						<Video
+							ref={ref}
+							controlsList="nofullscreen"
+							onClick={(e) => {
+								const video = e.currentTarget
+								if (video.paused) {
+									void video.play()
+								} else {
+									video.pause()
+								}
 							}}
-							className="absolute left-4 top-4 z-10 flex gap-2 text-xs"
-							autoFocus={false}
-							variant="ghost"
-						>
-							{isCopied ? <CheckIcon className="size-4" /> : <LinkIcon className="size-4" />}
-							Copy link
-						</Button>
-					)}
-
-					<Video ref={ref} className={cn('size-full', props.videoClassName)} {...rest} />
+							className={cn('!size-full object-cover border border-white/70', props.videoClassName)}
+							{...rest}
+						/>
+					</div>
 				</DialogContent>
 			</Dialog>
 		</>
