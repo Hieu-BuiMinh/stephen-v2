@@ -13,7 +13,7 @@ function DialogTrigger({ ...props }: React.ComponentProps<typeof DialogPrimitive
 
 function DialogPortal({ ...props }: React.ComponentProps<typeof DialogPrimitive.Portal>) {
 	return (
-		<div className="overflow-x-hidden bg-red-400">
+		<div className="overflow-x-hidden">
 			<DialogPrimitive.Portal data-slot="dialog-portal" {...props} />
 		</div>
 	)

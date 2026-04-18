@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 
-import { useCardRotation } from '../../../../../hooks/use-card-rotation'
+import { useCardRotation } from '../../../../hooks/use-card-rotation'
 
 interface DraggableContainerProps {
 	children: React.ReactNode
