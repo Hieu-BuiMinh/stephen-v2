@@ -8,7 +8,7 @@ import { Loader } from 'lucide-react'
 import { useQueryState } from 'nuqs'
 import { useEffect, useState } from 'react'
 
-import { useVideoThumbnail } from '@/hooks/use-video-thumbnail'
+import { useVideoThumbnail } from '@repo/stephen-v2-ui/hooks'
 import { shortSparksList } from '@/view/short-spark/data/short-sparks.data'
 
 function ShortSparkPageView() {

@@ -28,7 +28,8 @@ const images = [
 ]
 
 export function ProfilePicture({ className }: ProfilePictureProps) {
-	const [imageSrc, setImageSrc] = useState(images[3])
+	const [currentIndex, setCurrentIndex] = useState(3)
+	const imageSrc = images[currentIndex]
 
 	useEffect(() => {
 		images.forEach((src) => {
@@ -36,13 +37,9 @@ export function ProfilePicture({ className }: ProfilePictureProps) {
 			img.src = src
 		})
 	}, [])
-	// const [isChanging, setIsChanging] = useState(false)
 
 	const changeImage = () => {
-		// setIsChanging(true)
-		const availableImages = images.filter((img) => img !== imageSrc)
-		const randomIndex = Math.floor(Math.random() * availableImages.length)
-		setImageSrc(availableImages[randomIndex])
+		setCurrentIndex((prev) => (prev + 1) % images.length)
 	}
 
 	return (

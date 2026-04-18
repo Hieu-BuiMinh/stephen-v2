@@ -17,61 +17,67 @@ type ImageProps = {
 } & React.ComponentPropsWithoutRef<typeof Image>
 
 const BlurImage = forwardRef<HTMLImageElement, ImageProps>((props, ref) => {
-	const { theme } = useTheme()
-	const fallbackSrc = '/assets/images/fallback/img-fallback-light.jpg'
-	const { alt, src, className, imageClassName, lazy = true, ...rest } = props
+	const { theme, resolvedTheme } = useTheme()
+	const [mounted, setMounted] = useState(false)
+
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+
+	const activeTheme = mounted ? resolvedTheme || theme : 'light'
+	const fallbackSrc =
+		activeTheme === 'dark'
+			? '/assets/images/fallback/img-fallback-dark.jpg'
+			: '/assets/images/fallback/img-fallback-light.jpg'
+
+	const { alt, src, className, imageClassName, lazy = true, description, unoptimized = false, style, ...rest } = props
 	const [isLoading, setIsLoading] = useState(true)
 	const [currentSrc, setCurrentSrc] = useState(src || fallbackSrc)
 
 	useEffect(() => {
 		setCurrentSrc(src || fallbackSrc)
-	}, [theme])
-
-	useEffect(() => {
-		setCurrentSrc(src || fallbackSrc)
-	}, [src])
+	}, [src, activeTheme, fallbackSrc])
 
 	return (
 		<div
-			className={cn('group relative overflow-hidden', isLoading && 'animate-pulse', className)}
-			data-description={props.description}
+			className={cn(
+				'group relative overflow-hidden transition-all',
+				isLoading && 'animate-pulse bg-muted',
+				className
+			)}
+			data-description={description}
+			style={style}
 		>
 			<Image
-				unoptimized
 				ref={ref}
 				className={cn(
-					'size-full object-cover',
-					isLoading && 'scale-[1.02] object-cover blur-xl grayscale',
+					'size-full object-cover transition-all duration-700 ease-in-out',
+					isLoading ? 'scale-[1.02] blur-xl grayscale' : 'scale-100 blur-0 grayscale-0',
 					imageClassName
 				)}
-				style={{
-					transition: 'filter 700ms ease, transform 150ms ease',
-				}}
 				src={currentSrc}
 				alt={alt}
 				loading={lazy ? 'lazy' : undefined}
 				priority={!lazy}
-				// quality={100}
+				unoptimized={unoptimized}
 				onLoad={() => {
 					setIsLoading(false)
 				}}
 				onError={() => {
 					setCurrentSrc(fallbackSrc)
 				}}
+				{...(rest.blurDataURL ? { placeholder: 'blur' } : {})}
 				{...rest}
 			/>
 
-			{rest?.description && (
-				<div className="pointer-events-none absolute inset-0 flex flex-col items-start justify-end bg-gradient-to-b from-transparent to-black p-3 text-xs font-semibold italic text-white opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
-					{/* <div className="line-clamp-2">{rest?.description}</div> */}
-					{rest?.description}
+			{description && (
+				<div className="pointer-events-none absolute inset-0 flex flex-col items-start justify-end bg-gradient-to-b from-transparent to-black/60 p-3 text-xs font-semibold italic text-white opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+					{description}
 				</div>
 			)}
 
 			{isLoading && (
-				<div
-					className={cn('absolute left-0 top-0 flex size-full items-center justify-center backdrop-blur-md')}
-				>
+				<div className={cn('absolute inset-0 flex items-center justify-center backdrop-blur-sm')}>
 					<Spinner size={'default'} />
 				</div>
 			)}
@@ -79,6 +85,6 @@ const BlurImage = forwardRef<HTMLImageElement, ImageProps>((props, ref) => {
 	)
 })
 
-BlurImage.displayName = 'Image'
+BlurImage.displayName = 'BlurImage'
 
 export { BlurImage }
