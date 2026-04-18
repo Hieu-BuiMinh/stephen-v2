@@ -67,7 +67,7 @@ const VideoZoom = forwardRef<HTMLVideoElement, TVideoZoom>((props, ref) => {
 				<DialogTrigger asChild role="button">
 					<div className={cn('not-prose group/trigger relative', className)} style={props.style}>
 						<BlurImage
-							className="h-full rounded-md border"
+							className="h-full w-full rounded-md border"
 							imageClassName={cn('aspect-video h-full object-cover', previewImageClassName)}
 							quality={100}
 							alt=""
