@@ -1,7 +1,7 @@
 'use client'
 
+import { ALL_FORMATS, CanvasSink, Input, UrlSource } from 'mediabunny'
 import { useEffect, useState } from 'react'
-import { Input, ALL_FORMATS, UrlSource, CanvasSink } from 'mediabunny'
 
 /**
  * Hook to generate a thumbnail from a video URL using mediabunny.
@@ -69,6 +69,7 @@ export function useVideoThumbnail(videoUrl: string, timestamp: number = 1.5) {
 						(canvas as HTMLCanvasElement).toBlob(resolve, 'image/webp', 0.8)
 					)
 				} else if ('convertToBlob' in canvas) {
+					// eslint-disable-next-line @typescript-eslint/no-explicit-any
 					blob = await (canvas as any).convertToBlob({
 						type: 'image/webp',
 						quality: 0.8,

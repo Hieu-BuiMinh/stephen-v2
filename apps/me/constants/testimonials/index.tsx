@@ -3,7 +3,7 @@ import React from 'react'
 
 export const testimonialsList: TestimonialCardProps[] = [
 	{
-		title: 'MAPS Infotech',
+		title: 'LEADERSHIP',
 		subtitle: 'Advanced trading technology for modern financial markets',
 		content:
 			"Stephen is a standout engineer whom I've seen evolve into a true technical leader. His proactive mindset and ability to architect scalable solutions have made him a cornerstone of our development team at MAPS. I couldn't be more impressed with his dedication.",
@@ -64,7 +64,7 @@ export const testimonialsList: TestimonialCardProps[] = [
 		variant: 'primary',
 	},
 	{
-		title: 'IDECO Vietnam',
+		title: 'IMPACT',
 		subtitle: 'Building impactful digital solutions',
 		content:
 			'Working with Stephen has been a game-changer for our agency. His attention to detail and ability to tackle complex technical challenges is unparalleled.',
@@ -77,7 +77,7 @@ export const testimonialsList: TestimonialCardProps[] = [
 		className: 'col-span-1 md:col-span-2',
 	},
 	{
-		title: 'Softworld',
+		title: 'ARCHITECTURE',
 		subtitle: 'Technical Excellence',
 		content:
 			'Stephen is an exceptional engineer with a keen eye for modern frontend patterns. His contributions to our core architecture were invaluable.',
@@ -91,7 +91,7 @@ export const testimonialsList: TestimonialCardProps[] = [
 		className: 'col-span-1',
 	},
 	{
-		title: 'XOMAD',
+		title: 'PARTNER',
 		subtitle: 'Creative Developer - Partner',
 		content:
 			'Working alongside Stephen has been a fantastic experience. His proactive approach and technical skills make every project much smoother.',
@@ -101,8 +101,8 @@ export const testimonialsList: TestimonialCardProps[] = [
 			company: 'XOMAD',
 			avatar: '/assets/images/connections/trang-alice.png',
 			companyLogo: (
-				<svg width="200" height="20" viewBox="0 0 200 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<g clip-path="url(#clip0_43_32)">
+				<svg width="70" height="20" viewBox="0 0 200 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g clipPath="url(#clip0_43_32)">
 						<path
 							d="M11 14.7L1 0.5H5L13.1 12.6L21 0.5H25.1L15 14.7L26.1 30.9H22L13 17.9L4 30.9H0L11 14.7Z"
 							fill="#EC3026"
@@ -124,13 +124,13 @@ export const testimonialsList: TestimonialCardProps[] = [
 		className: 'col-span-1 md:col-span-2',
 	},
 	{
-		title: 'MAPS Infotech',
+		title: 'LOGIC',
 		subtitle: 'Advanced trading technology for modern financial markets',
 		content:
 			'Stephen has a rare ability to turn complex logic into clean, performant code. He’s a top-tier engineer who makes any team better just by being in it.',
 		user: {
 			name: 'Khanh Phan',
-			position: 'Senior Software Engineer',
+			position: 'Software Engineer',
 			company: 'MAPS',
 			avatar: '/assets/images/connections/khanh-phan.png',
 			companyLogo: (
@@ -161,7 +161,7 @@ export const testimonialsList: TestimonialCardProps[] = [
 		className: 'col-span-1',
 	},
 	{
-		title: 'Inspiration & Growth',
+		title: 'GROWTH',
 		subtitle: 'Personal Mentorship',
 		content:
 			'Seeing Stephen grow from a dedicated student to a highly skilled engineer has been a privilege. His logical thinking and persistence are outstanding traits that will take him very far.',

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import './style.css'
@@ -7,6 +8,7 @@ import { nanoid } from 'nanoid'
 import Link from 'next/link'
 import * as runtime from 'react/jsx-runtime'
 
+import { useVideoThumbnail } from '../../../hooks'
 import { Bagua, FiveElementsDiagram, Hexagram, Tetragram, YinYang } from '../../../i-ching'
 import { AnimatedBlock } from '../../../motion/components/animate-block'
 import { StickyAudio } from '../audio'
@@ -14,7 +16,7 @@ import { DividerSlash } from '../divider'
 import { SVGIcons } from '../icons'
 import { BlurImage } from '../image/blur-image'
 import type { ImageZoom } from '../image/image-zoom'
-import { ImageZoomV2 } from '../image/image-zoom-v2'
+import { ImageZoomV3 } from '../image/image-zoom-v3'
 import { AvatarCardStack, CardStack } from '../image-card-stack'
 import { RoughMark, RoughMarkGroup } from '../rough'
 import { VideoZoom } from '../video'
@@ -57,26 +59,22 @@ const components = {
 			</Link>
 		)
 	},
-	Image: (props: React.ComponentPropsWithoutRef<typeof ImageZoom>) => {
-		const { alt, className, ...rest } = props
+	Image: (props: any) => {
+		const { alt, className, src, imageClassName, imgClassName, ...rest } = props
 
 		return (
-			<div className="flex flex-col gap-1">
-				<ImageZoomV2
+			<div className="flex flex-col items-center gap-1">
+				<ImageZoomV3
+					src={src}
+					alt={alt || ''}
+					caption={alt}
 					className={cn(
-						'not-prose m-auto rounded-md flex items-center justify-center p-1 bg-dots-sm',
+						'not-prose m-auto flex items-center justify-center rounded-md bg-dots-sm p-1 w-fit',
 						className
 					)}
-				>
-					<BlurImage
-						imageClassName="size-auto"
-						className={cn('size-full cursor-pointer not-prose')}
-						alt={alt || ''}
-						width={props.width || 0}
-						height={props.height || 0}
-						{...rest}
-					/>
-				</ImageZoomV2>
+					imageClassName={imgClassName || imageClassName}
+					{...rest}
+				/>
 				{alt && <figcaption className="text-center">{alt}</figcaption>}
 			</div>
 		)
@@ -90,7 +88,25 @@ const components = {
 	SVGIcons,
 	CardStack,
 	AvatarCardStack,
-	VideoZoom,
+	VideoZoom: (props: any) => {
+		const { description, className, src, previewImage, ...rest } = props
+		const { thumbnailUrl } = useVideoThumbnail(previewImage ? '' : src)
+
+		return (
+			<div className="flex flex-col gap-1">
+				<VideoZoom
+					className={cn(
+						'not-prose m-auto flex items-center justify-center rounded-md bg-dots-sm p-1',
+						className
+					)}
+					src={src}
+					previewImage={previewImage || thumbnailUrl || ''}
+					{...rest}
+				/>
+				{description && <figcaption className="text-center">{description}</figcaption>}
+			</div>
+		)
+	},
 	StickyAudio: (props: {
 		className?: string
 		audioTrack: { id: string; name: string; url: string; artist: string }

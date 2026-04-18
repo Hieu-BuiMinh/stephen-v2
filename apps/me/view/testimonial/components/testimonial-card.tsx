@@ -78,7 +78,7 @@ export function TestimonialCard({
 					</div>
 
 					<div className="flex items-center justify-between mt-auto pt-8">
-						<div className="flex items-center gap-3">
+						<div className="flex items-center gap-3 shrink-0">
 							<div
 								className={cn(
 									'size-10 rounded-full overflow-hidden border-2 shadow-sm transition-colors duration-300',
@@ -90,7 +90,7 @@ export function TestimonialCard({
 									alt={user.name}
 									width={40}
 									height={40}
-									className="object-cover size-full"
+									className="object-cover size-full shrink-0"
 								/>
 							</div>
 							<div className="flex flex-col">
@@ -115,7 +115,7 @@ export function TestimonialCard({
 						</div>
 
 						{user.companyLogo && (
-							<div className={cn('h-6 w-auto flex items-center justify-end transition-all')}>
+							<div className={cn('h-6 w-auto flex items-center justify-end transition-all shrink-0')}>
 								{typeof user.companyLogo === 'string' ? (
 									<BlurImage
 										src={user.companyLogo}
