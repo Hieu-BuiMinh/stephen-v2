@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ArrowRight, Lock, Search } from 'lucide-react'
+import { ArrowRight, Lock, RefreshCw, Search } from 'lucide-react'
 import { motion, useScroll, useMotionValueEvent } from 'motion/react'
 import { cn } from '@repo/stephen-v2-utils'
 import { useIsMobile } from '@repo/stephen-v2-ui/hooks'
@@ -48,7 +48,11 @@ export default function MediaManagerPage() {
 	}, [])
 
 	const { useResources } = useCloudinaryQuery()
-	const { data: assets, isLoading } = useResources(selectedFolder)
+	const { data: assets, isLoading, refetch: refetchResources, isFetching } = useResources(selectedFolder)
+
+	const handleRefresh = async () => {
+		await refetchResources()
+	}
 
 	const handleAuth = (e: React.FormEvent) => {
 		e.preventDefault()
@@ -149,6 +153,14 @@ export default function MediaManagerPage() {
 							</h1>
 						</div>
 						<div className="flex items-center gap-2">
+							<Button
+								variant="outline"
+								size="icon"
+								onClick={handleRefresh}
+								disabled={isLoading || isFetching}
+							>
+								<RefreshCw className={cn('size-4', (isLoading || isFetching) && 'animate-spin')} />
+							</Button>
 							<UploadDialog currentFolder={selectedFolder} />
 						</div>
 					</div>

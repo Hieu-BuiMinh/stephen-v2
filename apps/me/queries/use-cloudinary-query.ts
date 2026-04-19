@@ -1,11 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@repo/stephen-v2-utils/tanstack-query'
-import { CloudinaryResource, CloudinaryService } from '@/services/cloudinary.service'
-
-export const cloudinaryKeys = {
-	all: ['cloudinary'] as const,
-	folders: (path?: string) => [...cloudinaryKeys.all, 'folders', path || 'root'] as const,
-	resources: (folder: string) => [...cloudinaryKeys.all, 'resources', folder] as const,
-}
+import { cloudinaryService } from '@/services/admin/cloudinary'
+import type { CloudinaryResource } from '@/services/admin/cloudinary/cloudinary-res.dto'
 
 export function useCloudinaryQuery() {
 	const queryClient = useQueryClient()
@@ -14,19 +9,17 @@ export function useCloudinaryQuery() {
 		// Queries
 		useFolders: (path?: string) =>
 			useQuery({
-				queryKey: cloudinaryKeys.folders(path),
-				queryFn: async () => {
-					const res = await CloudinaryService.listFolders(path)
-					return res.folders
-				},
+				queryKey: cloudinaryService.listFolders.key({ path }),
+				queryFn: () => cloudinaryService.listFolders.get({ path }),
+				select: (res) => res.folders,
 				staleTime: 1000 * 60 * 5,
 			}),
 
 		useResources: (folder: string) =>
 			useQuery<CloudinaryResource[], Error>({
-				queryKey: cloudinaryKeys.resources(folder),
+				queryKey: cloudinaryService.listResources.key({ folder }),
 				queryFn: async () => {
-					const res = await CloudinaryService.listResources(folder)
+					const res = await cloudinaryService.listResources.post({ folder })
 					return res.resources
 				},
 				staleTime: 1000 * 60 * 5,
@@ -35,18 +28,22 @@ export function useCloudinaryQuery() {
 		// Mutations
 		useUpload: (folder: string) =>
 			useMutation({
-				mutationFn: ({ file }: { file: File }) => CloudinaryService.upload(file, folder),
+				mutationFn: ({ file }: { file: File }) => cloudinaryService.upload.post({ file, folder }),
 				onSuccess: () => {
-					void queryClient.invalidateQueries({ queryKey: cloudinaryKeys.all })
+					void queryClient.invalidateQueries({
+						queryKey: cloudinaryService.listResources.key(),
+					})
 				},
 			}),
 
 		useDelete: (folder: string) =>
 			useMutation({
 				mutationFn: ({ publicId, resourceType }: { publicId: string; resourceType: string }) =>
-					CloudinaryService.deleteResource(publicId, resourceType),
+					cloudinaryService.deleteResource.delete({ publicId, resourceType }),
 				onSuccess: () => {
-					void queryClient.invalidateQueries({ queryKey: cloudinaryKeys.resources(folder) })
+					void queryClient.invalidateQueries({
+						queryKey: cloudinaryService.listResources.key(),
+					})
 				},
 			}),
 	}

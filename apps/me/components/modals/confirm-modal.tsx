@@ -1,15 +1,13 @@
-'use client'
-
+import { useEffect, useRef, useState } from 'react'
 import {
-	AlertDialog,
-	AlertDialogAction,
-	AlertDialogCancel,
-	AlertDialogContent,
-	AlertDialogDescription,
-	AlertDialogFooter,
-	AlertDialogHeader,
-	AlertDialogTitle,
-	AlertDialogTrigger,
+	Button,
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
 } from '@repo/stephen-v2-ui/shadcn'
 
 interface ConfirmModalProps {
@@ -20,6 +18,7 @@ interface ConfirmModalProps {
 	confirmText?: string
 	cancelText?: string
 	variant?: 'default' | 'destructive'
+	isLoading?: boolean
 }
 
 export const ConfirmModal = ({
@@ -30,36 +29,77 @@ export const ConfirmModal = ({
 	confirmText = 'Confirm',
 	cancelText = 'Cancel',
 	variant = 'default',
+	isLoading = false,
 }: ConfirmModalProps) => {
+	const [open, setOpen] = useState(false)
+	const prevLoadingRef = useRef(isLoading)
+
+	useEffect(() => {
+		// If loading just finished (was true, now false), close the modal
+		if (prevLoadingRef.current && !isLoading) {
+			setOpen(false)
+		}
+		prevLoadingRef.current = isLoading
+	}, [isLoading])
+
 	const handleConfirm = (e: React.MouseEvent) => {
 		e.stopPropagation()
 		onConfirm()
+		// If it's already not loading (fast sync action), close immediately
+		if (!isLoading) {
+			setOpen(false)
+		}
 	}
 
 	return (
-		<AlertDialog>
-			<AlertDialogTrigger asChild onClick={(e) => e.stopPropagation()}>
+		<Dialog
+			open={open}
+			onOpenChange={(val) => {
+				if (!isLoading) {
+					setOpen(val)
+				}
+			}}
+		>
+			<DialogTrigger asChild onClick={(e) => e.stopPropagation()}>
 				{children}
-			</AlertDialogTrigger>
-			<AlertDialogContent onClick={(e) => e.stopPropagation()}>
-				<AlertDialogHeader>
-					<AlertDialogTitle>{title}</AlertDialogTitle>
-					<AlertDialogDescription>{description}</AlertDialogDescription>
-				</AlertDialogHeader>
-				<AlertDialogFooter>
-					<AlertDialogCancel onClick={(e) => e.stopPropagation()}>{cancelText}</AlertDialogCancel>
-					<AlertDialogAction
+			</DialogTrigger>
+			<DialogContent
+				onClick={(e) => e.stopPropagation()}
+				onPointerDownOutside={(e) => {
+					if (isLoading) {
+						e.preventDefault()
+					}
+				}}
+				onEscapeKeyDown={(e) => {
+					if (isLoading) {
+						e.preventDefault()
+					}
+				}}
+			>
+				<DialogHeader>
+					<DialogTitle>{title}</DialogTitle>
+					<DialogDescription>{description}</DialogDescription>
+				</DialogHeader>
+				<DialogFooter>
+					<Button
+						variant="outline"
+						disabled={isLoading}
+						onClick={(e) => {
+							e.stopPropagation()
+							setOpen(false)
+						}}
+					>
+						{cancelText}
+					</Button>
+					<Button
 						onClick={handleConfirm}
-						className={
-							variant === 'destructive'
-								? 'bg-destructive text-destructive-foreground hover:bg-destructive/90'
-								: ''
-						}
+						variant={variant === 'destructive' ? 'destructive' : 'default'}
+						disabled={isLoading}
 					>
 						{confirmText}
-					</AlertDialogAction>
-				</AlertDialogFooter>
-			</AlertDialogContent>
-		</AlertDialog>
+					</Button>
+				</DialogFooter>
+			</DialogContent>
+		</Dialog>
 	)
 }

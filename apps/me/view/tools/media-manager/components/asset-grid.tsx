@@ -1,5 +1,5 @@
 import { Skeleton } from '@repo/stephen-v2-ui/shadcn'
-import type { CloudinaryResource } from '@/services/cloudinary.service'
+import type { CloudinaryResource } from '@/services/admin/cloudinary/cloudinary-res.dto'
 import { AssetCard } from './asset-card'
 
 interface AssetGridProps {

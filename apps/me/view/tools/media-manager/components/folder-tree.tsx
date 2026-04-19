@@ -3,7 +3,7 @@ import { ChevronDown, ChevronRight, Folder, FolderOpen, Home } from 'lucide-reac
 import { Button } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
 import { useCloudinaryQuery } from '@/queries/use-cloudinary-query'
-import type { CloudinaryFolder } from '@/services/cloudinary.service'
+import type { CloudinaryFolder } from '@/services/admin/cloudinary/cloudinary-res.dto'
 
 interface FolderTreeProps {
 	selectedFolder: string

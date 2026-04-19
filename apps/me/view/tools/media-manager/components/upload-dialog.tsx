@@ -21,6 +21,11 @@ export function UploadDialog({ currentFolder }: UploadDialogProps) {
 	const { useUpload } = useCloudinaryQuery()
 	const uploadMutation = useUpload(currentFolder)
 
+	const handleOpenChange = (newOpen: boolean) => {
+		if (uploadMutation.isPending) return
+		setOpen(newOpen)
+	}
+
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files) {
 			setFiles(Array.from(e.target.files))
@@ -43,14 +48,17 @@ export function UploadDialog({ currentFolder }: UploadDialogProps) {
 	}
 
 	return (
-		<Dialog open={open} onOpenChange={setOpen}>
+		<Dialog open={open} onOpenChange={handleOpenChange}>
 			<DialogTrigger asChild>
-				<Button size="sm" className="gap-2">
+				<Button size="icon">
 					<Upload className="size-4" />
-					Upload
 				</Button>
 			</DialogTrigger>
-			<DialogContent className="sm:max-w-md">
+			<DialogContent
+				className="sm:max-w-md"
+				onPointerDownOutside={(e) => uploadMutation.isPending && e.preventDefault()}
+				onEscapeKeyDown={(e) => uploadMutation.isPending && e.preventDefault()}
+			>
 				<DialogHeader>
 					<DialogTitle>Upload Assets</DialogTitle>
 				</DialogHeader>
@@ -102,7 +110,7 @@ export function UploadDialog({ currentFolder }: UploadDialogProps) {
 					)}
 				</div>
 				<div className="flex justify-end gap-2">
-					<Button variant="outline" onClick={() => setOpen(false)}>
+					<Button variant="outline" onClick={() => setOpen(false)} disabled={uploadMutation.isPending}>
 						Cancel
 					</Button>
 					<Button

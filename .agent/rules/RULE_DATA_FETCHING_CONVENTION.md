@@ -1,113 +1,287 @@
 ---
-trigger: always_on
-description: Mandatory rules for managing the content layer (Velite), collections, and MDX in the stephen-v2 project.
+name: Service Layer & Query Key Rule
+description: Mandatory rules for organizing the service layer, folder structure, DTOs, and React Query keys in the Kayya project.
 ---
 
-# Content Layer & Velite Rule
+# Service Layer & Query Key Rule
 
 ## 1. Purpose
 
 Standardize how we:
 
-- Define content collections (articles, docs, projects, etc.)
-- Use Zod schemas for validation
-- Access generated content from the `@repo/stephen-v2-contents` workspace
-- Manage MDX processing and rehype/remark plugins
+- Organize service folders based on API version
+- Separate admin and customer services
+- Call APIs
+- Manage React Query keys
+- Organize DTOs
+- Avoid duplicate cache keys in a multi-developer project
+- Keep components clean (UI only)
 
-This rule is **mandatory** for all developers working on content-driven features.
-
----
-
-## 2. Collection Structure (MANDATORY)
-
-### 2.1 Root Structure
-
-All content definitions reside in the `packages/contents/` workspace.
-
-```
-packages/contents/
-├── collections/          # Individual collection definitions
-├── types/                # Shared content types
-├── utils/                # Content processing helpers
-└── velite.config.ts      # Main Velite configuration
-```
-
-### 2.2 Adding a New Collection
-
-1. Create a new file in `packages/contents/collections/` (e.g., `doc.collections.ts`).
-2. Define the collection using the `defineCollection` function from Velite.
-3. Add the collection to the `collections` object in `velite.config.ts`.
+This rule is **mandatory** for all developers.
 
 ---
 
-## 3. Schema Definition (Zod)
+# 2. Service Folder Structure (MANDATORY)
 
-Every collection must have a strictly defined schema using Zod to ensure data integrity.
+## 2.1 Root Structure
 
-✅ Example:
+```
+
+services/
+├── admin/
+├── customer/
+└── common/
+
+```
+
+---
+
+## 2.2 API Version Mapping Rule
+
+Mapping is determined by API version:
+
+| API Prefix | Service Folder    |
+| ---------- | ----------------- |
+| /api/v1    | services/admin    |
+| /api/v2    | services/customer |
+
+---
+
+## 2.3 Domain Mapping Rule
+
+The service folder is determined by:
+
+- Segment 1 → `api`
+- Segment 2 → `v1` or `v2`
+- Segment 3 → defines the domain (admin or customer)
+- Segment 4+ → defines the service module
+
+Example:
+
+```
+
+/api/v1/application/...
+
+```
+
+Mapping:
+
+```
+
+services/admin/application
+
+```
+
+Explanation:
+
+- `v1` → admin
+- `application` → service domain name
+- Everything after that belongs inside that service folder
+
+---
+
+# 3. Service Module Structure (MANDATORY)
+
+Each service module must follow this structure:
+
+```
+
+services/admin/application/
+├── index.ts
+├── application-req.dto.ts
+└── application-res.dto.ts
+
+```
+
+---
+
+## 3.1 index.ts (Service Definition)
+
+- Contains all API methods (get, post, put, delete)
+- Contains query keys
+- Must use Api wrapper
+- Must not use fetch or axios directly
+- Must not use any
+
+---
+
+## 3.2 request.dto.ts
+
+Contains:
+
+- Interfaces
+- Types
+- Request body definitions
+- Query param types
+
+Example:
 
 ```ts
-import { defineCollection, s } from 'velite'
+export interface CreateApplicationRequest {
+	name: string
+	type: string
+}
+```
 
-export const docPost = defineCollection({
-	name: 'DocPost',
-	pattern: 'documents/**/*.mdx',
-	schema: s
-		.object({
-			title: s.string(),
-			slug: s.slug('documents'),
-			description: s.string().optional(),
-			content: s.markdown(),
-			toc: s.toc(),
-		})
-		.transform((data) => ({
-			...data,
-			href: `/document/${data.slug}`,
-		})),
+---
+
+## 3.3 response.dto.ts
+
+Contains:
+
+- API response types
+- Response models
+- Strongly typed interfaces
+
+Example:
+
+```ts
+export interface ApplicationItem {
+	id: string
+	name: string
+}
+```
+
+---
+
+# 4. Service Pattern (MANDATORY)
+
+Every API must be defined using this structure:
+
+```ts
+{
+  key: (params?) => QueryKey
+  get?: async (params?) => Promise<Response>
+  post?: async (body) => Promise<Response>
+  put?: async (body) => Promise<Response>
+  delete?: async (params?) => Promise<Response>
+}
+```
+
+---
+
+## ❌ Not Allowed
+
+- Writing query keys directly inside components
+- Calling APIs directly in the view layer
+- Using fetch/axios directly outside Api wrapper
+- Using any
+- Mixing DTO types inside components
+
+---
+
+# 5. Query Key Convention
+
+## Required Rules
+
+- Query key must be a string array
+- Must use snake_case
+- Must be defined inside the service
+- Must not be hardcoded inside components
+- Must be deterministic
+- **Hierarchical Matching**: Use spread operators to handle optional parameters. This allows invalidating a "parent" key to automatically refresh all "child" queries.
+    - ✅ Correct: `['prefix', ...(id ? [id] : [])]` (becomes `['prefix', '123']` or `['prefix']`)
+    - ❌ Incorrect: `['prefix', id]` (becomes `['prefix', undefined]`, which is a different key hierarchy)
+
+---
+
+## ✅ Correct
+
+```ts
+applicationService.getApplicationList.key()
+```
+
+---
+
+## ❌ Incorrect
+
+```ts
+useQuery(['application_list'])
+```
+
+---
+
+# 6. API Call Rule
+
+All API calls must:
+
+- Use `Api` from `@/app/actions/Api`
+- Use typed DTOs
+- Return strongly typed responses
+- Not use any
+- Not be written inside components
+
+---
+
+# 7. Example Implementation
+
+```ts
+export const applicationService = {
+	getApplicationList: {
+		key: (params?: GetApplicationListRequest) =>
+			['get_admin_application_list', ...(params?.search ? [params.search] : [])] as const,
+		get: async (params?: GetApplicationListRequest) => {
+			return Api.get<IResponse<ApplicationItem[]>>('/api/v1/application/list', { params })
+		},
+	},
+
+	createApplication: {
+		key: () => ['post_admin_create_application'] as const,
+		post: async (body: CreateApplicationRequest) => {
+			return Api.post<IResponse<ApplicationItem>>('/api/v1/application', body)
+		},
+	},
+}
+```
+
+---
+
+# 8. Usage Example (React Query)
+
+```ts
+const query = useQuery({
+	queryKey: applicationService.getApplicationList.key(),
+	queryFn: applicationService.getApplicationList.get,
+})
+```
+
+With params:
+
+```ts
+const id = '123'
+
+const query = useQuery({
+	queryKey: applicationService.getApplicationById.key({ id }),
+	queryFn: () => applicationService.getApplicationById.get({ id }),
 })
 ```
 
 ---
 
-## 4. Using Content in the App
+# 9. Strict Code Review Enforcement
 
-### 4.1 Importing Generated Data
+The following cases will be rejected:
 
-Access generated content using the workspace alias `@repo/stephen-v2-contents`.
-
-✅ Example:
-
-```tsx
-import { docPosts } from '@repo/stephen-v2-contents'
-
-export function MyView() {
-	return (
-		<ul>
-			{docPosts.map((post) => (
-				<li key={post.slug}>{post.title}</li>
-			))}
-		</ul>
-	)
-}
-```
-
-### 4.2 Handling MDX Content
-
-Use the `MdxContent` component (usually found in `apps/me/components/mdx-content.tsx`) to render markdown content.
+- Defining query keys directly inside components
+- Calling APIs directly in the view layer
+- Not using DTO files
+- Not using Api wrapper
+- Not following folder structure
+- Not following snake_case query key rule
+- Mixing admin and customer service domains
+- Placing DTOs outside service module
 
 ---
 
-## 5. Naming Conventions
+# 10. Why We Apply This Rule
 
-- **Filenames**: kebab-case (e.g., `dev.collections.ts`).
-- **Collection Name**: PascalCase (e.g., `DevPost`).
-- **Generated Variable**: camelCase (e.g., `devPosts`).
+This pattern ensures:
 
----
-
-## 6. What is NOT Allowed
-
-❌ Fetching static content via external APIs when it belongs in Velite.
-❌ Hardcoding content structure without Zod validation.
-❌ Using absolute paths for content files instead of the collection pattern.
-❌ Mixing raw processing logic inside UI components.
+- Centralized query key management
+- No cache conflicts
+- **Predictable Hierarchical Invalidation**: Refreshing a base key (e.g., `['list']`) will automatically invalidate all sub-queries (e.g., `['list', 'search_term']`).
+- Clear admin/customer separation
+- Strong typing across the project
+- Easier endpoint refactoring
+- Clean UI layer
+- Scalable structure for large teams

@@ -16,7 +16,7 @@ import { BlurImage, Button, Card, CardContent, CardFooter, toast } from '@repo/s
 import { useVideoThumbnail } from '@repo/stephen-v2-ui/hooks'
 import { useCloudinaryQuery } from '@/queries/use-cloudinary-query'
 import { ConfirmModal } from '@/components/modals/confirm-modal'
-import type { CloudinaryResource } from '@/services/cloudinary.service'
+import type { CloudinaryResource } from '@/services/admin/cloudinary/cloudinary-res.dto'
 
 interface AssetCardProps {
 	asset: CloudinaryResource
@@ -127,6 +127,7 @@ export function AssetCard({ asset }: AssetCardProps) {
 						description={`Are you sure you want to delete "${assetName}"? This action cannot be undone.`}
 						onConfirm={handleDelete}
 						variant="destructive"
+						isLoading={isDeleting}
 					>
 						<Button
 							variant="outline"
