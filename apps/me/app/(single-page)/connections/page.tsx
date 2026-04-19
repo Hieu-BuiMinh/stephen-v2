@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 function ConnectionsPage() {
 	return (
-		<div className="min-h-[calc(100vh-4rem)] px-3">
+		<div className="min-h-[calc(100vh-4rem)]">
 			<LightRaysClient />
 			<PostPageTitle title={title} description={description} />
 			<ConnectionsPageView />
