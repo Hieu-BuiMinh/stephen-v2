@@ -27,7 +27,7 @@ type AxiosParams = {
 }
 type AxiosMutaionParams = {
 	url: string
-	data: Record<string, any>
+	data: Record<string, any> | FormData
 	config?: AxiosRequestConfig
 }
 
@@ -78,24 +78,29 @@ export class AxiosBuilder {
 		return this
 	}
 
-	public async get<T>({ url, config }: AxiosParams): Promise<AxiosResponse<T>> {
-		return await this.instance.get(url, config)
+	public async get<T>({ url, config }: AxiosParams): Promise<T> {
+		const res = await this.instance.get(url, config)
+		return res as unknown as T
 	}
 
-	public async post<T>({ data, url, config }: AxiosMutaionParams): Promise<AxiosResponse<T>> {
-		return await this.instance.post(url, data, config)
+	public async post<T>({ data, url, config }: AxiosMutaionParams): Promise<T> {
+		const res = await this.instance.post(url, data, config)
+		return res as unknown as T
 	}
 
-	public async put<T>({ data, url, config }: AxiosMutaionParams): Promise<AxiosResponse<T>> {
-		return await this.instance.put(url, data, config)
+	public async put<T>({ data, url, config }: AxiosMutaionParams): Promise<T> {
+		const res = await this.instance.put(url, data, config)
+		return res as unknown as T
 	}
 
-	public async patch<T>({ data, url, config }: AxiosMutaionParams): Promise<AxiosResponse<T>> {
-		return await this.instance.patch(url, data, config)
+	public async patch<T>({ data, url, config }: AxiosMutaionParams): Promise<T> {
+		const res = await this.instance.patch(url, data, config)
+		return res as unknown as T
 	}
 
-	public async delete<T>({ url, config }: Omit<AxiosMutaionParams, 'data'>): Promise<AxiosResponse<T>> {
-		return await this.instance.delete(url, config)
+	public async delete<T>({ url, config }: Omit<AxiosMutaionParams, 'data'>): Promise<T> {
+		const res = await this.instance.delete(url, config)
+		return res as unknown as T
 	}
 
 	public build(): AxiosInstance {
