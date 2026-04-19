@@ -67,4 +67,16 @@ export const CloudinaryService = {
 			},
 		})
 	},
+
+	// Delete: /api/cloudinary/resources/:resource_type/:type
+	deleteResource: (publicId: string, resourceType: string = 'image', type: string = 'upload') => {
+		return api.delete<any>({
+			url: `/cloudinary/resources/${resourceType}/${type}`,
+			config: {
+				params: {
+					'public_ids[]': publicId,
+				},
+			},
+		})
+	},
 }

@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from 'react'
 import { ArrowRight, Lock, Search } from 'lucide-react'
+import { motion, useScroll, useMotionValueEvent } from 'motion/react'
+import { cn } from '@repo/stephen-v2-utils'
+import { useIsMobile } from '@repo/stephen-v2-ui/hooks'
 import {
 	Button,
 	Card,
@@ -25,6 +28,20 @@ export default function MediaManagerPage() {
 	const [password, setPassword] = useState('')
 	const [selectedFolder, setSelectedFolder] = useState('')
 	const [searchQuery, setSearchQuery] = useState('')
+
+	const isMobile = useIsMobile()
+
+	const { scrollY } = useScroll()
+	const [isHeaderVisible, setIsHeaderVisible] = useState(true)
+
+	useMotionValueEvent(scrollY, 'change', (latest) => {
+		const previous = scrollY.getPrevious() ?? 0
+		if (latest > previous && latest > 150) {
+			setIsHeaderVisible(false)
+		} else {
+			setIsHeaderVisible(true)
+		}
+	})
 
 	useEffect(() => {
 		setIsMounted(true)
@@ -78,55 +95,86 @@ export default function MediaManagerPage() {
 	}
 
 	return (
-		<div className="flex min-h-screen flex-col bg-background md:flex-row pb-36">
+		<div className="flex min-h-[calc(100vh+4rem)] flex-col bg-background md:-mt-16 md:flex-row pb-36">
 			{/* Sidebar - Sticky and fixed height on desktop */}
-			<aside className="sticky top-0 z-20 hidden h-fit w-full flex-col border-r bg-muted/5 md:flex md:w-64 md:self-start lg:w-72">
+			<motion.aside
+				initial={false}
+				animate={{
+					top: isMobile ? 0 : isHeaderVisible ? 64 : 0,
+				}}
+				transition={{ duration: 0.2, ease: 'easeInOut' }}
+				className={cn(
+					'sticky z-20 hidden h-fit w-full flex-col border-r bg-muted/5 md:flex md:w-64 md:self-start lg:w-72'
+				)}
+			>
 				<div className="flex h-14 items-center border-b px-4">
 					<h2 className="font-semibold tracking-tight">Library</h2>
 				</div>
-				<ScrollArea className="h-[calc(100vh-120px)] w-full">
-					<div className="p-3">
-						<FolderTree selectedFolder={selectedFolder} onSelectFolder={setSelectedFolder} />
-					</div>
-				</ScrollArea>
-			</aside>
+				<motion.div
+					initial={false}
+					animate={{
+						height: isMobile
+							? 'calc(100vh - 56px)'
+							: isHeaderVisible
+								? 'calc(100vh - 120px)'
+								: 'calc(100vh - 56px)',
+					}}
+					transition={{ duration: 0.2, ease: 'easeInOut' }}
+					className="w-full overflow-hidden"
+				>
+					<ScrollArea className="size-full">
+						<div className="p-3 pb-20">
+							<FolderTree selectedFolder={selectedFolder} onSelectFolder={setSelectedFolder} />
+						</div>
+					</ScrollArea>
+				</motion.div>
+			</motion.aside>
 
 			{/* Main Content Arena */}
-			<main className="flex min-w-0 flex-1 flex-col">
-				{/* Top Actions Bar - Sticky to keep actions reachable */}
-				<header className="sticky top-0 z-10 flex h-14 shrink-0 items-center justify-between border-b bg-background/80 px-6 backdrop-blur-md">
-					<div className="flex min-w-0 flex-1 items-center gap-2">
-						<FolderDrawer selectedFolder={selectedFolder} onSelectFolder={setSelectedFolder} />
-						<h1 className="truncate text-sm font-bold tracking-tight">
-							{selectedFolder ? selectedFolder.split('/').pop() : 'Root Folder'}
-						</h1>
+			<main className="relative flex min-w-0 flex-1 flex-col">
+				{/* Sticky Header Group: Actions + Search */}
+				<motion.div
+					initial={false}
+					animate={{
+						top: isMobile ? 0 : isHeaderVisible ? 64 : 0,
+					}}
+					transition={{ duration: 0.2, ease: 'easeInOut' }}
+					className="sticky z-10 w-full"
+				>
+					<div className="flex h-14 shrink-0 items-center justify-between border-b bg-background/80 px-6 backdrop-blur-md">
+						<div className="flex min-w-0 flex-1 items-center gap-2">
+							<FolderDrawer selectedFolder={selectedFolder} onSelectFolder={setSelectedFolder} />
+							<h1 className="truncate text-sm font-bold tracking-tight">
+								{selectedFolder ? selectedFolder.split('/').pop() : 'Root Folder'}
+							</h1>
+						</div>
+						<div className="flex items-center gap-2">
+							<UploadDialog currentFolder={selectedFolder} />
+						</div>
 					</div>
-					<div className="flex items-center gap-2">
-						<UploadDialog currentFolder={selectedFolder} />
-					</div>
-				</header>
 
-				{/* Search & Breadcrumb Bar */}
-				<div className="flex shrink-0 flex-col gap-4 border-b bg-muted/5 px-6 py-3">
-					<div className="relative">
-						<Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-						<Input
-							placeholder="Search assets in this folder..."
-							className="h-9 pl-9 text-xs"
-							value={searchQuery}
-							onChange={(e) => setSearchQuery(e.target.value)}
-						/>
+					{/* Search & Breadcrumb Bar */}
+					<div className="flex shrink-0 flex-col gap-4 border-b bg-background/80 px-6 py-3 backdrop-blur-md">
+						<div className="relative">
+							<Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+							<Input
+								placeholder="Search assets in this folder..."
+								className="h-9 pl-9 text-xs"
+								value={searchQuery}
+								onChange={(e) => setSearchQuery(e.target.value)}
+							/>
+						</div>
+						<p
+							className="truncate font-mono text-[10px] text-muted-foreground opacity-60"
+							title={`/api/cloudinary/resources/${selectedFolder || 'root'}`}
+						>
+							PATH: /api/cloudinary/resources/{selectedFolder || 'root'}
+						</p>
 					</div>
-					<p
-						className="truncate font-mono text-[10px] text-muted-foreground opacity-60"
-						title={`/api/cloudinary/resources/${selectedFolder || 'root'}`}
-					>
-						PATH: /api/cloudinary/resources/{selectedFolder || 'root'}
-					</p>
-				</div>
+				</motion.div>
 
 				{/* Asset Viewport - Normal scrolling content */}
-				<div className="p-6">
+				<div className="p-6 pt-20">
 					<AssetGrid assets={filteredAssets} isLoading={isLoading} />
 				</div>
 			</main>

@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { Menu } from 'lucide-react'
 import { Button, Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@repo/stephen-v2-ui/shadcn'
+import { EllipsisVertical } from 'lucide-react'
+import { useState } from 'react'
 import { FolderTree } from './folder-tree'
 
 interface FolderDrawerProps {
@@ -22,7 +22,7 @@ export function FolderDrawer({ selectedFolder, onSelectFolder }: FolderDrawerPro
 		<Sheet open={open} onOpenChange={setOpen}>
 			<SheetTrigger asChild>
 				<Button variant="ghost" size="icon" className="md:hidden">
-					<Menu className="size-5" />
+					<EllipsisVertical className="size-5" />
 				</Button>
 			</SheetTrigger>
 			<SheetContent side="left" className="w-72 p-0">

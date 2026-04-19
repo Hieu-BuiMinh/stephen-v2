@@ -40,5 +40,14 @@ export function useCloudinaryQuery() {
 					void queryClient.invalidateQueries({ queryKey: cloudinaryKeys.all })
 				},
 			}),
+
+		useDelete: (folder: string) =>
+			useMutation({
+				mutationFn: ({ publicId, resourceType }: { publicId: string; resourceType: string }) =>
+					CloudinaryService.deleteResource(publicId, resourceType),
+				onSuccess: () => {
+					void queryClient.invalidateQueries({ queryKey: cloudinaryKeys.resources(folder) })
+				},
+			}),
 	}
 }

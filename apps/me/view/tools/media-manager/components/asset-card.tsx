@@ -1,6 +1,21 @@
 import { useState } from 'react'
-import { Check, Copy, ExternalLink, Image as ImageIcon, Video as VideoIcon } from 'lucide-react'
+import {
+	Check,
+	Code,
+	Copy,
+	ExternalLink,
+	Image as ImageIcon,
+	Link,
+	Music,
+	Play,
+	Video as VideoIcon,
+	Trash2,
+	Loader2,
+} from 'lucide-react'
 import { BlurImage, Button, Card, CardContent, CardFooter, toast } from '@repo/stephen-v2-ui/shadcn'
+import { useVideoThumbnail } from '@repo/stephen-v2-ui/hooks'
+import { useCloudinaryQuery } from '@/queries/use-cloudinary-query'
+import { ConfirmModal } from '@/components/modals/confirm-modal'
 import type { CloudinaryResource } from '@/services/cloudinary.service'
 
 interface AssetCardProps {
@@ -8,10 +23,21 @@ interface AssetCardProps {
 }
 
 export function AssetCard({ asset }: AssetCardProps) {
+	const assetName = asset.public_id.split('/').pop() || asset.public_id
 	const [copied, setCopied] = useState<string | null>(null)
 
-	const isVideo = asset.resource_type === 'video'
+	const { useDelete } = useCloudinaryQuery()
+	const { mutate: deleteAsset, isPending: isDeleting } = useDelete(asset.folder)
+
+	const handleDelete = () => {
+		deleteAsset({ publicId: asset.public_id, resourceType: asset.resource_type })
+	}
+
+	const isAudio = ['mp3', 'wav', 'm4a', 'ogg'].includes(asset.format.toLowerCase())
+	const isVideo = asset.resource_type === 'video' && !isAudio
 	const url = asset.secure_url
+
+	const { thumbnailUrl } = useVideoThumbnail(isVideo ? url : '')
 
 	const copyToClipboard = async (text: string, type: string) => {
 		await navigator.clipboard.writeText(text)
@@ -20,14 +46,23 @@ export function AssetCard({ asset }: AssetCardProps) {
 		setTimeout(() => setCopied(null), 2000)
 	}
 
-	const mdxSnippet = isVideo
-		? `<VideoZoom
+	const mdxSnippet = isAudio
+		? `<StickyAudio
+  audioTrack={{
+    id: "${asset.public_id}",
+    name: "${asset.public_id.split('/').pop()}",
+    url: "${url}",
+    artist: "Stephen",
+  }}
+/>`
+		: isVideo
+			? `<VideoZoom
   src="${url}"
   width={${asset.width}}
   height={${asset.height}}
   className="aspect-square w-full object-cover rounded-md border"
 />`
-		: `<Image
+			: `<Image
   src="${url}"
   width={${asset.width}}
   height={${asset.height}}
@@ -36,58 +71,72 @@ export function AssetCard({ asset }: AssetCardProps) {
 />`
 
 	return (
-		<Card className="group flex h-full flex-col overflow-hidden">
-			<CardContent className="relative overflow-hidden flex aspect-square w-full items-center justify-center bg-muted p-0">
-				{isVideo ? (
-					<div className="flex flex-col items-center gap-2">
-						<VideoIcon className="size-10 text-muted-foreground" />
-						<span className="max-w-[150px] truncate font-mono text-xs text-muted-foreground">
-							{asset.public_id}
-						</span>
+		<Card className="group rounded-md flex h-full flex-col overflow-hidden py-0 gap-0">
+			<CardContent className="relative aspect-square w-full overflow-hidden p-2">
+				<a href={url} target="_blank" rel="noreferrer" className="group/asset block size-full overflow-hidden">
+					{isAudio ? (
+						<div className="flex size-full items-center justify-center bg-muted/40 transition-colors group-hover/asset:bg-muted/60">
+							<Music className="size-12 text-muted-foreground/50 transition-transform duration-500 group-hover/asset:scale-110" />
+						</div>
+					) : (
+						<BlurImage
+							src={isVideo ? thumbnailUrl || '' : url}
+							alt={asset.public_id}
+							className="size-full object-cover transition-transform duration-500 group-hover/asset:scale-105 rounded-sm"
+							width={asset.width > 300 ? 300 : asset.width}
+							height={asset.height > 300 ? 300 : asset.height}
+						/>
+					)}
+					<div className="absolute inset-0 flex items-center justify-center gap-2 bg-black/40 opacity-0 transition-opacity group-hover/asset:opacity-100">
+						<div className="flex flex-col items-center gap-1 text-white">
+							<span className="rounded-lg bg-background/50 p-2">
+								<ExternalLink className="size-5" />
+							</span>
+							<span className="text-[10px] font-medium uppercase tracking-wider">Open Original</span>
+						</div>
 					</div>
-				) : (
-					<BlurImage
-						src={url}
-						alt={asset.public_id}
-						className="size-full object-cover transition-transform group-hover:scale-105"
-						width={asset.width > 300 ? 300 : asset.width}
-						height={asset.height > 300 ? 300 : asset.height}
-					/>
-				)}
-				<div className="absolute inset-0 flex items-center justify-center gap-2 bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
-					<Button size="icon" variant="secondary" asChild title="Open original">
-						<a href={url} target="_blank" rel="noreferrer">
-							<ExternalLink className="size-4" />
-						</a>
-					</Button>
-				</div>
+				</a>
 			</CardContent>
 			<CardFooter className="flex flex-1 flex-col justify-between p-2 pt-1.5">
 				<div className="flex w-full items-center justify-between gap-1 overflow-hidden pb-1">
-					<span className="flex-1 truncate font-mono text-[10px] opacity-60">
+					<span className="flex-1 truncate font-mono text-[10px] text-muted-foreground">
 						{asset.public_id.split('/').pop()}
 					</span>
-					<span className="text-[10px] uppercase opacity-40">{asset.format}</span>
+					<span className="text-[10px] uppercase text-muted-foreground">{asset.format}</span>
 				</div>
-				<div className="grid w-full grid-cols-2 gap-1">
+				<div className="flex w-full items-center gap-2">
 					<Button
 						variant="outline"
-						size="sm"
-						className="h-7 gap-1 text-[10px]"
+						size="icon"
+						className="size-7 gap-1 text-[10px]"
 						onClick={() => copyToClipboard(url, 'URL')}
 					>
-						{copied === 'URL' ? <Check className="size-3" /> : <Copy className="size-3" />}
-						URL
+						{copied === 'URL' ? <Check className="size-3" /> : <Link className="size-3" />}
 					</Button>
 					<Button
 						variant="outline"
-						size="sm"
-						className="h-7 gap-1 text-[10px]"
+						size="icon"
+						className="size-7 gap-1 text-[10px]"
 						onClick={() => copyToClipboard(mdxSnippet, 'MDX')}
 					>
-						{copied === 'MDX' ? <Check className="size-3" /> : <ImageIcon className="size-3" />}
-						MDX
+						{copied === 'MDX' ? <Check className="size-3" /> : <Code className="size-3" />}
 					</Button>
+
+					<ConfirmModal
+						title="Delete Asset"
+						description={`Are you sure you want to delete "${assetName}"? This action cannot be undone.`}
+						onConfirm={handleDelete}
+						variant="destructive"
+					>
+						<Button
+							variant="outline"
+							size="icon"
+							className="size-7 border-red-200 text-red-500 hover:border-red-500 hover:bg-red-50 hover:text-red-600 dark:border-red-900/50 dark:text-red-400 dark:hover:bg-red-950/30"
+							disabled={isDeleting}
+						>
+							{isDeleting ? <Loader2 className="size-3 animate-spin" /> : <Trash2 className="size-3" />}
+						</Button>
+					</ConfirmModal>
 				</div>
 			</CardFooter>
 		</Card>
