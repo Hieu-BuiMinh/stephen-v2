@@ -83,17 +83,36 @@ function Navbar({ className }: { className?: string }) {
 							</Link>
 						)
 					}
+					const featuredItems = navItem.filter((item) => item.featured)
+					const regularItems = navItem.filter((item) => !item.featured)
+
 					return (
-						<div key={navItem[0].href} className="flex gap-1 items-center">
+						<div key={key} className="flex gap-1 items-center">
 							<div className="flex-1 h-5 w-[1px] border-r" />
 							<NavMenuDropdown
 								triggerText={key}
 								triggerClass="text-muted-foreground hover:text-foreground transition-colors"
 								dropDownContent={
-									<div className="grid grid-cols-2 gap-2">
-										{navItem.map((item) => {
-											return <ItemLink item={item} className="col-span-1 w-60" key={item.href} />
-										})}
+									<div
+										className={cn(
+											'grid gap-2 p-1',
+											featuredItems.length > 0
+												? 'grid-cols-3 auto-rows-[60px] min-w-[700px]'
+												: 'grid-cols-2'
+										)}
+									>
+										{featuredItems.map((item) => (
+											<div key={item.href} className="col-span-1 row-span-3">
+												<ImageItemLink item={item} className="h-full" />
+											</div>
+										))}
+										{regularItems.map((item) => (
+											<ItemLink
+												item={item}
+												className={cn('col-span-1', featuredItems.length === 0 && 'w-60')}
+												key={item.href}
+											/>
+										))}
 									</div>
 								}
 							/>
@@ -138,6 +157,34 @@ const ItemLink = ({ className, item }: IItemLink) => {
 				</div>
 				<div className="text-xs font-light text-foreground/70 group-hover:text-foreground line-clamp-1">
 					{item.description}
+				</div>
+			</div>
+		</Link>
+	)
+}
+
+const ImageItemLink = ({ item, className }: IItemLink) => {
+	const Icon = item.icon
+	return (
+		<Link
+			className={cn(
+				'flex flex-col gap-2 rounded-lg p-2 border border-transparent bg-background/40 transition-colors group dark:text-muted-foreground dark:hover:text-foreground hover:bg-background/70 dark:hover:border-transparent',
+				'bg-radial-[at_52%_-52%] **:[text-shadow:0_1px_0_var(--color-secondary)] border-secondary from-secondary/20 to-secondary/50 text-secondary-foreground inset-shadow-2xs inset-shadow-background/50 dark:inset-shadow-background/25 dark:from-secondary dark:to-secondary/70 dark:hover:to-secondary border text-sm shadow-md shadow-zinc-950/30 ring-0 transition-[filter] duration-200 dark:border-0',
+				className
+			)}
+			href={item.href}
+		>
+			<div className="relative w-full aspect-video rounded-md overflow-hidden border border-white/10 shadow-inner">
+				<Image
+					src={item.image || '/assets/images/logo/logo-dark.svg'}
+					alt={item.title}
+					fill
+					className="object-cover transition-transform duration-500 group-hover:scale-110"
+				/>
+				<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
+				<div className="absolute bottom-2 left-2 right-2 flex flex-col gap-0.5 pointer-events-none">
+					<div className="font-bold text-white text-sm capitalize leading-tight truncate">{item.title}</div>
+					<div className="text-[10px] text-white/80 line-clamp-1 leading-tight">{item.description}</div>
 				</div>
 			</div>
 		</Link>

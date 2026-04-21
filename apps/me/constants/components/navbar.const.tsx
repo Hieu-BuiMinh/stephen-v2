@@ -19,6 +19,8 @@ export type TNavbarItem = {
 	href: string
 	description: string
 	icon: LucideIcon
+	featured?: boolean
+	image?: string
 }
 export type TNavbarItems = { [key: string]: TNavbarItem[] }
 
@@ -74,12 +76,12 @@ export const navbarItems: TNavbarItems = {
 		},
 	],
 	more: [
-		{
-			title: 'Guestbook',
-			href: '/guestbook',
-			description: `Leave your say—message`,
-			icon: MessageCircleHeart,
-		},
+		// {
+		// 	title: 'Guestbook',
+		// 	href: '/guestbook',
+		// 	description: `Leave your say—message`,
+		// 	icon: MessageCircleHeart,
+		// },
 		{
 			title: 'Testimonial',
 			href: '/testimonial',
@@ -95,26 +97,30 @@ export const navbarItems: TNavbarItems = {
 		{
 			title: 'Retrospective',
 			href: '/retrospective',
-			description: 'Reflecting on my journey',
+			description: 'Looking back on my journey',
 			icon: Notebook,
-		},
-		{
-			title: 'Overview',
-			href: '/overview',
-			description: `How this website came to be`,
-			icon: Clover,
+			featured: true,
+			image: '/assets/images/bg/intro-retro-card.png',
 		},
 		{
 			title: 'Year Recap',
 			href: '/year-recap',
 			description: 'A personal recap of the past year',
 			icon: Pencil,
+			featured: true,
+			image: '/assets/images/bg/year-recap.png',
 		},
 		{
 			title: 'Short Spark',
 			href: '/short-sparks',
 			description: `Some videos that I really enjoy`,
 			icon: Sparkles,
+		},
+		{
+			title: 'Overview',
+			href: '/overview',
+			description: `How this website came to be`,
+			icon: Clover,
 		},
 	],
 }
