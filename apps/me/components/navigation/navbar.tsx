@@ -164,7 +164,7 @@ const ItemLink = ({ className, item }: IItemLink) => {
 }
 
 const ImageItemLink = ({ item, className }: IItemLink) => {
-	const Icon = item.icon
+	// const Icon = item.icon
 	return (
 		<Link
 			className={cn(
@@ -174,12 +174,12 @@ const ImageItemLink = ({ item, className }: IItemLink) => {
 			)}
 			href={item.href}
 		>
-			<div className="relative w-full aspect-video rounded-md overflow-hidden border border-white/10 shadow-inner">
+			<div className="relative size-full aspect-video rounded-md overflow-hidden border border-white/10 shadow-inner">
 				<Image
 					src={item.image || '/assets/images/logo/logo-dark.svg'}
 					alt={item.title}
 					fill
-					className="object-cover transition-transform duration-500 group-hover:scale-110"
+					className="object-cover size-full transition-transform duration-500 group-hover:scale-110"
 				/>
 				<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
 				<div className="absolute bottom-2 left-2 right-2 flex flex-col gap-0.5 pointer-events-none">
