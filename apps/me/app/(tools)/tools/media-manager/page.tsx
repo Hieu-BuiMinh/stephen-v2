@@ -1,4 +1,3 @@
-import MainLayout from '@/components/layouts/main-layout'
 import MediaManagerPage from '@/view/tools/media-manager/pages/media-manager.page'
 
 export const metadata = {

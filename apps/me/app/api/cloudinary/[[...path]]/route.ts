@@ -50,6 +50,7 @@ async function proxyRequest(request: NextRequest, { params }: { params: Promise<
 
 		const responseHeaders = new Headers(response.headers)
 		responseHeaders.delete('content-encoding')
+		responseHeaders.delete('www-authenticate')
 
 		return new NextResponse(response.body, {
 			status: response.status,

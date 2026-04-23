@@ -1,9 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { ArrowRight, Lock, RefreshCw, Search } from 'lucide-react'
-import { motion, useScroll, useMotionValueEvent } from 'motion/react'
-import { cn } from '@repo/stephen-v2-utils'
 import { useIsMobile } from '@repo/stephen-v2-ui/hooks'
 import {
 	Button,
@@ -15,11 +11,19 @@ import {
 	Input,
 	ScrollArea,
 } from '@repo/stephen-v2-ui/shadcn'
+import { cn } from '@repo/stephen-v2-utils'
 import { useLocalStorage } from '@repo/stephen-v2-utils/hooks'
+import { ArrowRight, Lock, RefreshCw, Search } from 'lucide-react'
+import { motion, useMotionValueEvent, useScroll } from 'motion/react'
+import { useEffect, useState } from 'react'
+
 import { useCloudinaryQuery } from '@/queries/use-cloudinary-query'
+
+import { verifyAdminPassword } from '@/services/admin'
+
 import { AssetGrid } from '../components/asset-grid'
-import { FolderTree } from '../components/folder-tree'
 import { FolderDrawer } from '../components/folder-drawer'
+import { FolderTree } from '../components/folder-tree'
 import { UploadDialog } from '../components/upload-dialog'
 
 export default function MediaManagerPage() {
@@ -47,22 +51,30 @@ export default function MediaManagerPage() {
 		setIsMounted(true)
 	}, [])
 
-	const { useResources } = useCloudinaryQuery()
-	const { data: assets, isLoading, refetch: refetchResources, isFetching } = useResources(selectedFolder)
+	const { useResources, useFolders } = useCloudinaryQuery()
+	const {
+		data: assets,
+		isLoading,
+		refetch: refetchResources,
+		isFetching,
+	} = useResources(selectedFolder, isAuthenticated)
+	const { data: folders } = useFolders('', isAuthenticated)
 
 	const handleRefresh = async () => {
 		await refetchResources()
 	}
 
-	const handleAuth = (e: React.FormEvent) => {
+	const handleAuth = async (e: React.FormEvent) => {
 		e.preventDefault()
-		if (password === process.env.ADMIN_PASSWORD) {
+		const isValid = await verifyAdminPassword(password)
+		if (isValid) {
 			setIsAuthenticated(true)
 		} else {
 			alert('Invalid password')
 		}
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const filteredAssets = assets?.filter((a: any) => a.public_id.toLowerCase().includes(searchQuery.toLowerCase()))
 
 	// Prevent hydration mismatch by not rendering anything until mounted
@@ -82,7 +94,7 @@ export default function MediaManagerPage() {
 					<CardContent>
 						<form onSubmit={handleAuth} className="space-y-4">
 							<Input
-								type="password"
+								// type="password"
 								placeholder="Admin password..."
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
