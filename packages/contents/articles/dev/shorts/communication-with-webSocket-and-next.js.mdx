@@ -1,0 +1,306 @@
+---
+id: 'd2086cdc-e412-4a3d-83f4-7eca4b908188'
+title: 'Communication with WebSocket and Next.js'
+cover: '/assets/articles/dev/post/communication-with-webSocket-and-next.js.png'
+createdAt: '2026-04-23T11:39:42.444Z'
+description: 'Communication with WebSocket and Next.js'
+published: true
+hashTags: ['dev', 'short', 'ts']
+type: 'short'
+---
+
+## Demo Project: Overview of Real-time Communication with WebSocket and Next.js
+
+Hi everyone! The goal of this project is to provide a **Demo environment** that gives you a clear and practical overview of how a Server and a Client "talk" to each other via WebSockets within a Next.js ecosystem.
+
+Instead of just talking about theory, we will build a complete system so you can directly observe the flow of data moving back and forth between the two sides.
+
+---
+
+## Why do we need a separate model?
+
+To understand the core nature of WebSockets, you can imagine it as a **heartbeat** that always beats to keep the connection alive. While standard Serverless functions spin up and die instantly, WebSockets need an entity that stays awake to:
+
+1. **Persistent Connection**: Keep the communication line between Client and Server always "open" and ready for instant data exchange.
+2. **Independent Observation**: Clearly understand the roles of the Backend (event handling) and the Frontend (data display).
+3. **Clean Data Flow**: See exactly how a message is "fired" from the Client to the Server and how the Server broadcasts it to everyone in a visual and intuitive way.
+
+---
+
+### 1. System Architecture
+
+We will run two separate entities side-by-side:
+
+- **Frontend (Next.js)**: Running at `https://localhost:3000`.
+- **Backend (Socket Server)**: Running at `https://localhost:3001`.
+
+---
+
+### 2. Setting Up the Environment (The Setup)
+
+First, let's grab our tools. We'll use **TypeScript** for both sides to ensure clean, type-safe code.
+
+<CodeBlockTabs fileName='Terminal'>
+
+```bash
+# Install core libraries
+npm install socket.io socket.io-client
+
+# Development tools
+npm install -D tsx concurrently
+```
+
+</CodeBlockTabs>
+
+---
+
+### 3. Building the "Heart" (Standalone Server)
+
+Create a directory named `socket-server` to house your backend logic. This server will use HTTPS to be fully compatible with your Next.js environment.
+
+<CodeBlockTabs fileName='socket-server/index.ts'>
+
+```typescript
+import { createServer } from 'node:https'
+import { readFileSync } from 'node:fs'
+import { Server, Socket } from 'socket.io'
+import path from 'node:path'
+
+const port = 3001
+const __dirname = process.cwd()
+
+// Read SSL Certificates (Required if Frontend uses HTTPS)
+const httpsOptions = {
+	key: readFileSync(path.join(__dirname, 'certificates', 'localhost-key.pem')),
+	cert: readFileSync(path.join(__dirname, 'certificates', 'localhost.pem')),
+}
+
+const httpServer = createServer(httpsOptions)
+
+// Initialize Socket.io with CORS configuration
+const io = new Server(httpServer, {
+	cors: {
+		origin: 'https://localhost:3000', // Allow Frontend access
+		methods: ['GET', 'POST'],
+	},
+})
+
+io.on('connection', (socket: Socket) => {
+	console.log('🚀 Client connected:', socket.id)
+
+	socket.on('send-message', (data) => {
+		// Broadcast message with a timestamp to all clients
+		io.emit('receive-message', {
+			...data,
+			time: new Date().toLocaleTimeString(),
+		})
+	})
+
+	socket.on('disconnect', () => {
+		console.log('👋 Client disconnected')
+	})
+})
+
+httpServer.listen(port, () => {
+	console.log(`✅ Socket Server is running at: https://localhost:${port}`)
+})
+```
+
+</CodeBlockTabs>
+
+---
+
+### 4. The Bridge: Custom Hook `useSocket`
+
+To keep your React components clean, we'll wrap the connection logic into a custom hook. It handles connecting, event listening, and auto-cleanup. We use a `status` string to track the connection state in detail.
+
+<CodeBlockTabs fileName='hooks/use-socket.ts'>
+
+```typescript
+'use client'
+import { useEffect, useRef, useState, useCallback } from 'react'
+import { io, Socket } from 'socket.io-client'
+
+const DEFAULT_URL = 'https://localhost:3001'
+
+export type SocketStatus = 'connecting' | 'connected' | 'disconnected' | 'error'
+
+export const useSocket = (options?: { url?: string }) => {
+	const [status, setStatus] = useState<SocketStatus>('connecting')
+	const socketRef = useRef<Socket | null>(null)
+	const socketUrl = options?.url || DEFAULT_URL
+
+	useEffect(() => {
+		setStatus('connecting')
+		const socket = io(socketUrl, { transports: ['websocket'] })
+
+		socket.on('connect', () => {
+			setStatus('connected')
+		})
+
+		socket.on('disconnect', () => {
+			setStatus('disconnected')
+		})
+
+		socket.on('connect_error', () => {
+			setStatus('error')
+		})
+
+		socketRef.current = socket
+
+		// Cleanup: Disconnect when component unmounts or tab closes
+		return () => {
+			if (socketRef.current) {
+				socketRef.current.disconnect()
+				socketRef.current = null
+			}
+		}
+	}, [socketUrl])
+
+	// Function to listen for an event (returns a cleanup function)
+	const on = useCallback((event: string, callback: (...args: any[]) => void) => {
+		if (!socketRef.current) return
+		socketRef.current.on(event, callback)
+
+		return () => {
+			socketRef.current?.off(event, callback)
+		}
+	}, [])
+
+	// Function to emit an event
+	const emit = useCallback((event: string, data: any) => {
+		if (!socketRef.current) return
+		socketRef.current.emit(event, data)
+	}, [])
+
+	return {
+		status,
+		isConnected: status === 'connected',
+		on,
+		emit,
+		socket: socketRef.current,
+	}
+}
+```
+
+</CodeBlockTabs>
+
+---
+
+### 5. Building a Minimalist Chat UI
+
+Now, simply call the hook and display your data based on the `status`.
+
+<CodeBlockTabs fileName='components/SocketChat.tsx'>
+
+```tsx
+'use client'
+import { useEffect, useState } from 'react'
+import { useSocket } from '@/hooks/use-socket'
+
+export default function SocketChat() {
+	const [input, setInput] = useState('')
+	const [messages, setMessages] = useState<any[]>([])
+	const { status, isConnected, on, emit } = useSocket({ url: 'https://localhost:3001' })
+
+	useEffect(() => {
+		return on('receive-message', (data: any) => {
+			setMessages((prev) => [...prev, data])
+		})
+	}, [on])
+
+	const sendMessage = () => {
+		if (input.trim()) {
+			emit('send-message', { user: 'User', text: input })
+			setInput('')
+		}
+	}
+
+	return (
+		<div className="p-5 border rounded max-w-md bg-white text-black shadow-lg">
+			<div className="flex justify-between border-b pb-2 mb-4 font-bold items-center">
+				<span>Real-time Chat</span>
+				<div className="flex items-center gap-2">
+					<span
+						className={`w-2 h-2 rounded-full ${
+							status === 'connected'
+								? 'bg-green-500'
+								: status === 'connecting'
+									? 'bg-yellow-500 animate-pulse'
+									: 'bg-red-500'
+						}`}
+					></span>
+					<span className="text-[10px] uppercase font-medium">{status}</span>
+				</div>
+			</div>
+			<div className="h-64 overflow-y-auto mb-4 p-2 bg-gray-50 border rounded text-sm">
+				{messages.map((msg, i) => (
+					<div key={i} className="mb-2 border-b border-gray-100 last:border-0 pb-1">
+						<div className="flex justify-between">
+							<span className="font-bold text-blue-700">{msg.user}</span>
+							<span className="text-[10px] text-gray-400">{msg.time}</span>
+						</div>
+						<p className="mt-1">{msg.text}</p>
+					</div>
+				))}
+			</div>
+			<div className="flex gap-2">
+				<input
+					value={input}
+					onChange={(e) => setInput(e.target.value)}
+					className="border p-2 flex-1 rounded text-sm"
+					placeholder="Type a message..."
+				/>
+				<button
+					onClick={sendMessage}
+					disabled={!isConnected}
+					className="bg-blue-600 text-white px-4 rounded text-sm"
+				>
+					Send
+				</button>
+			</div>
+		</div>
+	)
+}
+```
+
+</CodeBlockTabs>
+
+---
+
+### 6. Running the System
+
+To start both servers with one command, update your `package.json`:
+
+<CodeBlockTabs fileName='package.json'>
+
+```json
+"scripts": {
+  "socket:server": "tsx socket-server/index.ts",
+  "dev:socket": "concurrently \"npm run dev\" \"npm run socket:server\""
+}
+```
+
+</CodeBlockTabs>
+
+**The only command you need:** `npm run dev:socket`
+
+---
+
+### 💡 Final Thoughts & Pro-Tips
+
+1. **SSL is key**: If the frontend uses HTTPS, the backend must use HTTPS.
+2. **CORS**: Always declare your frontend URL in the backend configuration.
+3. **Real-world usage**: The `socket-server` folder here is for demonstration. In real projects, the Backend team will give you a URL; just point your `useSocket` hook to it.
+4. **Deployment**: Never deploy this socket server to Vercel. Use a VPS (Render, Railway, DigitalOcean).
+
+<Image
+	src="https://res.cloudinary.com/hieu-buiminh/image/upload/v1776918856/ws-result_tupnpk.png"
+	className="border rounded-md"
+	style={{ width: 400, height: 400, objectFit: 'contain' }}
+	alt="Result"
+/>
+
+I hope this guide helps you master WebSockets in Next.js!
+
+**Now, run the command and enjoy your hard work! Happy coding! 🚀**

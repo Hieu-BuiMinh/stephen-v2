@@ -4,6 +4,7 @@ import React from 'react'
 
 import Hello from '@/components/hello'
 import BProgressProvider from '@/components/providers/bprogress-provider'
+import QueryProvider from '@/components/providers/query-provider'
 import { ThemeProvider } from '@/components/providers/shadcn-provider'
 import { Toaster } from '@/components/toaster'
 
@@ -11,18 +12,12 @@ function AppProvider({ children }: { children: React.ReactNode }) {
 	return (
 		<>
 			<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-				<NuqsAdapter>
-					<BProgressProvider>{children}</BProgressProvider>
-				</NuqsAdapter>
+				<QueryProvider>
+					<NuqsAdapter>
+						<BProgressProvider>{children}</BProgressProvider>
+					</NuqsAdapter>
+				</QueryProvider>
 				<Hello />
-				{/* <ConvexClientProvider>
-				<NuqsAdapter>
-					<BProgressProvider>{children}</BProgressProvider>
-				</NuqsAdapter>
-				<ConfirmModal />
-				<LoginModal />
-			</ConvexClientProvider> */}
-
 				<Script
 					defer
 					src="https://cloud.umami.is/script.js"

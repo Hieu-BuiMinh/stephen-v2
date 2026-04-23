@@ -10,12 +10,14 @@
     ".": "./src/common/index.ts",
     "./axios": "./src/axios/index.ts",
     "./hooks": "./src/hooks/index.ts",
-    "./i-ching": "./src/i-ching/index.ts"
+    "./i-ching": "./src/i-ching/index.ts",
+    "./tanstack-query": "./src/tanstack-query/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tanstack/react-query": "^5.99.1",
     "axios": "^1.10.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",

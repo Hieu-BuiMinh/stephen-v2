@@ -11,7 +11,7 @@ function TagsPageInner() {
 	const { posts } = useTagsFilter()
 
 	return (
-		<div className="pt-5 pb-36">
+		<div className="pt-5 pb-36 px-3">
 			<TagActions />
 
 			<div className="w-full min-h-52 flex pt-8">

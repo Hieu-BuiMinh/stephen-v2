@@ -78,6 +78,9 @@ importers:
       canvas-confetti:
         specifier: ^1.9.3
         version: 1.9.3
+      cloudinary:
+        specifier: ^2.9.0
+        version: 2.9.0
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
@@ -471,6 +474,9 @@ importers:
 
   packages/utils:
     dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.99.1
+        version: 5.99.1(react@19.1.1)
       axios:
         specifier: ^1.10.0
         version: 1.10.0
@@ -1912,6 +1918,14 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
 
+  '@tanstack/query-core@5.99.1':
+    resolution: {integrity: sha512-5E8xwxyWvr22yt7zvzP3KOZ5TUElOdVA45NP3/Ao1m9mvc9i18NLTDe9m3M00BH2DR5J20cv7xckMPlhKNs+vQ==}
+
+  '@tanstack/react-query@5.99.1':
+    resolution: {integrity: sha512-akg5GdwW70lvJvCqVHZ7tizGyc+TATjUzKX9RuF1xknhEe/1leofXk7YLYbrbRsuhNbHJBAayaQUMvvOFZ5L5g==}
+    peerDependencies:
+      react: ^18 || ^19
+
   '@tsparticles/basic@3.9.1':
     resolution: {integrity: sha512-ijr2dHMx0IQHqhKW3qA8tfwrR2XYbbWYdaJMQuBo2CkwBVIhZ76U+H20Y492j/NXpd1FUnt2aC0l4CEVGVGdeQ==}
 
@@ -2556,6 +2570,10 @@ packages:
 
   client-only@0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+
+  cloudinary@2.9.0:
+    resolution: {integrity: sha512-F3iKMOy4y0zy0bi5JBp94SC7HY7i/ImfTPSUV07iJmRzH1Iz8WavFfOlJTR1zvYM/xKGoiGZ3my/zy64In0IQQ==}
+    engines: {node: '>=9'}
 
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
@@ -6106,6 +6124,13 @@ snapshots:
       - supports-color
       - typescript
 
+  '@tanstack/query-core@5.99.1': {}
+
+  '@tanstack/react-query@5.99.1(react@19.1.1)':
+    dependencies:
+      '@tanstack/query-core': 5.99.1
+      react: 19.1.1
+
   '@tsparticles/basic@3.9.1':
     dependencies:
       '@tsparticles/engine': 3.9.1
@@ -6953,6 +6978,10 @@ snapshots:
       clsx: 2.1.1
 
   client-only@0.0.1: {}
+
+  cloudinary@2.9.0:
+    dependencies:
+      lodash: 4.17.21
 
   clsx@2.1.1: {}
 

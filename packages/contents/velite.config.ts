@@ -43,7 +43,7 @@ export default defineConfig({
 						// dark: 'night-owl',
 						// light: 'github-light',
 						dark: 'min-dark',
-						light: 'min-dark',
+						light: 'github-light',
 						keepBackground: false,
 					},
 
