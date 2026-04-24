@@ -1,3 +1,10 @@
+/**
+ * TableOfContentDesktop
+ * A premium TOC component with fluid S-curve geometry and dynamic scroll tracking.
+ * Inspired by Fumadocs Clerk TOC:
+ * https://github.com/fuma-nama/fumadocs/blob/755554d6acbb22efcdedf31d40b1a83f54e2cf1a/packages/ui/src/components/layout/toc-clerk.tsx
+ * https://www.fuma-nama.dev/blog/svg-art
+ */
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
@@ -54,18 +61,126 @@ function flattenToc(toc: TocItem[]): { url: string; title: string; level: number
 	return flat
 }
 
+/**
+ * Binary search to find the distance along a path for a given Y coordinate
+ */
+function findDistanceAtY(pathEl: SVGPathElement, targetY: number): number {
+	try {
+		const totalLength = pathEl.getTotalLength()
+		let low = 0
+		let high = totalLength
+		// 15 iterations provide sub-pixel precision for typical TOC heights
+		for (let i = 0; i < 15; i++) {
+			const mid = (low + high) / 2
+			const p = pathEl.getPointAtLength(mid)
+			if (p.y < targetY) low = mid
+			else high = mid
+		}
+		return (low + high) / 2
+	} catch (e) {
+		return 0
+	}
+}
+
 function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
 	const containerRef = useRef<HTMLDivElement>(null)
 
 	const [svgPath, setSvgPath] = useState('')
-	const [activeRect, setActiveRect] = useState<{ top: number; height: number } | null>(null)
+	const [activeRect, setActiveRect] = useState<{ top: number; height: number; x: number } | null>(null)
 	const [containerHeight, setContainerHeight] = useState(0)
+	const [direction, setDirection] = useState<'up' | 'down'>('down')
+	const [dotDistance, setDotDistance] = useState(0)
+	const prevActiveIdRef = useRef<string | null>(null)
+	const pathRef = useRef<SVGPathElement>(null)
 
 	const tocItems = post.toc ?? []
 	const urls = useMemo(() => extractUrls(tocItems), [tocItems])
-	const activeId = useScrollSpy(urls, { rootMargin: '0% 0% -80% 0%' })
+	const activeIds = useScrollSpy(urls, { rootMargin: '0% 0% -30% 0%' })
 	const flatTocArray = useMemo(() => flattenToc(tocItems), [tocItems])
 
+	useLayoutEffect(() => {
+		const currentActiveId = direction === 'down' ? activeIds[activeIds.length - 1] : activeIds[0]
+
+		if (currentActiveId) {
+			prevActiveIdRef.current = currentActiveId
+		}
+	}, [activeIds, direction])
+
+	// Detect scroll direction changes at 1px sensitivity
+	useLayoutEffect(() => {
+		let lastScrollY = window.scrollY
+		let currentDirection = direction
+
+		const updateDirection = () => {
+			const scrollY = window.scrollY
+			const newDirection = scrollY > lastScrollY ? 'down' : 'up'
+
+			if (newDirection !== currentDirection) {
+				currentDirection = newDirection
+				setDirection(newDirection)
+			}
+
+			lastScrollY = scrollY
+		}
+
+		window.addEventListener('scroll', updateDirection, { passive: true })
+		return () => window.removeEventListener('scroll', updateDirection)
+	}, [direction])
+
+	// NEW: Separate effect for calculating the highlight rect based on activeIds
+	useLayoutEffect(() => {
+		const container = containerRef.current
+		if (!container || activeIds.length === 0) {
+			setActiveRect(null)
+			return
+		}
+
+		const items = container.querySelectorAll('.toc-item')
+		let minTop = Infinity
+		let maxBottom = -Infinity
+		let activeX = 0
+
+		items.forEach((item, index) => {
+			const element = item as HTMLElement
+			const data = flatTocArray[index]
+			if (!data) return
+
+			if (activeIds.includes(data.url.slice(1))) {
+				const styles = getComputedStyle(element)
+				const paddingTop = parseFloat(styles.paddingTop)
+				const paddingBottom = parseFloat(styles.paddingBottom)
+
+				const top = element.offsetTop + paddingTop
+				const bottom = element.offsetTop + element.offsetHeight - paddingBottom
+				const x = data.level * 8 + 4
+
+				minTop = Math.min(minTop, top)
+				maxBottom = Math.max(maxBottom, bottom)
+
+				if (direction === 'down') {
+					if (bottom === maxBottom) activeX = x
+				} else {
+					if (top === minTop) activeX = x
+				}
+			}
+		})
+
+		if (minTop !== Infinity) {
+			setActiveRect({
+				top: minTop,
+				height: maxBottom - minTop,
+				x: activeX,
+			})
+		}
+	}, [activeIds, flatTocArray, direction])
+
+	useLayoutEffect(() => {
+		if (!pathRef.current || !activeRect) return
+		const targetY = direction === 'down' ? activeRect.top + activeRect.height : activeRect.top
+		setDotDistance(findDistanceAtY(pathRef.current, targetY))
+	}, [activeRect, direction])
+
+	// Effect for calculating the STATIC track path
 	useLayoutEffect(() => {
 		const container = containerRef.current
 		if (!container) return
@@ -73,45 +188,49 @@ function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
 		const updatePath = () => {
 			const items = container.querySelectorAll('.toc-item')
 			let path = ''
-			let currentActiveRect = null
 
 			items.forEach((item, index) => {
 				const element = item as HTMLElement
 				const data = flatTocArray[index]
 				if (!data) return
 
-				const level = data.level
-				const x = level * 6 + 4
-				const yOffset = element.offsetTop
-				const height = element.offsetHeight
+				const styles = getComputedStyle(element)
+				const paddingTop = parseFloat(styles.paddingTop)
+				const paddingBottom = parseFloat(styles.paddingBottom)
+
+				const x = data.level * 8 + 4
+				const top = element.offsetTop + paddingTop
+				const bottom = element.offsetTop + element.offsetHeight - paddingBottom
 
 				if (index === 0) {
-					path += `M ${x} ${yOffset} L ${x} ${yOffset + height}`
+					path += `M ${x} ${top} L ${x} ${bottom}`
 				} else {
 					const prevElement = items[index - 1] as HTMLElement
 					const prevData = flatTocArray[index - 1]
 					if (!prevElement || !prevData) return
 
-					const prevLevel = prevData.level
-					const prevX = prevLevel * 6 + 4
-					const prevYEnd = prevElement.offsetTop + prevElement.offsetHeight
+					const prevStyles = getComputedStyle(prevElement)
+					const prevPaddingBottom = parseFloat(prevStyles.paddingBottom)
+					const prevYEnd = prevElement.offsetTop + prevElement.offsetHeight - prevPaddingBottom
+					const prevX = prevData.level * 8 + 4
 
 					/**
-					 * Standard Smooth S-curve (Rounder):
-					 * Using a 0.4 ratio to create a "fuller" and rounder S-curve.
+					 * Fuma-inspired Curved Connection:
+					 * We use a balanced Cubic Bezier to connect the end of previous item
+					 * to the start of current item.
 					 */
-					const gap = yOffset - prevYEnd
-					path += ` C ${prevX} ${prevYEnd + gap * 0.4} ${x} ${yOffset - gap * 0.4} ${x} ${yOffset}`
-					path += ` L ${x} ${yOffset + height}`
-				}
-
-				if (data.url.slice(1) === activeId) {
-					currentActiveRect = { top: yOffset, height }
+					if (prevX === x) {
+						path += ` L ${x} ${top}`
+					} else {
+						const gap = top - prevYEnd
+						const radius = Math.min(4, gap / 2)
+						path += ` C ${prevX} ${prevYEnd + radius} ${x} ${top - radius} ${x} ${top}`
+					}
+					path += ` L ${x} ${bottom}`
 				}
 			})
 
 			setSvgPath(path)
-			setActiveRect(currentActiveRect)
 			setContainerHeight(container.offsetHeight)
 		}
 
@@ -127,12 +246,13 @@ function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
 			observer.disconnect()
 			window.removeEventListener('resize', updatePath)
 		}
-	}, [flatTocArray, activeId])
+	}, [flatTocArray])
 
 	// Optimization: Pre-encode the SVG mask for the moving highlight
 	const svgMaskUrl = useMemo(() => {
 		if (!svgPath) return ''
-		const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 ${containerHeight || 1000}"><path d="${svgPath}" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>`
+		// stroke="white" is essential for SVG masks
+		const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 ${containerHeight || 1000}"><path d="${svgPath}" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>`
 		return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`
 	}, [svgPath, containerHeight])
 
@@ -155,6 +275,7 @@ function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
 						aria-hidden="true"
 					>
 						<path
+							ref={pathRef}
 							d={svgPath}
 							fill="none"
 							stroke="currentColor"
@@ -190,6 +311,18 @@ function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
 						)}
 					</div>
 
+					{/* Leading Dot */}
+					{activeRect && svgPath && (
+						<div
+							className="absolute z-20 h-1 w-1 rounded-full bg-foreground transition-all duration-500 ease-in-out"
+							style={{
+								offsetPath: `path('${svgPath}')`,
+								offsetDistance: `${dotDistance}px`,
+								offsetRotate: '0deg',
+							}}
+						/>
+					)}
+
 					{flatTocArray.map((toc, index) => (
 						<div
 							key={`${toc.title}-${index}`}
@@ -199,7 +332,7 @@ function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
 							<Link
 								className={cn(
 									'line-clamp-2 text-[11px] leading-[1.3] text-muted-foreground no-underline transition-colors hover:text-foreground',
-									toc.url.slice(1) === activeId && 'font-medium text-foreground'
+									activeIds.includes(toc.url.slice(1)) && 'font-medium text-foreground'
 								)}
 								href={toc.url}
 							>

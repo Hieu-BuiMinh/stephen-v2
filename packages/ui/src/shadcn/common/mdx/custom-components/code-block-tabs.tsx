@@ -13,7 +13,7 @@ import './style.css'
 
 import { cn } from '@repo/stephen-v2-utils'
 import type { VariantProps } from 'class-variance-authority'
-import { CheckIcon, CopyIcon } from 'lucide-react'
+import { CheckIcon, ChevronDown, ChevronUp, CopyIcon } from 'lucide-react'
 import { JetBrains_Mono } from 'next/font/google'
 import { type ReactNode, useEffect, useRef, useState } from 'react'
 
@@ -32,14 +32,86 @@ function CodeBlockTabs({ children, options, fileName }: ICodeBlockTabs) {
 	const childrenIsArray = Array.isArray(children)
 
 	const textInput = useRef<HTMLDivElement>(null)
+	const [isExpanded, setIsExpanded] = useState(false)
+	const [isOverflowing, setIsOverflowing] = useState(false)
+	const [activeTab, setActiveTab] = useState('0')
 
 	const onCopy = () => {
 		void navigator.clipboard.writeText(textInput.current?.textContent ?? '')
 	}
 
+	useEffect(() => {
+		const checkOverflow = () => {
+			if (textInput.current) {
+				const hasOverflow = textInput.current.scrollHeight > 700
+				setIsOverflowing(hasOverflow)
+			}
+		}
+
+		checkOverflow()
+		const observer = new ResizeObserver(checkOverflow)
+		if (textInput.current) {
+			observer.observe(textInput.current)
+		}
+
+		return () => observer.disconnect()
+	}, [activeTab, children])
+
+	const renderContent = (content: ReactNode, index?: number) => {
+		const isCurrentTab = (index?.toString() ?? '0') === activeTab
+		return (
+			<TabsContent key={index} className="w-full flex-none px-[3px] pb-[3.5px]" value={index?.toString() ?? '0'}>
+				<div className="relative">
+					<div className="rounded-[0.5rem_0.5rem_0.8rem_0.8rem] overflow-hidden border border-slate-300 dark:border-border/70 relative">
+						<div
+							ref={isCurrentTab ? textInput : null}
+							className={cn(
+								JetBrainsMono.className,
+								'size-full max-w-full flex p-2 bg-slate-100 dark:bg-[#18181B] [&>pre]:min-w-full [&>pre]:h-full [&>pre]:!bg-transparent [&>pre]:max-w-1 [&>pre]:overflow-auto transition-[max-height] duration-300 ease-in-out',
+								!isExpanded && isOverflowing ? 'max-h-[700px] pb-12' : 'max-h-fit'
+							)}
+						>
+							{content}
+						</div>
+
+						{/* Gradient Overlay - Inside the rounded container */}
+						{!isExpanded && isOverflowing && (
+							<div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-100 dark:from-[#18181B] to-transparent pointer-events-none" />
+						)}
+					</div>
+
+					{/* Control Button - Positioned on the bottom border */}
+					{isOverflowing && (
+						<div className="absolute left-1/2 -bottom-[1px] -translate-x-1/2 translate-y-1/2 z-20">
+							<Button
+								variant="outline"
+								size="sm"
+								onClick={() => setIsExpanded(!isExpanded)}
+								className="flex items-center gap-2 text-xs h-7 px-4 rounded-full bg-white dark:bg-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-900 border-slate-300 dark:border-zinc-800 shadow-md hover:shadow-lg transition-all"
+							>
+								{isExpanded ? (
+									<>
+										<ChevronUp className="size-3.5" />
+										Collapse
+									</>
+								) : (
+									<>
+										<ChevronDown className="size-3.5" />
+										Expand
+									</>
+								)}
+							</Button>
+						</div>
+					)}
+				</div>
+			</TabsContent>
+		)
+	}
+
 	return (
 		<Tabs
 			defaultValue="0"
+			onValueChange={setActiveTab}
 			className="rounded-xl border border-slate-300 gap-1.5 bg-neutral-200 dark:bg-[#18181B] dark:border-border/70"
 		>
 			{childrenIsArray && (
@@ -72,39 +144,7 @@ function CodeBlockTabs({ children, options, fileName }: ICodeBlockTabs) {
 					<CopyButton onCopy={onCopy} />
 				</div>
 			)}
-			{childrenIsArray ? (
-				children?.map((child, index) => {
-					return (
-						<TabsContent
-							key={index}
-							className="w-full flex-none px-[3px] pb-[3.5px]"
-							value={index.toString()}
-						>
-							<div
-								ref={textInput}
-								className={cn(
-									JetBrainsMono.className,
-									'rounded-[0.5rem_0.5rem_0.8rem_0.8rem] size-full max-w-full border border-slate-300 dark:border-[var(--border)] flex p-2 bg-slate-100 dark:bg-[#18181B] [&>pre]:min-w-full [&>pre]:h-full [&>pre]:!bg-transparent [&>pre]:max-w-1 [&>pre]:overflow-auto'
-								)}
-							>
-								{child}
-							</div>
-						</TabsContent>
-					)
-				})
-			) : (
-				<TabsContent className="w-full flex-none px-[3px] pb-[3.5px]" value="0">
-					<div
-						ref={textInput}
-						className={cn(
-							JetBrainsMono.className,
-							'rounded-[0.5rem_0.5rem_0.8rem_0.8rem] size-full max-w-full border border-slate-300 dark:border-[var(--border)] flex p-2 bg-slate-100 dark:bg-[#18181B] [&>pre]:min-w-full [&>pre]:h-full [&>pre]:!bg-transparent [&>pre]:max-w-1 [&>pre]:overflow-auto'
-						)}
-					>
-						{children}
-					</div>
-				</TabsContent>
-			)}
+			{childrenIsArray ? children?.map((child, index) => renderContent(child, index)) : renderContent(children)}
 		</Tabs>
 	)
 }

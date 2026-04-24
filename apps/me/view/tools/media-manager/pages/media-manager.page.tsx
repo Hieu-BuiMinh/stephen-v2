@@ -18,7 +18,6 @@ import { motion, useMotionValueEvent, useScroll } from 'motion/react'
 import { useEffect, useState } from 'react'
 
 import { useCloudinaryQuery } from '@/queries/use-cloudinary-query'
-
 import { verifyAdminPassword } from '@/services/admin'
 
 import { AssetGrid } from '../components/asset-grid'
