@@ -87,7 +87,7 @@ function CodeBlockTabs({ children, options, fileName }: ICodeBlockTabs) {
 								variant="outline"
 								size="sm"
 								onClick={() => setIsExpanded(!isExpanded)}
-								className="flex items-center gap-2 text-xs h-7 px-4 rounded-full bg-white dark:bg-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-900 border-slate-300 dark:border-zinc-800 shadow-md hover:shadow-lg transition-all"
+								className="flex items-center gap-2 text-xs h-7 px-4 rounded-full bg-white dark:bg-zinc-900 dark:hover:bg-zinc-700 hover:bg-zinc-100 border-slate-300 dark:border-zinc-800 shadow-md hover:shadow-lg transition-all"
 							>
 								{isExpanded ? (
 									<>

@@ -2,9 +2,9 @@ import type { LucideIcon } from 'lucide-react'
 import {
 	Book,
 	Bookmark,
+	Camera,
 	Clover,
 	Library,
-	MessageCircleHeart,
 	Notebook,
 	// NotebookPen,
 	Pen,
@@ -109,6 +109,12 @@ export const navbarItems: TNavbarItems = {
 			icon: Pencil,
 			featured: true,
 			image: '/assets/images/bg/year-recap.png',
+		},
+		{
+			title: 'Photo Journal',
+			href: '/photo-journal',
+			description: 'A visual diary of unforgettable moments',
+			icon: Camera,
 		},
 		{
 			title: 'Short Spark',

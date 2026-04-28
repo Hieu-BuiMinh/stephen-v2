@@ -32,7 +32,7 @@ function PostPageTitle({ description, title, className }: IPostPageTitleProps) {
 
 				<svg
 					aria-hidden="true"
-					className="pointer-events-none absolute inset-0 [z-index:-1] size-full fill-blue-500/50 stroke-blue-500/50 [mask-image:linear-gradient(to_top,_#ffffffad,_transparent)] opacity-[.30]"
+					className="pointer-events-none absolute inset-0 [z-index:-1] size-full fill-foreground/20 stroke-foreground/20 [mask-image:linear-gradient(to_top,_#ffffffad,_transparent)] opacity-[.30]"
 				>
 					<defs>
 						<pattern id=":S1:" width="12" height="12" patternUnits="userSpaceOnUse" x="-1" y="-1">
