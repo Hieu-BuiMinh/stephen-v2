@@ -1,12 +1,11 @@
 'use client'
 
+import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/shadcn/index'
 import { Download } from 'lucide-react'
 import { domToPng } from 'modern-screenshot'
 import { useTheme } from 'next-themes'
 import type { ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
-
-import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../index'
 
 type ExportFormat = 'png' | 'jpeg' | 'webp' | 'svg'
 

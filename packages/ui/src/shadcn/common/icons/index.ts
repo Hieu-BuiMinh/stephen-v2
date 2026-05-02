@@ -1,1 +1,1 @@
-export * from './svg-icons'
+export * from '@ui/shadcn/common/icons/svg-icons'

@@ -7,7 +7,7 @@
 ### Basic Tilt Card
 
 ```tsx
-import { Tilt } from '@/components/core/tilt'
+import { Tilt } from '@ui/components/core/tilt'
 
 export function TiltCard1() {
 	return (
@@ -38,8 +38,8 @@ export function TiltCard1() {
 Example of the [Spotlight component](https://motion-primitives.com/docs/spotlight) used with the Tilt component.
 
 ```tsx
-import { Spotlight } from '@/components/core/spotlight'
-import { Tilt } from '@/components/core/tilt'
+import { Spotlight } from '@ui/components/core/spotlight'
+import { Tilt } from '@ui/components/core/tilt'
 
 export function TiltSpotlight() {
 	return (

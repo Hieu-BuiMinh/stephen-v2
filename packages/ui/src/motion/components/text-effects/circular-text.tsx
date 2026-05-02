@@ -137,7 +137,7 @@ const CircularText: React.FC<CircularTextProps> = ({
 export { CircularText }
 
 /**
- * import CircularText from './CircularText';
+ * import CircularText from '@ui/motion/components/text-effects/CircularText';
   
     <CircularText
     text="REACT*BITS*COMPONENTS*"

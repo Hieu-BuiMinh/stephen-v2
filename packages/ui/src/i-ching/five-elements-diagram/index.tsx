@@ -1,12 +1,11 @@
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
+import { GradientTracing } from '@ui/i-ching/five-elements-diagram/gradient-tracing'
 import type { SVGMotionProps, Variants } from 'motion/react'
 import { motion, useReducedMotion } from 'motion/react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-
-import { GradientTracing } from './gradient-tracing'
 
 const draw: Variants = {
 	initial: {

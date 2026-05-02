@@ -7,7 +7,7 @@ Text animation that transitions between multiple items, creating an engaging loo
 ### Text Loop Basic
 
 ```tsx
-import { TextLoop } from '@/components/core/text-loop'
+import { TextLoop } from '@ui/components/core/text-loop'
 
 export function TextLoopBasic() {
 	return (
@@ -24,7 +24,7 @@ export function TextLoopBasic() {
 Text Loop with custom variants and transition
 
 ```tsx
-import { TextLoop } from '@/components/core/text-loop'
+import { TextLoop } from '@ui/components/core/text-loop'
 
 export function TextLoopCustomVariantsTransition() {
 	return (
@@ -75,7 +75,7 @@ You can use the `onIndexChange` prop to trigger a callback function when the ind
 
 ```tsx
 'use client'
-import { TextLoop } from '@/components/core/text-loop'
+import { TextLoop } from '@ui/components/core/text-loop'
 import { Music } from 'lucide-react'
 import { useState } from 'react'
 

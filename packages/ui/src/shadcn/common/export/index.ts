@@ -1,1 +1,1 @@
-export * from './export-to-image-area'
+export * from '@ui/shadcn/common/export/export-to-image-area'

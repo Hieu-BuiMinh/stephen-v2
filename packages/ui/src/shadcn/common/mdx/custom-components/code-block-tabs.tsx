@@ -9,16 +9,15 @@
 
 'use client'
 
-import './style.css'
+import '@ui/shadcn/common/mdx/custom-components/style.css'
 
 import { cn } from '@repo/stephen-v2-utils'
+import type { buttonVariants } from '@ui/shadcn/index'
+import { Button, Tabs, TabsContent, TabsList, TabsTrigger } from '@ui/shadcn/index'
 import type { VariantProps } from 'class-variance-authority'
 import { CheckIcon, ChevronDown, ChevronUp, CopyIcon } from 'lucide-react'
 import { JetBrains_Mono } from 'next/font/google'
 import { type ReactNode, useEffect, useRef, useState } from 'react'
-
-import type { buttonVariants } from '../../../index'
-import { Button, Tabs, TabsContent, TabsList, TabsTrigger } from '../../../index'
 
 interface ICodeBlockTabs {
 	options: string[]

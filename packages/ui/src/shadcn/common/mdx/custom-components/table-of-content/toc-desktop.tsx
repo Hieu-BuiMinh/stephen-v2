@@ -9,11 +9,10 @@
 
 import { cn } from '@repo/stephen-v2-utils'
 import { useScrollSpy } from '@repo/stephen-v2-utils/hooks'
+import { ScrollArea } from '@ui/shadcn'
 import { Text } from 'lucide-react'
 import Link from 'next/link'
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
-
-import { ScrollArea } from '../../../../../shadcn'
 
 interface TocItem {
 	title: string

@@ -7,7 +7,7 @@ Text animation that transforms text by randomly cycling through characters befor
 ### Text Scramble Basic
 
 ```tsx
-import { TextScramble } from '@/components/core/text-scramble'
+import { TextScramble } from '@ui/components/core/text-scramble'
 
 export function TextScrambleBasic() {
 	return <TextScramble className="font-mono text-sm uppercase">Text Scramble</TextScramble>
@@ -18,7 +18,7 @@ export function TextScrambleBasic() {
 
 ```tsx
 'use client'
-import { TextScramble } from '@/components/core/text-scramble'
+import { TextScramble } from '@ui/components/core/text-scramble'
 import { useState } from 'react'
 
 export function TextScrambleCustomTrigger() {
@@ -47,7 +47,7 @@ export function TextScrambleCustomTrigger() {
 ### Text Scramble with custom character and duration
 
 ```tsx
-import { TextScramble } from '@/components/core/text-scramble'
+import { TextScramble } from '@ui/components/core/text-scramble'
 
 export function TextScrambleCustomCharacterDuration() {
 	return (
