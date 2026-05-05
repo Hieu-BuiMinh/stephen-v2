@@ -27,13 +27,20 @@ code:not(pre code)::after {
 }
 
 blockquote {
-	font-size: 18px;
-	font-weight: 600;
-	color: var(--tw-prose-links);
+	font-size: 14px;
+	font-weight: 500;
+	border-left: 3px solid #2f81f7;
+	font-style: normal;
+	background-color: #2f82f70b;
+	padding: 0.5rem;
+	margin: 1.5rem 0;
+
+	p::before,
+	p::after {
+		content: '';
+	}
 }
 
-@media screen and (max-width: 768px) {
-	blockquote {
-		font-size: 16px;
-	}
+.dark blockquote {
+	background-color: rgba(47, 129, 247, 0.15);
 }

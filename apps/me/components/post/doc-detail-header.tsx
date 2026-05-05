@@ -22,7 +22,7 @@ function DocDetailHeader({ post, className }: IDocDetailHeaderProps) {
 		<div className={cn('relative flex flex-col gap-5 border-b border-dashed pb-5', className)}>
 			<div className="min-h-[190px] flex flex-col gap-4">
 				<ViewTransition name={`title-${id}`}>
-					<h1 className="z-10 bg-gradient-to-b from-black via-black/90 to-black/70 to-90% bg-clip-text text-center text-4xl font-bold text-transparent dark:from-white dark:via-white/90 dark:to-white/70 md:text-5xl md:leading-[64px]">
+					<h1 className="z-10 bg-gradient-to-b from-black via-black/90 to-black/70 to-90% bg-clip-text text-center text-4xl font-bold text-transparent dark:from-white dark:via-white/90 dark:to-white/70 md:leading-[64px]">
 						{title}
 					</h1>
 				</ViewTransition>

@@ -151,4 +151,122 @@ export const documentCollection: TDocumentCollection[] = [
 			},
 		],
 	},
+	{
+		// book props
+		title: 'Financial Matrix',
+		// icon: <span className="text-2xl text-white">💊</span>,
+		texture: true,
+		color: '#333333',
+		textColor: '#ffffff',
+		illustration: (
+			<Image
+				src="https://i.ibb.co/Kcmjt8r0/kanchanara-rf-Ul0-Lfyays-unsplash.jpg"
+				className="size-full object-cover"
+				width={220}
+				height={150}
+				alt="the-financial-matrix-cover.png"
+				sizes="(max-width: 768px) 100vw, 50vw"
+			/>
+		),
+
+		// other props
+		slug: 'the-financial-matrix',
+		status: 'published',
+		toc: [
+			{
+				id: '82248a9d-745b-4112-8431-49a24c1e4e5e',
+				title: 'Lời nói đầu',
+			},
+			{
+				id: null,
+				title: 'Introduction',
+				children: [
+					{
+						id: 'b513d659-29f3-4d2f-afab-4bf108f467de',
+						title: 'Bài 1: Bản chất thực sự của nền kinh tế là gì?',
+					},
+					{
+						id: '3522482c-7692-4eff-a995-0b395b8e4298',
+						title: 'Bài 2: GDP, Lạm phát và "Nghịch lý của sự tiết kiệm"',
+					},
+					{
+						id: '37ce0cbb-3532-4fb8-9e29-18513b117ea0',
+						title: 'Bài 3: Ai nên điều hành nền kinh tế? (Thị trường tự do vs Bàn tay Chính phủ)',
+					},
+					{
+						id: '92a1ece0-c017-420a-97a7-a21502b00635',
+						title: 'Bài 4: Thuế - Sự bóc lột hợp pháp hay Công cụ định hướng hành vi?',
+					},
+					{
+						id: 'd7ba6140-4604-4205-96ad-da334239f34e',
+						title: 'Bài 4.1 (Mở rộng): Chén thánh "Buy, Borrow, Die" - Trò chơi Đòn bẩy và Lạm phát',
+					},
+				],
+			},
+			{
+				id: null,
+				title: 'Banking And Money',
+				children: [
+					{
+						id: '0b9a6d1f-24f2-4cd0-9f60-109c37055180',
+						title: 'Bài 1: Lịch sử của Tiền và "Cú lừa" vĩ đại nhất thế kỷ 20',
+					},
+					{
+						id: '7a5e96b2-925a-4054-8402-0b654531fc8b',
+						title: 'Bài 2: Hệ thống Dự trữ theo Tỷ lệ (Lâu đài xây trên cát)',
+					},
+					{
+						id: '042c53c8-5706-46ac-88bd-6ee5d641ebd3',
+						title: 'Bài 3: Ngân hàng Trung ương và sự thật về việc In tiền',
+					},
+				],
+			},
+			{
+				id: null,
+				title: 'Global Picture',
+				children: [
+					{
+						id: 'e582868e-b0f5-46c5-a484-cb8ca7c4c3c1',
+						title: 'Bài 1: Trật tự Tài chính Thế giới và Quyền lực của đồng Đô la',
+					},
+					{
+						id: '1ec38b36-bb99-4493-abc4-6774c9c118c7',
+						title: 'Bài 2: Những tổ chức nắm giữ vận mệnh toàn cầu (IMF, WB, BIS)',
+					},
+					{
+						id: '85b154fd-5a15-470a-ac1b-ea7b00314367',
+						title: 'Bài 3: "Bàn tay vô hình" thực sự: BlackRock, Vanguard và Deep State',
+					},
+				],
+			},
+			{
+				id: null,
+				title: 'Application And Future',
+				children: [
+					{
+						id: 'af619238-2872-431e-88c0-bf9212746563',
+						title: 'Bài 1: Giải phẫu Lòng tham: Bản chất của Bong bóng Kinh tế và Khủng hoảng',
+					},
+					{
+						id: '1479a063-d05c-40cb-9979-39e664db47cb',
+						title: 'Bài 2: Tâm lý học Đám đông và Nghệ thuật Thao túng Truyền thông (Smart Money vs Dumb Money)',
+					},
+					{
+						id: '683213a3-2b52-4ef4-a26f-c164859389ca',
+						title: 'Bài 3: Tương lai của Tiền tệ - Cuộc chiến sinh tử giữa CBDC và Crypto',
+					},
+				],
+			},
+			{
+				id: null,
+				title: 'Strategic Blueprints',
+				children: [
+					{
+						id: 'eeab732a-fb8e-4d0e-aefb-e41ab7e01006',
+						title: 'Bài 1: Chiến lược Thăng tiến trong Ma trận Tài chính (The Ascension Strategy)',
+					},
+				],
+			},
+		],
+	},
 ]

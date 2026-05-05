@@ -4,6 +4,7 @@ import { docPost } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import { ScrollArea } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
+import { motion } from 'motion/react'
 import { Link as LinkIcon } from 'lucide-react'
 import Link from 'next/link'
 
@@ -27,15 +28,22 @@ function TocTree({ nodes, docId, baseHref }: { nodes?: TocNode[]; docId: string;
 				if (n.id) {
 					const href = `${baseHref}/${String(n.id)}`
 					return (
-						<div key={key} className="flex flex-col">
+						<div key={key} className="relative flex flex-col">
 							<Link
 								href={href}
 								className={cn(
-									'flex items-center gap-2 p-1.5 rounded-xs text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors truncate group',
-									docId === String(n.id) && 'text-foreground underline bg-muted'
+									'relative flex items-center gap-2 p-1.5 rounded-xs text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors group min-w-0',
+									docId === String(n.id) && 'text-foreground font-medium'
 								)}
 							>
-								<span className="w-full truncate">{n.title || post?.title}</span>
+								{docId === String(n.id) && (
+									<motion.div
+										layoutId="sidebar-active-bg"
+										className="absolute inset-0 bg-muted rounded-xs -z-10"
+										transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+									/>
+								)}
+								<span className="flex-1 line-clamp-1 min-w-0">{n.title || post?.title}</span>
 								<LinkIcon className="shrink-0 hidden group-hover:block" size={12} />
 							</Link>
 							{!!n.children?.length && <TocTree nodes={n.children} docId={docId} baseHref={baseHref} />}
@@ -45,8 +53,8 @@ function TocTree({ nodes, docId, baseHref }: { nodes?: TocNode[]; docId: string;
 
 				return (
 					<div key={key} className="flex flex-col">
-						<div className="p-1.5 text-muted-foreground">
-							<p className="line-clamp-1 pr-1.5">{n.title || post?.title}</p>
+						<div className="p-1.5 text-muted-foreground min-w-0">
+							<p className="line-clamp-1 pr-1.5 min-w-0">{n.title || post?.title}</p>
 						</div>
 						{!!n.children?.length && <TocTree nodes={n.children} docId={docId} baseHref={baseHref} />}
 					</div>

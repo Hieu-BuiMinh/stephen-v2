@@ -112,6 +112,8 @@ function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
 
 		const updateDirection = () => {
 			const scrollY = window.scrollY
+			if (scrollY === lastScrollY) return
+
 			const newDirection = scrollY > lastScrollY ? 'down' : 'up'
 
 			if (newDirection !== currentDirection) {
