@@ -496,7 +496,7 @@ void main() {
 
 /**
  * Usage
- * import { Orb } from "@/components/ui/orb"
+ * import { Orb } from '@ui/components/ui/orb'
  * <Orb />
  *
  * Custom Colors

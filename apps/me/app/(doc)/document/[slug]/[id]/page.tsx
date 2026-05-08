@@ -49,14 +49,12 @@ export async function generateStaticParams(): Promise<{ slug: string; id: string
 
 function DocumentDetailLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="h-screen overflow-x-hidden">
-			<main className="flex flex-1 flex-col border-muted-foreground/10">
-				<DocNavbar className="w-full h-16 sticky top-0 border-b bg-background z-60" />
-				<div className="flex">{children}</div>
-				<NewsletterSignUp />
-				<SiteFooter />
-			</main>
-		</div>
+		<main className="flex min-h-screen flex-col border-muted-foreground/10 overflow-x-clip">
+			<DocNavbar className="w-full h-16 sticky top-0 border-b bg-background z-60" />
+			<div className="flex flex-1">{children}</div>
+			<NewsletterSignUp />
+			<SiteFooter />
+		</main>
 	)
 }
 

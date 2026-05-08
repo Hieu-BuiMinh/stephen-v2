@@ -1,12 +1,11 @@
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
+import { Button, buttonVariants } from '@ui/shadcn/button'
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import * as React from 'react'
 import type { DayButton } from 'react-day-picker'
 import { DayPicker, getDefaultClassNames } from 'react-day-picker'
-
-import { Button, buttonVariants } from '../shadcn/button'
 
 function Calendar({
 	className,

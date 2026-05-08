@@ -1,6 +1,7 @@
 import { cn } from '@repo/stephen-v2-utils'
 import React from 'react'
 
+import { DailyQuote } from '@/components/cards/daily-quote-card'
 import SiteFooter from '@/components/footer'
 import MobileNavbar from '@/components/navigation/mobile-navbar'
 import Navbar from '@/components/navigation/navbar'
@@ -32,6 +33,7 @@ function MainLayout({ children, className }: { children: React.ReactNode; classN
 			</div>
 			{/* FOOTER */}
 			<SiteFooter />
+			<DailyQuote />
 		</>
 	)
 }

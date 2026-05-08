@@ -1,13 +1,12 @@
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
+import { Button } from '@ui/shadcn/button'
+import { BlurImage } from '@ui/shadcn/common/image/blur-image'
+import { Video } from '@ui/shadcn/common/video/video'
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@ui/shadcn/dialog'
 import { CheckIcon, LinkIcon, Play } from 'lucide-react'
 import { forwardRef, useEffect, useState } from 'react'
-
-import { Button } from '../../button'
-import { BlurImage } from '../../common/image/blur-image'
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../../dialog'
-import { Video } from './video'
 
 type TVideoZoom = {
 	src: string

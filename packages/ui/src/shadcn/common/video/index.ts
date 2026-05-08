@@ -1,2 +1,2 @@
-export * from './video'
-export * from './video-zoom'
+export * from '@ui/shadcn/common/video/video'
+export * from '@ui/shadcn/common/video/video-zoom'

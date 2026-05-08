@@ -1,9 +1,19 @@
+import type { Metadata } from 'next'
 import { Suspense } from 'react'
 
 import LightRaysClient from '@/components/effects/light-rays-client'
 import PostPageTitle from '@/components/post/post-page-title'
+import { APP_CONFIG } from '@/configs/app-config'
 import TagsPageView from '@/view/tags/pages/tags.page'
 
+export const metadata: Metadata = {
+	title: 'Tags',
+	description: APP_CONFIG.description,
+	openGraph: {
+		title: 'Tags',
+		description: APP_CONFIG.description,
+	},
+}
 function AllTagPage() {
 	return (
 		<>

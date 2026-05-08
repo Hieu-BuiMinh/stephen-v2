@@ -1,4 +1,4 @@
-import { Table as UITable, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../../shadcn'
+import { Table as UITable, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@ui/shadcn'
 
 type TableProps = {
 	headers?: string[]

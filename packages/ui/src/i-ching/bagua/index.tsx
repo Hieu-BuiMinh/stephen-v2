@@ -1,8 +1,7 @@
 import { cn } from '@repo/stephen-v2-utils'
+import { YinYang } from '@ui/i-ching/yin-yang'
 import { nanoid } from 'nanoid'
 import React, { useMemo } from 'react'
-
-import { YinYang } from '../yin-yang'
 
 interface IBagua {
 	index?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9

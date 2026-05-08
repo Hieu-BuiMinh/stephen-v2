@@ -1,2 +1,2 @@
-export * from './use-mobile'
-export * from './use-video-thumbnail'
+export * from '@ui/hooks/use-mobile'
+export * from '@ui/hooks/use-video-thumbnail'

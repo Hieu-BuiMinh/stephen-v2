@@ -1,4 +1,4 @@
-import '../i-ching.style.css'
+import '@ui/i-ching/i-ching.style.css'
 
 import { cn } from '@repo/stephen-v2-utils'
 

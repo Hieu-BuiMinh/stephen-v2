@@ -1,13 +1,12 @@
 'use client'
 
+import type { IHexagram } from '@ui/i-ching/hexagram/hexagram-origin'
+import { Hexagram } from '@ui/i-ching/hexagram/hexagram-origin'
+import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/shadcn'
 import { Download } from 'lucide-react'
 import { domToPng } from 'modern-screenshot'
 import { useTheme } from 'next-themes'
 import { useEffect, useRef, useState } from 'react'
-
-import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../shadcn'
-import type { IHexagram } from './hexagram-origin'
-import { Hexagram } from './hexagram-origin'
 
 interface HexagramToImageProps extends IHexagram {
 	width?: number

@@ -5,6 +5,7 @@ import 'dayjs/locale/en'
 import dayjs, { type Dayjs, type OpUnitType } from 'dayjs'
 import advancedFormat from 'dayjs/plugin/advancedFormat'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
+import dayOfYear from 'dayjs/plugin/dayOfYear'
 import duration from 'dayjs/plugin/duration'
 import isBetween from 'dayjs/plugin/isBetween'
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
@@ -27,6 +28,7 @@ dayjs.extend(isSameOrAfter)
 dayjs.extend(isSameOrBefore)
 dayjs.extend(weekOfYear)
 dayjs.extend(duration)
+dayjs.extend(dayOfYear)
 
 // Defaults for the whole app
 dayjs.locale('en')

@@ -7,13 +7,12 @@
  * Modified by: Stephen
  */
 
-import './style.css'
+import '@ui/shadcn/common/book/style.css'
 
 import { cn } from '@repo/stephen-v2-utils'
+import { GlareHover } from '@ui/motion/components/glare-hover'
 import type { ComponentProps } from 'react'
 import { tv } from 'tailwind-variants'
-
-import { GlareHover } from '../../../motion/components/glare-hover'
 
 const bookvariants = tv({
 	slots: {

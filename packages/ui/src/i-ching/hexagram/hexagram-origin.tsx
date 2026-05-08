@@ -12,11 +12,10 @@ import {
 	getLunarSnapshotSolar,
 	Relative,
 } from '@repo/stephen-v2-utils/i-ching'
+import { ElementDotByRelative } from '@ui/i-ching/hexagram/element-dot-by-relative'
+import { YinYang } from '@ui/i-ching/yin-yang'
 import { nanoid } from 'nanoid'
 import { useEffect } from 'react'
-
-import { YinYang } from '../yin-yang'
-import { ElementDotByRelative } from './element-dot-by-relative'
 
 export interface IHexagram {
 	upper: TBaguaId

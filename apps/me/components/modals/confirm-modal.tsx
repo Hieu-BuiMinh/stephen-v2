@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react'
 import {
 	Button,
 	Dialog,
@@ -9,6 +8,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@repo/stephen-v2-ui/shadcn'
+import { useEffect, useRef, useState } from 'react'
 
 interface ConfirmModalProps {
 	children: React.ReactNode

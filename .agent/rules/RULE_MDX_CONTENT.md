@@ -81,8 +81,69 @@ When grouping related media (images or videos), use a CSS Grid structure with co
 
 ---
 
-## 5. What is NOT Allowed
+## 5. Code Tabs Component (`<CodeBlockTabs />`)
+
+Use `<CodeBlockTabs />` to display multiple related code snippets in a tabbed interface.
+
+### 5.1 Standard Usage
+
+- **Options**: Use the `options` prop with an array of strings for tab titles.
+- **Strict Syntax**: You **MUST** include an empty line after the opening tag and before the closing tag. Each code block should also be separated by an empty line.
+
+✅ Example:
+
+````md
+<CodeBlockTabs options={["App Router", "Pages Router"]}>
+
+<Dòng trống ở đây>
+
+```tsx
+// code for App Router
+```
+````
+
+<Dòng trống ở đây>
+
+```tsx
+// code for Pages Router
+```
+
+<Dòng trống ở đây>
+</CodeBlockTabs>
+
+```
+
+---
+
+## 7. Thumbnail Aesthetics & Prompts
+
+To maintain a premium and consistent visual identity for all articles, follow the **Vercel & Apple inspired** minimalist aesthetic.
+
+### 7.1 Aesthetic Guidelines
+
+- **Background**: Deep black or dark gray with subtle grid lines.
+- **Composition**: Centered or rule-of-thirds balance with immense negative space.
+- **Color Palette**: Monochromatic (Black & White) with a single high-quality glow/accent (e.g., light path, glass frosting).
+- **Typography**: Clean, professional sans-serif fonts (e.g., Geist, Inter).
+
+### 7.2 Standard AI Prompt Template (Dynamic)
+
+Use the following template to generate professional cover images. Replace the placeholders with content relevant to your article:
+
+> **Prompt**: *Sleek wide landscape digital background with subtle minimalist grid lines. {VISUAL_CONCEPT}: abstract and professional technical representation. Large, clean typography overlaid on the composition: "{TITLE}". Smaller text below: "{SUBTITLE}". The style is ultra-minimalist, monochromatic black and white, inspired by Vercel and Apple design. Immense negative space, perfect text rendering, professional graphic design layout. --ar 16:9*
+
+**Placeholder Guide:**
+- `{VISUAL_CONCEPT}`: Describe the core tech (e.g., "bidirectional light beams", "curved glass paths", "geometric binary patterns").
+- `{TITLE}`: The main headline of your article.
+- `{SUBTITLE}`: A short descriptive sub-headline.
+
+---
+
+## 8. What is NOT Allowed
 
 ❌ Using raw `<img>` tags or standard markdown image syntax `![alt](src)`.
 ❌ Using `<video>` tags directly (use `<VideoZoom />`).
 ❌ Hardcoding complex inline styles for grids (prefer standardized patterns).
+❌ Using `<CodeBlockTabs />` without empty lines (causes parsing errors in Velite).
+❌ Using low-contrast or cluttered images for article covers.
+```

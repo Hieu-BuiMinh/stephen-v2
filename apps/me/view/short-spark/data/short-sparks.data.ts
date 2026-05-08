@@ -1,5 +1,11 @@
 export const shortSparksList = [
 	{
+		name: 'You become what you think about',
+		id: 'you-become-what-you-think-about',
+		src: 'https://res.cloudinary.com/hieu-buiminh/video/upload/v1777950191/you-become-what-you-think-about_wnmgby.mp4',
+		description: 'You become what you think about',
+	},
+	{
 		name: "They ain't gonna do what I'm gonna do",
 		id: 'they-aint-gonna-do-what-im-gonna-do',
 		src: 'https://res.cloudinary.com/hieu-buiminh/video/upload/v1776313817/they_ain_t_gonna_do_what_i_m_gonna_do_pz4kyq.mp4',

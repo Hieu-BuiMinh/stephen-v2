@@ -4,11 +4,10 @@
  */
 
 import { cn } from '@repo/stephen-v2-utils'
+import { Spinner } from '@ui/shadcn/common/spinner'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { forwardRef, useEffect, useState } from 'react'
-
-import { Spinner } from '../spinner'
 
 type ImageProps = {
 	description?: string | React.ReactNode

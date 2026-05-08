@@ -7,7 +7,7 @@ Easily animate text content with various effects. You can apply animations per c
 ### Text Effect per character
 
 ```tsx
-import { TextEffect } from '@/components/core/text-effect'
+import { TextEffect } from '@ui/components/core/text-effect'
 
 export function TextEffectPerChar() {
 	return (
@@ -35,7 +35,7 @@ export function TextEffectPerWord() {
 ### Text Effect with preset
 
 ```tsx
-import { TextEffect } from '@/components/core/text-effect'
+import { TextEffect } from '@ui/components/core/text-effect'
 
 export function TextEffectWithPreset() {
 	return (
@@ -50,7 +50,7 @@ export function TextEffectWithPreset() {
 
 ```tsx
 'use client'
-import { TextEffect } from '@/components/core/text-effect'
+import { TextEffect } from '@ui/components/core/text-effect'
 
 export function TextEffectWithCustomVariants() {
 	const getRandomColor = () => {
@@ -106,7 +106,7 @@ export function TextEffectWithCustomVariants() {
 ### Text Effect with custom delay
 
 ```tsx
-import { TextEffect } from '@/components/core/text-effect'
+import { TextEffect } from '@ui/components/core/text-effect'
 
 export function TextEffectWithCustomDelay() {
 	return (
@@ -159,7 +159,7 @@ export function TextEffectWithCustomDelay() {
 ### Text Effect per line
 
 ```tsx
-import { TextEffect } from '@/components/core/text-effect'
+import { TextEffect } from '@ui/components/core/text-effect'
 
 export function TextEffectPerLine() {
 	return (
@@ -205,7 +205,7 @@ export function TextEffectPerLine() {
 ```tsx
 'use client'
 import { useState, useEffect } from 'react'
-import { TextEffect } from '@/components/core/text-effect'
+import { TextEffect } from '@ui/components/core/text-effect'
 
 export function TextEffectWithExit() {
 	const [trigger, setTrigger] = useState(true)
@@ -266,7 +266,7 @@ export function TextEffectWithExit() {
 You can control the speed of the animation by using the `speedReveal` and `speedSegment` props.
 
 ```tsx
-import { TextEffect } from '@/components/core/text-effect'
+import { TextEffect } from '@ui/components/core/text-effect'
 
 export function TextEffectSpeed() {
 	return (

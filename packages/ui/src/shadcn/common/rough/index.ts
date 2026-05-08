@@ -1,1 +1,1 @@
-export * from './rough-mark'
+export * from '@ui/shadcn/common/rough/rough-mark'

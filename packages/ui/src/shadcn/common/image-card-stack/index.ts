@@ -1,2 +1,2 @@
-export * from './avatar-stack'
-export * from './core'
+export * from '@ui/shadcn/common/image-card-stack/avatar-stack'
+export * from '@ui/shadcn/common/image-card-stack/core'

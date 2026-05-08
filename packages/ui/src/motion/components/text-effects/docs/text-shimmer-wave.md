@@ -7,7 +7,7 @@ Shimmer effect on text. Easily adjust the duration and the spread of the shimmer
 ### Text Shimmer Basic
 
 ```tsx
-import { TextShimmer } from '@/components/core/text-shimmer'
+import { TextShimmer } from '@ui/components/core/text-shimmer'
 
 export function TextShimmerBasic() {
 	return (
@@ -23,7 +23,7 @@ export function TextShimmerBasic() {
 You can use the [--base-color] and [--base-gradient-color] CSS variables to customize the color of the shimmer effect.
 
 ```tsx
-import { TextShimmer } from '@/components/core/text-shimmer'
+import { TextShimmer } from '@ui/components/core/text-shimmer'
 
 export function TextShimmerColor() {
 	return (

@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@repo/stephen-v2-utils/tanstack-query'
+
 import { cloudinaryService } from '@/services/admin/cloudinary'
 import type { CloudinaryResource } from '@/services/admin/cloudinary/cloudinary-res.dto'
 
@@ -7,15 +8,16 @@ export function useCloudinaryQuery() {
 
 	return {
 		// Queries
-		useFolders: (path?: string) =>
+		useFolders: (path?: string, enabled = true) =>
 			useQuery({
 				queryKey: cloudinaryService.listFolders.key({ path }),
 				queryFn: () => cloudinaryService.listFolders.get({ path }),
 				select: (res) => res.folders,
 				staleTime: 1000 * 60 * 5,
+				enabled,
 			}),
 
-		useResources: (folder: string) =>
+		useResources: (folder: string, enabled = true) =>
 			useQuery<CloudinaryResource[], Error>({
 				queryKey: cloudinaryService.listResources.key({ folder }),
 				queryFn: async () => {
@@ -23,6 +25,7 @@ export function useCloudinaryQuery() {
 					return res.resources
 				},
 				staleTime: 1000 * 60 * 5,
+				enabled,
 			}),
 
 		// Mutations

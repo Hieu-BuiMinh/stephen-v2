@@ -2,11 +2,10 @@
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
+import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@ui/shadcn/form'
+import { Textarea } from '@ui/shadcn/textarea'
 import React, { forwardRef, useEffect, useRef } from 'react'
 import { useFormContext } from 'react-hook-form'
-
-import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../../../form'
-import { Textarea } from '../../../textarea'
 
 type TRHFTextAreaProps = React.InputHTMLAttributes<HTMLTextAreaElement> & {
 	name: string

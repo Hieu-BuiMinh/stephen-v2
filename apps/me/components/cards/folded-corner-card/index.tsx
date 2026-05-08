@@ -4,7 +4,15 @@ import { cn } from '@repo/stephen-v2-utils'
 import type { ReactNode } from 'react'
 import React, { useState } from 'react'
 
-export default function FoldedCornerCard({ children, className }: { children: ReactNode; className?: string }) {
+export default function FoldedCornerCard({
+	children,
+	className,
+	cornerRadius = 15,
+}: {
+	children: ReactNode
+	className?: string
+	cornerRadius?: number
+}) {
 	const [cornerSize, setCornerSize] = useState(0)
 
 	const clipPath = `polygon(0 0, 100% 0, 100% calc(100% - ${cornerSize}px), calc(100% - ${cornerSize}px) 100%, 0 100%)`
@@ -19,7 +27,7 @@ export default function FoldedCornerCard({ children, className }: { children: Re
 				{
 					clipPath,
 					'--fold-corner-size': `${cornerSize}px`,
-					'--fold-corner-radius': '15px',
+					'--fold-corner-radius': `${cornerRadius}px`,
 				} as React.CSSProperties
 			}
 			onMouseEnter={() => setCornerSize(40)}

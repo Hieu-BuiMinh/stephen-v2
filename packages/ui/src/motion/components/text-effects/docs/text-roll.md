@@ -7,7 +7,7 @@ A text roll component that rotates each character, fully customizable for nice t
 ### Text Roll basic
 
 ```tsx
-import { TextRoll } from '@/components/core/text-roll'
+import { TextRoll } from '@ui/components/core/text-roll'
 
 export function TextRollBasic() {
 	return <TextRoll className="text-4xl text-black dark:text-white">motion-primitives</TextRoll>
@@ -17,7 +17,7 @@ export function TextRollBasic() {
 ### Text Roll custom variants
 
 ```tsx
-import { TextRoll } from '@/components/core/text-roll'
+import { TextRoll } from '@ui/components/core/text-roll'
 
 export function TextRollCustomVariants() {
 	return (
@@ -44,7 +44,7 @@ export function TextRollCustomVariants() {
 
 ```tsx
 'use client'
-import { TextRoll } from '@/components/core/text-roll'
+import { TextRoll } from '@ui/components/core/text-roll'
 
 export function TextRollCustomTransitionDelay() {
 	const getEnterDelay = (i: number) => i * 0.05

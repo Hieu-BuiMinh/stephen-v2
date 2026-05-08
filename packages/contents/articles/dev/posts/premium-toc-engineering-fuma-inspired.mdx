@@ -1,0 +1,419 @@
+---
+id: 'b6e7ae02-0258-4cb7-ac7a-f14e3c0c33e0'
+title: 'Premium Curved TOC'
+cover: '/assets/articles/dev/post/premium-toc-deep-dive.png'
+createdAt: '2026-04-24T11:00:00Z'
+description: 'A comprehensive guide on implementing a fluid, SVG-based Table of Contents inspired by Fumadocs, including full source code and technical analysis.'
+published: true
+hashTags: ['frontend', 'svg', 'react', 'engineering']
+type: 'post'
+---
+
+If you've ever wanted to create a Table of Contents (TOC) that feels "alive"—one where the active highlight moves like a fluid "pill" through organic curves—you've come to the right place. In this post, I'm sharing the complete engineering process behind the premium TOC I've implemented for this project, heavily inspired by the brilliant work of Fuma Nama.
+
+## The Challenge of Continuity
+
+Most Table of Contents implementations are rigid. They use a simple vertical line or a box highlight that "jumps" from one item to the next. While functional, they lack a sense of **visual continuity**.
+
+When I saw the TOC in [Fumadocs](https://fuma-docs.vercel.app/), I was fascinated by how the highlight "stretched" and "curved" to follow the structure of the document. It wasn't just a UI element; it was a piece of **SVG Art** that responded to the layout. My goal was to port this high-fidelity experience into my project while keeping the logic clean and optimized for React.
+
+Before we dive into the details, I highly recommend reading Fuma's original posts that laid the foundation for this technique:
+
+- [SVG Art: Table of Contents](https://www.fuma-nama.dev/blog/svg-art)
+- [SVG Art: Table of Contents (Part 2)](https://www.fuma-nama.dev/blog/svg-art-2)
+
+---
+
+## Technical Deep Dive: Mastering the Mechanics
+
+Creating a fluid UI requires more than just code; it requires an understanding of how the browser paints and handles geometry. Let's break down the two main pillars of this effect.
+
+### 1. The Geometry of the "S-Curve"
+
+The hallmark of this implementation is the smooth transition between indentation levels (H2 → H3). Instead of a rigid right angle, I use a **Cubic Bezier (`C`)** command in the SVG path.
+
+The secret sauce is the dynamic radius calculation. By limiting the radius to half the vertical gap, I ensure that the curves never overlap, even when headings are cramped together. This results in an organic "S-curve" that feels natural as the highlight moves.
+
+<CodeBlockTabs fileName="Path Calculation">
+
+```typescript
+const radius = Math.min(4, gap / 2)
+path += ` C ${prevX} ${prevYEnd + radius} ${x} ${top - radius} ${x} ${top}`
+```
+
+</CodeBlockTabs>
+
+<br />
+
+<Image
+	className="aspect-square border mx-auto"
+	style={{ width: 200, height: 200 }}
+	src="https://i.postimg.cc/DzRPJSxq/svg-result.png"
+	alt="Visualization of how the SVG path coordinates are calculated dynamically"
+/>
+
+### 2. High-Precision Masking: The "Synergy"
+
+How does the highlight stay perfectly centered on the curve? The "magic" happens when I treat geometry as the "rail" and masking as the "filter." I call this the **Synergy**.
+
+#### The Mental Model: Spotlight through a Stencil
+
+Think of it as a **Moving Spotlight through a Stencil**:
+
+- **The Stencil (Geometry)**: I construct a "mask map" using SVG. This map is a mathematical replica of the TOC outline. It doesn't have color; it simply defines *where* light can pass through.
+- **The Filter (Masking)**: By applying this stencil as a CSS `mask-image`, anything inside the container is invisible unless it sits behind the "holes" of the stencil.
+- **The Spotlight (Animation)**: Inside the masked container, I move a simple gradient `div`. As it moves, it "reveals" the parts of the stencil it passes over.
+
+#### Construction of the "Mask Map"
+
+The `d` property of the SVG `<path />` isn't a nonsense string; it's a list of precise geometric commands. See the [Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d) for more details—it's an incredibly powerful tool. By calculating these coordinates dynamically, I can tell SVG to render a line connecting each point of the outline.
+
+<div className="my-8 flex flex-col items-center gap-3 w-fit mx-auto">
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 236" className="w-4 h-40">
+		<path
+			d="M1 0 L1 20 L13 36 L13 56 L1 72 L1 92 L13 108 L13 128 L1 144 L1 164 L1 180 L1 200 L13 216 L13 236"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			fill="none"
+		/>
+	</svg>
+    <span className="text-[10px] text-muted-foreground italic">Simplified Mask Map</span>
+</div>
+
+<CodeBlockTabs fileName="SVG Masking Logic">
+
+```html
+<!-- 1. The Rail: Define the SVG Mask -->
+<mask id="toc-mask">
+  <path d="M1 0 L1 20 L13 36 ..." stroke="white" stroke-width="2" fill="none" />
+</mask>
+
+<!-- 2. The Spotlight: Apply mask to animated element -->
+<div style={{ maskImage: 'url(#toc-mask)' }}>
+  <div className="animated-highlight-pill" />
+</div>
+```
+
+</CodeBlockTabs>
+
+Because the highlight is clipped by this mask, it can be wider than the line itself (creating a glowing effect) while remaining mathematically locked to the path's coordinates.
+
+<Image
+	className="aspect-square border mx-auto"
+	style={{ width: 400, height: 400 }}
+	src="https://i.postimg.cc/ZqXxBWwj/toc-result.png"
+	alt="How the linear gradient and SVG mask combine to create the pill highlight"
+/>
+
+---
+
+## Production-Ready Engineering
+
+Beyond the visual mechanics, there are critical considerations for performance and reliability in a real-world application.
+
+### 1. Performance & Layout Integrity
+
+Using `ResizeObserver` is critical. Articles often contain lazy-loaded images or dynamic components that shift the layout. By observing the TOC container, I re-calculate the SVG path coordinates whenever the layout shifts, ensuring the highlight is never misaligned.
+
+I also use `useLayoutEffect` instead of `useEffect`. This ensures that geometric calculations happen _before_ the browser paints, preventing any "flicker" where the highlight snaps into place a frame too late.
+
+### 2. The "Sticky" ScrollSpy Logic
+
+Standard IntersectionObservers often fail in long-form content. My `useScrollSpy` hook handles this with a fallback: if no IDs are currently intersecting, it finds the last header that is currently _above_ the viewport threshold. This ensures that as you read through a long section, the TOC correctly reflects the current chapter you are in.
+
+---
+
+## The Complete Implementation
+
+Finally, here is the full source code for the components discussed above. I've optimized them for modularity and performance.
+
+<CodeBlockTabs options={["toc-desktop.tsx", "use-scrollspy.ts"]}>
+
+```tsx
+// @/components/mdx/table-of-content/toc-desktop.tsx
+'use client'
+
+import { cn } from '@repo/stephen-v2-utils'
+import { useScrollSpy } from '@repo/stephen-v2-utils/hooks'
+import { Text } from 'lucide-react'
+import Link from 'next/link'
+import { useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { ScrollArea } from '../../../../../shadcn'
+
+interface TocItem {
+	title: string
+	url: string
+	items: TocItem[]
+}
+
+type TTocExtend<T> = T & {
+	toc?: TocItem[]
+}
+
+/**
+ * Utility to extract all URLs from TocItem tree
+ */
+function extractUrls(toc: TocItem[]): string[] {
+	const urls: string[] = []
+	const traverse = (items: TocItem[] = []) => {
+		items.forEach((item) => {
+			if (item.url) {
+				urls.push(item.url.slice(1))
+			}
+			if (item.items && item.items.length > 0) {
+				traverse(item.items)
+			}
+		})
+	}
+	traverse(toc)
+	return urls
+}
+
+/**
+ * Utility to flatten TocItem tree into a flat array with levels
+ */
+function flattenToc(toc: TocItem[]): { url: string; title: string; level: number }[] {
+	const flat: { url: string; title: string; level: number }[] = []
+	const flatten = (items: TocItem[], level: number = 0) => {
+		items.forEach((item) => {
+			flat.push({ url: item.url, title: item.title, level })
+			if (item.items && item.items.length > 0) {
+				flatten(item.items, level + 1)
+			}
+		})
+	}
+	flatten(toc)
+	return flat
+}
+
+/**
+ * Binary search to find the distance along a path for a given Y coordinate
+ */
+function findDistanceAtY(pathEl: SVGPathElement, targetY: number): number {
+	try {
+		const totalLength = pathEl.getTotalLength()
+		let low = 0
+		let high = totalLength
+		for (let i = 0; i < 15; i++) {
+			const mid = (low + high) / 2
+			const p = pathEl.getPointAtLength(mid)
+			if (p.y < targetY) low = mid
+			else high = mid
+		}
+		return (low + high) / 2
+	} catch (e) {
+		return 0
+	}
+}
+
+function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
+	const containerRef = useRef<HTMLDivElement>(null)
+	const [svgPath, setSvgPath] = useState('')
+	const [activeRect, setActiveRect] = useState<{ top: number; height: number; x: number } | null>(null)
+	const [containerHeight, setContainerHeight] = useState(0)
+	const [direction, setDirection] = useState<'up' | 'down'>('down')
+	const pathRef = useRef<SVGPathElement>(null)
+
+	const tocItems = post.toc ?? []
+	const urls = useMemo(() => extractUrls(tocItems), [tocItems])
+	const activeIds = useScrollSpy(urls, { rootMargin: '0% 0% -30% 0%' })
+	const flatTocArray = useMemo(() => flattenToc(tocItems), [tocItems])
+
+	useLayoutEffect(() => {
+		const container = containerRef.current
+		if (!container || activeIds.length === 0) {
+			setActiveRect(null)
+			return
+		}
+
+		const items = container.querySelectorAll('.toc-item')
+		let minTop = Infinity
+		let maxBottom = -Infinity
+		let activeX = 0
+
+		items.forEach((item, index) => {
+			const element = item as HTMLElement
+			const data = flatTocArray[index]
+			if (activeIds.includes(data.url.slice(1))) {
+				const styles = getComputedStyle(element)
+				const top = element.offsetTop + parseFloat(styles.paddingTop)
+				const bottom = element.offsetTop + element.offsetHeight - parseFloat(styles.paddingBottom)
+				const x = data.level * 8 + 4
+
+				minTop = Math.min(minTop, top)
+				maxBottom = Math.max(maxBottom, bottom)
+
+				if (direction === 'down') {
+					if (bottom === maxBottom) activeX = x
+				} else {
+					if (top === minTop) activeX = x
+				}
+			}
+		})
+
+		if (minTop !== Infinity) {
+			setActiveRect({ top: minTop, height: maxBottom - minTop, x: activeX })
+		}
+	}, [activeIds, flatTocArray, direction])
+
+	useLayoutEffect(() => {
+		const container = containerRef.current
+		if (!container) return
+
+		const updatePath = () => {
+			const items = container.querySelectorAll('.toc-item')
+			let path = ''
+			items.forEach((item, index) => {
+				const element = item as HTMLElement
+				const data = flatTocArray[index]
+				const styles = getComputedStyle(element)
+				const x = data.level * 8 + 4
+				const top = element.offsetTop + parseFloat(styles.paddingTop)
+				const bottom = element.offsetTop + element.offsetHeight - parseFloat(styles.paddingBottom)
+
+				if (index === 0) {
+					path += `M ${x} ${top} L ${x} ${bottom}`
+				} else {
+					const prevElement = items[index - 1] as HTMLElement
+					const prevData = flatTocArray[index - 1]
+					const prevYEnd =
+						prevElement.offsetTop +
+						prevElement.offsetHeight -
+						parseFloat(getComputedStyle(prevElement).paddingBottom)
+					const prevX = prevData.level * 8 + 4
+
+					if (prevX === x) {
+						path += ` L ${x} ${top}`
+					} else {
+						const gap = top - prevYEnd
+						const radius = Math.min(4, gap / 2)
+						path += ` C ${prevX} ${prevYEnd + radius} ${x} ${top - radius} ${x} ${top}`
+					}
+					path += ` L ${x} ${bottom}`
+				}
+			})
+			setSvgPath(path)
+			setContainerHeight(container.offsetHeight)
+		}
+
+		updatePath()
+		const observer = new ResizeObserver(updatePath)
+		observer.observe(container)
+		return () => observer.disconnect()
+	}, [flatTocArray])
+
+	const svgMaskUrl = useMemo(() => {
+		if (!svgPath) return ''
+		const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 ${containerHeight || 1000}"><path d="${svgPath}" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>`
+		return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`
+	}, [svgPath, containerHeight])
+
+	if (flatTocArray.length === 0) return null
+
+	return (
+		<nav className="relative flex flex-col gap-3">
+			<ScrollArea className="flex max-h-[calc(100vh-15rem)] flex-col overflow-auto pt-4 pr-4">
+				<div ref={containerRef} className="relative flex flex-col">
+					<svg className="absolute left-0 top-0 h-full w-full overflow-visible">
+						<path
+							d={svgPath}
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="1.5"
+							className="text-muted-foreground/15"
+						/>
+					</svg>
+					<div
+						className="absolute left-0 top-0 h-full w-full overflow-visible"
+						style={{ maskImage: svgMaskUrl }}
+					>
+						{activeRect && (
+							<div
+								className="absolute w-12 bg-foreground transition-all duration-500 ease-in-out"
+								style={{
+									top: activeRect.top,
+									height: activeRect.height,
+									background:
+										'linear-gradient(to bottom, transparent, currentColor 20%, currentColor 80%, transparent)',
+								}}
+							/>
+						)}
+					</div>
+					{flatTocArray.map((toc, index) => (
+						<div
+							key={index}
+							className="toc-item relative z-10 py-1.5"
+							style={{ paddingLeft: toc.level * 6 + 16 }}
+						>
+							<Link
+								className={cn(
+									'text-[11px] text-muted-foreground',
+									activeIds.includes(toc.url.slice(1)) && 'text-foreground'
+								)}
+								href={toc.url}
+							>
+								{toc.title}
+							</Link>
+						</div>
+					))}
+				</div>
+			</ScrollArea>
+		</nav>
+	)
+}
+```
+
+```typescript
+// @/utils/hooks/use-scrollspy.ts
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+
+const useScrollSpy = (ids: string[], options: IntersectionObserverInit): string[] => {
+	const [activeIds, setActiveIds] = useState<string[]>([])
+	const observer = useRef<IntersectionObserver | null>(null)
+
+	useEffect(() => {
+		const elements = ids.map((id) => document?.querySelector(`#${CSS.escape(id)}`))
+		observer.current = new IntersectionObserver((entries) => {
+			setActiveIds((prev) => {
+				const currentActive = new Set(prev)
+				for (const entry of entries) {
+					if (entry.isIntersecting) currentActive.add(entry.target.id)
+					else currentActive.delete(entry.target.id)
+				}
+				const nextIds = ids.filter((id) => currentActive.has(id))
+				const finalIds =
+					nextIds.length === 0
+						? (() => {
+								let lastAbove = null
+								for (const id of ids) {
+									const el = document.getElementById(id)
+									if (el && el.getBoundingClientRect().top <= 150) lastAbove = id
+									else break
+								}
+								return lastAbove ? [lastAbove] : []
+							})()
+						: nextIds
+				return finalIds
+			})
+		}, options)
+		elements.forEach((el) => el && observer.current?.observe(el))
+		return () => observer.current?.disconnect()
+	}, [ids, options])
+
+	return activeIds
+}
+```
+
+</CodeBlockTabs>
+
+---
+
+## Conclusion
+
+Engineering a premium UI component is an exercise in obsession. It’s about padding compensation, cubic bezier radiuses, and sub-pixel precision. By combining the geometric insights of Fuma Nama with React's powerful state management, I've built a navigation tool that is as beautiful as it is functional.
+
+**And the best part? The article you are reading right now is powered by this exact implementation.** Scroll up and down, and watch the "pill" navigate the curves.
+
+Happy engineering! 🚀
