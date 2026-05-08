@@ -11,12 +11,12 @@ export const mockPhotoJournalData: PhotoItem[] = [
 		date: '2026-01-02',
 		image: 'https://i.ibb.co/pGfYmKw/2026-02-01.jpg',
 	},
-	{
-		id: '82b5c1d3',
-		date: '2026-03-14',
-		image: '/assets/articles/other-topic/journaling/2026/1.a-trip-to-da-lat/03.png',
-		note: 'Da Lat: A Journey Through Misty Mornings, Pine Forests, and Beautiful Silence',
-	},
+	// {
+	// 	id: '82b5c1d3',
+	// 	date: '2026-03-14',
+	// 	image: '/assets/articles/other-topic/journaling/2026/1.a-trip-to-da-lat/03.png',
+	// 	note: 'Da Lat: A Journey Through Misty Mornings, Pine Forests, and Beautiful Silence',
+	// },
 	{
 		id: '93c6d2e4',
 		date: '2025-11-15',
