@@ -29,15 +29,21 @@ type TPageParams = Promise<TResolvedParams>
 export async function generateStaticParams(): Promise<TResolvedParams[]> {
 	const params: TResolvedParams[] = []
 
-	for (const post of devPost as Array<{ id: string; type: DEV_POST_TYPE }>) {
+	for (const post of (devPost as Array<{ id: string; type: DEV_POST_TYPE; published?: boolean }>).filter(
+		(p) => p.published !== false
+	)) {
 		params.push({ collection: 'dev' as TCollection, type: post.type as TType, id: String(post.id) })
 	}
 
-	for (const post of bookRecap as Array<{ id: string; type: BOOKS_POST_TYPE }>) {
+	for (const post of (bookRecap as Array<{ id: string; type: BOOKS_POST_TYPE; published?: boolean }>).filter(
+		(p) => p.published !== false
+	)) {
 		params.push({ collection: 'books' as TCollection, type: post.type as TType, id: String(post.id) })
 	}
 
-	for (const post of shortWriting as Array<{ id: string; type: OTHERS_POST_TYPE }>) {
+	for (const post of (shortWriting as Array<{ id: string; type: OTHERS_POST_TYPE; published?: boolean }>).filter(
+		(p) => p.published !== false
+	)) {
 		params.push({ collection: 'others' as TCollection, type: post.type as TType, id: String(post.id) })
 	}
 
