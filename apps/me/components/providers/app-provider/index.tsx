@@ -18,6 +18,7 @@ function AppProvider({ children }: { children: React.ReactNode }) {
 					</NuqsAdapter>
 				</QueryProvider>
 				<Hello />
+
 				<Script
 					defer
 					src="https://cloud.umami.is/script.js"

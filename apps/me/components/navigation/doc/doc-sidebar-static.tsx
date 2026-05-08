@@ -4,8 +4,8 @@ import { docPost } from '@repo/stephen-v2-contents'
 import { getVelitePostById } from '@repo/stephen-v2-contents/utils'
 import { ScrollArea } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
-import { motion } from 'motion/react'
 import { Link as LinkIcon } from 'lucide-react'
+import { motion } from 'motion/react'
 import Link from 'next/link'
 
 type TocNode = {

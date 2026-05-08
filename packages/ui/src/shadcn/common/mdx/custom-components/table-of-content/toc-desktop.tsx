@@ -76,7 +76,7 @@ function findDistanceAtY(pathEl: SVGPathElement, targetY: number): number {
 			else high = mid
 		}
 		return (low + high) / 2
-	} catch (e) {
+	} catch {
 		return 0
 	}
 }
