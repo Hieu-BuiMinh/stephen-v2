@@ -1,14 +1,12 @@
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
-import DecryptedText from '@ui/motion/components/text-effects/decrypted-text'
+import { motion, AnimatePresence, useMotionValue, animate, useMotionTemplate } from 'motion/react'
+import { Quote } from './quotes.data'
+import React, { useEffect, useState } from 'react'
 import ShinyText from '@ui/motion/components/text-effects/shiny-text'
-import { AnimatePresence, motion } from 'motion/react'
-import React from 'react'
-
+import DecryptedText from '@ui/motion/components/text-effects/decrypted-text'
 import StephenLogo from '@/components/logo/stephen-logo'
-
-import type { Quote } from './quotes.data'
 
 interface DailyQuoteCardProps {
 	quote: Quote
@@ -18,27 +16,54 @@ interface DailyQuoteCardProps {
 }
 
 export default function DailyQuoteCard({ quote, isLoading, onClose }: DailyQuoteCardProps) {
-	const [isHovered, setIsHovered] = React.useState(false)
-	const [tiltValues, setTiltValues] = React.useState({ x: 0, y: 0 })
-	const [mousePosition, setMousePosition] = React.useState({ x: 0, y: 0 })
+	const [isHovered, setIsHovered] = useState(false)
+	const [tiltValues, setTiltValues] = useState({ x: 0, y: 0 })
 	const cardRef = React.useRef<HTMLDivElement>(null)
 
+	// Single source of truth for the glare position (Reactive MotionValue)
+	const glareX = useMotionValue(-50)
+	const glareY = useMotionValue(50)
+	
 	const tiltFactor = 15
 	const transitionDuration = 0.2
-	const glareIntensity = 0.2
+	const glareIntensity = 0.25
+
+	// Logic for Auto-Flash (6s cycle) and Mouse-Track synchronization
+	useEffect(() => {
+		let controls: any
+		
+		if (!isHovered) {
+			// Start the 6s cycle (1.5s sweep + 4.5s delay)
+			controls = animate(glareX, [-50, 150], {
+				duration: 1.5,
+				repeat: Infinity,
+				repeatDelay: 4.5,
+				ease: "easeInOut"
+			})
+		}
+		
+		return () => {
+			if (controls) controls.stop()
+		}
+	}, [isHovered, glareX])
 
 	const handleMouseMove = React.useCallback(
 		(e: React.MouseEvent) => {
 			if (!cardRef.current || !isHovered) return
 			const rect = cardRef.current.getBoundingClientRect()
-			const x = ((e.clientX - rect.left) / rect.width - 0.5) * 100
-			const y = ((e.clientY - rect.top) / rect.height - 0.5) * 100
-			setMousePosition({ x, y })
-			const tiltX = -(y / 50) * tiltFactor
-			const tiltY = (x / 50) * tiltFactor
-			setTiltValues({ x: tiltX, y: tiltY })
+			
+			const posX = ((e.clientX - rect.left) / rect.width - 0.5) * 100
+			const posY = ((e.clientY - rect.top) / rect.height - 0.5) * 100
+			
+			glareX.set(-posX + 50)
+			glareY.set(-posY + 50)
+
+			setTiltValues({ 
+				x: -(posY / 50) * tiltFactor, 
+				y: (posX / 50) * tiltFactor 
+			})
 		},
-		[isHovered, tiltFactor]
+		[isHovered, tiltFactor, glareX, glareY]
 	)
 
 	const handleMouseEnter = React.useCallback(() => setIsHovered(true), [])
@@ -47,8 +72,12 @@ export default function DailyQuoteCard({ quote, isLoading, onClose }: DailyQuote
 		setTiltValues({ x: 0, y: 0 })
 	}, [])
 
-	const glareX = -mousePosition.x + 50
-	const glareY = -mousePosition.y + 50
+	// Dynamic gradients reactive to the single glareX motion value
+	const beamGradient = useMotionTemplate`linear-gradient(115deg, transparent 0%, transparent ${glareX.get() - 35}%, rgba(255,255,255,${glareIntensity}) ${glareX}%, transparent ${glareX.get() + 35}%, transparent 100%)`
+	const foil3Mask = useMotionTemplate`linear-gradient(115deg, transparent 0%, black ${glareX}%, transparent 100%)`
+	const foil2Mask = useMotionTemplate`linear-gradient(115deg, transparent 0%, transparent ${glareX.get() - 25}%, black ${glareX}%, transparent ${glareX.get() + 25}%, transparent 100%)`
+	const foil1Mask = useMotionTemplate`linear-gradient(115deg, transparent 0%, transparent ${glareX.get() - 30}%, black ${glareX}%, transparent ${glareX.get() + 30}%, transparent 100%)`
+	const spotlightBg = useMotionTemplate`radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.15) 0%, transparent 80%)`
 
 	return (
 		<div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -115,10 +144,23 @@ export default function DailyQuoteCard({ quote, isLoading, onClose }: DailyQuote
 						{/* Glare Beam Effect */}
 						<motion.div
 							className="absolute inset-0 z-50 pointer-events-none"
+							style={{ background: beamGradient }}
+							animate={{ opacity: isHovered ? 1 : 0.8 }}
+							transition={{ duration: transitionDuration }}
+						/>
+
+						{/* Foil Mask Layer 3 (foil_3.png) - REPEAT PATTERN (Restored) */}
+						<motion.div
+							className="absolute inset-0 z-45 pointer-events-none opacity-0 dark:opacity-100"
 							style={{
-								background: `linear-gradient(115deg, transparent 0%, transparent ${glareX - 35}%, rgba(255,255,255,${glareIntensity}) ${glareX}%, transparent ${glareX + 35}%, transparent 100%)`,
+								backgroundImage: 'url(/assets/images/bg/foil_3.png)',
+								backgroundSize: '120px 120px', 
+								backgroundRepeat: 'repeat',
+								maskImage: foil3Mask,
+								WebkitMaskImage: foil3Mask,
+								mixBlendMode: 'color-dodge',
 							}}
-							animate={{ opacity: isHovered ? 1 : 0 }}
+							animate={{ opacity: isHovered ? 0.5 : 0.2 }}
 							transition={{ duration: transitionDuration }}
 						/>
 
@@ -128,11 +170,11 @@ export default function DailyQuoteCard({ quote, isLoading, onClose }: DailyQuote
 							style={{
 								backgroundImage: 'url(/assets/images/bg/foil_2.png)',
 								backgroundSize: 'cover',
-								maskImage: `linear-gradient(115deg, transparent 0%, transparent ${glareX - 25}%, black ${glareX}%, transparent ${glareX + 25}%, transparent 100%)`,
-								WebkitMaskImage: `linear-gradient(115deg, transparent 0%, transparent ${glareX - 25}%, black ${glareX}%, transparent ${glareX + 25}%, transparent 100%)`,
+								maskImage: foil2Mask,
+								WebkitMaskImage: foil2Mask,
 								mixBlendMode: 'color-dodge',
 							}}
-							animate={{ opacity: isHovered ? 0.4 : 0 }}
+							animate={{ opacity: isHovered ? 0.4 : 0.2 }}
 							transition={{ duration: transitionDuration }}
 						/>
 
@@ -142,11 +184,11 @@ export default function DailyQuoteCard({ quote, isLoading, onClose }: DailyQuote
 							style={{
 								backgroundImage: 'url(/assets/images/bg/foil.png)',
 								backgroundSize: 'cover',
-								maskImage: `linear-gradient(115deg, transparent 0%, transparent ${glareX - 30}%, black ${glareX}%, transparent ${glareX + 30}%, transparent 100%)`,
-								WebkitMaskImage: `linear-gradient(115deg, transparent 0%, transparent ${glareX - 30}%, black ${glareX}%, transparent ${glareX + 30}%, transparent 100%)`,
+								maskImage: foil1Mask,
+								WebkitMaskImage: foil1Mask,
 								mixBlendMode: 'color-dodge',
 							}}
-							animate={{ opacity: isHovered ? 0.3 : 0 }}
+							animate={{ opacity: isHovered ? 0.3 : 0.1 }}
 							transition={{ duration: transitionDuration }}
 						/>
 
@@ -154,7 +196,7 @@ export default function DailyQuoteCard({ quote, isLoading, onClose }: DailyQuote
 						<motion.div
 							className="absolute inset-0 z-10 pointer-events-none"
 							style={{
-								background: `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.1) 0%, transparent 80%)`,
+								background: spotlightBg,
 								mixBlendMode: 'overlay',
 							}}
 							animate={{ opacity: isHovered ? 1 : 0 }}
@@ -172,18 +214,8 @@ export default function DailyQuoteCard({ quote, isLoading, onClose }: DailyQuote
 							<div className="w-12 h-12 md:w-16 md:h-16 pointer-events-none">
 								<svg viewBox="0 0 64 64" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
 									<circle cx="32" cy="32" r="30" fill="#333" />
-									<ellipse
-										transform="rotate(-39.592 36.265 24.268)"
-										cx="36.3"
-										cy="24.3"
-										rx="13.1"
-										ry="13.9"
-										fill="#f5f5f5"
-									/>
-									<path
-										d="M45.3 23.2c1.8 2.9.8 6.3-2.9 8.6s-7.2 1.7-9-1.2c-1.1-1.8-1.1-3.8 0-5.6c-1.7 0-3.1-.7-4.1-2.2c-1.7-2.7-.7-6 2.5-7.9c3.1-1.9 6.5-1.4 8.2 1.3c1 1.6 1 3.2.2 4.6c2.1-.3 3.9.6 5.1 2.4m-3.1 1.6c-.9-1.5-2.9-1.9-4.6-.8c-1.8 1.1-2.3 3-1.4 4.5c1 1.6 2.9 2 4.7.9c1.7-1.1 2.2-3.1 1.3-4.6M32 21.3c.9 1.4 2.7 1.9 4.3.8c1.6-1 2-2.8 1.1-4.2c-.9-1.4-2.7-1.8-4.3-.8c-1.5 1-1.9 2.7-1.1 4.2"
-										fill="#3e4347"
-									/>
+									<ellipse transform="rotate(-39.592 36.265 24.268)" cx="36.3" cy="24.3" rx="13.1" ry="13.9" fill="#f5f5f5" />
+									<path d="M45.3 23.2c1.8 2.9.8 6.3-2.9 8.6s-7.2 1.7-9-1.2c-1.1-1.8-1.1-3.8 0-5.6c-1.7 0-3.1-.7-4.1-2.2c-1.7-2.7-.7-6 2.5-7.9c3.1-1.9 6.5-1.4 8.2 1.3c1 1.6 1 3.2.2 4.6c2.1-.3 3.9.6 5.1 2.4m-3.1 1.6c-.9-1.5-2.9-1.9-4.6-.8c-1.8 1.1-2.3 3-1.4 4.5c1 1.6 2.9 2 4.7.9c1.7-1.1 2.2-3.1 1.3-4.6M32 21.3c.9 1.4 2.7 1.9 4.3.8c1.6-1 2-2.8 1.1-4.2c-.9-1.4-2.7-1.8-4.3-.8c-1.5 1-1.9 2.7-1.1 4.2" fill="#3e4347" />
 								</svg>
 							</div>
 
@@ -204,16 +236,16 @@ export default function DailyQuoteCard({ quote, isLoading, onClose }: DailyQuote
 													<div className="text-[10px] uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500 font-mono animate-pulse">
 														[ The Universe is responding... ]
 													</div>
-													<ShinyText
-														text={quote.text}
-														speed={2}
-														color="rgba(113, 113, 122, 0.4)"
-														shineColor="rgba(255, 255, 255, 0.8)"
+													<ShinyText 
+														text={quote.text} 
+														speed={2} 
+														color="rgba(113, 113, 122, 0.4)" 
+														shineColor="rgba(255, 255, 255, 0.8)" 
 													/>
 												</div>
 											) : (
-												<DecryptedText
-													text={quote.text}
+												<DecryptedText 
+													text={quote.text} 
 													speed={40}
 													sequential={true}
 													revealDirection="start"
