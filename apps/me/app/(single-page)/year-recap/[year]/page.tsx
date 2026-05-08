@@ -15,11 +15,15 @@ interface IRecapByYearPageProps {
 }
 
 const findpostByYear = (year: string): TPost | undefined => {
-	return (retroPost as TPost[]).find((post: TPost) => post?.hashTags?.includes(year) && post.retroType === 'RECAP')
+	return (retroPost as TPost[]).find(
+		(post: TPost) => post?.hashTags?.includes(year) && post.retroType === 'RECAP' && post.published !== false
+	)
 }
 
 export const generateStaticParams = async (): Promise<{ year: string | undefined }[]> => {
-	const years = retroPost.filter((post: TPost) => post.retroType === 'RECAP').map((post: TPost) => post.hashTags)
+	const years = retroPost
+		.filter((post: TPost) => post.retroType === 'RECAP' && post.published !== false)
+		.map((post: TPost) => post.hashTags)
 
 	const uniqueYears = [...new Set(years.flat())]
 
