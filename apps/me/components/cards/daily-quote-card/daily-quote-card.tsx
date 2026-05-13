@@ -264,7 +264,10 @@ export default function DailyQuoteCard({ quote, isLoading, onClose }: DailyQuote
 							Stephen Daily Quote
 						</div>
 						<div className="relative w-8 h-8 text-zinc-400/40 dark:text-white/20">
-							<StephenLogo className="w-full h-full drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]" />
+							<StephenLogo
+								variant="neutral"
+								className="w-full h-full drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]"
+							/>
 						</div>
 					</div>
 
