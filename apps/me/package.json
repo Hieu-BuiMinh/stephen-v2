@@ -47,6 +47,7 @@
     "@types/suncalc": "^1.9.2",
     "eslint": "^9",
     "eslint-config-next": "15.3.6",
+    "@repo/stephen-v2-eslint-config": "workspace:*",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

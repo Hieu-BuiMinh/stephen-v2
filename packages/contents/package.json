@@ -15,6 +15,7 @@
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
+		"@repo/stephen-v2-eslint-config": "workspace:*",
 		"typescript": "^5.8.3",
 		"velite": "^0.2.4"
 	},

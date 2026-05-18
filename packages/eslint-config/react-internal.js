@@ -4,6 +4,8 @@ import tseslint from 'typescript-eslint'
 import pluginReactHooks from 'eslint-plugin-react-hooks'
 import pluginReact from 'eslint-plugin-react'
 import globals from 'globals'
+import tanstackQuery from '@tanstack/eslint-plugin-query'
+
 import { config as baseConfig } from './base.js'
 
 /**
@@ -28,12 +30,21 @@ export const config = [
 	{
 		plugins: {
 			'react-hooks': pluginReactHooks,
+			'@tanstack/query': tanstackQuery,
 		},
-		settings: { react: { version: 'detect' } },
+		settings: {
+			react: { version: 'detect' },
+			tailwindcss: {
+				callees: ['cn', 'clsx', 'classnames'],
+			},
+		},
 		rules: {
 			...pluginReactHooks.configs.recommended.rules,
-			// React scope no longer necessary with new JSX transform.
 			'react/react-in-jsx-scope': 'off',
+			'react/jsx-uses-react': 'error',
+			'react/jsx-uses-vars': 'error',
+			'@typescript-eslint/consistent-type-imports': 'error',
+			'@tanstack/query/exhaustive-deps': 'error',
 		},
 	},
 ]

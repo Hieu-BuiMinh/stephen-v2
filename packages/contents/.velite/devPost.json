@@ -578,6 +578,61 @@
     "slugAsParams": "dev/posts/react-design-patterns"
   },
   {
+    "id": "b4a2d8e1-9c3f-4e7b-a1d5-6f8c2b4a9e3d",
+    "slug": "articles/dev/posts/why-i-prefer-kebab-case",
+    "title": "Why I Prefer kebab-case for File Naming",
+    "createdAt": "2026-05-18T00:00:00.000Z",
+    "cover": "/assets/articles/dev/post/kebab-case-cover.png",
+    "metadata": {
+      "readingTime": 2,
+      "wordCount": 526
+    },
+    "description": "Discover why kebab-case is the superior choice for file naming in modern web development.",
+    "published": true,
+    "hashTags": [
+      "dev",
+      "post",
+      "best-practices"
+    ],
+    "type": "post",
+    "body": "const{Fragment:e,jsx:n,jsxs:i}=arguments[0];function _createMdxContent(a){const s={a:\"a\",code:\"code\",em:\"em\",h2:\"h2\",h3:\"h3\",hr:\"hr\",li:\"li\",p:\"p\",pre:\"pre\",span:\"span\",strong:\"strong\",ul:\"ul\",...a.components};return i(e,{children:[i(s.p,{children:[\"When starting a new project or defining coding standards, one of the most hotly debated topics is file naming conventions. Should you use \",n(s.code,{children:\"PascalCase\"}),\", \",n(s.code,{children:\"camelCase\"}),\", or \",n(s.code,{children:\"kebab-case\"}),\"?\"]}),\"\\n\",i(s.p,{children:[\"In my projects, particularly within the Stephen v2 ecosystem, I enforce a strict rule: \",i(s.strong,{children:[\"all file and folder names must use \",n(s.code,{children:\"kebab-case\"})]}),\". While it might seem like a minor stylistic choice, it actually solves several major headaches in the development lifecycle.\"]}),\"\\n\",i(s.p,{children:[\"Here are the four main reasons why I strongly prefer \",n(s.code,{children:\"kebab-case\"}),\".\"]}),\"\\n\",n(s.h2,{id:\"1-the-cross-os-case-sensitivity-trap\",children:n(s.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#1-the-cross-os-case-sensitivity-trap\",children:\"1. The Cross-OS Case-Sensitivity Trap\"})}),\"\\n\",n(s.p,{children:\"This is arguably the most critical reason. Operating systems handle file names differently:\"}),\"\\n\",i(s.ul,{children:[\"\\n\",i(s.li,{children:[n(s.strong,{children:\"Windows and macOS\"}),\" are typically \",n(s.em,{children:\"case-insensitive\"}),\". To them, \",n(s.code,{children:\"MyComponent.tsx\"}),\" and \",n(s.code,{children:\"mycomponent.tsx\"}),\" are the exact same file.\"]}),\"\\n\",i(s.li,{children:[n(s.strong,{children:\"Linux\"}),\" (which powers 99% of servers, CI/CD pipelines, Docker containers, and Vercel) is strictly \",n(s.em,{children:\"case-sensitive\"}),\".\"]}),\"\\n\"]}),\"\\n\",i(s.p,{children:[\"Imagine this common nightmare scenario: You create a file named \",n(s.code,{children:\"myComponent.tsx\"}),\" on Windows. Later, you realize it's a React component, so you rename it to \",n(s.code,{children:\"MyComponent.tsx\"}),\" and push to GitHub. Git on Windows often fails to recognize this case-only change. When your CI/CD pipeline runs on Linux, it crashes with a \",n(s.code,{children:\"File not found\"}),\" error because it's looking for \",n(s.code,{children:\"MyComponent.tsx\"}),\", but the file system still holds \",n(s.code,{children:\"myComponent.tsx\"}),\".\"]}),\"\\n\",i(s.p,{children:[\"By using \",n(s.code,{children:\"kebab-case\"}),\" (which consists only of lowercase letters and hyphens), you completely eliminate this entire category of cross-platform bugs.\"]}),\"\\n\",n(s.h2,{id:\"2-perfect-harmony-with-nextjs-routing\",children:n(s.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#2-perfect-harmony-with-nextjs-routing\",children:\"2. Perfect Harmony with Next.js Routing\"})}),\"\\n\",n(s.p,{children:\"In modern frameworks like Next.js (especially the App Router), your folder and file names directly dictate your URL structure.\"}),\"\\n\",i(s.p,{children:[\"Web URLs are universally expected to be lowercase and separated by hyphens (e.g., \",n(s.code,{children:\"stephen.com/my-awesome-post\"}),\"). This is standard practice for readability and SEO. If you name your folders using \",n(s.code,{children:\"PascalCase\"}),\" or \",n(s.code,{children:\"camelCase\"}),\", you end up with awkward URLs like \",n(s.code,{children:\"stephen.com/MyAwesomePost\"}),\", which looks unprofessional and can cause routing mismatches.\"]}),\"\\n\",i(s.p,{children:[\"Using \",n(s.code,{children:\"kebab-case\"}),\" for everything ensures a seamless 1:1 mapping between your file system and your final URLs.\"]}),\"\\n\",n(s.h2,{id:\"3-tooling-and-cli-standards\",children:n(s.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#3-tooling-and-cli-standards\",children:\"3. Tooling and CLI Standards\"})}),\"\\n\",i(s.p,{children:[\"Most modern development tools, package managers, and component libraries default to \",n(s.code,{children:\"kebab-case\"}),\".\"]}),\"\\n\",i(s.p,{children:[\"For instance, if you use \",n(s.a,{href:\"https://ui.shadcn.com/\",children:\"Shadcn UI\"}),\" to add a button to your project, it generates a file named \",n(s.code,{children:\"button.tsx\"}),\", not \",n(s.code,{children:\"Button.tsx\"}),\". If you use npm packages, they are always lowercase and hyphenated. By aligning your own project's naming convention with the wider ecosystem, your codebase remains uniform and predictable.\"]}),\"\\n\",n(s.h2,{id:\"4-enhanced-readability\",children:n(s.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#4-enhanced-readability\",children:\"4. Enhanced Readability\"})}),\"\\n\",i(s.p,{children:[\"When scanning a dense file tree, \",n(s.code,{children:\"kebab-case\"}),\" provides better visual separation between words compared to glued-together capitalization.\"]}),\"\\n\",n(s.p,{children:\"Consider scanning these files in your IDE:\"}),\"\\n\",i(s.ul,{children:[\"\\n\",n(s.li,{children:n(s.code,{children:\"fetchUserProfileData.ts\"})}),\"\\n\",n(s.li,{children:n(s.code,{children:\"fetch-user-profile-data.ts\"})}),\"\\n\"]}),\"\\n\",n(s.p,{children:\"The hyphens act as clear physical spaces, making it significantly faster for the human eye to parse the intent of the file.\"}),\"\\n\",n(s.hr,{}),\"\\n\",n(s.h3,{id:\"the-exception-inside-the-file\",children:n(s.a,{className:\"subheading-anchor\",\"aria-label\":\"Link to section\",href:\"#the-exception-inside-the-file\",children:\"The Exception: Inside the File\"})}),\"\\n\",i(s.p,{children:[\"While the \",n(s.em,{children:\"file name\"}),\" itself should always be \",n(s.code,{children:\"kebab-case\"}),\", the \",n(s.em,{children:\"React Component\"}),\" inside the file must still follow the standard \",n(s.code,{children:\"PascalCase\"}),\" convention.\"]}),\"\\n\",n(e,{children:n(s.pre,{className:\"shiki shiki-themes github-light min-dark\",style:{backgroundColor:\"#fff\",\"--shiki-dark-bg\":\"#1f1f1f\",color:\"#24292e\",\"--shiki-dark\":\"#b392f0\"},tabIndex:\"0\",children:i(s.code,{children:[n(s.span,{className:\"line\",children:n(s.span,{style:{color:\"#6A737D\",\"--shiki-dark\":\"#6B737C\"},children:\"// File: hero-carousel-item.tsx (kebab-case)\"})}),\"\\n\",n(s.span,{className:\"line\"}),\"\\n\",n(s.span,{className:\"line\",children:n(s.span,{style:{color:\"#6A737D\",\"--shiki-dark\":\"#6B737C\"},children:\"// Component Name: HeroCarouselItem (PascalCase)\"})}),\"\\n\",i(s.span,{className:\"line\",children:[n(s.span,{style:{color:\"#D73A49\",\"--shiki-dark\":\"#F97583\"},children:\"export\"}),n(s.span,{style:{color:\"#D73A49\",\"--shiki-dark\":\"#F97583\"},children:\" default\"}),n(s.span,{style:{color:\"#D73A49\",\"--shiki-dark\":\"#F97583\"},children:\" function\"}),n(s.span,{style:{color:\"#6F42C1\",\"--shiki-dark\":\"#B392F0\"},children:\" HeroCarouselItem\"}),n(s.span,{style:{color:\"#24292E\",\"--shiki-dark\":\"#B392F0\"},children:\"() {\"})]}),\"\\n\",i(s.span,{className:\"line\",children:[n(s.span,{style:{color:\"#D73A49\",\"--shiki-dark\":\"#F97583\"},children:\"\\treturn\"}),n(s.span,{style:{color:\"#24292E\",\"--shiki-dark\":\"#B392F0\"},children:\" <\"}),n(s.span,{style:{color:\"#22863A\",\"--shiki-dark\":\"#FFAB70\"},children:\"div\"}),n(s.span,{style:{color:\"#24292E\",\"--shiki-dark\":\"#B392F0\"},children:\">...</\"}),n(s.span,{style:{color:\"#22863A\",\"--shiki-dark\":\"#FFAB70\"},children:\"div\"}),n(s.span,{style:{color:\"#24292E\",\"--shiki-dark\":\"#B392F0\"},children:\">\"})]}),\"\\n\",n(s.span,{className:\"line\",children:n(s.span,{style:{color:\"#24292E\",\"--shiki-dark\":\"#B392F0\"},children:\"}\"})})]})})}),\"\\n\",n(s.p,{children:\"By separating the file naming convention from the code naming convention, you get the best of both worlds: rock-solid infrastructure and clean, standard React code.\"})]})}return{default:function(e={}){const{wrapper:i}=e.components||{};return i?n(i,{...e,children:n(_createMdxContent,{...e})}):_createMdxContent(e)}};",
+    "toc": [
+      {
+        "title": "1. The Cross-OS Case-Sensitivity Trap",
+        "url": "#1-the-cross-os-case-sensitivity-trap",
+        "items": []
+      },
+      {
+        "title": "2. Perfect Harmony with Next.js Routing",
+        "url": "#2-perfect-harmony-with-nextjs-routing",
+        "items": []
+      },
+      {
+        "title": "3. Tooling and CLI Standards",
+        "url": "#3-tooling-and-cli-standards",
+        "items": []
+      },
+      {
+        "title": "4. Enhanced Readability",
+        "url": "#4-enhanced-readability",
+        "items": [
+          {
+            "title": "The Exception: Inside the File",
+            "url": "#the-exception-inside-the-file",
+            "items": []
+          }
+        ]
+      }
+    ],
+    "updatedAt": "2026-05-18T08:36:31.789Z",
+    "author": {
+      "avatar": "/assets/images/avt/me_04.png",
+      "name": "Stephen",
+      "github": "https://github.com/Hieu-BuiMinh"
+    },
+    "slugAsParams": "dev/posts/why-i-prefer-kebab-case"
+  },
+  {
     "id": "bbb0ecab-95b2-430e-b930-2bdec6f53026",
     "slug": "articles/dev/shorts/axios-builder-utility",
     "title": "Axios Builder Utility",
