@@ -7,6 +7,12 @@ export type PhotoItem = {
 
 export const mockPhotoJournalData: PhotoItem[] = [
 	{
+		id: '72a4f0b3',
+		date: '2026-05-14',
+		image: '/assets/articles/other-topic/journaling/2026/2026-05-14-tea-with-master-giac-nguyen/tea-with-master-giac-nguyen.png',
+		note: 'A Tea Session with Master Giac Nguyen',
+	},
+	{
 		id: '71a4f0b2',
 		date: '2026-01-02',
 		image: 'https://i.ibb.co/pGfYmKw/2026-02-01.jpg',

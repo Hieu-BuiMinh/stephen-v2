@@ -1,5 +1,5 @@
 import { useIsMobile } from '@repo/stephen-v2-ui/hooks'
-import { Book, Marquee, MarqueeContent, MarqueeFade, MarqueeItem } from '@repo/stephen-v2-ui/shadcn'
+import { BookV2, Marquee, MarqueeContent, MarqueeFade, MarqueeItem } from '@repo/stephen-v2-ui/shadcn'
 import { BugOff, CircleQuestionMark } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,11 +11,11 @@ function CurrentlyReadingBento() {
 
 	const Books = [
 		<Link href="https://labs42io.github.io/clean-code-typescript" target="_blank" className="z-10 flex">
-			<Book
+			<BookV2
 				width={isMobile ? 150 : 190}
-				texture
+				textured
 				title="Typescript Clean Code Concepts"
-				color="#155798"
+				spineColor="#155798"
 				textColor="#fff"
 				variant="simple"
 				icon={<BugOff size={24} />}
@@ -27,22 +27,26 @@ function CurrentlyReadingBento() {
 			target="_blank"
 			className="z-10 flex"
 		>
-			<Book
+			<BookV2
 				width={isMobile ? 150 : 190}
-				texture
+				textured
 				title="30+ React Interview Questions and Answers"
-				color="#161C2E"
+				spineColor="#2A3653"
 				textColor="#fff"
 				variant="simple"
 				icon={<CircleQuestionMark size={24} />}
 			/>
 		</Link>,
 		<Link href="https://youtube.com/shorts/Sp0QmjcYLEU?si=iEEdyRPLVrrPRqq7" target="_blank" className="z-10 flex">
-			<Book
+			<BookV2
 				width={isMobile ? 150 : 190}
 				title="48 Laws of Power"
-				textColor="#fff"
-				icon={<span className="text-xs">-Robert Greene-</span>}
+				textured
+				coverColor="#7f1d1d"
+				spineColor="#333"
+				textColor="#000"
+				variant="stripe"
+				icon={<span className="text-xs">Robert Greene</span>}
 				illustration={
 					<Image
 						src="/assets/images/books/48-laws-of-power-cover.png"
@@ -56,12 +60,14 @@ function CurrentlyReadingBento() {
 			/>
 		</Link>,
 		<Link href="/assets/videos/books/game-of-thrones-intro.mp4" target="_blank" className="z-10 flex">
-			<Book
+			<BookV2
 				width={isMobile ? 150 : 190}
 				title="Game of Thrones"
-				color="#4A6189"
-				textColor="#fff"
-				icon={<span className="text-xs">-George R.R. Martin-</span>}
+				coverColor="#2A416B"
+				spineColor="#4A6189"
+				textColor="#ddd"
+				variant="stripe"
+				icon={<span className="text-xs">George R.R. Martin</span>}
 				illustration={
 					<Image
 						src="/assets/images/books/game-of-thrones-book-cover.png"
@@ -75,13 +81,14 @@ function CurrentlyReadingBento() {
 			/>
 		</Link>,
 		<Link href="https://en.wikipedia.org/wiki/The_Fellowship_of_the_Ring" target="_blank" className="z-10 flex">
-			<Book
+			<BookV2
 				width={isMobile ? 150 : 190}
 				title="The Lord of The Rings"
-				color="#706837"
-				textColor="#fff"
-				texture
-				icon={<span className="text-xs text-white">-J.R.R.Tolkien-</span>}
+				spineColor="#706837"
+				textColor="#333"
+				textured
+				variant="stripe"
+				icon={<span className="text-xs">J.R.R.Tolkien</span>}
 				illustration={
 					<Image
 						src="/assets/images/books/the-lord-of-the-rings.png"

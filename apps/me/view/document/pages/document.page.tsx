@@ -1,4 +1,4 @@
-import { Book } from '@repo/stephen-v2-ui/shadcn'
+import { BookV2 } from '@repo/stephen-v2-ui/shadcn'
 import Link from 'next/link'
 import React from 'react'
 
@@ -12,7 +12,7 @@ function DocumentPageView() {
 
 				return (
 					<Link href={url} className="z-10 flex" key={doc.title}>
-						<Book key={doc.title} {...doc} />
+						<BookV2 key={doc.title} {...doc} />
 					</Link>
 				)
 			})}
