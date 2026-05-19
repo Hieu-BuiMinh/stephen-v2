@@ -100,7 +100,7 @@ export const BookV2 = ({
 			>
 				{/* 3. FRONT COVER: The face pointing towards the user */}
 				<div
-					className="flex flex-col h-full rounded-l-md rounded-r overflow-hidden bg-background-200 shadow-book translate-x-0 relative after:absolute after:border after:border-gray-400/20 after:w-full after:h-full after:shadow-book-border after:rounded-l-md after:rounded-r"
+					className="flex flex-col h-full rounded-l rounded-r overflow-hidden bg-background-200 shadow-book translate-x-0 relative after:absolute after:border after:border-gray-400/20 after:w-full after:h-full after:shadow-book-border after:rounded-l after:rounded-r"
 					style={{ width: _width }}
 				>
 					{/* 3a. LEFT SECTION: Colored spine edge or full background (depending on variant) */}
@@ -114,7 +114,7 @@ export const BookV2 = ({
 						)}
 						{/* Spine shadow/binding crease */}
 						<div
-							className="absolute h-full w-[8.2%] mix-blend-overlay"
+							className="absolute inset-y-0 left-0 w-[12%] mix-blend-overlay z-10"
 							style={{ background: 'var(--ds-book-bind)' }}
 						/>
 					</div>
@@ -122,7 +122,8 @@ export const BookV2 = ({
 					{/* 3b. RIGHT SECTION: Front cover surface (stripe variant) or transparent overlay (simple variant) */}
 					<div
 						className={cn(
-							'relative flex-1',
+							'relative',
+							variant === 'simple' ? 'flex-1' : 'h-fit',
 							(variant === 'stripe' || (variant === 'simple' && spineColor === undefined)) &&
 								!coverColor &&
 								'bg-book-gradient'
@@ -131,21 +132,20 @@ export const BookV2 = ({
 					>
 						{/* Additional spine shadow bleeding into the right section */}
 						<div
-							className="absolute h-full w-[8.2%] opacity-20"
+							className="absolute inset-y-0 left-0 w-[12%] mix-blend-overlay opacity-80 z-10"
 							style={{ background: 'var(--ds-book-bind)' }}
 						/>
 						{/* 3c. TEXT & CONTENT WRAPPER: Holds the Title and Logo/Illustration */}
 						<div
 							className={cn(
-								'flex flex-col w-full p-[4%] pl-[12%] pr-[2.5%]',
-								variant === 'simple' ? 'gap-4' : 'h-full'
+								'flex flex-col w-full p-[4%] pl-[14%] pr-[2.5%] pb-[8%]',
+								variant === 'simple' ? 'gap-4' : 'h-fit'
 							)}
-							style={{ containerType: 'inline-size', gap: `calc((12px / 196) * ${_width})` }}
+							style={{ containerType: 'inline-size', gap: `calc((4px / 196) * ${_width})` }}
 						>
 							<span
 								className={cn(
-									'leading-[1.25em] tracking-[-.02em] text-balance font-semibold',
-									variant === 'simple' ? 'text-[12cqw]' : 'text-[10.5cqw]',
+									'leading-[1.25em] tracking-[-.02em] text-balance font-semibold text-[calc(105cqw/12)]',
 									debossedTitle && 'opacity-90'
 								)}
 								style={{
@@ -170,7 +170,7 @@ export const BookV2 = ({
 					{/* 3d. TEXTURE OVERLAY: Adds realistic paper/foil texture over the entire front cover */}
 					{textured && (
 						<div
-							className="absolute top-0 left-0 inset-0 rotate-180 rounded-l-md rounded-r mix-blend-hard-light pointer-events-none bg-cover bg-no-repeat opacity-70 brightness-110"
+							className="absolute top-0 left-0 inset-0 rotate-180 rounded-l rounded-r mix-blend-hard-light pointer-events-none bg-cover bg-no-repeat opacity-80 brightness-110"
 							style={{ backgroundImage: `url(${BookTexture.src || BookTexture})` }}
 						/>
 					)}
@@ -187,8 +187,17 @@ export const BookV2 = ({
 
 				{/* 5. BACK COVER: The rear cover pushed backwards in 3D space */}
 				<div
-					className="bg-gray-200 absolute left-0 top-0 rounded-l-md rounded-r h-full"
-					style={{ width: _width, transform: 'translateZ(calc(-1 * 29cqw))' }}
+					className={cn(
+						'absolute left-0 top-0 rounded-l-md rounded-r h-full',
+						(variant === 'stripe' || (variant === 'simple' && spineColor === undefined)) &&
+							!coverColor &&
+							'bg-book-gradient'
+					)}
+					style={{
+						width: _width,
+						transform: 'translateZ(calc(-1 * 29cqw))',
+						background: variant === 'simple' && spineColor !== undefined ? _color : coverColor,
+					}}
 				/>
 			</div>
 			{/* 6. GLARE EFFECT: The shiny interactive highlight triggered on hover */}
