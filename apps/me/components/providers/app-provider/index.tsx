@@ -3,6 +3,7 @@ import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import React from 'react'
 
 import Hello from '@/components/hello'
+import AuthProvider from '@/components/providers/auth-provider'
 import BProgressProvider from '@/components/providers/bprogress-provider'
 import QueryProvider from '@/components/providers/query-provider'
 import { ThemeProvider } from '@/components/providers/shadcn-provider'
@@ -10,7 +11,7 @@ import { Toaster } from '@/components/toaster'
 
 function AppProvider({ children }: { children: React.ReactNode }) {
 	return (
-		<>
+		<AuthProvider>
 			<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
 				<QueryProvider>
 					<NuqsAdapter>
@@ -26,7 +27,7 @@ function AppProvider({ children }: { children: React.ReactNode }) {
 				/>
 				<Toaster />
 			</ThemeProvider>
-		</>
+		</AuthProvider>
 	)
 }
 

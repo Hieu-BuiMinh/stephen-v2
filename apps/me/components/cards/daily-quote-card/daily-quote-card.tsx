@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
-import DecryptedText from '@ui/motion/components/text-effects/decrypted-text'
+import TextGenerateEffect from '@ui/motion/components/text-effects/text-generate-effect'
 import ShinyText from '@ui/motion/components/text-effects/shiny-text'
 import { AnimatePresence, motion, useMotionTemplate, useMotionValue } from 'motion/react'
 import React, { useState } from 'react'
@@ -240,14 +240,9 @@ export default function DailyQuoteCard({ quote, isLoading, onClose }: DailyQuote
 													/>
 												</div>
 											) : (
-												<DecryptedText
-													text={quote.text}
-													speed={40}
-													sequential={true}
-													revealDirection="start"
-													animateOn="view"
-													className="text-zinc-900 dark:text-zinc-100"
-													encryptedClassName="text-zinc-400 dark:text-zinc-600"
+												<TextGenerateEffect
+													words={quote.text}
+													className="text-zinc-900 dark:text-zinc-100 font-medium"
 												/>
 											)}
 										</div>
@@ -269,7 +264,10 @@ export default function DailyQuoteCard({ quote, isLoading, onClose }: DailyQuote
 							Stephen Daily Quote
 						</div>
 						<div className="relative w-8 h-8 text-zinc-400/40 dark:text-white/20">
-							<StephenLogo className="w-full h-full drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]" />
+							<StephenLogo
+								variant="neutral"
+								className="w-full h-full drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]"
+							/>
 						</div>
 					</div>
 

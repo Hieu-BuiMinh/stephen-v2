@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 export type MiniMiddleware = {
 	name: string
 	matcher: readonly string[]
-	run: (req: NextRequest) => void | NextResponse | Response | Promise<void | NextResponse | Response>
+	run: (req: NextRequest) => void | NextResponse | Response | null | Promise<void | NextResponse | Response | null>
 }
 
 // Compose: run middlewares sequentially, stop once a response is returned

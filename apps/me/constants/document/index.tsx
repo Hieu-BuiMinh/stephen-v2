@@ -1,5 +1,5 @@
 import type { DevBlogPost } from '@repo/stephen-v2-contents'
-import type { BookProps } from '@repo/stephen-v2-ui/shadcn'
+import type { BookV2Props } from '@repo/stephen-v2-ui/shadcn'
 import Image from 'next/image'
 
 interface ITableOfContent {
@@ -10,26 +10,27 @@ interface ITableOfContent {
 	children?: ITableOfContent[]
 }
 
-export type TDocumentCollection = BookProps & { status: 'published' | 'draft'; slug: string; toc?: ITableOfContent[] }
+export type TDocumentCollection = BookV2Props & { status: 'published' | 'draft'; slug: string; toc?: ITableOfContent[] }
 
 export const documentCollection: TDocumentCollection[] = [
 	{
 		// book props
 		title: 'Tự Học Kinh Dịch',
-		icon: <span className="text-2xl text-white">☯</span>,
-		texture: true,
-		color: '#1D1C1D',
-		textColor: '#fff',
-		illustration: (
-			<Image
-				src="/assets/images/document/tu-hoc-kinh-dich/cover.png"
-				className="size-full object-cover"
-				width={220}
-				height={150}
-				alt="48-laws-of-power-cover.png"
-				sizes="(max-width: 768px) 100vw, 50vw"
-			/>
-		),
+		// icon removed in v2
+		textured: true,
+		spineColor: '#fcd34d',
+		coverColor: '#FFF',
+		textColor: '#111',
+		// illustration: (
+		// 	<Image
+		// 		src="/assets/images/document/tu-hoc-kinh-dich/cover.png"
+		// 		className="size-full object-cover"
+		// 		width={220}
+		// 		height={150}
+		// 		alt="48-laws-of-power-cover.png"
+		// 		sizes="(max-width: 768px) 100vw, 50vw"
+		// 	/>
+		// ),
 
 		// other props
 		slug: 'tu-hoc-kinh-dich-tap-1',
@@ -125,19 +126,20 @@ export const documentCollection: TDocumentCollection[] = [
 		// book props
 		title: 'Huyền Không Phi Tinh',
 		// icon: <span className="text-2xl text-[#DEC79D]">☯</span>,
-		texture: true,
-		color: '#374545',
-		textColor: '#DEC79D',
-		illustration: (
-			<Image
-				src="/assets/images/document/huyen-khong-phi-tinh/cover.png"
-				className="size-full object-cover ml-2"
-				width={220}
-				height={150}
-				alt="48-laws-of-power-cover.png"
-				sizes="(max-width: 768px) 100vw, 50vw"
-			/>
-		),
+		textured: true,
+		spineColor: '#223030',
+		coverColor: '#fff',
+		textColor: '#333',
+		// illustration: (
+		// 	<Image
+		// 		src="/assets/images/document/huyen-khong-phi-tinh/cover.png"
+		// 		className="size-full object-cover ml-2"
+		// 		width={220}
+		// 		height={150}
+		// 		alt="48-laws-of-power-cover.png"
+		// 		sizes="(max-width: 768px) 100vw, 50vw"
+		// 	/>
+		// ),
 
 		// other props
 		slug: 'huyen-khong-phi-tinh',
@@ -155,9 +157,10 @@ export const documentCollection: TDocumentCollection[] = [
 		// book props
 		title: 'Financial Matrix',
 		// icon: <span className="text-2xl text-white">💊</span>,
-		texture: true,
-		color: '#333333',
-		textColor: '#ffffff',
+		textured: true,
+		variant: 'stripe',
+		spineColor: '#333333',
+		textColor: '#111',
 		illustration: (
 			<Image
 				src="https://i.ibb.co/Kcmjt8r0/kanchanara-rf-Ul0-Lfyays-unsplash.jpg"

@@ -1,0 +1,69 @@
+---
+id: 'b4a2d8e1-9c3f-4e7b-a1d5-6f8c2b4a9e3d'
+title: 'Why I Prefer kebab-case for File Naming'
+cover: '/assets/articles/dev/post/kebab-case-cover.png'
+createdAt: '2026-05-18T00:00:00Z'
+description: Discover why kebab-case is the superior choice for file naming in modern web development.
+published: true
+hashTags: ['dev', 'post', 'best-practices']
+type: 'post'
+---
+
+When starting a new project or defining coding standards, one of the most hotly debated topics is file naming conventions. Should you use `PascalCase`, `camelCase`, or `kebab-case`?
+
+In my projects, particularly within the Stephen v2 ecosystem, I enforce a strict rule: **all file and folder names must use `kebab-case`**. While it might seem like a minor stylistic choice, it actually solves several major headaches in the development lifecycle.
+
+Here are the four main reasons why I strongly prefer `kebab-case`.
+
+## 1. The Cross-OS Case-Sensitivity Trap
+
+This is arguably the most critical reason. Operating systems handle file names differently:
+
+- **Windows and macOS** are typically _case-insensitive_. To them, `MyComponent.tsx` and `mycomponent.tsx` are the exact same file.
+- **Linux** (which powers 99% of servers, CI/CD pipelines, Docker containers, and Vercel) is strictly _case-sensitive_.
+
+Imagine this common nightmare scenario: You create a file named `myComponent.tsx` on Windows. Later, you realize it's a React component, so you rename it to `MyComponent.tsx` and push to GitHub. Git on Windows often fails to recognize this case-only change. When your CI/CD pipeline runs on Linux, it crashes with a `File not found` error because it's looking for `MyComponent.tsx`, but the file system still holds `myComponent.tsx`.
+
+By using `kebab-case` (which consists only of lowercase letters and hyphens), you completely eliminate this entire category of cross-platform bugs.
+
+## 2. Perfect Harmony with Next.js Routing
+
+In modern frameworks like Next.js (especially the App Router), your folder and file names directly dictate your URL structure.
+
+Web URLs are universally expected to be lowercase and separated by hyphens (e.g., `stephen.com/my-awesome-post`). This is standard practice for readability and SEO. If you name your folders using `PascalCase` or `camelCase`, you end up with awkward URLs like `stephen.com/MyAwesomePost`, which looks unprofessional and can cause routing mismatches.
+
+Using `kebab-case` for everything ensures a seamless 1:1 mapping between your file system and your final URLs.
+
+## 3. Tooling and CLI Standards
+
+Most modern development tools, package managers, and component libraries default to `kebab-case`.
+
+For instance, if you use [Shadcn UI](https://ui.shadcn.com/) to add a button to your project, it generates a file named `button.tsx`, not `Button.tsx`. If you use npm packages, they are always lowercase and hyphenated. By aligning your own project's naming convention with the wider ecosystem, your codebase remains uniform and predictable.
+
+## 4. Enhanced Readability
+
+When scanning a dense file tree, `kebab-case` provides better visual separation between words compared to glued-together capitalization.
+
+Consider scanning these files in your IDE:
+
+- `fetchUserProfileData.ts`
+- `fetch-user-profile-data.ts`
+
+The hyphens act as clear physical spaces, making it significantly faster for the human eye to parse the intent of the file.
+
+---
+
+### The Exception: Inside the File
+
+While the _file name_ itself should always be `kebab-case`, the _React Component_ inside the file must still follow the standard `PascalCase` convention.
+
+```tsx
+// File: hero-carousel-item.tsx (kebab-case)
+
+// Component Name: HeroCarouselItem (PascalCase)
+export default function HeroCarouselItem() {
+	return <div>...</div>
+}
+```
+
+By separating the file naming convention from the code naming convention, you get the best of both worlds: rock-solid infrastructure and clean, standard React code.

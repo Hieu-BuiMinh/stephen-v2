@@ -16,6 +16,7 @@ export type ImageZoomV3Props = {
 	height?: number
 	showDownload?: boolean
 	style?: React.CSSProperties
+	description?: string | React.ReactNode
 }
 
 export const ImageZoomV3 = ({
@@ -28,6 +29,7 @@ export const ImageZoomV3 = ({
 	width = 1024,
 	height = 1024,
 	style,
+	description,
 }: ImageZoomV3Props) => {
 	const [open, setOpen] = useState(false)
 
@@ -43,6 +45,7 @@ export const ImageZoomV3 = ({
 						height={height}
 						imageClassName={cn('rounded-md object-cover', imageClassName)}
 						className="size-full"
+						{...{ description }}
 					/>
 				</div>
 			</DialogTrigger>

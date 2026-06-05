@@ -1,5 +1,11 @@
 export const shortSparksList = [
 	{
+		name: 'Only those that risk going too far can possibly know how far they can go',
+		id: 'only-those-that-risk-going-too-far',
+		src: 'https://res.cloudinary.com/hieu-buiminh/video/upload/v1779089872/only-those-that-risk-going-too-far-can-possibly-know-how-far-they-can-go_upipdm.mp4',
+		description: 'How far can you go? 🚀',
+	},
+	{
 		name: 'You become what you think about',
 		id: 'you-become-what-you-think-about',
 		src: 'https://res.cloudinary.com/hieu-buiminh/video/upload/v1777950191/you-become-what-you-think-about_wnmgby.mp4',
