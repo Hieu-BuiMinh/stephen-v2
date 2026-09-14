@@ -1,0 +1,360 @@
+---
+id: '7c7c5f49-3e6d-4b9a-9d8f-5d5f6b4e7a21'
+title: 'Rendering Large Lists in React'
+cover: '/assets/articles/dev/post/react-large-list-rendering.png'
+createdAt: '2026-09-14T00:00:00Z'
+description: 'How to choose between normal rendering, lazy images, virtualization, and server pagination for large React lists.'
+published: true
+hashTags: ['dev', 'post', 'react', 'performance', 'tanstack-query', 'typescript']
+type: 'post'
+---
+
+Rendering a list in React is simple:
+
+```tsx
+{
+	products.map((product) => <ProductCard key={product.id} product={product} />)
+}
+```
+
+The problem appears when the list grows. The important question is not “which
+library should I use?” It is: **which data belongs on the server, which data
+belongs on the client, and how many DOM nodes actually need to be rendered?**
+
+This post focuses on choosing the right solution for the actual needs of your project.
+
+## Choose a strategy in 30 seconds
+
+| Size and characteristics   | Use                                                       |
+| -------------------------- | --------------------------------------------------------- |
+| Around 33 items            | `map` + stable `key`                                      |
+| Around 100-300 items       | Normal rendering, plus lazy images when needed            |
+| Around 1,000 items or more | Virtualization/windowing                                  |
+| Tens of thousands of items | Server pagination + virtualization                        |
+| Millions of items          | Server search/filter + cursor pagination + virtualization |
+
+These numbers are starting points for measurement, not hard rules. One item with
+a complex chart can be heavier than hundreds of text-only items.
+
+## 1. Start with normal rendering
+
+For a small list, the best solution is usually the most readable one:
+
+<CodeBlockTabs fileName="ProductList.tsx">
+
+```tsx
+type Product = {
+	id: string
+	name: string
+	price: number
+}
+
+export function ProductList({ products }: { products: Product[] }) {
+	return (
+		<ul>
+			{products.map((product) => (
+				<li key={product.id}>
+					{product.name} - ${product.price}
+				</li>
+			))}
+		</ul>
+	)
+}
+```
+
+</CodeBlockTabs>
+
+The `key` must be stable and unique. Use `product.id`, not `index`, when the list
+can insert, remove, or reorder items.
+
+### Why use `id` instead of `index`?
+
+React uses `key` to answer one question: **is this the same item as in the previous
+render?** A database `id` stays with the item, so React can preserve the correct
+component state when the list changes.
+
+An `index` describes only the current position. If the first item is removed,
+the item that was at index `1` moves to index `0`. React may treat it as the old
+first item and reuse its component state for the wrong product.
+
+Use `product.id` because it stays with the product. Using `index` can make a row's
+input or checkbox state move to another product when items are inserted, removed,
+or reordered. The index is safe only for a truly static list.
+
+Do not add virtualization to a 33-item list too early. The extra abstraction can
+make layout, keyboard focus, and debugging more complex without creating a real benefit.
+
+## 2. Lazy images are not virtualization
+
+If an item contains an image, reserve its dimensions and use lazy loading:
+
+<CodeBlockTabs fileName="ProductCard.tsx">
+
+```tsx
+<img src={product.image} alt={product.name} width={240} height={160} loading="lazy" />
+```
+
+</CodeBlockTabs>
+
+`loading="lazy"` reduces image downloads outside the viewport. It **does not**
+reduce the number of React components or DOM nodes created. Therefore, 10,000
+items can still create 10,000 `<li>` elements even when most images have not loaded.
+
+## 3. Virtualization solves the DOM problem
+
+Virtualization, also called windowing, renders only the items in or near the
+viewport. The remaining items still exist in the data but not in the DOM.
+
+One popular library is
+[`@tanstack/react-virtual`](https://tanstack.com/virtual/latest):
+
+<CodeBlockTabs fileName="VirtualList.tsx">
+
+```tsx
+import { useVirtualizer } from '@tanstack/react-virtual'
+import { useRef } from 'react'
+
+type Product = { id: string; name: string }
+
+export function VirtualList({ products }: { products: Product[] }) {
+	const parentRef = useRef<HTMLDivElement>(null)
+	const virtualizer = useVirtualizer({
+		count: products.length,
+		getScrollElement: () => parentRef.current,
+		estimateSize: () => 56,
+		overscan: 5,
+	})
+
+	return (
+		<div ref={parentRef} style={{ height: 500, overflow: 'auto' }}>
+			<div style={{ height: virtualizer.getTotalSize(), position: 'relative' }}>
+				{virtualizer.getVirtualItems().map((item) => {
+					const product = products[item.index]
+
+					return (
+						<div
+							key={product.id}
+							style={{
+								position: 'absolute',
+								transform: `translateY(${item.start}px)`,
+								width: '100%',
+							}}
+						>
+							{product.name}
+						</div>
+					)
+				})}
+			</div>
+		</div>
+	)
+}
+```
+
+</CodeBlockTabs>
+
+There are three values to remember:
+
+- `count`: the total number of items known by the virtualizer.
+- `getVirtualItems()`: the items that need to render in the current viewport.
+- `getTotalSize()`: keeps the scroll area as tall as the complete list.
+
+Virtualization is useful when the client already has enough data to make rendering
+slow. It does not solve an oversized response, oversized JSON, or millions of
+objects held in client memory.
+
+## 4. For millions of items, the server must do the first pass
+
+Do not call:
+
+```text
+GET /api/products?limit=10000000
+```
+
+The server should filter, sort, and return small chunks with cursor pagination:
+
+```text
+GET /api/products?search=keyboard&cursor=abc123&limit=50
+```
+
+The minimal response can look like this:
+
+```json
+{
+	"items": [{ "id": 101, "name": "Keyboard Pro", "price": 120 }],
+	"nextCursor": "def456",
+	"hasMore": true
+}
+```
+
+Cursor pagination is better than `page=200000` because the database does not have
+to skip millions of earlier rows. The query needs indexes that match its filters
+and sort order. The server must also cap `limit`, for example at 100 items per request.
+
+Here is a Next.js route using Prisma:
+
+<CodeBlockTabs fileName="app/api/products/route.ts">
+
+```ts
+import { NextRequest, NextResponse } from 'next/server'
+import { db } from '@/lib/db'
+
+export async function GET(request: NextRequest) {
+	const params = request.nextUrl.searchParams
+	const search = params.get('search')?.trim() ?? ''
+	const cursor = params.get('cursor')
+	const limit = Math.min(Number(params.get('limit') ?? 50), 100)
+
+	const rows = await db.product.findMany({
+		where: search ? { name: { contains: search } } : undefined,
+		orderBy: { id: 'asc' },
+		take: limit + 1,
+		...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
+		select: { id: true, name: true, price: true },
+	})
+
+	const hasMore = rows.length > limit
+	const items = rows.slice(0, limit)
+	const nextCursor = hasMore ? (items.at(-1)?.id ?? null) : null
+
+	return NextResponse.json({ items, nextCursor, hasMore })
+}
+```
+
+</CodeBlockTabs>
+
+This is a skeleton to explain the architecture. Production code should validate
+the cursor, handle errors and timeouts, apply rate limits, and use the right
+database indexes or full-text search.
+
+## 5. Load each page with TanStack Query
+
+[React Query is now called TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview).
+With cursor pagination, use [`useInfiniteQuery`](https://tanstack.com/query/latest/docs/framework/react/reference/useInfiniteQuery)
+to cache each page and load the next one:
+
+<CodeBlockTabs fileName="use-products.ts">
+
+```tsx
+import { useInfiniteQuery } from '@tanstack/react-query'
+
+type Product = { id: string; name: string; price: number }
+type ProductPage = {
+	items: Product[]
+	nextCursor: string | null
+	hasMore: boolean
+}
+
+async function fetchProducts(search: string, cursor: string | null, signal: AbortSignal) {
+	const params = new URLSearchParams({ search, limit: '50' })
+	if (cursor) params.set('cursor', cursor)
+
+	const response = await fetch(`/api/products?${params}`, { signal })
+	if (!response.ok) throw new Error('Could not load products')
+
+	return (await response.json()) as ProductPage
+}
+
+export function useProducts(search: string) {
+	const query = useInfiniteQuery({
+		queryKey: ['products', search],
+		queryFn: ({ pageParam, signal }) => fetchProducts(search, pageParam, signal),
+		initialPageParam: null as string | null,
+		getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
+	})
+
+	return {
+		items: query.data?.pages.flatMap((page) => page.items) ?? [],
+		hasMore: query.hasNextPage,
+		isLoading: query.isPending,
+		isLoadingMore: query.isFetchingNextPage,
+		loadMore: query.fetchNextPage,
+		error: query.error,
+	}
+}
+```
+
+</CodeBlockTabs>
+
+Use the hook with `useVirtualizer` in the list component:
+
+<CodeBlockTabs fileName="ProductList.tsx">
+
+```tsx
+import { useVirtualizer } from '@tanstack/react-virtual'
+import { useEffect, useRef } from 'react'
+
+export function ProductList({ search }: { search: string }) {
+	const { items, hasMore, isLoadingMore, loadMore } = useProducts(search)
+	const parentRef = useRef<HTMLDivElement>(null)
+	const virtualizer = useVirtualizer({
+		count: items.length,
+		getScrollElement: () => parentRef.current,
+		estimateSize: () => 56,
+		overscan: 5,
+	})
+
+	useEffect(() => {
+		const lastItem = virtualizer.getVirtualItems().at(-1)
+		const isNearEnd = lastItem && lastItem.index >= items.length - 10
+
+		if (isNearEnd && hasMore && !isLoadingMore) void loadMore()
+	}, [hasMore, isLoadingMore, items.length, loadMore, virtualizer])
+
+	return (
+		<div ref={parentRef} style={{ height: 500, overflow: 'auto' }}>
+			<div style={{ height: virtualizer.getTotalSize(), position: 'relative' }}>
+				{virtualizer.getVirtualItems().map((item) => {
+					const product = items[item.index]
+
+					return (
+						<div
+							key={product.id}
+							style={{
+								position: 'absolute',
+								transform: `translateY(${item.start}px)`,
+								width: '100%',
+							}}
+						>
+							{product.name} - ${product.price}
+						</div>
+					)
+				})}
+			</div>
+		</div>
+	)
+}
+```
+
+</CodeBlockTabs>
+
+The responsibilities are now separated:
+
+- `useProducts` fetches, caches, and combines API pages.
+- `useVirtualizer` decides which loaded items need DOM nodes.
+- `loadMore` fetches the next page when the scroll position approaches the end.
+
+How to read this code:
+
+- `queryKey` creates a separate cache entry for each search term.
+- `pageParam` is the cursor for the current page.
+- `getNextPageParam` reads the next cursor from the previous response.
+- `fetchNextPage` loads the next page without manually storing pages in state.
+- `signal` lets TanStack Query cancel a request when the query is no longer needed.
+
+The list component calls `loadMore` when the virtualizer approaches the last item.
+Guard it with `isLoadingMore` to avoid duplicate requests.
+
+## Technical decision guide
+
+Choose according to the actual cost of the screen:
+
+- **Small list:** use `map` and stable keys. Prioritize readable code.
+- **Many images:** add `loading="lazy"`, fixed image dimensions, and measure layout shift.
+- **Heavy DOM:** add virtualization. Check dynamic row heights and keyboard focus.
+- **Large response:** move filtering, searching, and pagination to the server.
+- **Many client pages:** use TanStack Query for caching, cancellation, and state management.
+- **Millions of rows:** combine server cursor pagination, TanStack Query, and virtualization.
+
+The key idea is: **TanStack Query manages data; virtualization manages the DOM.**
+No library replaces a well-designed server query. When each layer handles its own
+job, large lists can stay smooth without unnecessary complexity.
