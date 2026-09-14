@@ -51,6 +51,9 @@ importers:
       '@repo/stephen-v2-utils':
         specifier: workspace:^
         version: link:../../packages/utils
+      '@tanstack/react-query':
+        specifier: ^5.99.1
+        version: 5.99.1(react@19.1.0)
       '@tanstack/react-virtual':
         specifier: ^3.14.12
         version: 3.14.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -6238,6 +6241,11 @@ snapshots:
   '@tanstack/query-core@5.100.9': {}
 
   '@tanstack/query-core@5.99.1': {}
+
+  '@tanstack/react-query@5.99.1(react@19.1.0)':
+    dependencies:
+      '@tanstack/query-core': 5.99.1
+      react: 19.1.0
 
   '@tanstack/react-query@5.99.1(react@19.1.1)':
     dependencies:

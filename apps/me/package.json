@@ -15,6 +15,7 @@
     "@repo/stephen-v2-contents": "workspace:^",
     "@repo/stephen-v2-ui": "workspace:^",
     "@repo/stephen-v2-utils": "workspace:^",
+    "@tanstack/react-query": "^5.99.1",
     "@tanstack/react-virtual": "^3.14.12",
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/react": "^3.0.0",
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@repo/stephen-v2-eslint-config": "workspace:*",
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.16",
     "@types/canvas-confetti": "^1.9.0",
@@ -48,7 +50,6 @@
     "@types/suncalc": "^1.9.2",
     "eslint": "^9",
     "eslint-config-next": "15.3.6",
-    "@repo/stephen-v2-eslint-config": "workspace:*",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
