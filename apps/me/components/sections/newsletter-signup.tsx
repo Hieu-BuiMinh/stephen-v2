@@ -26,9 +26,7 @@ function NewsletterSignUp() {
 		},
 	})
 
-	const onSubmit = (data: TPostCommentFromSchemaType) => {
-		console.log('data', data)
-	}
+	const onSubmit = () => undefined
 
 	useEffect(() => {
 		setLoading(false)

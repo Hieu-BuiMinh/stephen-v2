@@ -1,8 +1,5 @@
 'use client'
 
-import StephenLogo from '@/components/logo/stephen-logo'
-import { APP_CONFIG } from '@/configs/app-config'
-import { useSocialAuth } from '@/hooks/use-social-auth'
 import {
 	Button,
 	Dialog,
@@ -14,6 +11,10 @@ import {
 } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
 import { Github, Loader2 } from 'lucide-react'
+
+import StephenLogo from '@/components/logo/stephen-logo'
+import { APP_CONFIG } from '@/configs/app-config'
+import { useSocialAuth } from '@/hooks/use-social-auth'
 
 interface SingInButtonProps {
 	className?: string

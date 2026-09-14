@@ -60,7 +60,7 @@ export const useAutosizeTextArea = ({
 				}
 			}
 		}
-	}, [textAreaRef, triggerAutoSize])
+	}, [init, maxHeight, minHeight, textAreaRef, triggerAutoSize])
 }
 
 const RHFTextArea = forwardRef<HTMLTextAreaElement | null, TRHFTextAreaProps>(
@@ -99,7 +99,7 @@ const RHFTextArea = forwardRef<HTMLTextAreaElement | null, TRHFTextAreaProps>(
 			if (textareaRef && 'current' in textareaRef) {
 				setTriggerAutoSize(textareaRegisterName)
 			}
-		}, [textareaRegisterName])
+		}, [ref, textareaRegisterName])
 
 		return (
 			<FormField

@@ -2,7 +2,6 @@
 
 import { useAuth } from '@clerk/nextjs'
 import { Button } from '@repo/stephen-v2-ui/shadcn'
-import { LogOut } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 export function SignOutButton() {

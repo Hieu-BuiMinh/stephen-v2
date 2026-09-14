@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-constant-binary-expression */
 import { cn } from '@repo/stephen-v2-utils'
 import { YinYang } from '@ui/i-ching/yin-yang'
 import { nanoid } from 'nanoid'

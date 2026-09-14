@@ -10,7 +10,7 @@
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 export interface FlickeringGridProps {
 	squareSize?: number
@@ -67,60 +67,69 @@ export default function FlickeringGrid({
 
 	const rgbaPrefix = useMemo(() => hexToRgbaPrefix(color), [color])
 
-	function setupCanvas(canvas: HTMLCanvasElement, w: number, h: number): GridParams {
-		const dpr = window.devicePixelRatio || 1
+	const setupCanvas = useCallback(
+		(canvas: HTMLCanvasElement, w: number, h: number): GridParams => {
+			const dpr = window.devicePixelRatio || 1
 
-		canvas.width = Math.max(1, Math.floor(w * dpr))
-		canvas.height = Math.max(1, Math.floor(h * dpr))
-		canvas.style.width = `${w}px`
-		canvas.style.height = `${h}px`
+			canvas.width = Math.max(1, Math.floor(w * dpr))
+			canvas.height = Math.max(1, Math.floor(h * dpr))
+			canvas.style.width = `${w}px`
+			canvas.style.height = `${h}px`
 
-		const step = squareSize + gridGap
-		const cols = Math.max(1, Math.floor(w / step))
-		const rows = Math.max(1, Math.floor(h / step))
+			const step = squareSize + gridGap
+			const cols = Math.max(1, Math.floor(w / step))
+			const rows = Math.max(1, Math.floor(h / step))
 
-		const squares = new Float32Array(cols * rows)
-		for (let i = 0; i < squares.length; i++) squares[i] = Math.random() * maxOpacity
+			const squares = new Float32Array(cols * rows)
+			for (let i = 0; i < squares.length; i++) squares[i] = Math.random() * maxOpacity
 
-		return { cols, rows, squares, dpr }
-	}
+			return { cols, rows, squares, dpr }
+		},
+		[gridGap, maxOpacity, squareSize]
+	)
 
-	function updateSquares(squares: Float32Array, deltaTime: number) {
-		// Same semantics as Vue: flickerChance * deltaTime
-		const chance = flickerChance * deltaTime
-		for (let i = 0; i < squares.length; i++) {
-			if (Math.random() < chance) squares[i] = Math.random() * maxOpacity
-		}
-	}
-
-	function drawGrid(
-		ctx: CanvasRenderingContext2D,
-		canvasW: number,
-		canvasH: number,
-		cols: number,
-		rows: number,
-		squares: Float32Array,
-		dpr: number
-	) {
-		ctx.clearRect(0, 0, canvasW, canvasH)
-
-		// Optional background fill (kept from Vue version, effectively no-op)
-		ctx.fillStyle = 'transparent'
-		ctx.fillRect(0, 0, canvasW, canvasH)
-
-		const step = (squareSize + gridGap) * dpr
-		const s = squareSize * dpr
-
-		for (let i = 0; i < cols; i++) {
-			for (let j = 0; j < rows; j++) {
-				const opacity = squares[i * rows + j]
-				ctx.fillStyle = `${rgbaPrefix}${opacity})`
-				ctx.fillRect(i * step, j * step, s, s)
+	const updateSquares = useCallback(
+		(squares: Float32Array, deltaTime: number) => {
+			// Same semantics as Vue: flickerChance * deltaTime
+			const chance = flickerChance * deltaTime
+			for (let i = 0; i < squares.length; i++) {
+				if (Math.random() < chance) squares[i] = Math.random() * maxOpacity
 			}
-		}
-	}
+		},
+		[flickerChance, maxOpacity]
+	)
 
-	function updateCanvasSize() {
+	const drawGrid = useCallback(
+		function drawGrid(
+			ctx: CanvasRenderingContext2D,
+			canvasW: number,
+			canvasH: number,
+			cols: number,
+			rows: number,
+			squares: Float32Array,
+			dpr: number
+		) {
+			ctx.clearRect(0, 0, canvasW, canvasH)
+
+			// Optional background fill (kept from Vue version, effectively no-op)
+			ctx.fillStyle = 'transparent'
+			ctx.fillRect(0, 0, canvasW, canvasH)
+
+			const step = (squareSize + gridGap) * dpr
+			const s = squareSize * dpr
+
+			for (let i = 0; i < cols; i++) {
+				for (let j = 0; j < rows; j++) {
+					const opacity = squares[i * rows + j]
+					ctx.fillStyle = `${rgbaPrefix}${opacity})`
+					ctx.fillRect(i * step, j * step, s, s)
+				}
+			}
+		},
+		[gridGap, rgbaPrefix, squareSize]
+	)
+
+	const updateCanvasSize = useCallback(() => {
 		const container = containerRef.current
 		const canvas = canvasRef.current
 		if (!container || !canvas) return
@@ -130,25 +139,28 @@ export default function FlickeringGrid({
 
 		setCanvasSize({ width: newWidth, height: newHeight })
 		gridParamsRef.current = setupCanvas(canvas, newWidth, newHeight)
-	}
+	}, [height, setupCanvas, width])
 
-	function animate(time: number) {
-		if (!isInView) return
+	const animate = useCallback(
+		(time: number) => {
+			if (!isInView) return
 
-		const ctx = ctxRef.current
-		const canvas = canvasRef.current
-		const grid = gridParamsRef.current
-		if (!ctx || !canvas || !grid) return
+			const ctx = ctxRef.current
+			const canvas = canvasRef.current
+			const grid = gridParamsRef.current
+			if (!ctx || !canvas || !grid) return
 
-		const last = lastTimeRef.current || time
-		const deltaTime = (time - last) / 1000
-		lastTimeRef.current = time
+			const last = lastTimeRef.current || time
+			const deltaTime = (time - last) / 1000
+			lastTimeRef.current = time
 
-		updateSquares(grid.squares, deltaTime)
-		drawGrid(ctx, canvas.width, canvas.height, grid.cols, grid.rows, grid.squares, grid.dpr)
+			updateSquares(grid.squares, deltaTime)
+			drawGrid(ctx, canvas.width, canvas.height, grid.cols, grid.rows, grid.squares, grid.dpr)
 
-		rafRef.current = requestAnimationFrame(animate)
-	}
+			rafRef.current = requestAnimationFrame(animate)
+		},
+		[drawGrid, isInView, updateSquares]
+	)
 
 	// init context + observers
 	useEffect(() => {
@@ -180,7 +192,7 @@ export default function FlickeringGrid({
 			resizeObserver.disconnect()
 			intersectionObserver.disconnect()
 		}
-	}, [width, height, squareSize, gridGap, flickerChance, maxOpacity, color])
+	}, [updateCanvasSize])
 
 	// start/stop RAF when in view changes
 	useEffect(() => {
@@ -197,7 +209,7 @@ export default function FlickeringGrid({
 			if (rafRef.current) cancelAnimationFrame(rafRef.current)
 			rafRef.current = null
 		}
-	}, [isInView, rgbaPrefix, squareSize, gridGap, flickerChance, maxOpacity])
+	}, [animate, isInView])
 
 	return (
 		<div ref={containerRef} className={cn('size-full', className)}>

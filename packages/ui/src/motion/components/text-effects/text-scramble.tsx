@@ -82,6 +82,8 @@ export function TextScramble({
 		if (!trigger) return
 
 		scramble()
+		// Scrambling is intentionally retriggered only when the trigger changes.
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [trigger])
 
 	return (

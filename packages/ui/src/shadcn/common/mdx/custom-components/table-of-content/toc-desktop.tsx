@@ -92,7 +92,7 @@ function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
 	const prevActiveIdRef = useRef<string | null>(null)
 	const pathRef = useRef<SVGPathElement>(null)
 
-	const tocItems = post.toc ?? []
+	const tocItems = useMemo(() => post.toc ?? [], [post.toc])
 	const urls = useMemo(() => extractUrls(tocItems), [tocItems])
 	const activeIds = useScrollSpy(urls, { rootMargin: '0% 0% -30% 0%' })
 	const flatTocArray = useMemo(() => flattenToc(tocItems), [tocItems])

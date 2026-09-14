@@ -15,6 +15,7 @@
     "@repo/stephen-v2-contents": "workspace:^",
     "@repo/stephen-v2-ui": "workspace:^",
     "@repo/stephen-v2-utils": "workspace:^",
+    "@tanstack/react-virtual": "^3.14.12",
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",

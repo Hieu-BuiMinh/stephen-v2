@@ -1,8 +1,9 @@
 'use client'
+import './testimonial-slider.css'
 
 import { cn } from '@repo/stephen-v2-utils'
+
 import { TestimonialCard, type TestimonialCardProps } from './testimonial-card'
-import './testimonial-slider.css'
 
 interface TestimonialSliderProps {
 	testimonials: TestimonialCardProps[]
