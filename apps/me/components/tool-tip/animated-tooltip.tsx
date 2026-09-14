@@ -77,6 +77,8 @@ export const AnimatedTooltip = ({ items }: AnimatedTooltipProps) => {
 							</motion.div>
 						)}
 					</AnimatePresence>
+					{/* Dynamic avatar URLs are intentionally rendered without Next.js image optimization. */}
+					{/* eslint-disable-next-line @next/next/no-img-element */}
 					<img
 						onMouseMove={handleMouseMove}
 						height={100}

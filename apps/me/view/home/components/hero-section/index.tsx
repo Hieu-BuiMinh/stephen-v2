@@ -1,5 +1,4 @@
 'use client'
-
 import './style.css'
 
 import { AnimatedBlock } from '@repo/stephen-v2-ui/motion'
@@ -18,7 +17,7 @@ function HeroSection() {
 			<div className="flex flex-col gap-6 w-full">
 				<div className="max-w-7xl flex flex-col gap-5 mt-7 text-center text-4xl font-semibold md:text-6xl sm:text-left sm:mt-0">
 					<h1 className="font-black">
-						Hey, I'm{' '}
+						Hey, I&apos;m{' '}
 						<AnimatedBlock
 							as="span"
 							type="BLUR_IN"

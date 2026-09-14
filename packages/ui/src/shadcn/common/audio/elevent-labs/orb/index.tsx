@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property -- React Three Fiber shader props are valid JSX extensions. */
 'use client'
 
 import { useTexture } from '@react-three/drei'

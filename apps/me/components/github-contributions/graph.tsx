@@ -97,7 +97,7 @@ export function GitHubContributionGraph({ contributions }: { contributions: Prom
 								className="font-medium underline underline-offset-4"
 								href={`https://github.com/${APP_CONFIG.author.githubUserName}`}
 								target="_blank"
-								rel="noopener"
+								rel="noreferrer"
 							>
 								GitHub
 							</a>

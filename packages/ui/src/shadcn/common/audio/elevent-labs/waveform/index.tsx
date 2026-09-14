@@ -540,7 +540,9 @@ export const MicrophoneWaveform = ({
 			}
 			return
 		}
-	}, [processing, active])
+		// The animation intentionally uses the data snapshot from the active/processing transition.
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [active, processing])
 
 	useEffect(() => {
 		if (!active) {
@@ -836,7 +838,9 @@ export const LiveMicrophoneWaveform = ({
 			if (scrubSourceRef.current) {
 				try {
 					scrubSourceRef.current.stop()
-				} catch {}
+				} catch {
+					// The scrub source may already be stopped.
+				}
 			}
 
 			const source = audioContextRef.current.createBufferSource()
@@ -868,7 +872,9 @@ export const LiveMicrophoneWaveform = ({
 			if (sourceNodeRef.current) {
 				try {
 					sourceNodeRef.current.stop()
-				} catch {}
+				} catch {
+					// The source may already be stopped.
+				}
 			}
 
 			const source = audioContextRef.current.createBufferSource()
@@ -1111,7 +1117,9 @@ export const LiveMicrophoneWaveform = ({
 			if (scrubSourceRef.current) {
 				try {
 					scrubSourceRef.current.stop()
-				} catch {}
+				} catch {
+					// The scrub source may already be stopped.
+				}
 			}
 		}
 

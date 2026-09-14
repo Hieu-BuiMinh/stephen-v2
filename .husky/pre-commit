@@ -1,82 +1,47 @@
-echo '
-===============================================================================
-=| 🐶🦴🦴🦴 Woof Woof...
-=| 🧙‍♂️✨✨✨ Styling , testing and building your project before committing...
-===============================================================================
-'
+echo "--------------------------------------------------"
+echo "🐶 [Husky] Starting pre-commit checks..."
+echo "--------------------------------------------------"
 
-# Check Prettier standards
-pnpm run check-format ||
-(
-pnpm run format && echo '
-===============================================================================
-=| 🤢🤢🤮🤮
-=| Its FOKING RAW - Your styling looks disgusting.
-=| (╯°□°）╯︵ ┻━┻
-=| I`ve just formated code for you, now you have to try commit again.
-=| Next time remember to run 🚩 -- pnpm run format -- 🚩 before commiting you code.
-===============================================================================
-';
-false;
-)
+format_staged_files() {
+	git diff --cached --name-only --diff-filter=ACMR -z -- '*.ts' '*.tsx' '*.js' '*.jsx' '*.md' |
+		xargs -0 -r pnpm exec prettier "$@"
+}
 
-# Check ESLint Standards
-pnpm run lint ||
-(
-echo '
-===============================================================================
-=| 😤😤👿👿
-=| Get that weak shit out of here!
-=| (╯ಠ_ಠ)🔪🔪🔪🔪🔪🔪🔪
-=| ESLint Check Failed.
-=| Make the required changes listed above, then changes and try to commit again.
-===============================================================================
-'
-false; 
-)
+stage_formatted_files() {
+	git diff --cached --name-only --diff-filter=ACMR -z -- '*.ts' '*.tsx' '*.js' '*.jsx' '*.md' |
+		xargs -0 -r git add --
+}
 
-# Check tsconfig standards
-pnpm run check-types ||
-(
-echo '
-===============================================================================
-=| 🤡😂❌🤡
-=| Failed Type check.
-=| 🤡😂❌🤡
-=| Are you seriously trying to write that?
-=| Make the changes required above.
-===============================================================================
-'
-false;
-)
+# 1. Prettier check + auto-fix
+echo "🔍 [1/4] Checking formatting (Prettier)..."
+if ! format_staged_files --check; then
+	echo "⚠️  Prettier found issues. Auto-formatting..."
+	format_staged_files --write || exit 1
+	stage_formatted_files
+	echo "✅ Files reformatted and re-staged automatically."
+fi
 
-# If everything passes... Now we can commit
-echo '
-===============================================================================
-=| 🤔🤔🤔🤔 Alright... Code looks good to me... Trying to build now. 
-===============================================================================
-'
+# 2. ESLint check
+echo "🔍 [2/4] Checking linting (ESLint)..."
+pnpm run lint || {
+	echo "❌ [Error] ESLint check failed. Please fix the issues above."
+	exit 1
+}
 
-pnpm run build ||
-(
-echo '
-===============================================================================
-=| ❌👷🔨❌
-=| Better check again... Because your build failed
-=| ❌👷🔨❌
-=| Next build failed: View the errors above to see why 🔍.
-=| ----------------------------------------------------------------------------
-=| Hint: stop your terminal 🔮.
-=| Hint: delete folder .next then try to build again 🔮.
-===============================================================================
-'
-false;
-)
+# 3. TypeScript check
+echo "🔍 [3/4] Checking types (TypeScript)..."
+pnpm run check-types || {
+	echo "❌ [Error] TypeScript check failed. Please fix the type errors above."
+	exit 1
+}
 
-# If everything passes... Now we can commit
-echo '
-===============================================================================
-=| ✅💫✅💫✅ You win this time... I am committing this now. 🚀🌟🚀🌟🚀🌟🚀🌟
-=| ~(￣▽￣)~ ✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
-===============================================================================
-'
+# 4. Build check
+echo "⚙️  [4/4] Running build..."
+pnpm run build || {
+	echo "❌ [Error] Build failed. Check the logs for details."
+	exit 1
+}
+
+echo "------------------------------------------------------"
+echo "✅ [Husky] All checks passed! Proceeding to commit 🚀"
+echo "------------------------------------------------------"

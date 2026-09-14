@@ -1,8 +1,8 @@
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
-import TextGenerateEffect from '@ui/motion/components/text-effects/text-generate-effect'
 import ShinyText from '@ui/motion/components/text-effects/shiny-text'
+import TextGenerateEffect from '@ui/motion/components/text-effects/text-generate-effect'
 import { AnimatePresence, motion, useMotionTemplate, useMotionValue } from 'motion/react'
 import React, { useState } from 'react'
 

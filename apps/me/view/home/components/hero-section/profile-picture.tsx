@@ -1,5 +1,4 @@
 'use client'
-
 import './style.css'
 
 import { GlareHover } from '@repo/stephen-v2-ui/motion'

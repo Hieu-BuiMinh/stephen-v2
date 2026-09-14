@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
@@ -90,7 +89,7 @@ const SpeakerContextBridge = ({
 
 	return useMemo(
 		() => <SpeakerControls audioTrack={audioTrack} className={className} playerRef={playerRefStatic} />,
-		[className]
+		[audioTrack, className]
 	)
 }
 
@@ -343,7 +342,7 @@ function SpeakerControls({
 				playerApiRef.current.ref.current.currentTime = 0
 			}
 		}
-	}, [precomputedWaveform])
+	}, [playerApiRef, precomputedWaveform])
 
 	const precomputeWaveform = useCallback(async (audioUrl: string) => {
 		try {
@@ -396,7 +395,7 @@ function SpeakerControls({
 		}
 		playerApiRef.current.setActiveItem(track)
 		precomputeWaveform(track.src)
-	}, [precomputeWaveform])
+	}, [audioTrack.id, audioTrack.name, audioTrack.url, playerApiRef, precomputeWaveform])
 
 	const createImpulseResponse = (audioContext: AudioContext, duration: number, decay: number) => {
 		const sampleRate = audioContext.sampleRate
@@ -417,114 +416,120 @@ function SpeakerControls({
 		return impulse
 	}
 
-	const setupAudioContext = useCallback((ambience: boolean) => {
-		if (!playerApiRef.current.ref.current) {
-			return
-		}
-
-		if (audioContextRef.current && sourceRef.current && wetGainRef.current && dryGainRef.current) {
-			return
-		}
-
-		try {
-			let audioContext = audioContextRef.current
-			let source = sourceRef.current
-			let analyser = analyserRef.current
-
-			if (!audioContext) {
-				audioContext = new (window.AudioContext ||
-					(window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)()
-				audioContextRef.current = audioContext
+	const setupAudioContext = useCallback(
+		(ambience: boolean) => {
+			if (!playerApiRef.current.ref.current) {
+				return
 			}
 
-			if (audioContext.state === 'suspended') {
-				audioContext.resume()
+			if (audioContextRef.current && sourceRef.current && wetGainRef.current && dryGainRef.current) {
+				return
 			}
-
-			if (!source) {
-				source = audioContext.createMediaElementSource(playerApiRef.current.ref.current)
-				sourceRef.current = source
-			}
-
-			if (!analyser) {
-				analyser = audioContext.createAnalyser()
-				analyser.fftSize = 512
-				analyser.smoothingTimeConstant = 0.7
-				analyserRef.current = analyser
-			}
-
-			const convolver = audioContext.createConvolver()
-			convolver.buffer = createImpulseResponse(audioContext, 6, 1.5)
-
-			const delay = audioContext.createDelay(2)
-			delay.delayTime.value = 0.001
-
-			const feedback = audioContext.createGain()
-			feedback.gain.value = 0.05
-
-			const lowPassFilter = audioContext.createBiquadFilter()
-			lowPassFilter.type = 'lowpass'
-			lowPassFilter.frequency.value = 1500
-			lowPassFilter.Q.value = 0.5
-
-			const highPassFilter = audioContext.createBiquadFilter()
-			highPassFilter.type = 'highpass'
-			highPassFilter.frequency.value = 100
-			highPassFilter.Q.value = 0.7
-
-			const wetGain = audioContext.createGain()
-			wetGain.gain.value = ambience ? 0.85 : 0
-
-			const dryGain = audioContext.createGain()
-			dryGain.gain.value = ambience ? 0.4 : 1
-
-			const masterGain = audioContext.createGain()
-			masterGain.gain.value = 1
-
-			const compressor = audioContext.createDynamicsCompressor()
-			compressor.threshold.value = -12
-			compressor.knee.value = 2
-			compressor.ratio.value = 8
-			compressor.attack.value = 0.003
-			compressor.release.value = 0.1
 
 			try {
-				source.disconnect()
-				if (analyserRef.current) analyserRef.current.disconnect()
-			} catch (e) {}
+				let audioContext = audioContextRef.current
+				let source = sourceRef.current
+				let analyser = analyserRef.current
 
-			source.connect(dryGain)
-			dryGain.connect(masterGain)
+				if (!audioContext) {
+					audioContext = new (window.AudioContext ||
+						(window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)()
+					audioContextRef.current = audioContext
+				}
 
-			source.connect(highPassFilter)
-			highPassFilter.connect(convolver)
-			convolver.connect(delay)
+				if (audioContext.state === 'suspended') {
+					audioContext.resume()
+				}
 
-			delay.connect(feedback)
-			feedback.connect(lowPassFilter)
-			lowPassFilter.connect(delay)
+				if (!source) {
+					source = audioContext.createMediaElementSource(playerApiRef.current.ref.current)
+					sourceRef.current = source
+				}
 
-			delay.connect(wetGain)
-			wetGain.connect(masterGain)
+				if (!analyser) {
+					analyser = audioContext.createAnalyser()
+					analyser.fftSize = 512
+					analyser.smoothingTimeConstant = 0.7
+					analyserRef.current = analyser
+				}
 
-			masterGain.connect(compressor)
-			compressor.connect(analyser)
-			analyser.connect(audioContext.destination)
+				const convolver = audioContext.createConvolver()
+				convolver.buffer = createImpulseResponse(audioContext, 6, 1.5)
 
-			convolverRef.current = convolver
-			delayRef.current = delay
-			feedbackRef.current = feedback
-			wetGainRef.current = wetGain
-			dryGainRef.current = dryGain
-			masterGainRef.current = masterGain
-			lowPassFilterRef.current = lowPassFilter
-			highPassFilterRef.current = highPassFilter
-		} catch (error) {
-			console.error('Error setting up audio context:', error)
-		}
-	}, [])
+				const delay = audioContext.createDelay(2)
+				delay.delayTime.value = 0.001
+
+				const feedback = audioContext.createGain()
+				feedback.gain.value = 0.05
+
+				const lowPassFilter = audioContext.createBiquadFilter()
+				lowPassFilter.type = 'lowpass'
+				lowPassFilter.frequency.value = 1500
+				lowPassFilter.Q.value = 0.5
+
+				const highPassFilter = audioContext.createBiquadFilter()
+				highPassFilter.type = 'highpass'
+				highPassFilter.frequency.value = 100
+				highPassFilter.Q.value = 0.7
+
+				const wetGain = audioContext.createGain()
+				wetGain.gain.value = ambience ? 0.85 : 0
+
+				const dryGain = audioContext.createGain()
+				dryGain.gain.value = ambience ? 0.4 : 1
+
+				const masterGain = audioContext.createGain()
+				masterGain.gain.value = 1
+
+				const compressor = audioContext.createDynamicsCompressor()
+				compressor.threshold.value = -12
+				compressor.knee.value = 2
+				compressor.ratio.value = 8
+				compressor.attack.value = 0.003
+				compressor.release.value = 0.1
+
+				try {
+					source.disconnect()
+					if (analyserRef.current) analyserRef.current.disconnect()
+				} catch {
+					// The source may already be disconnected.
+				}
+
+				source.connect(dryGain)
+				dryGain.connect(masterGain)
+
+				source.connect(highPassFilter)
+				highPassFilter.connect(convolver)
+				convolver.connect(delay)
+
+				delay.connect(feedback)
+				feedback.connect(lowPassFilter)
+				lowPassFilter.connect(delay)
+
+				delay.connect(wetGain)
+				wetGain.connect(masterGain)
+
+				masterGain.connect(compressor)
+				compressor.connect(analyser)
+				analyser.connect(audioContext.destination)
+
+				convolverRef.current = convolver
+				delayRef.current = delay
+				feedbackRef.current = feedback
+				wetGainRef.current = wetGain
+				dryGainRef.current = dryGain
+				masterGainRef.current = masterGain
+				lowPassFilterRef.current = lowPassFilter
+				highPassFilterRef.current = highPassFilter
+			} catch (error) {
+				console.error('Error setting up audio context:', error)
+			}
+		},
+		[playerApiRef]
+	)
 
 	useEffect(() => {
+		const playerApi = playerApiRef.current
 		const handlePlay = () => {
 			isPlayingRef.current = true
 			globalAudioState.isPlaying = true
@@ -535,7 +540,7 @@ function SpeakerControls({
 		}
 
 		const checkInterval = setInterval(() => {
-			const audioEl = playerApiRef.current.ref.current
+			const audioEl = playerApi.ref.current
 			if (audioEl) {
 				clearInterval(checkInterval)
 
@@ -551,14 +556,14 @@ function SpeakerControls({
 
 		return () => {
 			clearInterval(checkInterval)
-			const audioEl = playerApiRef.current.ref.current
+			const audioEl = playerApi.ref.current
 			if (audioEl) {
 				audioEl.removeEventListener('play', handlePlay)
 				audioEl.removeEventListener('pause', handlePause)
 				audioEl.removeEventListener('ended', handlePause)
 			}
 		}
-	}, [setupAudioContext])
+	}, [playerApiRef, setupAudioContext])
 
 	useEffect(() => {
 		globalAudioState.isDark = isDark
@@ -569,7 +574,7 @@ function SpeakerControls({
 			playerApiRef.current.ref.current.volume = volume
 		}
 		globalAudioState.volume = volume
-	}, [volume])
+	}, [playerApiRef, volume])
 
 	useEffect(() => {
 		if (!isScrubbing && !isMomentumActive && playerApiRef.current.ref.current) {
@@ -595,7 +600,7 @@ function SpeakerControls({
 			animationId = requestAnimationFrame(updatePosition)
 			return () => cancelAnimationFrame(animationId)
 		}
-	}, [isScrubbing, isMomentumActive])
+	}, [isMomentumActive, isScrubbing, playerApiRef])
 
 	useEffect(() => {
 		let animationId: number
@@ -679,7 +684,9 @@ function SpeakerControls({
 		if (scratchBufferRef.current) {
 			try {
 				scratchBufferRef.current.stop()
-			} catch {}
+			} catch {
+				// The scratch source may already be stopped.
+			}
 			scratchBufferRef.current = null
 		}
 	}

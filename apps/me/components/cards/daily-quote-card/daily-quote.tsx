@@ -37,6 +37,7 @@ export default function DailyQuote() {
 
 	const randomLoadingMessage = React.useMemo(
 		() => loadingMessages[Math.floor(Math.random() * loadingMessages.length)],
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[isFetching]
 	)
 

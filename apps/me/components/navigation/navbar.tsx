@@ -178,7 +178,8 @@ const ImageItemLink = ({ item, className }: IItemLink) => {
 				<Image
 					src={item.image || '/assets/images/logo/logo-dark.svg'}
 					alt={item.title}
-					fill
+					width={600}
+					height={500}
 					className="object-cover size-full transition-transform duration-500 group-hover:scale-110"
 				/>
 				<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />

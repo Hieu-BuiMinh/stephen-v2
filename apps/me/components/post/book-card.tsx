@@ -7,8 +7,7 @@ import { useIsMobile } from '@repo/stephen-v2-utils/hooks'
 import { CircleQuestionMarkIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useTheme } from 'next-themes'
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 const BOOK_COLORS = [
 	{ spineColor: '#1e2939', textColor: '#f8fafc' }, // Dark slate & light gray
@@ -30,7 +29,6 @@ interface BookCardProps {
 export const BookCard = ({ post, url }: BookCardProps) => {
 	const [loaded, setLoaded] = useState<boolean>(false)
 	const isMobile = useIsMobile()
-	const { theme } = useTheme()
 
 	const { title, description, bookCover } = post
 

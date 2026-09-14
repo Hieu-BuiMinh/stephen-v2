@@ -1,5 +1,12 @@
 export const shortSparksList = [
 	{
+		name: 'I will get up 💪',
+		id: 'i-will-get-up',
+		src: 'https://res.cloudinary.com/hieu-buiminh/video/upload/v1789359300/le-kuan-yew-aura_ottg0b.mp4',
+		description: 'I will get up 💪',
+		previewImage: 'https://i.ibb.co/m5tqgSsf/ygyn0aowxvpojphqhej8.jpg',
+	},
+	{
 		name: 'Only those that risk going too far can possibly know how far they can go',
 		id: 'only-those-that-risk-going-too-far',
 		src: 'https://res.cloudinary.com/hieu-buiminh/video/upload/v1779089872/only-those-that-risk-going-too-far-can-possibly-know-how-far-they-can-go_upipdm.mp4',

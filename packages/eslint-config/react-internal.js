@@ -43,6 +43,7 @@ export const config = [
 			'react/react-in-jsx-scope': 'off',
 			'react/jsx-uses-react': 'error',
 			'react/jsx-uses-vars': 'error',
+			'react/prop-types': 'off',
 			'@typescript-eslint/consistent-type-imports': 'error',
 			'@tanstack/query/exhaustive-deps': 'error',
 		},
