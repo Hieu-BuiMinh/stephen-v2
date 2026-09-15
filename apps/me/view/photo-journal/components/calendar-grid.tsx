@@ -1,11 +1,11 @@
-import { BlurImage, ImageZoomV3 } from '@repo/stephen-v2-ui/shadcn'
 import { AnimatedBlock } from '@repo/stephen-v2-ui/motion'
+import { ImageZoomV3 } from '@repo/stephen-v2-ui/shadcn'
 import dayjs from 'dayjs'
 import React, { useMemo } from 'react'
 
 import FoldedCornerCard from '@/components/cards/folded-corner-card'
+import type { PhotoItem } from '@/constants/photo-journal'
 import { mapByDate } from '@/utils/photo-journal'
-import { PhotoItem } from '@/constants/photo-journal'
 
 interface ICalendarGridProps {
 	year: number
