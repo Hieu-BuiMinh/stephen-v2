@@ -111,9 +111,9 @@ export const navbarItems: TNavbarItems = {
 			image: '/assets/images/bg/year-recap.png',
 		},
 		{
-			title: 'Photo Journal',
-			href: '/photo-journal',
-			description: 'A visual diary of unforgettable moments',
+			title: 'Album',
+			href: '/album',
+			description: 'A quiet archive of moments worth keeping',
 			icon: Camera,
 		},
 		{

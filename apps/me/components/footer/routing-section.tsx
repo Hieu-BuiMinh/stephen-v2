@@ -33,7 +33,7 @@ function FooterRoutingSection() {
 			links: [
 				{ lable: 'Tags', href: '/tags' },
 				{ lable: 'Quotes', href: '/quotes' },
-				// { lable: 'Photo Journal', href: '/photo-journal' },
+				{ lable: 'Album', href: '/album' },
 				{ lable: 'Other Topics', href: '/topics/others' },
 				{
 					lable: 'Analytics',
