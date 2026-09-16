@@ -57,6 +57,7 @@ export default function MediaLightbox({
 								alt={media.alt}
 								width={media.width}
 								height={media.height}
+								unoptimized={media.src.includes('i.ibb.co')}
 								sizes="100vw"
 								className="h-auto max-h-[calc(90dvh-2.5rem)] w-auto max-w-full rounded-sm object-contain shadow-2xl"
 								priority
