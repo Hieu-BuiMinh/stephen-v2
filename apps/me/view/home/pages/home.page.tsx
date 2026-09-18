@@ -4,13 +4,14 @@ import AboutSection from '@/view/home/components/about-section'
 import PhotoGallery from '@/view/home/components/gallery-section/photo-gallery'
 import GithubContributionsSection from '@/view/home/components/github-contributions-section'
 import LatestArticles from '@/view/home/components/latest-articles'
-import HeroSection03 from '@/view/home/components/new-hero-03'
+import LoadingLayer from '@/view/home/components/loading-layer'
+import HeroSection04 from '@/view/home/components/new-hero-04'
 import TestimonialSection from '@/view/home/components/testimonial-section'
 
 function HomePageView() {
 	return (
-		<>
-			<HeroSection03 />
+		<LoadingLayer>
+			<HeroSection04 />
 			<DividerSlash />
 
 			<PhotoGallery />
@@ -26,7 +27,7 @@ function HomePageView() {
 			<DividerSlash />
 
 			<GithubContributionsSection />
-		</>
+		</LoadingLayer>
 	)
 }
 

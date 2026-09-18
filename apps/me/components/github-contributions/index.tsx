@@ -12,23 +12,37 @@ import { GitHubContributionFallback, GitHubContributionGraph } from './graph'
 export type GitHubContributionsOption = {
 	id: string
 	label: string
-	contributions: Promise<Activity[]>
 }
 
 const CURRENT_YEAR = new Date().getFullYear()
 const YEARS = Array.from({ length: 5 }, (_, i) => CURRENT_YEAR - 4 + i)
 
+const contributionsCache = new Map<string, Promise<Activity[]>>()
+
+function getContributions(year?: number) {
+	const key = typeof year === 'number' ? String(year) : 'last'
+	const cached = contributionsCache.get(key)
+
+	if (cached) return cached
+
+	const contributions = getGitHubContributions(year === undefined ? {} : { year }).catch((error) => {
+		contributionsCache.delete(key)
+		throw error
+	})
+
+	contributionsCache.set(key, contributions)
+	return contributions
+}
+
 const options: GitHubContributionsOption[] = [
-	// 5 years till now
+	// Keep the requests lazy: the API rate-limits a burst of requests on page load.
 	...YEARS.map((year) => ({
 		id: String(year),
 		label: String(year),
-		contributions: getGitHubContributions({ year }),
 	})),
 	{
 		id: 'last',
 		label: 'Last year',
-		contributions: getGitHubContributions(),
 	},
 ]
 
@@ -38,6 +52,7 @@ export function GitHubContributions() {
 	)
 
 	const active = options.find((opt) => opt.id === selectedId) ?? options[0]
+	const contributions = getContributions(active.id === 'last' ? undefined : Number(active.id))
 
 	return (
 		<div className="space-y-3 flex flex-col items-center gap-2 w-full overflow-x-hidden">
@@ -58,7 +73,7 @@ export function GitHubContributions() {
 			</div>
 
 			<Suspense key={selectedId} fallback={<GitHubContributionFallback />}>
-				<GitHubContributionGraph key={selectedId} contributions={active.contributions} />
+				<GitHubContributionGraph key={selectedId} contributions={contributions} />
 			</Suspense>
 		</div>
 	)

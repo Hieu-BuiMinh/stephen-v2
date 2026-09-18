@@ -23,7 +23,7 @@ function GithubContributionsSection() {
 				height={400}
 				className="absolute -top-16 -left-10 opacity-30 scale-125 hidden dark:block -z-10"
 			/>
-			<TextGradient as="div" className="text-center font-semibold text-3xl md:text-4xl max-w-xl">
+			<TextGradient as="div" className="text-center font-semibold font-caveat text-3xl md:text-4xl max-w-xl">
 				<TextEffect preset="slide" per="char">
 					GitHub Contributions
 				</TextEffect>
