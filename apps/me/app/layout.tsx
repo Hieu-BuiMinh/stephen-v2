@@ -1,6 +1,7 @@
 import './globals.css'
 
 import type { Metadata, Viewport } from 'next'
+import { Caveat } from 'next/font/google'
 // import { Roboto } from 'next/font/google'
 import localFont from 'next/font/local'
 
@@ -14,6 +15,11 @@ import { APP_CONFIG } from '@/configs/app-config'
 
 const writerFont = localFont({
 	src: './iAWriterQuattroS-Regular.woff2',
+})
+
+const caveat = Caveat({
+	subsets: ['latin'],
+	variable: '--font-caveat-source',
 })
 
 export const viewport: Viewport = {
@@ -135,7 +141,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			{/* <body className={`${roboto.variable} antialiased`} suppressHydrationWarning> */}
-			<body className={writerFont.className} suppressHydrationWarning>
+			<body className={`${writerFont.className} ${caveat.variable}`} suppressHydrationWarning>
 				<AppProvider>{children}</AppProvider>
 			</body>
 		</html>

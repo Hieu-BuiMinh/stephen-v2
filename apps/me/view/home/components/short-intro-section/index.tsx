@@ -27,12 +27,12 @@ function ShortIntroSection() {
 	return (
 		<div className="w-full flex flex-col gap-10 items-center justify-center my-32 min-h-[50vh] px-3">
 			<div className="flex flex-col gap-0">
-				<TextGradient as="div" className="text-center font-semibold text-3xl md:text-4xl max-w-xl">
+				<TextGradient as="div" className="text-center font-semibold font-caveat text-3xl md:text-4xl max-w-xl">
 					<TextEffect preset="slide" per="char">
 						My site is a playful sandbox
 					</TextEffect>
 				</TextGradient>
-				<TextGradient as="div" className="text-center font-semibold text-3xl md:text-4xl max-w-xl">
+				<TextGradient as="div" className="text-center font-semibold font-caveat text-3xl md:text-4xl max-w-xl">
 					<TextEffect preset="slide" per="char">
 						Explore, experiment, && say hello
 					</TextEffect>

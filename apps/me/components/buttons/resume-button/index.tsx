@@ -1,5 +1,6 @@
 'use client'
 
+import type { RainbowButtonProps } from '@repo/stephen-v2-ui/shadcn'
 import { RainbowButton, toast } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
 import confetti from 'canvas-confetti'
@@ -9,9 +10,10 @@ import { useState } from 'react'
 interface IDownLoadResumeButton {
 	innerText?: string
 	className?: string
+	buttonProps?: RainbowButtonProps
 }
 
-function DownLoadResumeButton({ innerText, className }: Readonly<IDownLoadResumeButton>) {
+function DownLoadResumeButton({ innerText, className, buttonProps }: Readonly<IDownLoadResumeButton>) {
 	const [loading, setLoading] = useState(false)
 
 	const explodeConfetti = () => {
@@ -82,6 +84,7 @@ function DownLoadResumeButton({ innerText, className }: Readonly<IDownLoadResume
 				disabled={loading}
 				variant="outline"
 				className="rounded-lg max-md:w-full"
+				{...buttonProps}
 			>
 				{innerText ?? 'know more about me!'}
 				{loading ? (
