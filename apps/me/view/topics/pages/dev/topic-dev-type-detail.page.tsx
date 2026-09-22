@@ -6,8 +6,10 @@ import { cn } from '@repo/stephen-v2-utils'
 import { notFound } from 'next/navigation'
 
 import MDXContentComponent from '@/components/mdx-content'
+import CommentSection from '@/components/post/comment'
 import PostDetailHeader from '@/components/post/post-detail-header'
 import PostLastUpdated from '@/components/post/post-last-updated'
+import PostLikeButtonContainer from '@/components/post/post-like-button-container'
 
 type TType = DEV_POST_TYPE | BOOKS_POST_TYPE | OTHERS_POST_TYPE
 interface PostPageProps {
@@ -40,7 +42,7 @@ export default async function TopicDevTypeDetailPage({ params }: PostPageProps) 
 						<aside className="hidden lg:block lg:w-[250px]">
 							<div className="sticky top-20 z-10 flex flex-col gap-4">
 								<TableOfContentDesktop post={post} />
-								{/* <PostLikeButton post={post} /> */}
+								<PostLikeButtonContainer postId={post.id} />
 							</div>
 						</aside>
 
@@ -57,9 +59,11 @@ export default async function TopicDevTypeDetailPage({ params }: PostPageProps) 
 						</svg>
 					</>
 				)}
+				{!hadToc && <PostLikeButtonContainer postId={post.id} className="sticky top-20" />}
 			</div>
 
 			<div className="pb-12 hidden md:block">{post.updatedAt && <PostLastUpdated date={post.updatedAt} />}</div>
+			<CommentSection postId={post.id} className="px-3 pb-24" />
 		</>
 	)
 }

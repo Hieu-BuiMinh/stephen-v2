@@ -1,11 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type {
-	AxiosInstance,
-	AxiosRequestConfig,
-	AxiosResponse,
-	InternalAxiosRequestConfig,
-	RawAxiosRequestHeaders,
-} from 'axios'
+import type { AxiosInstance, AxiosRequestConfig, InternalAxiosRequestConfig, RawAxiosRequestHeaders } from 'axios'
 import axios from 'axios'
 
 type AxiosRequestInterceptorUse = (

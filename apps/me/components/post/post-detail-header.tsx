@@ -1,12 +1,16 @@
 'use client'
 
+import NumberFlow from '@number-flow/react'
 import type { TPost } from '@repo/stephen-v2-contents'
 import { BlurImage, DividerSlash, ImageZoomV3 } from '@repo/stephen-v2-ui/shadcn'
 import { cn, formatDate } from '@repo/stephen-v2-utils'
 import { AlarmClock, Eye, Heart, Sigma } from 'lucide-react'
 import Link from 'next/link'
-import numeral from 'numeral'
-import { unstable_ViewTransition as ViewTransition } from 'react'
+import { unstable_ViewTransition as ViewTransition, useEffect, useRef } from 'react'
+
+import { usePostManagement } from '@/hooks/use-post-management'
+
+import { PostPublishButton } from './port-publish-button'
 
 interface IPostDetailHeaderProps {
 	post: TPost
@@ -15,6 +19,20 @@ interface IPostDetailHeaderProps {
 
 function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
 	const { cover, title, id, description, metadata, author, createdAt } = post
+	const { post: postQuery, view: viewMutation } = usePostManagement(id)
+	const postData = postQuery.data?.data
+	const viewedPostId = useRef<string | null>(null)
+
+	useEffect(() => {
+		if (postData && viewedPostId.current !== postData.id) {
+			viewedPostId.current = postData.id
+			viewMutation.mutate(postData.id)
+		}
+	}, [postData, viewMutation])
+
+	const likes = postData?.likedBy.length || 0
+	const views = postData?.views || 0
+	console.log('👽 postData', postData)
 
 	const formattedDate = formatDate(createdAt, 'MMMM D, YYYY')
 
@@ -87,26 +105,31 @@ function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
 							<ViewTransition name={`like-${id}`}>
 								<div className="flex items-center justify-center gap-1 text-sm text-muted-foreground">
 									<Heart className="size-4" />
-									<span>{numeral(120).format('0,0')}</span>
+									<NumberFlow value={likes} />
 								</div>
 							</ViewTransition>
 							<ViewTransition name={`view-${id}`}>
 								<div className="flex items-center justify-center gap-1 text-sm text-muted-foreground">
 									<Eye className="size-4" />
-									<span>{numeral(1200).format('0,0')}</span>
+									<NumberFlow value={views} />
 								</div>
 							</ViewTransition>
 							<div className="flex items-center justify-center gap-1 text-sm text-muted-foreground">
 								<AlarmClock className="size-4" />
-								<span>{numeral(metadata?.readingTime).format('0,0')}m</span>
+								<NumberFlow
+									value={metadata?.readingTime ?? 0}
+									format={{ maximumFractionDigits: 0 }}
+									suffix="m"
+								/>
 							</div>
 							<div className="flex items-center justify-center gap-1 text-sm text-muted-foreground">
 								<Sigma className="size-4" />
-								<span>{numeral(metadata?.wordCount).format('0,0')}w</span>
+								<NumberFlow value={metadata?.wordCount ?? 0} suffix="w" />
 							</div>
 						</div>
 					</div>
 				</div>
+				<PostPublishButton postId={id} post={postData} />
 			</div>
 
 			<DividerSlash />
