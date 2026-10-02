@@ -4,10 +4,11 @@ import { AspectRatio, BlurImage } from '@repo/stephen-v2-ui/shadcn'
 import { cn, formatDate } from '@repo/stephen-v2-utils'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
-import pluralize from 'pluralize'
 import { unstable_ViewTransition as ViewTransition } from 'react'
 
 import FoldedCornerCard from '@/components/cards/folded-corner-card'
+
+import PostCardStats from './post-card-stats'
 
 interface ShortCardProps {
 	post: TPost
@@ -19,13 +20,7 @@ interface ShortCardProps {
 export const ShortCard = ({ post, url, className, delay }: ShortCardProps) => {
 	const { title, description, createdAt, author, id } = post
 
-	// const postBySlug = useQuery(api.services.post.getPostBySlug, { slug: post?.slugAsParams })
-
 	const formattedDate = formatDate(createdAt, 'MMMM D, YYYY')
-
-	// const viewsQuery = postBySlug?.views || 0 // save in api here
-
-	// const likesQuery = postBySlug?.likes?.reduce((acc, like) => acc + like.count, 0) || 0 // save in api here
 
 	return (
 		<AnimatedBlock type="FADE_IN" delay={delay} className="group/post-card relative">
@@ -92,17 +87,7 @@ export const ShortCard = ({ post, url, className, delay }: ShortCardProps) => {
 					</ViewTransition>
 					<ViewTransition name={`meta-${id}`}>
 						<div className="flex items-center justify-between gap-2 text-xs text-zinc-500 transition-colors group-hover/post-card:text-foreground">
-							<div className="flex gap-2">
-								<ViewTransition name={`like-${id}`}>
-									{/* <div>{pluralize('like', likesQuery, true)}</div> */}
-									<div>{pluralize('like', 100, true)}</div>
-								</ViewTransition>
-								<div>&middot;</div>
-								<ViewTransition name={`view-${id}`}>
-									{/* <div>{pluralize('view', viewsQuery, true)}</div> */}
-									<div>{pluralize('view', 120, true)}</div>
-								</ViewTransition>
-							</div>
+							<PostCardStats postId={id} />
 							<span className="flex items-center justify-center gap-1">
 								Read more <ArrowRight size={10} />
 							</span>

@@ -1,17 +1,17 @@
 import { DividerSlash } from '@repo/stephen-v2-ui/shadcn'
 
 import AboutSection from '@/view/home/components/about-section'
+import FloatingMediaCollage from '@/view/home/components/floating-media-collage'
 import PhotoGallery from '@/view/home/components/gallery-section/photo-gallery'
 import GithubContributionsSection from '@/view/home/components/github-contributions-section'
 import LatestArticles from '@/view/home/components/latest-articles'
-import LoadingLayer from '@/view/home/components/loading-layer'
-import HeroSection04 from '@/view/home/components/new-hero-04'
+import HeroSection05 from '@/view/home/components/new-hero-05'
 import TestimonialSection from '@/view/home/components/testimonial-section'
 
 function HomePageView() {
 	return (
-		<LoadingLayer>
-			<HeroSection04 />
+		<>
+			<HeroSection05 />
 			<DividerSlash />
 
 			<PhotoGallery />
@@ -27,7 +27,10 @@ function HomePageView() {
 			<DividerSlash />
 
 			<GithubContributionsSection />
-		</LoadingLayer>
+			<DividerSlash />
+
+			<FloatingMediaCollage />
+		</>
 	)
 }
 
