@@ -1,11 +1,13 @@
 'use client'
 
+import { useUser } from '@clerk/nextjs'
 import NumberFlow from '@number-flow/react'
-import { Avatar, AvatarFallback, AvatarImage, Button } from '@repo/stephen-v2-ui/shadcn'
+import { Button } from '@repo/stephen-v2-ui/shadcn'
 import { MessageSquare, ThumbsDown, ThumbsUp, Trash2, X } from 'lucide-react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useState } from 'react'
 
+import { UserAvatar } from '@/components/buttons/auth'
 import { ConfirmModal } from '@/components/modals/confirm-modal'
 import type { CommentReactionRequest } from '@/services/customer/comment/comment-req.dto'
 import type { Comment } from '@/services/customer/post/post-res.dto'
@@ -26,10 +28,12 @@ interface PostCommentProps extends PostCommentActions {
 }
 
 function PostComment({ comment, currentUserId, onReaction, onDelete, reactingId, deletingId }: PostCommentProps) {
+	const { user } = useUser()
 	const [isReplying, setIsReplying] = useState(false)
 	const shouldReduceMotion = useReducedMotion()
-	const authorName = comment.author
-		? [comment.author.firstName, comment.author.lastName].filter(Boolean).join(' ') || comment.author.clerkId
+	const author = user?.id === comment.clerkId ? user : comment.author
+	const authorName = author
+		? [author.firstName, author.lastName].filter(Boolean).join(' ') || 'Anonymous'
 		: 'Deleted user'
 	const hasLiked = comment.likedBy.some((user) => user.clerkId === currentUserId)
 	const hasDisliked = comment.dislikedBy.some((user) => user.clerkId === currentUserId)
@@ -47,10 +51,12 @@ function PostComment({ comment, currentUserId, onReaction, onDelete, reactingId,
 			className="flex flex-col pt-4 first:pt-0"
 		>
 			<header className="flex items-center gap-2 text-xs">
-				<Avatar className="size-8">
-					<AvatarImage src={comment.author?.avatarUrl ?? undefined} alt={authorName} />
-					<AvatarFallback>{authorName.slice(0, 1)}</AvatarFallback>
-				</Avatar>
+				<UserAvatar
+					userId={comment.clerkId}
+					imageUrl={comment.author?.avatarUrl}
+					firstName={comment.author?.firstName}
+					lastName={comment.author?.lastName}
+				/>
 				<div className="flex flex-col items-start gap-1 md:flex-row md:items-center md:gap-3">
 					<span className="text-sm font-semibold">{authorName}</span>
 					<time className="text-muted-foreground" dateTime={comment.createdAt}>
@@ -79,7 +85,7 @@ function PostComment({ comment, currentUserId, onReaction, onDelete, reactingId,
 				)}
 			</header>
 
-			<div className="ml-[14px] border-l border-dashed py-3 pl-[26px] text-sm text-foreground">
+			<div className="ml-[19px] border-l border-dashed py-4 pl-[26px] text-sm text-foreground">
 				{comment.deleted ? (
 					<p className="italic text-muted-foreground">Comment deleted</p>
 				) : (

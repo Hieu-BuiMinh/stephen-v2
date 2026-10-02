@@ -21,14 +21,14 @@ function GuestbookComments({ comments, currentUserId, isAdmin, onDelete, deletin
 	}
 
 	return (
-		<div className="columns-1 gap-4 md:columns-2 lg:columns-3 xl:columns-4">
+		<div className="columns-1 gap-4 md:columns-2 lg:columns-3">
 			{comments.map((comment) => (
 				<div key={comment.id} className="mb-4 inline-block w-full break-inside-avoid">
 					<GuestbookCard
-						name={
-							[comment.author.firstName, comment.author.lastName].filter(Boolean).join(' ') || 'Anonymous'
-						}
-						avatar={comment.author.avatarUrl ?? undefined}
+						userId={comment.clerkId}
+						firstName={comment.author.firstName}
+						lastName={comment.author.lastName}
+						avatarUrl={comment.author.avatarUrl}
 						message={comment.message}
 						createdAt={dayjs(comment.createdAt).fromNow()}
 						onDelete={currentUserId === comment.clerkId || isAdmin ? () => onDelete(comment.id) : undefined}

@@ -8,6 +8,18 @@ const nextConfig: NextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
+				hostname: 'github.com',
+			},
+			{
+				protocol: 'https',
+				hostname: 'unavatar.io',
+			},
+			{
+				protocol: 'https',
+				hostname: 'pbs.twimg.com',
+			},
+			{
+				protocol: 'https',
 				hostname: 'images.unsplash.com',
 			},
 			{

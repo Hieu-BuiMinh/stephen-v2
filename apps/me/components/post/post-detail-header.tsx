@@ -32,7 +32,7 @@ function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
 
 	const likes = postData?.likedBy.length || 0
 	const views = postData?.views || 0
-	console.log('👽 postData', postData)
+	// console.log('👽 postData', postData)
 
 	const formattedDate = formatDate(createdAt, 'MMMM D, YYYY')
 

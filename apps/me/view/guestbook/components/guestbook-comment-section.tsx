@@ -27,7 +27,7 @@ function GuestbookCommentSection() {
 	return (
 		<section className="relative mx-auto w-full" aria-label="Guestbook messages">
 			<GuestbookHeader />
-			<div className="mt-20 flex flex-col gap-4">
+			<div className="mt-2 flex flex-col gap-4">
 				{isLoaded && !isSignedIn ? (
 					<div className="flex flex-col items-center justify-center gap-4">
 						<span>Sign in to leave a message.</span>

@@ -26,6 +26,7 @@ function RHFTextField({
 	className,
 	inputClassName,
 	autoComplete,
+	disabled,
 }: TRHFTextFieldProps) {
 	const { control } = useFormContext()
 
@@ -42,6 +43,7 @@ function RHFTextField({
 							placeholder={placeholder}
 							autoComplete={autoComplete}
 							{...field}
+							disabled={disabled}
 						/>
 					</FormControl>
 					{description && <FormDescription>{description}</FormDescription>}

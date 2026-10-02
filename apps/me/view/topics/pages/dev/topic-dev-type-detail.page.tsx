@@ -63,6 +63,7 @@ export default async function TopicDevTypeDetailPage({ params }: PostPageProps) 
 			</div>
 
 			<div className="pb-12 hidden md:block">{post.updatedAt && <PostLastUpdated date={post.updatedAt} />}</div>
+
 			<CommentSection postId={post.id} className="px-3 pb-24" />
 		</>
 	)
