@@ -23,7 +23,8 @@ export const APP_CONFIG = {
 		'shadcn',
 	],
 	author: {
-		avatar: '/assets/images/avt/avt_001.jpg',
+		// avatar: '/assets/images/avt/avt_001.jpg',
+		avatar: '/assets/images/avt/me_12.png',
 		name: 'Stephen Ming',
 		resume: 'https://hieu-buiminh-resume.io.vn/',
 		githubUserName: 'Hieu-BuiMinh',

@@ -89,7 +89,7 @@ function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
 										src={author.avatar}
 										width={45}
 										height={45}
-										className="grayscale-100"
+										// className="grayscale-100"
 										alt="author"
 										unoptimized={false}
 									/>
@@ -126,10 +126,15 @@ function PostDetailHeader({ post, className }: IPostDetailHeaderProps) {
 								<Sigma className="size-4" />
 								<NumberFlow value={metadata?.wordCount ?? 0} suffix="w" />
 							</div>
+							<div className="flex items-center justify-center gap-1 text-sm text-muted-foreground">
+								<PostPublishButton postId={id} post={postData} />
+								<span>
+									{postData ? (postData.published ? 'Published' : 'Unpublished') : 'Unpublished'}
+								</span>
+							</div>
 						</div>
 					</div>
 				</div>
-				<PostPublishButton postId={id} post={postData} />
 			</div>
 
 			<DividerSlash />

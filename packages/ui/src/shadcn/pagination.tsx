@@ -1,6 +1,6 @@
 import { cn } from '@repo/stephen-v2-utils'
-import type { Button } from '@ui/shadcn/button'
-import { buttonVariants } from '@ui/shadcn/button'
+import type { Button } from './button'
+import { buttonVariants } from './button'
 import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from 'lucide-react'
 import * as React from 'react'
 

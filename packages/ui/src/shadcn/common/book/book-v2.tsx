@@ -8,11 +8,11 @@
 
 'use client'
 
-import '@ui/shadcn/common/book/style.css'
+import './style.css'
 
 import { cn } from '@repo/stephen-v2-utils'
 import { type ResponsiveProp, useResponsive } from '@repo/stephen-v2-utils/hooks'
-import { GlareHover } from '@ui/motion/components/glare-hover'
+import { GlareHover } from '../../../motion/components/glare-hover'
 import React from 'react'
 
 import BookTexture from '../../../assets/imges/bg/book-texture.avif'

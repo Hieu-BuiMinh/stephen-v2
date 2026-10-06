@@ -4,20 +4,37 @@
   "private": true,
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
     },
-    "./shadcn": "./src/shadcn/index.ts",
-    "./i-ching": "./src/i-ching/index.ts",
-    "./motion": "./src/motion/index.ts",
-    "./hooks": "./src/hooks/index.ts",
+    "./shadcn": {
+      "types": "./src/shadcn/index.ts",
+      "import": "./src/shadcn/index.ts"
+    },
+    "./i-ching": {
+      "types": "./src/i-ching/index.ts",
+      "import": "./src/i-ching/index.ts"
+    },
+    "./motion": {
+      "types": "./src/motion/index.ts",
+      "import": "./src/motion/index.ts"
+    },
+    "./hooks": {
+      "types": "./src/hooks/index.ts",
+      "import": "./src/hooks/index.ts"
+    },
+    "./styles/*": "./styles/*",
     "./styles/shadcn-preset": "./styles/shadcn-preset.css"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "files": [
     "dist",
-    "styles"
+    "styles",
+    "README.md"
   ],
   "scripts": {
     "lint": "eslint . --max-warnings 999",
@@ -27,14 +44,19 @@
   "devDependencies": {
     "@repo/stephen-v2-eslint-config": "workspace:^",
     "@repo/typescript-config": "workspace:*",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
     "@types/three": "^0.181.0",
     "eslint": "^9.30.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-hook-form": "7.60.0",
     "typescript": "5.8.2"
   },
   "dependencies": {
+    "@base-ui/react": "^1.8.0",
     "@hookform/resolvers": "^5.1.1",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
@@ -68,6 +90,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
+    "cn": "^0.4.0",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
@@ -76,21 +99,17 @@
     "modern-screenshot": "^4.6.8",
     "motion": "^11.18.2",
     "nanoid": "^5.1.5",
-    "next": "15.3.8",
     "next-themes": "^0.4.6",
     "ogl": "^1.0.11",
     "ogl-typescript": "^0.1.40",
-    "react": "^19.1.0",
+    "radix-ui": "^1.7.0",
     "react-day-picker": "^9.8.0",
-    "react-dom": "^19.1.0",
     "react-fast-marquee": "^1.6.5",
-    "react-hook-form": "^7.60.0",
     "react-medium-image-zoom": "^5.4.3",
     "react-resizable-panels": "^3.0.3",
     "react-rough-notation": "^1.0.8",
     "recharts": "2.15.4",
     "rough-notation": "^0.5.1",
-    "sharp": "^0.34.3",
     "sonner": "^2.0.6",
     "tailwind-merge": "^3.3.1",
     "tailwind-variants": "^1.0.0",
@@ -99,5 +118,11 @@
     "tw-animate-css": "^1.3.5",
     "vaul": "^1.1.2",
     "zod": "^4.0.2"
+  },
+  "peerDependencies": {
+    "next": "^15.0.0 || ^16.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "react-hook-form": "^7.60.0"
   }
 }

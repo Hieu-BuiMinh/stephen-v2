@@ -1,8 +1,8 @@
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
-import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@ui/shadcn/form'
-import { Input } from '@ui/shadcn/input'
+import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../../../form'
+import { Input } from '../../../input'
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
 

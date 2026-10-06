@@ -12,9 +12,9 @@
 
 import * as SliderPrimitive from '@radix-ui/react-slider'
 import { cn } from '@repo/stephen-v2-utils'
-import type { buttonVariants } from '@ui/shadcn/button'
-import { Button } from '@ui/shadcn/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@ui/shadcn/dropdown-menu'
+import type { buttonVariants } from '../../../../button'
+import { Button } from '../../../../button'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../../../../dropdown-menu'
 import type { VariantProps } from 'class-variance-authority'
 import { Check, PauseIcon, PlayIcon, Settings } from 'lucide-react'
 import type { ComponentProps, HTMLProps, ReactNode, RefObject } from 'react'

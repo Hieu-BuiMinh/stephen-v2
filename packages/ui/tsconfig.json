@@ -1,12 +1,14 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "baseUrl": ".",
-    "paths": {
-      "@ui/*": ["./src/*"],
-    }
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+	"extends": "@repo/typescript-config/react-library.json",
+	"compilerOptions": {
+		"outDir": "dist",
+		"rootDir": "..",
+		"paths": {
+			"@repo/stephen-v2-utils": ["../utils/src/common/index.ts"],
+			"@repo/stephen-v2-utils/hooks": ["../utils/src/hooks/index.ts"],
+			"@repo/stephen-v2-utils/i-ching": ["../utils/src/i-ching/index.ts"]
+		}
+	},
+	"include": ["src"],
+	"exclude": ["node_modules", "dist"]
 }

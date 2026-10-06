@@ -11,8 +11,8 @@
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
-import { Button } from '@ui/shadcn/button'
-import { Card } from '@ui/shadcn/card'
+import { Button } from '../../../../button'
+import { Card } from '../../../../card'
 import {
 	AudioPlayerButton,
 	AudioPlayerDuration,
@@ -21,9 +21,9 @@ import {
 	AudioPlayerTime,
 	exampleTracks,
 	useAudioPlayer,
-} from '@ui/shadcn/common/audio/elevent-labs/audio-player/player'
-import { Orb } from '@ui/shadcn/common/audio/elevent-labs/orb'
-import { Waveform } from '@ui/shadcn/common/audio/elevent-labs/waveform'
+} from './player'
+import { Orb } from '../orb'
+import { Waveform } from '../waveform'
 import { Music, SkipBack, SkipForward, Sparkles, Volume, Volume1, Volume2, VolumeX } from 'lucide-react'
 import Link from 'next/link'
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'

@@ -14,7 +14,7 @@ function PostComments({ comments, ...actions }: PostCommentsProps) {
 	const shouldReduceMotion = useReducedMotion()
 
 	return (
-		<div className="mt-5 rounded-lg border p-4">
+		<div className="mt-5 rounded-lg border border-ring p-4 ring-[3px] ring-ring/50">
 			<AnimatePresence>
 				{comments.length === 0 ? (
 					<motion.div

@@ -13,6 +13,7 @@ const devPost = defineCollection({
 			createdAt: s.isodate().optional(),
 			updatedAt: s.isodate().optional(),
 			cover: s.string().optional(),
+			audio: s.string().nullable().optional(),
 			metadata: s.metadata(),
 			description: s.string().max(999).optional(),
 			published: s.boolean().default(true),

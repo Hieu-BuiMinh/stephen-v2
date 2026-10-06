@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/shadcn/index'
+import { Button, Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../index'
 import { Download } from 'lucide-react'
 import { domToPng } from 'modern-screenshot'
 import { useTheme } from 'next-themes'

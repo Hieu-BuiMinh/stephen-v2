@@ -1,7 +1,7 @@
 'use client'
 
-import { UploadImg } from '@ui/shadcn/common/inputs/upload-img'
-import { FormField, FormItem, FormMessage } from '@ui/shadcn/form'
+import { UploadImg } from '../../inputs/upload-img'
+import { FormField, FormItem, FormMessage } from '../../../form'
 import { useFormContext } from 'react-hook-form'
 
 interface RHFUploadImgProps {

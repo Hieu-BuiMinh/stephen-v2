@@ -22,7 +22,12 @@ function PostCommentForm({ postId }: { postId: string }) {
 	}
 
 	return (
-		<CommentEditor placeholder="Share your thoughts..." onSubmit={(content) => comment.mutateAsync({ content })} />
+		<CommentEditor
+			className="border-ring ring-[3px] ring-ring/50"
+			placeholder="Share your thoughts..."
+			onSubmit={(content) => comment.mutateAsync({ content })}
+			useApiMessage
+		/>
 	)
 }
 

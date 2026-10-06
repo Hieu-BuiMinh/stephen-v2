@@ -10,16 +10,21 @@ import {
 	TooltipTrigger,
 } from '@repo/stephen-v2-ui/shadcn'
 import { Bold, Info, Italic, Send, Strikethrough, X } from 'lucide-react'
+import { cn } from '@repo/stephen-v2-utils'
 import { useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 
+import type { IResponse } from '@/types/api'
+
 interface CommentEditorProps {
+	className?: string
 	placeholder: string
 	onSubmit: (content: string) => Promise<unknown>
 	contentName?: 'comment' | 'message'
 	successMessage?: string
 	errorMessage?: string
 	showErrorToast?: boolean
+	useApiMessage?: boolean
 	onCancel?: () => void
 	onSubmitted?: () => void
 	disabled?: boolean
@@ -28,12 +33,14 @@ interface CommentEditorProps {
 type Decoration = 'bold' | 'italic' | 'strikethrough'
 
 function CommentEditor({
+	className,
 	placeholder,
 	onSubmit,
 	contentName = 'comment',
 	successMessage = 'Comment posted',
 	errorMessage = 'Failed to post comment',
 	showErrorToast = true,
+	useApiMessage = false,
 	onCancel,
 	onSubmitted,
 	disabled = false,
@@ -71,13 +78,14 @@ function CommentEditor({
 		if (!content || disabled) return
 
 		try {
-			await onSubmit(content)
+			const response = await onSubmit(content)
 			methods.reset()
-			toast.success(successMessage)
+			toast.success(useApiMessage ? (response as IResponse<unknown>).message : successMessage)
 			onSubmitted?.()
-		} catch {
+		} catch (error) {
 			if (showErrorToast) {
-				toast.error(errorMessage)
+				const apiError = error as { response?: { data: Pick<IResponse<unknown>, 'message'> } }
+				toast.error(useApiMessage ? (apiError.response?.data.message ?? errorMessage) : errorMessage)
 			}
 		}
 	})
@@ -85,7 +93,10 @@ function CommentEditor({
 	return (
 		<FormProvider {...methods}>
 			<form
-				className="relative rounded-lg border bg-background p-2 focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50"
+				className={cn(
+					'relative rounded-lg border bg-background p-2 focus-within:border-ring focus-within:ring-[3px] focus-within:ring-ring/50',
+					className
+				)}
 				onSubmit={handleSubmit}
 			>
 				<TooltipProvider>

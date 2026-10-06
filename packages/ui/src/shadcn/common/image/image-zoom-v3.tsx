@@ -1,8 +1,8 @@
 'use client'
 
 import { cn } from '@repo/stephen-v2-utils'
-import { BlurImage } from '@ui/shadcn/common/image/blur-image'
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@ui/shadcn/dialog'
+import { BlurImage } from './blur-image'
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '../../dialog'
 import { useState } from 'react'
 
 export type ImageZoomV3Props = {

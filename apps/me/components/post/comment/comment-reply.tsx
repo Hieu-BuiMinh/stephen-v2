@@ -27,8 +27,10 @@ function CommentReply({ postId, commentId, onCancel }: CommentReplyProps) {
 
 	return (
 		<CommentEditor
+			className="border-ring ring-[3px] ring-ring/50"
 			placeholder="Write a reply..."
 			onSubmit={(content) => reply.mutateAsync({ commentId, body: { content } })}
+			useApiMessage
 			successMessage="Reply posted"
 			errorMessage="Failed to post reply"
 			onCancel={onCancel}

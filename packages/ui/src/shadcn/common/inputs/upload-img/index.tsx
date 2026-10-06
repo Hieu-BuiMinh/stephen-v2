@@ -1,8 +1,8 @@
 'use client'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@ui/shadcn/avatar'
-import { Input } from '@ui/shadcn/input'
-import { Label } from '@ui/shadcn/label'
+import { Avatar, AvatarFallback, AvatarImage } from '../../../avatar'
+import { Input } from '../../../input'
+import { Label } from '../../../label'
 import { useEffect, useId, useState } from 'react'
 
 interface UploadImgProps {

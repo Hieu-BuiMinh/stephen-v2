@@ -6,7 +6,7 @@
  *
  * Modified by: Stephen
  */
-import { CardStack } from '@ui/shadcn/common/image-card-stack/core/card-stack'
+import { CardStack } from './core/card-stack'
 import Image from 'next/image'
 
 import dayjs from '../../../../../utils/src/common/dayjs'

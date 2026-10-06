@@ -1,6 +1,5 @@
 'use client'
 
-import { Button } from '@repo/stephen-v2-ui/shadcn'
 import { Lock, LockOpen } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
@@ -23,7 +22,11 @@ export function PostPublishButton({ postId, post }: PostPublishButtonProps) {
 	const role = String(user?.publicMetadata?.role ?? '').toUpperCase()
 
 	if (role !== UserRole.ADMIN) {
-		return null
+		return published ? (
+			<LockOpen className="size-4" aria-hidden="true" />
+		) : (
+			<Lock className="size-4" aria-hidden="true" />
+		)
 	}
 
 	const handlePublish = () => {
@@ -42,9 +45,17 @@ export function PostPublishButton({ postId, post }: PostPublishButtonProps) {
 			onConfirm={handlePublish}
 			isLoading={publishMutation.isPending}
 		>
-			<Button variant="secondary-matter" className="size-8 flex items-center justify-center">
-				{published ? <LockOpen /> : <Lock />}
-			</Button>
+			<button
+				type="button"
+				className="inline-flex cursor-pointer items-center justify-center rounded-sm text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring w-fit"
+				aria-label={published ? 'Un-publish this post' : 'Publish this post'}
+			>
+				{published ? (
+					<LockOpen className="size-4 text-yellow-400" />
+				) : (
+					<Lock className="size-4 text-yellow-400" />
+				)}
+			</button>
 		</ConfirmModal>
 	)
 }

@@ -17,6 +17,7 @@ const bookRecap = defineCollection({
 			createdAt: s.isodate().optional(),
 			updatedAt: s.isodate().optional(),
 			cover: s.string().optional(),
+			audio: s.string().nullable().optional(),
 			bookCover: s.string().optional(),
 			metadata: s.metadata(),
 			description: s.string().max(999).optional(),

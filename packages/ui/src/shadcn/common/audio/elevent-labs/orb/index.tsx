@@ -497,7 +497,7 @@ void main() {
 
 /**
  * Usage
- * import { Orb } from '@ui/components/ui/orb'
+ * import { Orb } from '@repo/stephen-v2-ui/components/ui/orb'
  * <Orb />
  *
  * Custom Colors
