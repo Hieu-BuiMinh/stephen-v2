@@ -1,18 +1,53 @@
 'use client'
 
-import { buttonVariants } from '@repo/stephen-v2-ui/shadcn'
+import { buttonVariants, RainbowButton, toast } from '@repo/stephen-v2-ui/shadcn'
 import { cn } from '@repo/stephen-v2-utils'
-import { SquareArrowOutUpRight, Zap } from 'lucide-react'
+import confetti from 'canvas-confetti'
+import { ArrowDownToLine, Loader, SquareArrowOutUpRight, Zap } from 'lucide-react'
 import { motion, useReducedMotion } from 'motion/react'
 import Link from 'next/link'
-
-import DownLoadResumeButton from '@/components/buttons/resume-button'
+import { useState } from 'react'
 import { APP_CONFIG } from '@/configs/app-config'
 
 import HeroCollage from './hero-collage'
 
 function HeroSection04() {
 	const reduceMotion = useReducedMotion()
+	const [loading, setLoading] = useState(false)
+
+	const explodeConfetti = () => {
+		const duration = 3 * 1000
+		const animationEnd = Date.now() + duration
+		const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 }
+
+		function randomInRange(min: number, max: number) {
+			return Math.random() * (max - min) + min
+		}
+
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const interval: any = setInterval(function () {
+			const timeLeft = animationEnd - Date.now()
+
+			if (timeLeft <= 0) {
+				return clearInterval(interval)
+			}
+
+			const particleCount = 50 * (timeLeft / duration)
+			confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } })
+			confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } })
+		}, 250)
+	}
+
+	const handleLoading = () => {
+		setLoading(true)
+		explodeConfetti()
+		setTimeout(() => {
+			setLoading(false)
+			toast.success('Thanks for downloading 🔥', {
+				duration: 3500,
+			})
+		}, 3000)
+	}
 
 	return (
 		<section className="mx-auto grid min-h-[calc(100vh-4rem)] w-full max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(540px,1.2fr)] lg:px-8">
@@ -51,11 +86,26 @@ function HeroSection04() {
 					transition={{ delay: 0.3 }}
 					className="flex flex-col w-full gap-3 sm:gap-4 md:flex-row"
 				>
-					<DownLoadResumeButton
-						className="w-full md:w-auto"
-						innerText="Download Resume"
-						buttonProps={{ size: 'sm' }}
-					/>
+					<a
+						href="/assets/files/pdf/[Junior-Frontend]_[BuiMinhHieu]_[2025].pdf"
+						className="relative w-full md:w-auto"
+						download
+					>
+						<RainbowButton
+							onClick={handleLoading}
+							disabled={loading}
+							variant="outline"
+							size="sm"
+							className="rounded-lg max-md:w-full"
+						>
+							Download Resume
+							{loading ? (
+								<Loader size={20} className="animate-spin" />
+							) : (
+								<ArrowDownToLine size={20} className="hidden animate-bounce md:block" />
+							)}
+						</RainbowButton>
+					</a>
 					<Link
 						href={APP_CONFIG.author.resume}
 						target="_blank"

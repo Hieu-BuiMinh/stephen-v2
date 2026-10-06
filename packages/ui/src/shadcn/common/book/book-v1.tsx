@@ -7,10 +7,10 @@
  * Modified by: Stephen
  */
 
-import '@ui/shadcn/common/book/style.css'
+import './style.css'
 
 import { cn } from '@repo/stephen-v2-utils'
-import { GlareHover } from '@ui/motion/components/glare-hover'
+import { GlareHover } from '../../../motion/components/glare-hover'
 import type { ComponentProps } from 'react'
 import { tv } from 'tailwind-variants'
 

@@ -1,6 +1,6 @@
 ---
 name: Service Layer & Query Key Rule
-description: Mandatory rules for organizing the service layer, folder structure, DTOs, and React Query keys in the Kayya project.
+description: Mandatory rules for organizing the service layer, folder structure, DTOs, and React Query keys in the Sfs project.
 ---
 
 # Service Layer & Query Key Rule
@@ -179,9 +179,6 @@ Every API must be defined using this structure:
 - Must be defined inside the service
 - Must not be hardcoded inside components
 - Must be deterministic
-- **Hierarchical Matching**: Use spread operators to handle optional parameters. This allows invalidating a "parent" key to automatically refresh all "child" queries.
-    - ✅ Correct: `['prefix', ...(id ? [id] : [])]` (becomes `['prefix', '123']` or `['prefix']`)
-    - ❌ Incorrect: `['prefix', id]` (becomes `['prefix', undefined]`, which is a different key hierarchy)
 
 ---
 
@@ -218,10 +215,9 @@ All API calls must:
 ```ts
 export const applicationService = {
 	getApplicationList: {
-		key: (params?: GetApplicationListRequest) =>
-			['get_admin_application_list', ...(params?.search ? [params.search] : [])] as const,
-		get: async (params?: GetApplicationListRequest) => {
-			return Api.get<IResponse<ApplicationItem[]>>('/api/v1/application/list', { params })
+		key: () => ['get_admin_application_list'] as const,
+		get: async () => {
+			return Api.get<IResponse<ApplicationItem[]>>('/api/v1/application/list')
 		},
 	},
 
@@ -279,7 +275,7 @@ This pattern ensures:
 
 - Centralized query key management
 - No cache conflicts
-- **Predictable Hierarchical Invalidation**: Refreshing a base key (e.g., `['list']`) will automatically invalidate all sub-queries (e.g., `['list', 'search_term']`).
+- Predictable invalidation
 - Clear admin/customer separation
 - Strong typing across the project
 - Easier endpoint refactoring

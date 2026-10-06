@@ -77,7 +77,7 @@
 }
 
 .book-texture {
-	background-image: url('/assets/images/bg/book-texture.png');
+	background-image: url('../../../assets/imges/bg/book-texture.avif');
 	position: absolute;
 	background-size: cover;
 	inset: 0;

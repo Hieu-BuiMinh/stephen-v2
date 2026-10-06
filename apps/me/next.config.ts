@@ -1,11 +1,24 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+	transpilePackages: ['@repo/stephen-v2-ui'],
 	experimental: {
 		viewTransition: true,
 	},
 	images: {
 		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'github.com',
+			},
+			{
+				protocol: 'https',
+				hostname: 'unavatar.io',
+			},
+			{
+				protocol: 'https',
+				hostname: 'pbs.twimg.com',
+			},
 			{
 				protocol: 'https',
 				hostname: 'images.unsplash.com',

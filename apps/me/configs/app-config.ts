@@ -1,11 +1,14 @@
 import type { SVGIconComponent } from '@repo/stephen-v2-ui/shadcn'
 import { SVGIcons } from '@repo/stephen-v2-ui/shadcn'
 
+// eslint-disable-next-line turbo/no-undeclared-env-vars
 export const isProduction = process.env.NODE_ENV === 'production'
 
 export const APP_CONFIG = {
 	name: `Stephen's Corner`,
 	shortName: 'Stephen Blog',
+	title: 'Software Engineer - Frontend Developer #NextJs #ReactJs',
+	location: 'Ho Chi Minh City, Vietnam',
 	url: isProduction ? 'https://www.stephenisme.io.vn' : 'http://localhost:3001',
 	description: 'Next js 15 blog using Turborepo, velite, tailwind and shadcn',
 	siteKeywords: [
@@ -20,10 +23,13 @@ export const APP_CONFIG = {
 		'shadcn',
 	],
 	author: {
-		avatar: '/assets/images/avt/avt_001.jpg',
-		name: 'Stephen',
+		// avatar: '/assets/images/avt/avt_001.jpg',
+		avatar: '/assets/images/avt/me_12.png',
+		name: 'Stephen Ming',
 		resume: 'https://hieu-buiminh-resume.io.vn/',
 		githubUserName: 'Hieu-BuiMinh',
+		twitterUserName: 'Stephen_b591',
+		linkedinUserName: 'minh-hieu-78a315208',
 	},
 	links: {
 		instagram: 'https://www.instagram.com/stephen.02.12/',
@@ -31,7 +37,7 @@ export const APP_CONFIG = {
 		youtube: 'https://www.youtube.com/@stephen-dev-cool',
 		facebook: 'https://www.facebook.com/hieu.buiminh.37',
 		github: 'https://github.com/Hieu-BuiMinh',
-		linkedin: 'https://www.linkedin.com/in/minh-hieu-bui-78a315208',
+		linkedin: 'https://www.linkedin.com/in/minh-hieu-78a315208',
 		personalSite: '/',
 	},
 	logos: {

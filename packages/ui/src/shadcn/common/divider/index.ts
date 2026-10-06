@@ -1,1 +1,1 @@
-export * from '@ui/shadcn/common/divider/divider-slash'
+export * from './divider-slash'

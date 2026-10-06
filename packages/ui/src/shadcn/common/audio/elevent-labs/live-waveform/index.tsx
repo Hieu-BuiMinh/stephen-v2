@@ -509,7 +509,7 @@ export const LiveWaveform = ({
 
 /**
     Usage
-    import { LiveWaveform } from '@ui/components/ui/live-waveform'
+    import { LiveWaveform } from '@repo/stephen-v2-ui/components/ui/live-waveform'
     <LiveWaveform active={true} />
 
     ----------------------------------------------------

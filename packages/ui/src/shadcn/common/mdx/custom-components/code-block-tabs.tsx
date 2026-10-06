@@ -9,11 +9,11 @@
 
 'use client'
 
-import '@ui/shadcn/common/mdx/custom-components/style.css'
+import './style.css'
 
 import { cn } from '@repo/stephen-v2-utils'
-import type { buttonVariants } from '@ui/shadcn/index'
-import { Button, Tabs, TabsContent, TabsList, TabsTrigger } from '@ui/shadcn/index'
+import type { buttonVariants } from '../../../index'
+import { Button, Tabs, TabsContent, TabsList, TabsTrigger } from '../../../index'
 import type { VariantProps } from 'class-variance-authority'
 import { CheckIcon, ChevronDown, ChevronUp, CopyIcon } from 'lucide-react'
 import { JetBrains_Mono } from 'next/font/google'

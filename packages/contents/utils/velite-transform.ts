@@ -6,8 +6,9 @@ export const computedFields: any = <T extends { slug: string }>(data: T) => {
 		...data,
 		updatedAt: new Date().toISOString(),
 		author: {
-			avatar: '/assets/images/avt/me_04.png',
-			name: 'Stephen',
+			// avatar: '/assets/images/avt/me_04.png',
+			avatar: '/assets/images/avt/me_12.png',
+			name: 'Stephen Ming',
 			github: 'https://github.com/Hieu-BuiMinh',
 		},
 		slugAsParams: data.slug.split('/').slice(1).join('/'), // blog/hello-world => ['blog', 'hello-world'] => ['hello-world] => '/hello-world'

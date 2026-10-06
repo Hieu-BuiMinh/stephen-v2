@@ -7,7 +7,7 @@
  * Modified by: Stephen
  */
 
-import { DraggableContainer } from '@ui/shadcn/common/image-card-stack/core/dragable-container'
+import { DraggableContainer } from './dragable-container'
 import { motion } from 'motion/react'
 import { type ReactNode, useState } from 'react'
 

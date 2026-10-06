@@ -8,11 +8,11 @@ import {
 	AudioPlayerProvider,
 	AudioPlayerTime,
 	useAudioPlayer,
-} from '@ui/shadcn/common/audio/elevent-labs/audio-player/player'
-import { Orb } from '@ui/shadcn/common/audio/elevent-labs/orb'
-import { Waveform } from '@ui/shadcn/common/audio/elevent-labs/waveform'
-import { Label } from '@ui/shadcn/label'
-import { Switch } from '@ui/shadcn/switch'
+} from '../../elevent-labs/audio-player/player'
+import { Orb } from '../../elevent-labs/orb'
+import { Waveform } from '../../elevent-labs/waveform'
+import { Label } from '../../../../label'
+import { Switch } from '../../../../switch'
 import { Volume, Volume1, Volume2, VolumeX } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'

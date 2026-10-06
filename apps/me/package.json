@@ -12,6 +12,7 @@
     "@bprogress/next": "^3.2.12",
     "@clerk/nextjs": "^7.3.3",
     "@hookform/resolvers": "^5.1.1",
+    "@number-flow/react": "^0.6.2",
     "@repo/stephen-v2-contents": "workspace:^",
     "@repo/stephen-v2-ui": "workspace:^",
     "@repo/stephen-v2-utils": "workspace:^",
@@ -33,7 +34,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.60.0",
+    "react-markdown": "^10.1.0",
     "recharts": "2.15.4",
+    "remark-gfm": "^4.0.1",
     "suncalc": "^1.9.0",
     "zod": "^4.0.2"
   },

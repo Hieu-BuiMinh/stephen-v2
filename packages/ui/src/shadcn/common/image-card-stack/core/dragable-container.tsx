@@ -1,4 +1,4 @@
-import { useCardRotation } from '@ui/hooks/use-card-rotation'
+import { useCardRotation } from '../../../../hooks/use-card-rotation'
 import { motion } from 'motion/react'
 
 interface DraggableContainerProps {

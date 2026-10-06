@@ -7,12 +7,14 @@
  */
 'use client'
 
+import { RetroMusicPlayer } from '@repo/stephen-v2-ui'
 import { cn } from '@repo/stephen-v2-utils'
 import { useScrollSpy } from '@repo/stephen-v2-utils/hooks'
-import { ScrollArea } from '@ui/shadcn'
 import { Text } from 'lucide-react'
 import Link from 'next/link'
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
+
+import { ScrollArea } from '../../../../../shadcn'
 
 interface TocItem {
 	title: string
@@ -22,6 +24,8 @@ interface TocItem {
 
 type TTocExtend<T> = T & {
 	toc?: TocItem[]
+	audio?: string | null
+	cover?: string
 }
 
 /**
@@ -258,7 +262,7 @@ function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
 	}, [svgPath, containerHeight])
 
 	if (flatTocArray.length === 0) {
-		return null
+		return post.audio ? <RetroMusicPlayer source={post.audio} cover={post.cover} /> : null
 	}
 
 	return (
@@ -343,6 +347,8 @@ function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
 					))}
 				</div>
 			</ScrollArea>
+
+			{post.audio && <RetroMusicPlayer source={post.audio} cover={post.cover} />}
 		</nav>
 	)
 }

@@ -33,6 +33,7 @@ export type TPost = {
 	milestone?: string
 	relatedPostUrl?: string
 	cover?: string
+	audio?: string | null
 	metadata?: Metadata
 	description?: string
 	published: boolean

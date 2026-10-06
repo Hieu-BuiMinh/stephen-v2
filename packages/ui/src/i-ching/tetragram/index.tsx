@@ -1,5 +1,5 @@
 import { cn } from '@repo/stephen-v2-utils'
-import { YinYang } from '@ui/i-ching/yin-yang'
+import { YinYang } from '../yin-yang'
 import { nanoid } from 'nanoid'
 import React, { useMemo } from 'react'
 

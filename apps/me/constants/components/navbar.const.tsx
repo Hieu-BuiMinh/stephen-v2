@@ -5,6 +5,7 @@ import {
 	Camera,
 	Clover,
 	Library,
+	MessageCircleHeart,
 	Notebook,
 	// NotebookPen,
 	Pen,
@@ -76,12 +77,12 @@ export const navbarItems: TNavbarItems = {
 		},
 	],
 	more: [
-		// {
-		// 	title: 'Guestbook',
-		// 	href: '/guestbook',
-		// 	description: `Leave your say—message`,
-		// 	icon: MessageCircleHeart,
-		// },
+		{
+			title: 'Guestbook',
+			href: '/guestbook',
+			description: `Leave your say—message`,
+			icon: MessageCircleHeart,
+		},
 		{
 			title: 'Testimonial',
 			href: '/testimonial',

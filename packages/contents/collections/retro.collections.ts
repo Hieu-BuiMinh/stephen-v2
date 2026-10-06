@@ -15,6 +15,7 @@ const retroPost = defineCollection({
 			milestone: s.isodate(),
 			relatedPostUrl: s.string().optional(),
 			cover: s.string().optional(),
+			audio: s.string().nullable().optional(),
 			metadata: s.metadata(),
 			description: s.string().max(999).optional(),
 			published: s.boolean().default(true),
