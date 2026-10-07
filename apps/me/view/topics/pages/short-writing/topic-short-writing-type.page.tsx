@@ -26,6 +26,10 @@ async function TopicShortWritingTypePage({ params }: ITopicShortWritingTypePageP
 			title: 'Journaling',
 			description: 'A record of experiences, reflections, and gradual personal growth over time.',
 		},
+		'inner-compass': {
+			title: 'Inner Compass',
+			description: 'Notes on consciousness, intuition, passion, and personal growth.',
+		},
 		buddhism: {
 			title: 'Buddhism',
 			description: `Exploring philosophical ideas and life principles.`,

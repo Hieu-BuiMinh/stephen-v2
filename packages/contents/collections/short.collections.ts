@@ -18,7 +18,7 @@ const shortWriting = defineCollection({
 			description: s.string().max(999).optional(),
 			published: s.boolean().default(true),
 			hashTags: s.array(s.string()).optional(),
-			type: s.enum(['ba-zi', 'i-ching', 'buddhism', 'single', 'journaling', 'year-recap']),
+			type: s.enum(['ba-zi', 'i-ching', 'buddhism', 'single', 'journaling', 'inner-compass', 'year-recap']),
 			body: s.mdx(),
 			author: s
 				.object({

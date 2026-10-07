@@ -272,7 +272,12 @@ function TableOfContentDesktop<T>({ post }: { post: TTocExtend<T> }) {
 				On this page
 			</p>
 
-			<ScrollArea className="flex max-h-[calc(100vh-15rem)] flex-col overflow-auto pt-4 pr-4">
+			<ScrollArea
+				className={cn(
+					'flex flex-col overflow-auto pt-4 pr-4',
+					post.audio ? 'max-h-64' : 'max-h-[calc(100vh-15rem)]'
+				)}
+			>
 				<div ref={containerRef} className="relative flex flex-col">
 					{/* Static Track Background */}
 					<svg

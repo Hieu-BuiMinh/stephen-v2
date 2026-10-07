@@ -17,6 +17,14 @@ function TopicShortWritingPage() {
 			),
 			description: `A record of experiences, reflections, and gradual personal growth over time.`,
 		},
+		'inner-compass': {
+			name: 'Inner Compass',
+			posts: sortPostsByDate(
+				shortWriting?.filter((post) => post.published && post.type === 'inner-compass')?.slice(0, 4),
+				'desc'
+			),
+			description: `Notes on consciousness, intuition, passion, and personal growth.`,
+		},
 		buddhism: {
 			name: 'Buddhism',
 			posts: sortPostsByDate(
