@@ -1,22 +1,18 @@
 import { api as Api } from '@/lib/api'
-import type { ZenQuoteResponse } from './quote-res.dto'
+
+import type { QuoteResponse } from './quote-res.dto'
 
 export const quoteService = {
 	getRandomQuote: {
 		key: () => ['get_random_quote'] as const,
 		get: async () => {
-			const res = await Api.get<ZenQuoteResponse>({
+			const res = await Api.get<QuoteResponse>({
 				url: '/quote/random',
 			})
-			// ZenQuotes returns an array, we take the first item and map q -> content, a -> author
-			if (res && res.length > 0) {
-				const item = res[0]
-				return {
-					content: item.q,
-					author: item.a,
-				}
+			return {
+				content: res.quote,
+				author: res.author,
 			}
-			return null
 		},
 	},
 }

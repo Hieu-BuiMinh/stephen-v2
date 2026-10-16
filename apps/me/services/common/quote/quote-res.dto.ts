@@ -1,7 +1,5 @@
-export interface ZenQuote {
-	q: string // quote text
-	a: string // author name
-	h: string // html code
+export interface QuoteResponse {
+	id: number
+	quote: string
+	author: string
 }
-
-export type ZenQuoteResponse = ZenQuote[]

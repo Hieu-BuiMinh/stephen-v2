@@ -1,26 +1,21 @@
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
-const QUOTABLE_API_URL = 'https://zenquotes.io/api'
+const QUOTE_API_URL = 'https://dummyjson.com/quotes'
 
 async function proxyRequest(request: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
 	try {
 		const resolvedParams = await params
 		const path = (resolvedParams.path || []).join('/')
-		const url = new URL(`${QUOTABLE_API_URL}/${path}`)
+		const url = new URL(`${QUOTE_API_URL}/${path}`)
 
 		// Forward search params
 		request.nextUrl.searchParams.forEach((value, key) => {
 			url.searchParams.append(key, value)
 		})
 
-		const headers = new Headers(request.headers)
-		headers.delete('host')
-		headers.delete('connection')
-
 		const init: RequestInit = {
 			method: request.method,
-			headers: headers,
 			body: request.method !== 'GET' && request.method !== 'HEAD' ? request.body : null,
 			// @ts-expect-error - needed for forward body in nextjs/node
 			duplex: 'half',

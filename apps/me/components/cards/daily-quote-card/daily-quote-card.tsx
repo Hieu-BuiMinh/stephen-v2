@@ -273,12 +273,12 @@ export default function DailyQuoteCard({ quote, isLoading, onClose }: DailyQuote
 					{/* Subtle Attribution */}
 					<div className="absolute bottom-6 right-8 pointer-events-auto z-[60]">
 						<a
-							href="https://zenquotes.io/"
+							href="https://dummyjson.com/docs/quotes"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="text-[7px] uppercase tracking-[0.2em] text-zinc-400/40 hover:text-zinc-900 dark:hover:text-white transition-colors font-mono"
 						>
-							Quotes by ZenQuotes.io
+							Quotes by DummyJSON
 						</a>
 					</div>
 				</motion.div>
